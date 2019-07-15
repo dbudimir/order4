@@ -1,17 +1,24 @@
-import React, { Component } from 'react';
-import { useRouter } from 'next/router';
+import { Component } from 'react';
+import Link from 'next/link';
 import Layout from '../components/Layout';
 
-function Chains() {
-   const router = useRouter();
-   const { slug } = router.query;
+class Chains extends Component {
+   static getInitialProps({ query }) {
+      return { chainName: query.chain };
+   }
 
-   return (
-      <div>
-         <Layout />
-         return <p>My Chain: {slug}</p>
-      </div>
-   );
+   render() {
+      console.log(this.props);
+      return (
+         <div>
+            <Layout />
+            <h1>Post: {this.props.chainName}</h1>
+            <Link href="/">
+               <a>Go back to the list of posts</a>
+            </Link>
+         </div>
+      );
+   }
 }
 
 export default Chains;

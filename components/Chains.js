@@ -28,8 +28,8 @@ class Chains extends Component {
       const { chains } = this.props.chains;
       const chainCard = chains.map((chain, index) => (
          <Link
-            href={`/chains?slug=${chain.name.replace('&', 'and')}`}
-            as={`/chains/${chain.name.replace('&', 'and')}`}
+            href={`/chains?chain=${chain.name}`}
+            as={`/chains/${chain.name}`}
          >
             <h3>{chain.name}</h3>
          </Link>
