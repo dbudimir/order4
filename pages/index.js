@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import 'isomorphic-fetch';
+
 import Layout from '../components/Layout';
 import Chains from '../components/Chains';
 

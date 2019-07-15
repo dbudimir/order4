@@ -1,6 +1,8 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
+import { withRouter } from 'next/router';
+
 import Link from 'next/link';
-import Layout from '../components/Layout';
+import Layout from '../../components/Layout';
 
 class Chains extends Component {
    static getInitialProps({ query }) {
@@ -8,11 +10,12 @@ class Chains extends Component {
    }
 
    render() {
-      console.log(this.props);
+      const { router } = this.props;
+
       return (
          <div>
             <Layout />
-            <h1>Post: {this.props.chainName}</h1>
+            <h1>Chain: {router.query.name}</h1>
             <Link href="/">
                <a>Go back to the list of posts</a>
             </Link>
@@ -21,4 +24,4 @@ class Chains extends Component {
    }
 }
 
-export default Chains;
+export default withRouter(Chains);

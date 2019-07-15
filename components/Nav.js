@@ -35,18 +35,41 @@ class Nav extends Component {
    render() {
       return (
          <NavBar>
-            <p>test</p>
-            {/* <Link to="/">
+            <Link
+               href={{
+                  pathname: '/',
+               }}
+               as={{ pathname: '/' }}
+            >
                <h1>QSR Orders</h1>
             </Link>
+
             <div>
-               <Link to="/">
+               <Link
+                  href={{
+                     pathname: '/orders/all',
+                  }}
+                  as={{ pathname: `/orders` }}
+               >
+                  <span>Orders</span>
+               </Link>
+               <Link
+                  href={{
+                     pathname: '/',
+                  }}
+               >
                   <span>Chains</span>
                </Link>
-               <a href="/orders/all">
-                  <span>Orders</span>
-               </a>
-               <Link to={`/users/${this.props.userId}`}>
+               <Link
+                  href={{
+                     pathname: '/orders/[user]',
+                     query: { userId: '5cfed94deedaa400045dbb3b' },
+                  }}
+                  as={{ pathname: `/orders/my-orders` }}
+               >
+                  <span>My Orders</span>
+               </Link>
+               {/* <Link to={`/users/${this.props.userId}`}>
                   <span>My Orders</span>
                </Link>
                <Link to="/create">
@@ -60,8 +83,8 @@ class Nav extends Component {
                </Link>
                <span onClick={this.handelLogOut} role="button" tabIndex="0">
                   Logout
-               </span> */}
-            {/* </div> */}
+               </span>{' '} */}
+            </div>
          </NavBar>
       );
    }

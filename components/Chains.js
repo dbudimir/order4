@@ -22,23 +22,16 @@ class Chains extends Component {
       };
    }
 
-   componentDidMount() {}
-
    render() {
       const { chains } = this.props.chains;
       const chainCard = chains.map((chain, index) => (
-         <Link
-            href={`/chains?chain=${chain.name}`}
-            as={`/chains/${chain.name}`}
-         >
-            <h3>{chain.name}</h3>
+         <Link href="/chains/[name]" as={`/chains/${chain.name}`} key={index}>
+            <ChainContainer>
+               <h3>{chain.name}</h3>
+            </ChainContainer>
          </Link>
       ));
-      return (
-         <ChainContainer>
-            <div>{chainCard}</div>
-         </ChainContainer>
-      );
+      return <div>{chainCard}</div>;
    }
 }
 
