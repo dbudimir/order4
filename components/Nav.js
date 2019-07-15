@@ -35,7 +35,8 @@ class Nav extends Component {
    render() {
       return (
          <NavBar>
-            <Link to="/">
+            <p>test</p>
+            {/* <Link to="/">
                <h1>QSR Orders</h1>
             </Link>
             <div>
@@ -59,8 +60,8 @@ class Nav extends Component {
                </Link>
                <span onClick={this.handelLogOut} role="button" tabIndex="0">
                   Logout
-               </span>
-            </div>
+               </span> */}
+            {/* </div> */}
          </NavBar>
       );
    }

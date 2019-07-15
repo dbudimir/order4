@@ -8,5 +8,8 @@ const handler = routes.getRequestHandler(app);
 app.prepare().then(() => {
    express()
       .use(handler)
+      .get('/post/:slug', (req, res) =>
+         app.render(req, res, '/post', { slug: req.params.slug })
+      )
       .listen(3000);
 });
