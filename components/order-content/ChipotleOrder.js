@@ -14,12 +14,8 @@ class ChipotleOrder extends Component {
 
    componentDidMount() {
       this.setState({
-         fillings: this.state.orderContent.fillings.map(filling => (
-            <span>{filling}</span>
-         )),
-         toppings: this.state.orderContent.toppings.map(topping => (
-            <span> {topping}</span>
-         )),
+         fillings: this.state.orderContent.fillings.map(filling => <span>{filling}</span>),
+         toppings: this.state.orderContent.toppings.map(topping => <span> {topping}</span>),
       });
    }
 

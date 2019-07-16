@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -41,9 +42,7 @@ class OrderContent extends Component {
 
    componentDidMount() {
       axios
-         .get(
-            `https://qsr-order-api.herokuapp.com/api/orders/id/${this.props.orderID}`
-         )
+         .get(`https://qsr-order-api.herokuapp.com/api/orders/id/${this.props.orderID}`)
          .then(res => {
             const { data } = res;
             this.setState({

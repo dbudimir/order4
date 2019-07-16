@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
@@ -27,9 +28,67 @@ const NavBar = styled.div`
    }
 `;
 
-class Nav extends Component {
-   handelLogOut = () => {
-      this.props.logOut();
+export default class Nav extends Component {
+   constructor(props) {
+      super(props);
+      this.state = {
+         navItems: '',
+      };
+   }
+
+   componentDidMount() {
+      this.setState({
+         isLoggedIn: localStorage.isLoggedIn,
+      });
+      this.getStatus();
+   }
+
+   getStatus = () => {
+      let userLoggedIn;
+      if (localStorage.length > 0) {
+         userLoggedIn = (
+            <div>
+               <Link
+                  href={{
+                     pathname: '/orders/[user]',
+                     query: { userId: localStorage.userId },
+                  }}
+                  as={{ pathname: `/orders/my-orders` }}>
+                  <span>My Orders</span>
+               </Link>
+               <Link
+                  href={{
+                     pathname: '/',
+                  }}>
+                  <span onClick={this.props.signOut}>Log Out</span>
+               </Link>
+            </div>
+         );
+      } else if (localStorage.length === 0) {
+         userLoggedIn = (
+            <div>
+               <Link
+                  href={{
+                     pathname: '/signup',
+                     query: { action: 'login' },
+                  }}
+                  as={{ pathname: `/login` }}>
+                  <span>Log In</span>
+               </Link>
+               <Link
+                  href={{
+                     pathname: '/signup',
+                     query: { action: 'signup' },
+                  }}
+                  as={{ pathname: `/signup` }}>
+                  <span>Sign Up</span>
+               </Link>
+            </div>
+         );
+      }
+      this.setState({
+         navItems: userLoggedIn,
+      });
    };
 
    render() {
@@ -39,55 +98,39 @@ class Nav extends Component {
                href={{
                   pathname: '/',
                }}
-               as={{ pathname: '/' }}
-            >
-               <h1>QSR Orders</h1>
+               as={{ pathname: '/' }}>
+               <h1>order 4</h1>
             </Link>
 
-            <div>
+            <div className="menu">
                <Link
                   href={{
                      pathname: '/orders/all',
                   }}
-                  as={{ pathname: `/orders` }}
-               >
-                  <span>Orders</span>
+                  as={{ pathname: `/orders/all` }}>
+                  <a href="/orders/all">
+                     <span>Orders</span>
+                  </a>
                </Link>
                <Link
                   href={{
                      pathname: '/',
-                  }}
-               >
-                  <span>Chains</span>
+                  }}>
+                  <a href="/">
+                     <span>Chains</span>
+                  </a>
                </Link>
+               {this.state.navItems}
                <Link
                   href={{
-                     pathname: '/orders/[user]',
+                     pathname: '/create-order',
                      query: { userId: '5cfed94deedaa400045dbb3b' },
                   }}
-                  as={{ pathname: `/orders/my-orders` }}
-               >
-                  <span>My Orders</span>
-               </Link>
-               {/* <Link to={`/users/${this.props.userId}`}>
-                  <span>My Orders</span>
-               </Link>
-               <Link to="/create">
+                  as={{ pathname: `/create-order` }}>
                   <span>Create an Order</span>
                </Link>
-               <Link to="/login">
-                  <span>Login</span>
-               </Link>
-               <Link to="/signup">
-                  <span>Signup</span>
-               </Link>
-               <span onClick={this.handelLogOut} role="button" tabIndex="0">
-                  Logout
-               </span>{' '} */}
             </div>
          </NavBar>
       );
    }
 }
-
-export default Nav;

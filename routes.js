@@ -1,7 +1,10 @@
 const routes = require('next-routes');
 
-module.exports = routes();
-// .add('orders', '/order/all');
-// .add('user', '/user/:id', 'profile')
-// .add('/:noname/:lang(en|es)/:wow+', 'complex')
-// .add({ name: 'beta', pattern: '/v3', page: 'v3' });
+module.exports = routes()
+   .add('index', '/')
+   .add('signup', '/signup')
+   .add('login', '/signup')
+   .add('create-order', '/create-order')
+   .add('orders/all', '/orders/')
+   .add('orders/:user', '/orders/[user]')
+   .add('chains/:name', '/chains/[name]');

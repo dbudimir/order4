@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import 'isomorphic-fetch';
 
@@ -17,26 +18,7 @@ const OrderContainer = styled.div`
 `;
 
 class Orders extends Component {
-   constructor() {
-      super();
-      this.state = {
-         orders: [],
-      };
-   }
-
-   static getInitialProps = async function() {
-      const res = await fetch(
-         'https://qsr-order-api.herokuapp.com/api/orders/'
-      );
-      const data = await res.json();
-      return {
-         orders: data,
-      };
-   };
-
    render() {
-      console.log('now rendering');
-      console.log(this.props.url.asPath);
       const { orders } = this.props;
       const orderCard = orders.map((order, index) => (
          <OrderContent orderID={order._id} key={index} />
@@ -45,11 +27,18 @@ class Orders extends Component {
       return (
          <div>
             <Layout />
-            {/* <h2>{this.props.match.params.chain} Orders</h2> */}
             <OrderContainer>{orderCard}</OrderContainer>
          </div>
       );
    }
 }
+
+Orders.getInitialProps = async () => {
+   const res = await fetch('https://qsr-order-api.herokuapp.com/api/orders/');
+   const data = await res.json();
+   return {
+      orders: data,
+   };
+};
 
 export default Orders;

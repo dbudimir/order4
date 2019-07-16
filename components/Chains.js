@@ -26,9 +26,11 @@ class Chains extends Component {
       const { chains } = this.props.chains;
       const chainCard = chains.map((chain, index) => (
          <Link href="/chains/[name]" as={`/chains/${chain.name}`} key={index}>
-            <ChainContainer>
-               <h3>{chain.name}</h3>
-            </ChainContainer>
+            <a href={`/chains${chain.name}`}>
+               <ChainContainer>
+                  <h3>{chain.name}</h3>
+               </ChainContainer>
+            </a>
          </Link>
       ));
       return <div>{chainCard}</div>;
