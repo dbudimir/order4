@@ -16,22 +16,22 @@ class SubmitOrder extends Component {
    constructor(props) {
       super(props);
       this.state = {
-         order: this.props,
          user: {},
       };
    }
 
-   updateState = event => {
+   updateState = async event => {
       const { target } = event;
       const { value } = target;
       const { name } = target;
 
-      this.setState({
+      await this.setState({
          order: {
             ...this.state.order,
             [name]: value,
          },
       });
+      this.props.setOrderDetails(this.state.order);
    };
 
    updateUserState = event => {
@@ -46,19 +46,7 @@ class SubmitOrder extends Component {
       });
    };
 
-   submitOrder = event => {
-      const { state } = this;
-      event.preventDefault();
-      if (this.state.order.orderName === null) {
-         alert('Please name your order');
-      } else {
-         axios.post('https://qsr-order-api.herokuapp.com/api/user-order/create/', { ...state });
-         alert('Nice!');
-      }
-   };
-
    render() {
-      console.log(this.state.order);
       return (
          <div>
             <Form>
@@ -77,9 +65,12 @@ class SubmitOrder extends Component {
                <input onChange={this.updateUserState} className="text-input" name="userFullName" />
                <br />
                <br />
-               <button onClick={this.submitOrder} className="button" name="submit" type="submit">
-                  {' '}
-                  Submit{' '}
+               <button
+                  onClick={this.props.submitOrder}
+                  className="button"
+                  name="submit"
+                  type="submit">
+                  Submit Order
                </button>
             </Form>
          </div>

@@ -1,4 +1,4 @@
-import React, { Component, useContext } from 'react';
+import React, { useContext } from 'react';
 import Head from 'next/head';
 import Nav from './Nav';
 

@@ -2,15 +2,15 @@ import { useContext } from 'react';
 import UserContext from './UserContext';
 
 const UserInfo = () => {
-   const { user, signOut } = useContext(UserContext);
+   const { userName, signOut } = useContext(UserContext);
 
    return (
       <div className="user-info">
          <p>
-            Hello, <strong>{user}</strong>
+            Hello, <strong>{userName}</strong>
          </p>
          <p>Welcome to our app</p>
-         <button className="btn" onClick={signOut}>
+         <button type="button" className="button" onClick={signOut}>
             Sign Out
          </button>
       </div>
