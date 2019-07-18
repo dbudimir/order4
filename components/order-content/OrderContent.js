@@ -36,6 +36,7 @@ class OrderContent extends Component {
    constructor() {
       super();
       this.state = {
+         tags: [],
          orderContent: [],
       };
    }
@@ -48,6 +49,7 @@ class OrderContent extends Component {
             this.setState({
                orderDescription: data[0].description,
                orderContent: data[0].orderContent[0],
+               tags: data[0].tags,
                orderName: data[0].orderName,
                chainName: data[0].chainName,
                timestamp: data[0].timestamp,
@@ -58,17 +60,18 @@ class OrderContent extends Component {
          });
    }
 
-   componentDidUpdate() {
-      if (this.state.orderName === null) {
-         this.setState({
-            orderName: 'unnamed order',
-         });
-      }
-   }
+   // componentDidUpdate() {
+   //    if (this.state.orderName === null) {
+   //       this.setState({
+   //          orderName: 'unnamed order',
+   //       });
+   //    }
+   // }
 
    render() {
-      let chainOrderContent = '';
+      const tags = this.state.tags.map(tag => <span> {tag}</span>);
 
+      let chainOrderContent = '';
       if (this.state.chainName === 'Chipotle') {
          chainOrderContent = <ChipotleOrder state={this.state.orderContent} />;
       } else if (this.state.chainName === '&pizza') {
@@ -81,6 +84,7 @@ class OrderContent extends Component {
             <h3>{this.state.orderName}</h3>
             <p className="description">{this.state.orderDescription}</p>
             {chainOrderContent}
+            {tags}
          </OrderContentContainer>
       );
    }

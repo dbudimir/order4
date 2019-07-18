@@ -42,6 +42,9 @@ export default function SubmitConfirmation(props) {
             .post('https://qsr-order-api.herokuapp.com/api/user-order/create/existing-user', {
                ...reqBody,
             })
+            // .post('http://localhost:8040/api/user-order/create/existing-user', {
+            //    ...reqBody,
+            // })
             .then(response => {
                console.log(response.data);
                Router.push(`/user/${localStorage.userId}`);
@@ -52,6 +55,9 @@ export default function SubmitConfirmation(props) {
             .post('https://qsr-order-api.herokuapp.com/api/user-order/create/order', {
                ...reqBody,
             })
+            // .post('http://localhost:8040/api/user-order/create/order', {
+            //    ...reqBody,
+            // })
             .then(response => {
                console.log(response.data._id);
                Router.push({

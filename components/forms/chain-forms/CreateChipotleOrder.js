@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import SubmitOrder from '../order-forms/SubmitOrderForm';
-
 const Form = styled.div`
    .label {
       margin-top: 12px;

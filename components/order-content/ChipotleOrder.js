@@ -35,6 +35,7 @@ class ChipotleOrder extends Component {
             </p>
             <p>Fillings: {this.state.fillings}</p>
             <p>Toppings: {this.state.toppings}</p>
+            <p>Tags: {this.state.tags}</p>
          </div>
       );
    }
