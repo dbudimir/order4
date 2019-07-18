@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
+import TagForm from '../TagForm';
+
 const Form = styled.div`
    .label {
       margin-top: 12px;
@@ -46,6 +48,16 @@ class SubmitOrder extends Component {
       });
    };
 
+   updateTags = newTags => {
+      console.log(newTags);
+      this.setState(prevState => ({
+         order: {
+            tags: newTags,
+         },
+      }));
+      this.props.setOrderDetails(this.state.order);
+   };
+
    render() {
       return (
          <div>
@@ -60,16 +72,15 @@ class SubmitOrder extends Component {
                <p>Give your order a short description</p>
                <input onChange={this.updateState} className="text-input" name="description" />
 
-               <span className="label">Your Name</span>
-               <p>Enter your name to save your order</p>
-               <input onChange={this.updateUserState} className="text-input" name="userFullName" />
                <br />
+               <TagForm setTags={this.updateTags} />
                <br />
                <button
-                  onClick={this.props.submitOrder}
+                  onClick={this.props.toggleSubmitConfirmation}
                   className="button"
                   name="submit"
-                  type="submit">
+                  type="submit"
+               >
                   Submit Order
                </button>
             </Form>

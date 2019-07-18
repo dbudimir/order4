@@ -4,7 +4,8 @@ module.exports = {
          '/': { page: '/' },
          '/chains/[name]': { page: '/chains/:name' },
          '/orders/all': { page: '/orders/all' },
-         '/orders/[user]': { page: '/orders/:user' },
+         '/orders/[id]': { page: '/orders/id' },
+         '/user/[user]': { page: '/user/:user' },
          '/login': { page: '/signup' },
       };
    },

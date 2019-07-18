@@ -72,6 +72,13 @@ class SignupForm extends Component {
                isLoggedIn: true,
             });
             this.props.signIn(response.data.userName, this.state.email, response.data.userId, true);
+            const user = {
+               userFullName: response.data.userFullName,
+               userName: response.data.userName,
+               email: this.state.email,
+               userId: response.data.userId,
+            };
+            this.props.updateUser(user);
          });
       alert("You're in!");
    };

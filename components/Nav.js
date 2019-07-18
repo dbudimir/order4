@@ -50,16 +50,18 @@ export default class Nav extends Component {
             <div>
                <Link
                   href={{
-                     pathname: '/orders/[user]',
+                     pathname: '/user/[user]',
                      query: { userId: localStorage.userId },
                   }}
-                  as={{ pathname: `/orders/my-orders` }}>
+                  as={{ pathname: `/user/${localStorage.userId}` }}
+               >
                   <span>My Orders</span>
                </Link>
                <Link
                   href={{
                      pathname: '/',
-                  }}>
+                  }}
+               >
                   <span onClick={this.props.signOut}>Log Out</span>
                </Link>
             </div>
@@ -72,7 +74,8 @@ export default class Nav extends Component {
                      pathname: '/signup',
                      query: { action: 'login' },
                   }}
-                  as={{ pathname: `/login` }}>
+                  as={{ pathname: `/login` }}
+               >
                   <span>Log In</span>
                </Link>
                <Link
@@ -80,7 +83,8 @@ export default class Nav extends Component {
                      pathname: '/signup',
                      query: { action: 'signup' },
                   }}
-                  as={{ pathname: `/signup` }}>
+                  as={{ pathname: `/signup` }}
+               >
                   <span>Sign Up</span>
                </Link>
             </div>
@@ -98,7 +102,8 @@ export default class Nav extends Component {
                href={{
                   pathname: '/',
                }}
-               as={{ pathname: '/' }}>
+               as={{ pathname: '/' }}
+            >
                <h1>order 4</h1>
             </Link>
 
@@ -107,7 +112,8 @@ export default class Nav extends Component {
                   href={{
                      pathname: '/orders/all',
                   }}
-                  as={{ pathname: `/orders/all` }}>
+                  as={{ pathname: `/orders/all` }}
+               >
                   <a href="/orders/all">
                      <span>Orders</span>
                   </a>
@@ -115,7 +121,8 @@ export default class Nav extends Component {
                <Link
                   href={{
                      pathname: '/',
-                  }}>
+                  }}
+               >
                   <a href="/">
                      <span>Chains</span>
                   </a>
@@ -126,7 +133,8 @@ export default class Nav extends Component {
                      pathname: '/create-order',
                      query: { userId: '5cfed94deedaa400045dbb3b' },
                   }}
-                  as={{ pathname: `/create-order` }}>
+                  as={{ pathname: `/create-order` }}
+               >
                   <span>Create an Order</span>
                </Link>
             </div>

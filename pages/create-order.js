@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import Layout from '../components/Layout';
 import CreateChipotleOrder from '../components/forms/chain-forms/CreateChipotleOrder';
 import CreateAndPizzOrder from '../components/forms/chain-forms/CreateAndPizzaOrderForm';
 import SelectChainForm from '../components/forms/order-forms/SelectChainForm';
 import SubmitOrder from '../components/forms/order-forms/SubmitOrderForm';
+import SubmitConfirmation from '../components/forms/SubmitConfirmation';
+
+const CHAIN_CHIPOTLE = 'Chipotle';
+const CHAIN_ANDPIZZA = '&Pizza';
 
 class CreateOrder extends Component {
    constructor() {
@@ -37,31 +42,47 @@ class CreateOrder extends Component {
       }));
    };
 
-   submitOrder = event => {
-      const { state } = this;
-      event.preventDefault();
-      console.log(this.state);
-      // if (this.state.order.orderName === null) {
-      //    alert('Please name your order');
-      // } else {
-      //    axios.post('https://qsr-order-api.herokuapp.com/api/user-order/create/', { ...state });
-      //    alert('Nice!');
-      // }
+   updateUser = user => {
+      this.setState(prevState => ({
+         ...prevState,
+         user,
+      }));
+   };
+
+   toggleSubmitConfirmation = event => {
+      this.setState(prevState => ({
+         ...prevState,
+         orderSubmitted: !prevState.orderSubmitted,
+      }));
    };
 
    render() {
       let orderForm;
-      if (this.state.chainName === 'Chipotle') {
+      if (this.state.chainName === CHAIN_CHIPOTLE) {
          orderForm = <CreateChipotleOrder setOrder={this.updateOrder} />;
       }
-      if (this.state.chainName === '&pizza') {
+      if (this.state.chainName === CHAIN_ANDPIZZA) {
          orderForm = <CreateAndPizzOrder setOrder={this.updateOrder} />;
       }
 
       let submitOrder;
       if (this.state.order.submitOrder === true) {
          submitOrder = (
-            <SubmitOrder setOrderDetails={this.updateOrderDetails} submitOrder={this.submitOrder} />
+            <SubmitOrder
+               setOrderDetails={this.updateOrderDetails}
+               toggleSubmitConfirmation={this.toggleSubmitConfirmation}
+            />
+         );
+      }
+
+      let submitConfirmation;
+      if (this.state.orderSubmitted === true) {
+         submitConfirmation = (
+            <SubmitConfirmation
+               orderState={this.state}
+               toggleSubmitConfirmation={this.toggleSubmitConfirmation}
+               updateUser={this.updateUser}
+            />
          );
       }
 
@@ -71,6 +92,7 @@ class CreateOrder extends Component {
             <SelectChainForm setChain={this.updateChain} />
             {orderForm}
             {submitOrder}
+            {submitConfirmation}
          </div>
       );
    }

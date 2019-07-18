@@ -11,6 +11,7 @@ export default class MyApp extends App {
          email: '',
          userId: '',
          isLoggedIn: '',
+         nextAction: '',
       };
    }
 
@@ -29,7 +30,6 @@ export default class MyApp extends App {
       this.setState({
          user,
       });
-      console.log(this.state);
    };
 
    signIn = (userName, email, userId, isLoggedIn) => {
@@ -43,7 +43,9 @@ export default class MyApp extends App {
       localStorage.setItem('email', email);
       localStorage.setItem('userId', userId);
       localStorage.setItem('isLoggedIn', isLoggedIn);
-      Router.push('/');
+      if (window.location.pathname !== '/create-order') {
+         Router.push('/');
+      }
    };
 
    signOut = () => {
@@ -57,6 +59,8 @@ export default class MyApp extends App {
       localStorage.clear();
    };
 
+   switchNextAction = nextAction => this.setState({ nextAction });
+
    render() {
       const { Component, pageProps } = this.props;
 
@@ -68,9 +72,12 @@ export default class MyApp extends App {
                   userEmail: this.state.email,
                   userId: this.state.userId,
                   isLoggedIn: this.state.isLoggedIn,
+                  nextAction: this.state.nextAction,
                   signIn: this.signIn,
                   signOut: this.signOut,
-               }}>
+                  switchNextAction: this.switchNextAction,
+               }}
+            >
                <Component {...pageProps} />
             </UserContext.Provider>
          </Container>

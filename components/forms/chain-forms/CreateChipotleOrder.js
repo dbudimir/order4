@@ -90,7 +90,13 @@ class CreateChipotleOrder extends Component {
                </select>
 
                {tortilla}
-
+               {/* 
+						const fillings = ['Chicken', 'Steak'];
+						const fillingsSpans = fillings.map((filling, i) => <span>
+                     {filling}
+                     <input type="checkbox" name="filling" value={filling} key={i} />
+                  </span>)
+					 */}
                <div onChange={this.getSelected} className="fillings">
                   <span className="label">Select Protiens (no more than 2)</span>
                   <span>

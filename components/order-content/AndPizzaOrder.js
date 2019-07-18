@@ -14,21 +14,11 @@ class AndPizzaOrder extends Component {
 
    componentDidMount() {
       this.setState({
-         sauces: this.state.orderContent.sauce.map(sauce => (
-            <span>{sauce}</span>
-         )),
-         cheeses: this.state.orderContent.cheese.map(cheese => (
-            <span>{cheese}</span>
-         )),
-         finishes: this.state.orderContent.finishes.map(finish => (
-            <span> {finish}</span>
-         )),
-         proteins: this.state.orderContent.proteins.map(protein => (
-            <span>{protein}</span>
-         )),
-         veggies: this.state.orderContent.veggies.map(veg => (
-            <span>{veg}</span>
-         )),
+         sauces: this.state.orderContent.sauce.map(sauce => <span>{sauce}</span>),
+         cheeses: this.state.orderContent.cheese.map(cheese => <span>{cheese}</span>),
+         finishes: this.state.orderContent.finishes.map(finish => <span> {finish}</span>),
+         proteins: this.state.orderContent.proteins.map(protein => <span>{protein}</span>),
+         veggies: this.state.orderContent.veggies.map(veg => <span>{veg}</span>),
       });
    }
 

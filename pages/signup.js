@@ -1,4 +1,4 @@
-import React, { Component, useContext } from 'react';
+import React, { useContext } from 'react';
 
 import { useRouter } from 'next/router';
 
@@ -7,15 +7,15 @@ import UserContext from '../components/UserContext';
 import SignupForm from '../components/forms/SignupForm';
 import LoginForm from '../components/forms/LoginForm';
 
-function Signup() {
+function Signup({ updateUser = () => {} }) {
    const router = useRouter();
    const userStatus = useContext(UserContext);
 
    let currentForm;
    if (router.asPath === '/login') {
-      currentForm = <LoginForm signIn={userStatus.signIn} />;
+      currentForm = <LoginForm signIn={userStatus.signIn} updateUser={updateUser} />;
    } else {
-      currentForm = <SignupForm signIn={userStatus.signIn} />;
+      currentForm = <SignupForm signIn={userStatus.signIn} updateUser={updateUser} />;
    }
 
    return (
