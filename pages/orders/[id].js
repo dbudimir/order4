@@ -26,7 +26,6 @@ class Orders extends Component {
 
    componentDidMount() {
       if (this.props.orderId === '') {
-         console.log('no order Id');
          const id = window.location.pathname.replace('/orders/', '');
          axios.get(`https://qsr-order-api.herokuapp.com/api/orders/id/${id}`).then(response => {
             this.setState({ order: response.data });

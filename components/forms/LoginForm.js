@@ -94,7 +94,6 @@ class LoginForm extends Component {
          //    ...state,
          // })
          .then(response => {
-            console.log(response.data);
             localStorage.token = response.data.token;
             this.setState({
                isLoggedIn: true,

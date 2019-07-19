@@ -59,7 +59,6 @@ export default function SubmitConfirmation(props) {
             //    ...reqBody,
             // })
             .then(response => {
-               console.log(response.data._id);
                Router.push({
                   pathname: '/orders/{response.data._id}',
                   query: { orderId: response.data._id },

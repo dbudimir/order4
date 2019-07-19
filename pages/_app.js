@@ -49,7 +49,6 @@ export default class MyApp extends App {
    };
 
    signOut = () => {
-      console.log('logging out now');
       this.setState({
          userName: '',
          email: '',

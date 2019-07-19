@@ -9,23 +9,24 @@
 		"express": "^4.17.1",
 		"isomorphic-fetch": "^2.2.1",
 		"isomorphic-unfetch": "^3.0.0",
-		"next": "^9.0.1",
+		"next": "^9.0.3-canary.1",
 		"next-routes": "^1.4.2",
 		"node-sass": "^4.12.0",
 		"path-match": "^1.2.4",
 		"react": "^16.8.6",
 		"react-dom": "^16.8.6",
-		"styled-components": "^4.3.2"
+		"styled-components": "^4.3.2",
+		"typescript": "^3.5.3"
 	},
 	"main": "index.js",
 	"scripts": {
-		"dev": "next dev",
+		"dev": "now dev",
 		"server-dev": "node server.js",
 		"build": "next build",
 		"export": "next export",
 		"start": "next start",
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"now-build": "next build && next export -o dist"
+		"now-build": "next build && next export"
 	},
 	"eslintConfig": {
 		"extends": "wesbos",
@@ -54,6 +55,8 @@
 	},
 	"homepage": "https://github.com/dbudimir/order4#readme",
 	"devDependencies": {
+		"@types/node": "^12.6.8",
+		"@types/react": "^16.8.23",
 		"eslint": "^5.16.0",
 		"eslint-config-airbnb": "^17.1.1",
 		"eslint-config-prettier": "^4.3.0",
@@ -64,6 +67,7 @@
 		"eslint-plugin-prettier": "^3.1.0",
 		"eslint-plugin-react": "^7.14.2",
 		"eslint-plugin-react-hooks": "^1.6.1",
+		"now-next-routes": "^1.1.2",
 		"prettier": "^1.18.2"
 	}
 }
