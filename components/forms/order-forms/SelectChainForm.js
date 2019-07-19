@@ -18,14 +18,11 @@ class SelectChainForm extends Component {
 
    render() {
       return (
-         <div>
+         <div className="select-chain">
             <form>
-               <h2>Create Your Order</h2>
-               <h3>Select a Restaurant</h3>
-               <span className="label">Chain Name</span>
                <select onChange={this.updateState} className="text-input" name="chainName">
                   <option value="" disabled selected>
-                     Select a chain
+                     Select Restaurant
                   </option>
                   <option value="Chipotle">Chipotle</option>
                   <option value="&pizza">&pizza</option>

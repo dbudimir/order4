@@ -62,7 +62,7 @@ class SubmitOrder extends Component {
       return (
          <div>
             <Form>
-               <h2>Create Your Order</h2>
+               <h3>Give it a name...</h3>
 
                <span className="label">Name It</span>
                <p>Give your order a fun name (ex. "The Foil Buster", "The Big Cheese")</p>

@@ -59,7 +59,7 @@ class CreateChipotleOrder extends Component {
       if (this.state.mealType === 'Tacos') {
          tortilla = (
             <div>
-               <span className="label">Tortilla</span>
+               <span className="field-label">Tortilla</span>
                <select onChange={this.updateState} className="text-input" name="tortilla">
                   <option value="" disabled selected>
                      Select tortilla
@@ -71,140 +71,78 @@ class CreateChipotleOrder extends Component {
          );
       }
 
+      const fillings = ['Chicken', 'Steak', 'Barbaco', 'Carnitas', 'Sofritas', 'Veggie'];
+      const fillingsSpans = fillings.map((filling, i) => (
+         <span>
+            <input type="checkbox" name="filling" value={filling} key={i} />
+            <label htmlFor="filling">{filling}</label>
+         </span>
+      ));
+
+      // prettier-ignore
+      const toppings = [ 'Cheese', 'Queso', 'Fresh Tomato Salsa (Mild)', 'Roasted Chili-Corn Salsa (Medium)', 'Tomatillo-Green Chili Salsa (Medium Hot)', 'Tomatillo-Red Chili Salsa (Hot)', 'Sour Cream', 'Fajita Veggies', 'Romaine Lettuce', 'Chipotle-Honey Vinaigrette', ];
+      const toppingsSpans = toppings.map((topping, i) => (
+         <span>
+            <input type="checkbox" name="topping" value={topping} key={i} />
+            <label htmlFor="topping">{topping}</label>
+         </span>
+      ));
+
       return (
          <Form>
-            <form>
-               <h2>Create Your Order</h2>
+            <div className="customize">
+               <h3>Customize it...</h3>
+               <form>
+                  <span className="field-label">Select a Meal Type</span>
+                  <select onChange={this.updateState} className="text-input" name="mealType">
+                     <option value="" disabled selected>
+                        Meal Type
+                     </option>
+                     <option value="Burrito">Burrito</option>
+                     <option value="Burrito Bowl">Burrito Bowl</option>
+                     <option value="Tacos">Tacos</option>
+                     <option value="Salad">Salad</option>
+                  </select>
 
-               <span className="label">Meal Type</span>
-               <select onChange={this.updateState} className="text-input" name="mealType">
-                  <option value="" disabled selected>
-                     Select meal type
-                  </option>
-                  <option value="Burrito">Burrito</option>
-                  <option value="Burrito Bowl">Burrito Bowl</option>
-                  <option value="Tacos">Tacos</option>
-                  <option value="Salad">Salad</option>
-               </select>
+                  {tortilla}
 
-               {tortilla}
-               {/* 
-						const fillings = ['Chicken', 'Steak'];
-						const fillingsSpans = fillings.map((filling, i) => <span>
-                     {filling}
-                     <input type="checkbox" name="filling" value={filling} key={i} />
-                  </span>)
-					 */}
-               <div onChange={this.getSelected} className="fillings">
-                  <span className="label">Select Protiens (no more than 2)</span>
-                  <span>
-                     Chicken
-                     <input type="checkbox" name="filling" value="Chicken" />
-                  </span>
-                  <span>
-                     Steak
-                     <input type="checkbox" name="filling" value="Steak" />
-                  </span>
-                  <span>
-                     Barbaco
-                     <input type="checkbox" name="filling" value="Barbaco" />
-                  </span>
-                  <span>
-                     Carnitas
-                     <input type="checkbox" name="filling" value="Carnitas" />
-                  </span>
-                  <span>
-                     Sofritas
-                     <input type="checkbox" name="filling" value="Sofritas" />
-                  </span>
-                  <span>
-                     Veggie
-                     <input type="checkbox" name="filling" value="Veggie" />
-                  </span>
-               </div>
+                  <span className="field-label">Select Protiens (No More Than 2)</span>
+                  <div onChange={this.getSelected} className="fillings">
+                     {fillingsSpans}
+                  </div>
 
-               <span className="label">Select Rice Option</span>
-               <select onChange={this.updateState} className="text-input" name="rice">
-                  <option value="" disabled selected>
-                     rice
-                  </option>
-                  <option value="White Rice">White Rice</option>
-                  <option value="Brown Rice">Brown Rice</option>
-                  <option value="Both (half/half)">Both (half/half)</option>
-                  <option value="No Rice">No Rice</option>
-               </select>
+                  <span className="field-label">Select Rice Option</span>
+                  <select onChange={this.updateState} className="text-input" name="rice">
+                     <option value="" disabled selected>
+                        rice
+                     </option>
+                     <option value="White Rice">White Rice</option>
+                     <option value="Brown Rice">Brown Rice</option>
+                     <option value="Both (half/half)">Both (half/half)</option>
+                     <option value="No Rice">No Rice</option>
+                  </select>
 
-               <span className="label">Select Beans</span>
-               <select onChange={this.updateState} className="text-input" name="beans">
-                  <option value="" disabled selected>
-                     beans
-                  </option>
-                  <option value="Black Beans">Black Beans</option>
-                  <option value="Pinto Beans">Pinto Beans</option>
-                  <option value="Both (half/half)">Both (half/half)</option>
-                  <option value="No Beans">No Beans</option>
-               </select>
+                  <span className="field-label">Select Beans</span>
+                  <select onChange={this.updateState} className="text-input" name="beans">
+                     <option value="" disabled selected>
+                        beans
+                     </option>
+                     <option value="Black Beans">Black Beans</option>
+                     <option value="Pinto Beans">Pinto Beans</option>
+                     <option value="Both (half/half)">Both (half/half)</option>
+                     <option value="No Beans">No Beans</option>
+                  </select>
 
-               <div onChange={this.getSelected} className="toppings">
-                  <span className="label">Add Toppings</span>
-                  <span>
-                     Cheese
-                     <input type="checkbox" name="topping" value="Cheese" />
-                  </span>
-                  <span>
-                     Queso
-                     <input type="checkbox" name="topping" value="Queso" />
-                  </span>
-                  <span>
-                     Fresh Tomato Salsa (Mild)
-                     <input type="checkbox" name="topping" value="Fresh Tomato Salsa (Mild)" />
-                  </span>
-                  <span>
-                     Roasted Chili-Corn Salsa (Medium)
-                     <input
-                        type="checkbox"
-                        name="topping"
-                        value="Roasted Chili-Corn Salsa (Medium)"
-                     />
-                  </span>
-                  <span>
-                     Tomatillo-Green Chili Salsa (Medium Hot)
-                     <input
-                        type="checkbox"
-                        name="topping"
-                        value="Tomatillo-Green Chili Salsa (Medium Hot)"
-                     />
-                  </span>
-                  <span>
-                     Tomatillo-Red Chili Salsa (Hot)
-                     <input
-                        type="checkbox"
-                        name="topping"
-                        value="Tomatillo-Red Chili Salsa (Hot)"
-                     />
-                  </span>
-                  <span>
-                     Sour Cream
-                     <input type="checkbox" name="topping" value="Sour Cream" />
-                  </span>
-                  <span>
-                     Fajita Veggies
-                     <input type="checkbox" name="topping" value="Fajita Veggies" />
-                  </span>
-                  <span>
-                     Romaine Lettuce
-                     <input type="checkbox" name="topping" value="Romaine Lettuce" />
-                  </span>
-                  <span>
-                     Chipotle-Honey Vinaigrette
-                     <input type="checkbox" name="topping" value="Chipotle-Honey Vinaigrette" />
-                  </span>
-               </div>
-            </form>
-            <br></br>
-            <span onClick={this.submitOrder} className="button" name="submit" type="submit">
-               Next
-            </span>
+                  <span className="field-label">Add Toppings</span>
+                  <div onChange={this.getSelected} className="toppings">
+                     {toppingsSpans}
+                  </div>
+               </form>
+               <br></br>
+               <span onClick={this.submitOrder} className="button" name="submit" type="submit">
+                  Next
+               </span>
+            </div>
          </Form>
       );
    }

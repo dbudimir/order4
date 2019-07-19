@@ -24,20 +24,8 @@ class Orders extends Component {
       this.state = { order: [] };
    }
 
-   componentDidMount() {
-      if (this.props.orderId === '') {
-         const id = window.location.pathname.replace('/orders/', '');
-         axios.get(`https://qsr-order-api.herokuapp.com/api/orders/id/${id}`).then(response => {
-            this.setState({ order: response.data });
-         });
-      } else {
-         this.setState({ order: this.props.order });
-      }
-   }
-
    render() {
-      console.log(this.props.order);
-      const orderCard = this.state.order.map((order, index) => (
+      const orderCard = this.props.order.map((order, index) => (
          <OrderContent orderID={order._id} key={index} />
       ));
 
@@ -51,13 +39,12 @@ class Orders extends Component {
 }
 
 Orders.getInitialProps = async ({ query }) => {
-   const id = (await query.orderId) === undefined ? '' : `id/${query.orderId}`;
-   const res = await fetch(`https://qsr-order-api.herokuapp.com/api/orders/${id}`);
+   const res = await fetch(`https://qsr-order-api.herokuapp.com/api/orders/${query.id}`);
    const data = await res.json();
 
    return {
       order: data,
-      orderId: id,
+      orderId: query.id,
    };
 };
 

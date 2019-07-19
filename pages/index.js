@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'isomorphic-fetch';
 
-import Head from '../components/head';
+import Head from '../components/Head';
 import Layout from '../components/Layout';
 import UserInfo from '../components/UserInfo';
 import Chains from '../components/Chains';

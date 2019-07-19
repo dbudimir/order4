@@ -1,7 +1,10 @@
 {
-	"name": "order4",
-	"version": "1.0.0",
-	"description": "A web app to share and categorize custom orders at quick service restaurants.",
+	"name": "create-next-example-app",
+	"scripts": {
+		"dev": "next",
+		"build": "next build",
+		"start": "next start"
+	},
 	"dependencies": {
 		"axios": "^0.19.0",
 		"babel-eslint": "10.0.1",
@@ -15,18 +18,7 @@
 		"path-match": "^1.2.4",
 		"react": "^16.8.6",
 		"react-dom": "^16.8.6",
-		"styled-components": "^4.3.2",
-		"typescript": "^3.5.3"
-	},
-	"main": "index.js",
-	"scripts": {
-		"dev": "now dev",
-		"server-dev": "node server.js",
-		"build": "next build",
-		"export": "next export",
-		"start": "next start",
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"now-build": "next build && next export"
+		"styled-components": "^4.3.2"
 	},
 	"eslintConfig": {
 		"extends": "wesbos",
@@ -43,17 +35,6 @@
 			]
 		}
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/dbudimir/order4.git"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/dbudimir/order4/issues"
-	},
-	"homepage": "https://github.com/dbudimir/order4#readme",
 	"devDependencies": {
 		"@types/node": "^12.6.8",
 		"@types/react": "^16.8.23",

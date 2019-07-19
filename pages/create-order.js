@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import Form from '../components/styles/CreateOrderForm';
+
+import Head from '../components/Head';
 import Layout from '../components/Layout';
 import CreateChipotleOrder from '../components/forms/chain-forms/CreateChipotleOrder';
 import CreateAndPizzOrder from '../components/forms/chain-forms/CreateAndPizzaOrderForm';
@@ -9,7 +12,7 @@ import SubmitOrder from '../components/forms/order-forms/SubmitOrderForm';
 import SubmitConfirmation from '../components/forms/SubmitConfirmation';
 
 const CHAIN_CHIPOTLE = 'Chipotle';
-const CHAIN_ANDPIZZA = '&Pizza';
+const CHAIN_ANDPIZZA = '&pizza';
 
 class CreateOrder extends Component {
    constructor() {
@@ -88,11 +91,15 @@ class CreateOrder extends Component {
 
       return (
          <div>
+            <Head />
             <Layout />
-            <SelectChainForm setChain={this.updateChain} />
-            {orderForm}
-            {submitOrder}
-            {submitConfirmation}
+            <Form>
+               <h2>Create Your Order</h2>
+               <SelectChainForm setChain={this.updateChain} />
+               {orderForm}
+               {submitOrder}
+               {submitConfirmation}
+            </Form>
          </div>
       );
    }
