@@ -4,28 +4,36 @@ const Form = styled.div`
    display: block;
    margin: 60px auto 0;
    width: fit-content;
+   font-family: Roboto, sans-serif;
+
    h3 {
       margin-bottom: 32px;
+      font-size: 28px;
    }
+
    .label {
       margin-top: 12px;
       font-weight: 800;
    }
+
    input {
-      width: 500px;
+      width: 100%;
       height: 48px;
+      font-size: 24px;
       border: 0px;
-      border-bottom: 3px solid #000000;
-      font-size: 32px;
-      margin-bottom: 12px;
-      margin-top: 32px;
-      padding: 0 4px;
+      padding: 0px 0px 0px 10px;
+      background-color: #f8f8f8;
+      border-radius: 8px;
+      box-shadow: inset rgba(0, 0, 0, 0.2) 0px 0px 4px 0;
+      box-sizing: border-box;
    }
-   input::placeholder {
+
+   /* input::placeholder {
       font-size: 32px;
       padding: 6px 6px 0;
       line-height: 1;
-   }
+   } */
+
    input[name='submit'] {
       border-radius: 6px;
       margin-bottom: 64px;
@@ -35,6 +43,7 @@ const Form = styled.div`
       background-color: #fa8320;
       width: 200px;
    }
+
    span {
       display: block;
    }

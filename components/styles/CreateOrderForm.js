@@ -5,12 +5,6 @@ const Form = styled.div`
    display: block;
    margin: 60px auto 120px;
 
-   h2 {
-      font-size: 48px;
-      font-family: Roboto, serif;
-      margin: 0 12px 32px;
-   }
-
    h3 {
       font-family: Roboto, serif;
       min-width: fit-content;
@@ -211,7 +205,8 @@ const Form = styled.div`
          height: 48px;
          padding: 0px 12px;
          margin-top: 6px;
-         background-color: green;
+         background-color: #42b5b4;
+         border: none;
          color: white;
          font-family: Roboto;
          font-weight: 600;

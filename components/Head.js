@@ -9,6 +9,7 @@ const defaultOGImage = '';
 const Head = props => (
    <NextHead>
       <meta charSet="UTF-8" />
+
       <title>{props.title || ''}</title>
       <meta name="description" content={props.description || defaultDescription} />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,6 +21,7 @@ const Head = props => (
          rel="stylesheet"
          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,500i,700,900&display=swap"
       />
+
       <meta property="og:url" content={props.url || defaultOGURL} />
       <meta property="og:title" content={props.title || ''} />
       <meta property="og:description" content={props.description || defaultDescription} />

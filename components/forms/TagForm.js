@@ -61,7 +61,7 @@ export default class TagForm extends Component {
                      type="text"
                      name={`tag${idx}`}
                      value={this.state.tags[idx]}
-                     placeholder="tag name"
+                     placeholder="(ex. healthy, vegan, spicy)"
                      onChange={this.updateState(idx)}
                   />
                   <button type="button" onClick={this.handleRemoveTag(idx)} className="small">

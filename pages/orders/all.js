@@ -9,15 +9,23 @@ import Head from '../../components/Head';
 import Layout from '../../components/Layout';
 import OrderContent from '../../components/order-content/OrderContent';
 
+const H1 = styled.h1`
+   max-width: 1024px;
+   margin: 60px auto 48px;
+   padding: 0px 12px;
+   font-family: Roboto, sans-serif;
+   font-size: 42px;
+   font-weight: 900;
+`;
+
 const OrderContainer = styled.div`
    display: flex;
    flex-direction: row;
    flex-wrap: wrap;
-   justify-content: space-around;
+   justify-content: space-between;
    max-width: 1024px;
    margin: 0 auto;
    padding: 0 12px;
-   margin-top: 60px;
 
    h3 {
       text-transform: capitalize;
@@ -43,8 +51,8 @@ class Orders extends Component {
          <div>
             <Head title="All Orders" />
             <Layout />
-            <h1>Popular Orders</h1>
-            <OrderContainer>{orderCard}</OrderContainer>
+            <H1>Popular Orders</H1>
+            <OrderContainer className="order-container">{orderCard}</OrderContainer>
          </div>
       );
    }

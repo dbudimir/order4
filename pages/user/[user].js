@@ -4,16 +4,29 @@ import 'isomorphic-fetch';
 
 import styled from 'styled-components';
 
+import Head from '../../components/Head';
 import Layout from '../../components/Layout';
 import OrderContent from '../../components/order-content/OrderContent';
+
+const H1 = styled.h1`
+   max-width: 1024px;
+   margin: 60px auto 48px;
+   padding: 0px 12px;
+   font-family: Roboto, sans-serif;
+   font-size: 42px;
+   font-weight: 900;
+`;
 
 const OrderContainer = styled.div`
    display: flex;
    flex-direction: row;
    flex-wrap: wrap;
    justify-content: space-between;
-   h3 {
-      text-transform: capitalize;
+   max-width: 1024px;
+   margin: 60px auto;
+
+   .order-content-container {
+      flex-basis: 100%;
    }
 `;
 
@@ -24,26 +37,30 @@ class User extends Component {
    }
 
    render() {
+      console.log(this.props);
       const orderCard = this.props.orders.map((order, index) => (
          <OrderContent orderID={order._id} key={index} />
       ));
 
       return (
          <div>
+            <Head title={`Custom orders created by ${this.props.fullName}`} />
             <Layout />
-            <OrderContainer>{orderCard}</OrderContainer>
+            <H1>{`Custom orders created by ${this.props.fullName}`}</H1>
+            <OrderContainer className="order-content-container">{orderCard}</OrderContainer>
          </div>
       );
    }
 }
 
 User.getInitialProps = async ({ query }) => {
-   const id = (await query.id) === undefined ? '' : query.user;
+   // const id = (await query.id) === undefined ? '' : query.user;
    const res = await fetch(`https://qsr-order-api.herokuapp.com/api/users/${query.user}`);
    const data = await res.json();
 
    return {
       orders: data[0].orders,
+      fullName: data[0].userFullName,
       userId: query.user,
    };
 };

@@ -18,6 +18,7 @@ const ModalOuter = styled.div`
    overflow: auto;
    background-color: rgb(0, 0, 0);
    background-color: rgba(0, 0, 0, 0.4);
+   font-family: Roboto, sans-serif;
 
    .modal-content {
       background-color: #fefefe;
@@ -25,6 +26,63 @@ const ModalOuter = styled.div`
       padding: 20px;
       border: 1px solid #888;
       width: 80%;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+
+      .user-options {
+         display: flex;
+         flex-direction: column;
+         justify-content: space-between;
+         flex-basis: 46%;
+         padding: 18px 12px;
+
+         h3 {
+            margin: 0px;
+         }
+
+         p {
+            font-size: 20px;
+            line-height: 1.4;
+            font-weight: 300;
+         }
+
+         button {
+            font-family: Roboto, sans-serif;
+            font-size: 18px;
+            padding: 8px 24px;
+            border-radius: 4px;
+            color: #ffffff;
+            background: #42b5b4;
+            border: none;
+            margin: 0px 12px 12px 0px;
+         }
+
+         button:last-of-type {
+            border: 2px solid #42b5b4;
+            color: #808991;
+            background: transparent;
+         }
+
+         .back-button {
+            font-weight: 600;
+            color: #0067ff;
+            font-size: 18px;
+         }
+      }
+
+      .order-content-container {
+         margin-bottom: 0px;
+         max-height: fit-content;
+
+         h3 {
+            font-size: 18px;
+         }
+
+         .actions {
+            display: none;
+         }
+      }
    }
 `;
 
@@ -75,33 +133,30 @@ export default function SubmitConfirmation(props) {
    if (localStorage.length === 0) {
       userLoggedIn = (
          <div>
-            <p>Create an account so you can save this order to your list.</p>
-            <br />
+            <p>
+               Create an account so you can save this order to your profile. Or submit anonymously
+               to get a shareable link.
+            </p>
             <button onClick={() => updateModal('signup')} type="button">
                Create Account
             </button>
-            <br />
             <button onClick={() => updateModal('login')} type="button">
-               Login to Existing Account
+               Log In
             </button>
-            <br />
             <button onClick={submitOrder} type="button">
                Submit Anonymously
             </button>
-            <br />
-            <span onClick={props.toggleSubmitConfirmation}>Go back</span>
          </div>
       );
    } else if (localStorage.length > 0) {
       userLoggedIn = (
          <div>
-            <p>Rreview your order before submitting.</p>
+            <p>Review your order before submitting.</p>
             <br />
             <button onClick={submitOrder} type="button">
                Submit Order
             </button>
             <br />
-            <span onClick={props.toggleSubmitConfirmation}>Go back</span>
          </div>
       );
    }
@@ -109,7 +164,7 @@ export default function SubmitConfirmation(props) {
    let nextAction;
    switch (userStatus.nextAction) {
       case '':
-         nextAction = <div></div>;
+         nextAction = '';
          break;
       case 'signup':
          nextAction = (
@@ -134,10 +189,13 @@ export default function SubmitConfirmation(props) {
    return (
       <ModalOuter>
          <div className="modal-content">
-            <div>
-               <h3>That sounds delicious!</h3>
-               {nextAction}
-               {userLoggedIn}
+            <div className="user-options">
+               <h3>Nice!</h3>
+					{userLoggedIn}
+					{nextAction}
+               <span className="back-button" onClick={props.toggleSubmitConfirmation}>
+                  {'<< Go Back'}
+               </span>
             </div>
             <OrderContent orderState={props.orderState} />
          </div>
