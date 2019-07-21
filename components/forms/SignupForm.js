@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import Form from '../styles/Form';
-
 import ErrorMessage from './ErrorMessage';
 
 class SignupForm extends Component {

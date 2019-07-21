@@ -59,10 +59,10 @@ class CreateChipotleOrder extends Component {
       if (this.state.mealType === 'Tacos') {
          tortilla = (
             <div>
-               <span className="field-label">Tortilla</span>
+               <span className="field-label">Select a Tortilla</span>
                <select onChange={this.updateState} className="text-input" name="tortilla">
                   <option value="" disabled selected>
-                     Select tortilla
+                     Tortilla
                   </option>
                   <option value="Soft Flour Toritilla">Soft Flour Toritilla</option>
                   <option value="Crispy Corn Tortilla">Crispy Corn Tortilla</option>
@@ -71,27 +71,33 @@ class CreateChipotleOrder extends Component {
          );
       }
 
-      const fillings = ['Chicken', 'Steak', 'Barbaco', 'Carnitas', 'Sofritas', 'Veggie'];
+      const fillings = ['Chicken', 'Steak', 'Barbaco', 'Carnitas', 'Sofritas', 'Veggies'];
       const fillingsSpans = fillings.map((filling, i) => (
-         <span>
-            <input type="checkbox" name="filling" value={filling} key={i} />
-            <label htmlFor="filling">{filling}</label>
+         <span className="checkbox-container">
+            <input type="checkbox" id={filling} name="filling" value={filling} key={i} />
+            <label className="checkbox-label" htmlFor={filling}>
+               <span className="checkbox-custom rectangular" />
+               <span className="checkbox-text">{filling}</span>
+            </label>
          </span>
       ));
 
       // prettier-ignore
       const toppings = [ 'Cheese', 'Queso', 'Fresh Tomato Salsa (Mild)', 'Roasted Chili-Corn Salsa (Medium)', 'Tomatillo-Green Chili Salsa (Medium Hot)', 'Tomatillo-Red Chili Salsa (Hot)', 'Sour Cream', 'Fajita Veggies', 'Romaine Lettuce', 'Chipotle-Honey Vinaigrette', ];
       const toppingsSpans = toppings.map((topping, i) => (
-         <span>
-            <input type="checkbox" name="topping" value={topping} key={i} />
-            <label htmlFor="topping">{topping}</label>
+         <span className="checkbox-container">
+            <input type="checkbox" id={topping} name="topping" value={topping} key={i} />
+            <label className="checkbox-label" htmlFor={topping}>
+               <span className="checkbox-custom rectangular" />
+               <span className="checkbox-text">{topping}</span>
+            </label>
          </span>
       ));
 
       return (
          <Form>
             <div className="customize">
-               <h3>Customize it...</h3>
+               <h3>Customize your order...</h3>
                <form>
                   <span className="field-label">Select a Meal Type</span>
                   <select onChange={this.updateState} className="text-input" name="mealType">
@@ -106,15 +112,15 @@ class CreateChipotleOrder extends Component {
 
                   {tortilla}
 
-                  <span className="field-label">Select Protiens (No More Than 2)</span>
+                  <span className="field-label">Select Protiens (No more than two)</span>
                   <div onChange={this.getSelected} className="fillings">
                      {fillingsSpans}
                   </div>
 
-                  <span className="field-label">Select Rice Option</span>
+                  <span className="field-label">Select Rice </span>
                   <select onChange={this.updateState} className="text-input" name="rice">
                      <option value="" disabled selected>
-                        rice
+                        Rice
                      </option>
                      <option value="White Rice">White Rice</option>
                      <option value="Brown Rice">Brown Rice</option>
@@ -125,7 +131,7 @@ class CreateChipotleOrder extends Component {
                   <span className="field-label">Select Beans</span>
                   <select onChange={this.updateState} className="text-input" name="beans">
                      <option value="" disabled selected>
-                        beans
+                        Beans
                      </option>
                      <option value="Black Beans">Black Beans</option>
                      <option value="Pinto Beans">Pinto Beans</option>
@@ -139,9 +145,6 @@ class CreateChipotleOrder extends Component {
                   </div>
                </form>
                <br></br>
-               <span onClick={this.submitOrder} className="button" name="submit" type="submit">
-                  Next
-               </span>
             </div>
          </Form>
       );

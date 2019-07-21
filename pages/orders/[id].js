@@ -5,6 +5,7 @@ import 'isomorphic-fetch';
 
 import styled from 'styled-components';
 
+import Head from '../../components/Head';
 import Layout from '../../components/Layout';
 import OrderContent from '../../components/order-content/OrderContent';
 
@@ -13,8 +14,11 @@ const OrderContainer = styled.div`
    flex-direction: row;
    flex-wrap: wrap;
    justify-content: space-between;
-   h3 {
-      text-transform: capitalize;
+   max-width: 1024px;
+   margin: 60px auto;
+
+   .order-content-container {
+      flex-basis: 100%;
    }
 `;
 
@@ -31,6 +35,7 @@ class Orders extends Component {
 
       return (
          <div>
+            <Head />
             <Layout />
             <OrderContainer>{orderCard}</OrderContainer>
          </div>
@@ -39,7 +44,7 @@ class Orders extends Component {
 }
 
 Orders.getInitialProps = async ({ query }) => {
-   const res = await fetch(`https://qsr-order-api.herokuapp.com/api/orders/${query.id}`);
+   const res = await fetch(`https://qsr-order-api.herokuapp.com/api/orders/id/${query.id}`);
    const data = await res.json();
 
    return {

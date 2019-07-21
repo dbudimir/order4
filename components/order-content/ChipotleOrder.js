@@ -4,8 +4,17 @@ class ChipotleOrder extends Component {
    constructor(props) {
       super(props);
       this.state = {
-         orderContent: JSON.parse(
-            JSON.stringify(this.props.state, function(key, value) {
+         mealType: this.props.orderState.mealType,
+         tortilla: this.props.orderState.tortilla,
+         beans: this.props.orderState.beans,
+         rice: this.props.orderState.rice,
+         fillings: JSON.parse(
+            JSON.stringify(this.props.orderState.protiens, function(key, value) {
+               return value == null ? [] : value;
+            })
+         ),
+         toppings: JSON.parse(
+            JSON.stringify(this.props.orderState.toppings, function(key, value) {
                return value == null ? [] : value;
             })
          ),
@@ -14,16 +23,16 @@ class ChipotleOrder extends Component {
 
    componentDidMount() {
       this.setState({
-         fillings: this.state.orderContent.fillings.map(filling => <span>{filling}</span>),
-         toppings: this.state.orderContent.toppings.map(topping => <span> {topping}</span>),
+         fillings: this.state.fillings.map(filling => <span>{filling}</span>),
+         toppings: this.state.toppings.map(topping => <span> {topping}</span>),
       });
    }
 
    render() {
-      const order = this.state.orderContent;
+      const order = this.state;
 
       return (
-         <div>
+         <div className="order-content">
             <p>
                Meal Type: <span>{order.mealType}</span>
             </p>
@@ -33,9 +42,8 @@ class ChipotleOrder extends Component {
             <p>
                Rice: <span>{order.rice}</span>
             </p>
-            <p>Fillings: {this.state.fillings}</p>
-            <p>Toppings: {this.state.toppings}</p>
-            <p>Tags: {this.state.tags}</p>
+            <p>Fillings: {order.fillings}</p>
+            <p>Toppings: {order.toppings}</p>
          </div>
       );
    }

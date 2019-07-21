@@ -4,20 +4,25 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 const NavBar = styled.div`
-   background: #000000;
+   background: #ffffff;
    display: flex;
    justify-content: space-between;
-   align-items: center;
-   color: #ffffff;
+   align-items: baseline;
+   color: #000000;
    max-width: 100%;
    padding: 0px 24px;
+   font-family: Roboto, serif;
+
    a {
       text-decoration: none;
-      color: #ffffff;
+      color: #000000;
    }
    h1 {
-      color: #ffffff;
+      color: #000000;
       text-decoration: none;
+      text-transform: uppercase;
+
+      font-weight: 900;
    }
    div {
       display: flex;

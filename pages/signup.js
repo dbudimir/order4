@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 
 import { useRouter } from 'next/router';
 
+import Head from '../components/Head';
 import Layout from '../components/Layout';
 import UserContext from '../components/UserContext';
 import SignupForm from '../components/forms/SignupForm';
@@ -20,6 +21,7 @@ function Signup({ updateUser = () => {} }) {
 
    return (
       <div>
+         <Head />
          <Layout />
          {currentForm}
       </div>

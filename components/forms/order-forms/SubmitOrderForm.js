@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
 
 import TagForm from '../TagForm';
@@ -49,7 +48,6 @@ class SubmitOrder extends Component {
    };
 
    updateTags = newTags => {
-      console.log(newTags);
       this.setState(prevState => ({
          order: {
             tags: newTags,
@@ -62,27 +60,36 @@ class SubmitOrder extends Component {
       return (
          <div>
             <Form>
-               <h3>Give it a name...</h3>
-
-               <span className="label">Name It</span>
-               <p>Give your order a fun name (ex. "The Foil Buster", "The Big Cheese")</p>
-               <input onChange={this.updateState} className="text-input" name="orderName" />
-
-               <span className="label">Description</span>
-               <p>Give your order a short description</p>
-               <input onChange={this.updateState} className="text-input" name="description" />
-
-               <br />
-               <TagForm setTags={this.updateTags} />
-               <br />
-               <button
-                  onClick={this.props.toggleSubmitConfirmation}
-                  className="button"
-                  name="submit"
-                  type="submit"
-               >
-                  Submit Order
-               </button>
+               <div className="submit-order">
+                  <h3>Add details...</h3>
+                  <span className="field-label">
+                     Name Your Order (ex. "The Belly Buster", "The Big Cheese")
+                  </span>
+                  <input
+                     onChange={this.updateState}
+                     className="text-input"
+                     name="orderName"
+                     placeholder="Name your order"
+                  />
+                  <span className="field-label">Short Description</span>
+                  <textarea
+                     onChange={this.updateState}
+                     className="text-input"
+                     name="description"
+                     rows="4"
+                  />
+                  <br />
+                  <TagForm setTags={this.updateTags} />
+                  <br />
+                  <button
+                     onClick={this.props.toggleSubmitConfirmation}
+                     className="button"
+                     name="submit"
+                     type="submit"
+                  >
+                     Submit Order
+                  </button>
+               </div>
             </Form>
          </div>
       );

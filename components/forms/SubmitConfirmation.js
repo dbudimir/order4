@@ -4,6 +4,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 import UserContext from '../UserContext';
+import OrderContent from '../order-content/OrderContent';
 import SignupForm from './SignupForm';
 import LoginForm from './LoginForm';
 
@@ -59,10 +60,13 @@ export default function SubmitConfirmation(props) {
             //    ...reqBody,
             // })
             .then(response => {
-               Router.push({
-                  pathname: '/orders/{response.data._id}',
-                  query: { orderId: response.data._id },
-               });
+               Router.push(
+                  {
+                     pathname: `/orders/${response.data._id}`,
+                     query: { id: response.data._id },
+                  },
+                  `/orders/${response.data._id}`
+               );
             });
       }
    };
@@ -125,12 +129,17 @@ export default function SubmitConfirmation(props) {
          break;
    }
 
+   console.log(props);
+
    return (
       <ModalOuter>
          <div className="modal-content">
-            <h3>That sounds delicious!</h3>
-            {nextAction}
-            {userLoggedIn}
+            <div>
+               <h3>That sounds delicious!</h3>
+               {nextAction}
+               {userLoggedIn}
+            </div>
+            <OrderContent orderState={props.orderState} />
          </div>
       </ModalOuter>
    );

@@ -14,8 +14,6 @@ export default class TagForm extends Component {
       const { value } = target;
       const { name } = target;
 
-      console.log(idx);
-
       this.setState(
          {
             [name]: value,
@@ -26,35 +24,36 @@ export default class TagForm extends Component {
       );
    };
 
-   handleTagNameChange = (value, idx) => {
+   handleTagNameChange = async (value, idx) => {
       const newArray = (this.state.tags[idx] = value);
 
-      this.setState({
+      await this.setState({
          nextArrayItem: newArray,
       });
+      this.props.setTags(this.state.tags);
    };
 
    handleAddTag = async value => {
       await this.setState(prevState => ({
          tags: [...prevState.tags, ''],
       }));
-      this.props.setTags(this.state.tags);
    };
 
-   handleRemoveTag = idx => () => {
+   handleRemoveTag = idx => async () => {
       const removedTag = [...this.state.tags];
       if (idx !== -1) {
          removedTag.splice(idx, 1);
-         this.setState({
+         await this.setState({
             tags: removedTag,
          });
+         this.props.setTags(this.state.tags);
       }
    };
 
    render() {
       return (
          <form onSubmit={this.handleSubmit}>
-            <h4>tags</h4>
+            <span className="field-label">Add Tags</span>
 
             {this.state.tags.map((tag, idx) => (
                <div className="tag">
@@ -66,7 +65,7 @@ export default class TagForm extends Component {
                      onChange={this.updateState(idx)}
                   />
                   <button type="button" onClick={this.handleRemoveTag(idx)} className="small">
-                     -
+                     Remove
                   </button>
                </div>
             ))}
@@ -75,7 +74,7 @@ export default class TagForm extends Component {
                onClick={() => this.handleAddTag(this.state.currentTag)}
                className="small"
             >
-               Add tag
+               Add Another Tag
             </button>
          </form>
       );

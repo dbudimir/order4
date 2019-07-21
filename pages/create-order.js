@@ -69,7 +69,7 @@ class CreateOrder extends Component {
       }
 
       let submitOrder;
-      if (this.state.order.submitOrder === true) {
+      if (this.state.chainName !== '') {
          submitOrder = (
             <SubmitOrder
                setOrderDetails={this.updateOrderDetails}
