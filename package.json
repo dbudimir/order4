@@ -23,7 +23,8 @@
 		"react-share": "^3.0.0",
 		"shuffle-array": "^1.0.1",
 		"styled-components": "^4.3.2",
-		"styled-media-query": "^2.1.2"
+		"styled-media-query": "^2.1.2",
+		"unique-concat": "^0.2.2"
 	},
 	"eslintConfig": {
 		"extends": "wesbos",

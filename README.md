@@ -1,234 +1,161 @@
-This project was bootstrapped with [Create Next App](https://github.com/zeit/next.js).
+## Order 4: Share Custom Orders from Quick Service Restaurants
 
-Find the most recent version of this guide at [here](https://github.com/zeit/next.js/blob/master/lib/templates/default/README.md). And check out [Next.js repo](https://github.com/zeit/next.js) for the most up-to-date info.
+The app lets users input and share their favorite customized orders at quick service restaurants like &pizza and Chipotle. Orders  in the database will automatically be rolled up into categories which automatically generate SEO friendly pages 
 
-## Table of Contents
+![enter image description here](https://order4.dbudi.now.sh/static/order-4-thumb.png)
 
-- [Questions? Feedback?](#questions-feedback)
-- [Folder Structure](#folder-structure)
-- [Available Scripts](#available-scripts)
-  - [npm run dev](#npm-run-dev)
-  - [npm run build](#npm-run-build)
-  - [npm run start](#npm-run-start)
-- [Using CSS](#using-css)
-- [Adding Components](#adding-components)
-- [Fetching Data](#fetching-data)
-- [Custom Server](#custom-server)
-- [Syntax Highlighting](#syntax-highlighting)
-- [Using the `static` Folder](#using-the-static-folder)
-- [Deploy to Now](#deploy-to-now)
-- [Something Missing?](#something-missing)
 
-## Questions? Feedback?
 
-Check out [Next.js FAQ & docs](https://github.com/zeit/next.js#faq) or [let us know](https://github.com/zeit/next.js/issues) your feedback.
+### **Initial Data Collection**
 
-## Folder Structure
+At this stage, we've compiled a small subset of orders from only two restaurants (Chipotle and &pizza). Individuals were surveyed via a Google form. Their submissions were seeded to the database.
 
-After creating an app, it should look something like:
+### **Features**
+
+**Full CRUD Routes**
+With the exception of "Chain", the data model used to manage individual restaurants, the API offers the ability to create, read, update and delete records related to the "Orders", "Order Content" and "Users" models.
+
+#### **Routes**
+
+**Chains (Restaurants)**
+
+**GET: [https://qsr-order-api.herokuapp.com/api/chains/](https://qsr-order-api.herokuapp.com/api/chains/)**
+Returns a list of Chains and the Order IDs for custom orders made at that chain.
+
+**GET: [https://qsr-order-api.herokuapp.com/api/chains/:chainName](https://qsr-order-api.herokuapp.com/api/chains/Chipotle)**
+Returns a list of orders a given chain, and also includes order metadata. Such as the user that placed the order and the content of the orders (ingredients).
+
+**Orders**
+
+**GET: [https://qsr-order-api.herokuapp.com/api/orders/](https://qsr-order-api.herokuapp.com/api/orders/)**
+A complete list of orders in the database, including all order metadata.
+
+**GET: [https://qsr-order-api.herokuapp.com/api/orders/chain/:chainName](https://qsr-order-api.herokuapp.com/api/orders/chain/Chipotle)**
+A complete list of orders related to a specific chain.
+
+**GET: [https://qsr-order-api.herokuapp.com/api/orders/beans/:typeOfIngredient](https://qsr-order-api.herokuapp.com/api/orders/beans/Black%20Beans)**
+This request makes it possible to query inside of a subdocument. First, it populates all the information available to use inside of an order. Then it identifies when the order ingredients (in this case, beans) match the query value. Then it pushes those results into JSON as the result.
 
 ```
-.
-├── README.md
-├── components
-│   ├── head.js
-│   └── nav.js
-├── next.config.js
-├── node_modules
-│   ├── [...]
-├── package.json
-├── pages
-│   └── index.js
-├── static
-│   └── favicon.ico
-└── yarn.lock
+router.get('/beans/:beans',  async  (req, res)  =>  {
+	const  chainOrders  = [];
+	const  results  = [];
+	await  Order.find({},  function(err, data)  {
+		data.forEach(function(value)  {
+			chainOrders.push(value);
+		});
+	})
+		.deepPopulate(['users',  'orderContent'])
+		.populate({ path:  'orderContent'  });
+	chainOrders.forEach(order =>  {
+		if (order.orderContent[0].beans  ===  req.params.beans) {
+			results.push(order);
+		}
+	});
+	res.send(results);
+});
 ```
 
-Routing in Next.js is based on the file system, so `./pages/index.js` maps to the `/` route and
-`./pages/about.js` would map to `/about`.
+**Users**
 
-The `./static` directory maps to `/static` in the `next` server, so you can put all your
-other static resources like images or compiled CSS in there.
+**GET: [https://qsr-order-api.herokuapp.com/api/users/all](https://qsr-order-api.herokuapp.com/api/users/all)**
+Gets all users and populates their order metadata.
 
-Out of the box, we get:
+**POST: [https://qsr-order-api.herokuapp.com/api/users/create/:userFullName](https://qsr-order-api.herokuapp.com/api/users/create/David%20Budimir)**
+Creates a new user with their full name.
 
-- Automatic transpilation and bundling (with webpack and babel)
-- Hot code reloading
-- Server rendering and indexing of `./pages`
-- Static file serving. `./static/` is mapped to `/static/`
+**DELETE: [https://qsr-order-api.herokuapp.com/api/users/create/:userFullName](https://qsr-order-api.herokuapp.com/api/users/create/David%20Budimir)**
+Deletes a selected user based on the provided full name.
 
-Read more about [Next's Routing](https://github.com/zeit/next.js#routing)
+**User Orders**
 
-## Available Scripts
+**POST: https://qsr-order-api.herokuapp.com/api/user-order/create/**
+This is an additional controller that was set up to simulate an ideal post to the database if a user was to submit an order for the first time. In this route, we simultaneously create a user and an order.
 
-In the project directory, you can run:
+Then the function dynamically imports the "Order Content" model based on the name of the user's selected restaurant. Finally, the "Order Content" is updated the "Order" gets associated with the corresponding IDs for "Order Content", "User", and "Chain". As a result, we can reliably use the nested query routes described earlier.
 
-### `npm run dev`
+```
+router.post('/create/',  async  (req, res)  =>  {
+	User.create(req.body.user).then(createdUser =>  {
+		Order.create(req.body.order).then(createdOrder =>  {
+			const  OrderContent  =  require(`../db/models/${createdOrder.contentSchema}.js`);
+			OrderContent.create(req.body.order).then(async createdOrderContent =>  {
+				Chain.findOne({ name:  createdOrder.chainName  })
+					.then(async updatedChain =>  {
+						updatedChain.orders.push(createdOrder._id);
+						createdOrder.chain.push(updatedChain._id);
+						updatedChain.save();
+					})
+					.then(async  ()  =>  {
+						createdUser.orders.push(createdOrder._id);
+						createdOrder.orderContent.push(createdOrderContent._id);
+						createdOrder.users.push(createdUser._id);
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any errors in the console.
-
-### `npm run build`
-
-Builds the app for production to the `.next` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-### `npm run start`
-
-Starts the application in production mode.
-The application should be compiled with \`next build\` first.
-
-See the section in Next docs about [deployment](https://github.com/zeit/next.js/wiki/Deployment) for more information.
-
-## Using CSS
-
-[`styled-jsx`](https://github.com/zeit/styled-jsx) is bundled with next to provide support for isolated scoped CSS. The aim is to support "shadow CSS" resembling of Web Components, which unfortunately [do not support server-rendering and are JS-only](https://github.com/w3c/webcomponents/issues/71).
-
-```jsx
-export default () => (
-  <div>
-    Hello world
-    <p>scoped!</p>
-    <style jsx>{`
-      p {
-        color: blue;
-      }
-      div {
-        background: red;
-      }
-      @media (max-width: 600px) {
-        div {
-          background: blue;
-        }
-      }
-    `}</style>
-  </div>
-)
+						createdUser.save();
+						createdOrder.save();
+						createdOrderContent.save();
+					})
+					.then(()  =>  res.json(createdOrder));
+			});
+		});
+	});
+});
 ```
 
-Read more about [Next's CSS features](https://github.com/zeit/next.js#css).
+### **Future Additions**
 
-## Adding Components
+**Improved Deep Queries:**
+Today the functionally exists to run a deep query on an individual property in order. (What kind of beans, what meal type, etc.) An ideal next step is to build functionally that checks against a number of parameters before sending a result.
 
-We recommend keeping React components in `./components` and they should look like:
+This would make it possible for us to return all custom orders regardless of chain to and return all (vegetarian, vegan, keto friendly, paleo, etc.) orders.
 
-### `./components/simple.js`
+**Tagging:**
+With better deep queries we could analyze an order as it comes in and applies new data properties for the previously mentioned categories. This would make it possible to query based new categories more efficiently.
 
-```jsx
-const Simple = () => <div>Simple Component</div>
+With some effort, tags could be applied by users as a way to curate a "playlist" of custom orders.
 
-export default Simple // don't forget to export default!
-```
+**Watch Video**
 
-### `./components/complex.js`
+<a href="https://www.youtube.com/watch?v=qSgGKrP4owg
+" target="_blank"><img src="http://img.youtube.com/vi/qSgGKrP4owg/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="520" height="360"  /></a>
 
-```jsx
-import { Component } from 'react'
 
-class Complex extends Component {
-  state = {
-    text: 'World'
-  }
+### **Technologies Used**
 
-  render() {
-    const { text } = this.state
-    return <div>Hello {text}</div>
-  }
-}
+**Javascript**
+**Express**
+**Mongoose**
+**MongoDB**
+**Mongo.Atlas**
+**Heroku**
 
-export default Complex // don't forget to export default!
-```
+### **What's In the Repo?**
 
-## Fetching Data
+**/controllers**
 
-You can fetch data in `pages` components using `getInitialProps` like this:
+-  chains.js
+-  orders.js
+-  users.js
+-  user-orders.js
 
-### `./pages/stars.js`
+**/db**
 
-```jsx
-const Page = props => <div>Next stars: {props.stars}</div>
+-  /models
+-  /seeds
+-  connection.js
+-  seed.js
 
-Page.getInitialProps = async ({ req }) => {
-  const res = await fetch('https://api.github.com/repos/zeit/next.js')
-  const json = await res.json()
-  const stars = json.stargazers_count
-  return { stars }
-}
+**/planning:** Files and images created during the brainstorm and planning phase of this project.
 
-export default Page
-```
+**index.js**
 
-For the initial page load, `getInitialProps` will execute on the server only. `getInitialProps` will only be executed on the client when navigating to a different route via the `Link` component or using the routing APIs.
+#### Contribution Guidelines
 
-_Note: `getInitialProps` can **not** be used in children components. Only in `pages`._
+Fork and clone this repo, contribute from a new branch.
 
-Read more about [fetching data and the component lifecycle](https://github.com/zeit/next.js#fetching-data-and-component-lifecycle)
+-  API: [https://qsr-order-api.herokuapp.com/api/chains/](https://qsr-order-api.herokuapp.com/api/chains/)
+-  Main repository: [https://github.com/dbudimir/qsr-order-api](https://github.com/dbudimir/qsr-order-api)
+-  Issue tracker: [https://github.com/dbudimir/qsr-order-api/issues](https://github.com/dbudimir/qsr-order-api)
 
-## Custom Server
-
-Want to start a new app with a custom server? Run `create-next-app --example custom-server custom-app`
-
-Typically you start your next server with `next start`. It's possible, however, to start a server 100% programmatically in order to customize routes, use route patterns, etc
-
-This example makes `/a` resolve to `./pages/b`, and `/b` resolve to `./pages/a`:
-
-```jsx
-const { createServer } = require('http')
-const { parse } = require('url')
-const next = require('next')
-
-const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dev })
-const handle = app.getRequestHandler()
-
-app.prepare().then(() => {
-  createServer((req, res) => {
-    // Be sure to pass `true` as the second argument to `url.parse`.
-    // This tells it to parse the query portion of the URL.
-    const parsedUrl = parse(req.url, true)
-    const { pathname, query } = parsedUrl
-
-    if (pathname === '/a') {
-      app.render(req, res, '/b', query)
-    } else if (pathname === '/b') {
-      app.render(req, res, '/a', query)
-    } else {
-      handle(req, res, parsedUrl)
-    }
-  }).listen(3000, err => {
-    if (err) throw err
-    console.log('> Ready on http://localhost:3000')
-  })
-})
-```
-
-Then, change your `start` script to `NODE_ENV=production node server.js`.
-
-Read more about [custom server and routing](https://github.com/zeit/next.js#custom-server-and-routing)
-
-## Syntax Highlighting
-
-To configure the syntax highlighting in your favorite text editor, head to the [relevant Babel documentation page](https://babeljs.io/docs/editors) and follow the instructions. Some of the most popular editors are covered.
-
-## Deploy to Now
-
-[now](https://zeit.co/now) offers a zero-configuration single-command deployment.
-
-1.  Install the `now` command-line tool either via the recommended [desktop tool](https://zeit.co/download) or via node with `npm install -g now`.
-
-2.  Run `now` from your project directory. You will see a **now.sh** URL in your output like this:
-
-    ```
-    > Ready! https://your-project-dirname-tpspyhtdtk.now.sh (copied to clipboard)
-    ```
-
-    Paste that URL into your browser when the build is complete, and you will see your deployed app.
-
-You can find more details about [`now` here](https://zeit.co/now).
-
-## Something Missing?
-
-If you have ideas for how we could improve this readme or the project in general, [let us know](https://github.com/zeit/next.js/issues) or [contribute some!](https://github.com/zeit/next.js/edit/master/lib/templates/default/README.md)
+Contact me: [dav.budimir@gmail.com](mailto:dav.budimir@gmail.com)  

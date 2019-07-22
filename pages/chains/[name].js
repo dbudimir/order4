@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
+import Link from 'next/link';
 import { withRouter } from 'next/router';
 
-import Link from 'next/link';
+import Head from '../../components/Head';
 import Layout from '../../components/Layout';
 
 class Chains extends Component {

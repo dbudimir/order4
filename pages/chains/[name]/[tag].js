@@ -5,6 +5,7 @@ import 'isomorphic-fetch';
 
 import styled from 'styled-components';
 
+import Head from '../../../components/Head';
 import Layout from '../../../components/Layout';
 import OrderContent from '../../../components/order-content/OrderContent';
 
@@ -31,6 +32,7 @@ class Tag extends Component {
 
       return (
          <div>
+            <Head />
             <Layout />
             <h1>
                The most popular {this.props.tag} orders at {this.props.name}
