@@ -145,9 +145,7 @@ class SignupForm extends Component {
                      type="text"
                      placeholder="Enter your full name"
                   />
-                  <div>
-                     <br />
-                  </div>
+                  <ErrorMessage />
                   <input
                      name="userName"
                      onChange={this.updateState}
