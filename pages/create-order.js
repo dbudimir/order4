@@ -17,7 +17,7 @@ const CHAIN_ANDPIZZA = '&pizza';
 const FormHeader = styled.h2`
    font-size: 48px;
    font-family: Roboto, serif;
-   margin: 0 12px 32px;
+   margin: 0 0 32px;
 `;
 
 class CreateOrder extends Component {

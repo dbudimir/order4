@@ -9,7 +9,7 @@ class ChipotleOrder extends Component {
          beans: this.props.orderState.beans,
          rice: this.props.orderState.rice,
          fillings: JSON.parse(
-            JSON.stringify(this.props.orderState.protiens, function(key, value) {
+            JSON.stringify(this.props.orderState.fillings, function(key, value) {
                return value == null ? [] : value;
             })
          ),

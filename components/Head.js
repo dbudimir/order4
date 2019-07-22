@@ -22,6 +22,7 @@ const Head = props => (
          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,500i,700,900&display=swap"
       />
 
+      <meta name="google-site-verification" content="QGQHndVahNquANX0j-ntmMNLiI8CeVlK2mbyEm6L42o" />
       <meta property="og:url" content={props.url || defaultOGURL} />
       <meta property="og:title" content={props.title || ''} />
       <meta property="og:description" content={props.description || defaultDescription} />

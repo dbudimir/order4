@@ -3,7 +3,6 @@ import 'isomorphic-fetch';
 
 import Head from '../components/Head';
 import Layout from '../components/Layout';
-import UserInfo from '../components/UserInfo';
 import Chains from '../components/Chains';
 
 class Index extends Component {
@@ -12,7 +11,6 @@ class Index extends Component {
          <div>
             <Head title="Home" />
             <Layout />
-            <UserInfo />
             <Chains chains={this.props} />
          </div>
       );
@@ -20,11 +18,14 @@ class Index extends Component {
 }
 
 Index.getInitialProps = async () => {
-   const res = await fetch('https://qsr-order-api.herokuapp.com/api/chains/');
+   const res = await fetch(`https://qsr-order-api.herokuapp.com/api/chains/Chipotle`);
    const data = await res.json();
 
+   const res2 = await fetch(`https://qsr-order-api.herokuapp.com/api/chains/&pizza`);
+   const data2 = await res2.json();
+
    return {
-      chains: data,
+      chains: [data, data2],
    };
 };
 

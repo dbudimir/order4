@@ -25,17 +25,20 @@ const ModalOuter = styled.div`
       margin: 15% auto;
       padding: 20px;
       border: 1px solid #888;
-      width: 80%;
+      width: 1024px;
+      max-width: 94%;
+      min-height: 400px;
       border-radius: 12px;
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
 
       .user-options {
+         position: relative;
          display: flex;
          flex-direction: column;
-         justify-content: space-between;
-         flex-basis: 46%;
-         padding: 18px 12px;
+         justify-content: space-evenly;
+         flex-basis: 50%;
 
          h3 {
             margin: 0px;
@@ -69,8 +72,33 @@ const ModalOuter = styled.div`
             color: #0067ff;
             font-size: 18px;
          }
-      }
 
+         .modal-form {
+            position: absolute;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+
+            h3 {
+               margin-bottom: 24px;
+            }
+            .signup-form {
+               margin: 0 auto;
+            }
+
+            .login-form {
+               margin: 0 auto;
+            }
+
+            .sign-up-now {
+               display: none;
+            }
+         }
+      }
       .order-content-container {
          margin-bottom: 0px;
          max-height: fit-content;
@@ -87,6 +115,7 @@ const ModalOuter = styled.div`
 `;
 
 export default function SubmitConfirmation(props) {
+   console.log(props.orderState.order);
    const userStatus = useContext(UserContext);
 
    const updateModal = action => {
@@ -118,6 +147,7 @@ export default function SubmitConfirmation(props) {
             //    ...reqBody,
             // })
             .then(response => {
+               console.log(response.data);
                Router.push(
                   {
                      pathname: `/orders/${response.data._id}`,
@@ -151,7 +181,7 @@ export default function SubmitConfirmation(props) {
    } else if (localStorage.length > 0) {
       userLoggedIn = (
          <div>
-            <p>Review your order before submitting.</p>
+            <p>You're logged in! Review your order before submitting.</p>
             <br />
             <button onClick={submitOrder} type="button">
                Submit Order
@@ -168,15 +198,29 @@ export default function SubmitConfirmation(props) {
          break;
       case 'signup':
          nextAction = (
-            <div>
-               <SignupForm signIn={userStatus.signIn} updateUser={props.updateUser} />
+            <div className="modal-form">
+               <SignupForm
+                  signIn={userStatus.signIn}
+                  updateUser={props.updateUser}
+                  updateAction={updateModal}
+               />
+               <span className="back-button" onClick={() => updateModal('')}>
+                  {'<< Close Signup'}
+               </span>
             </div>
          );
          break;
       case 'login':
          nextAction = (
-            <div>
-               <LoginForm signIn={userStatus.signIn} updateUser={props.updateUser} />
+            <div className="modal-form">
+               <LoginForm
+                  signIn={userStatus.signIn}
+                  updateUser={props.updateUser}
+                  updateAction={updateModal}
+               />
+               <span className="back-button" onClick={() => updateModal('')}>
+                  {'<< Close Login'}
+               </span>
             </div>
          );
          break;
@@ -184,15 +228,13 @@ export default function SubmitConfirmation(props) {
          break;
    }
 
-   console.log(props);
-
    return (
       <ModalOuter>
          <div className="modal-content">
             <div className="user-options">
                <h3>Nice!</h3>
-					{userLoggedIn}
-					{nextAction}
+               {userLoggedIn}
+               {nextAction}
                <span className="back-button" onClick={props.toggleSubmitConfirmation}>
                   {'<< Go Back'}
                </span>

@@ -40,7 +40,7 @@ class CreateChipotleOrder extends Component {
          .call(document.getElementsByName('topping'), c => c.checked)
          .map(c => c.value);
       await this.setState({
-         protiens: selectedFillings,
+         fillings: selectedFillings,
          toppings: selectedToppings,
       });
       this.props.setOrder(this.state);

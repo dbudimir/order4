@@ -5,6 +5,10 @@ const Form = styled.div`
    display: block;
    margin: 60px auto 120px;
 
+   h2 {
+      margin-top: 60px;
+   }
+
    h3 {
       font-family: Roboto, serif;
       min-width: fit-content;
@@ -33,13 +37,11 @@ const Form = styled.div`
 
       select[name='chainName'] {
          width: 100%;
-         height: 60px;
-         font-size: 32px;
-         border-radius: 8px;
-         background-color: #e9e9f5;
-         border: 0px;
+         height: 48px;
+         font-size: 24px;
          padding: 8px 12px;
-         margin: 0px 12px;
+         border: 2px solid #0067ff;
+         border-radius: 6px;
       }
 
       form {
@@ -57,8 +59,9 @@ const Form = styled.div`
          width: 100%;
          height: 48px;
          font-size: 24px;
-         border: 0px;
          padding: 8px 12px;
+         border: 2px solid #0067ff;
+         border-radius: 6px;
       }
 
       .fillings,

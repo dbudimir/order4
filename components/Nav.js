@@ -6,11 +6,12 @@ import styled from 'styled-components';
 const NavBar = styled.div`
    background: #ffffff;
    display: flex;
+   flex-wrap: wrap;
    justify-content: space-between;
-   align-items: baseline;
+   align-items: center;
    color: #000000;
    max-width: 100%;
-   padding: 0px 24px;
+   padding: 12px 12px;
    font-family: Roboto, serif;
 
    a {
@@ -21,14 +22,39 @@ const NavBar = styled.div`
       color: #000000;
       text-decoration: none;
       text-transform: uppercase;
-
+      font-size: 36px;
       font-weight: 900;
+      margin: 0px 24px 6px 0px;
    }
-   div {
+   .menu-container {
+      overflow-x: scroll;
+      overflow-y: hidden;
+   }
+
+   .menu {
       display: flex;
+      justify-content: space-between;
+      align-items: center;
+		margin-bottom: 6px;
+      width: 550px;
+
       span {
-         margin-left: 24px;
          font-size: 18px;
+      }
+
+      .create {
+         font-size: 18px;
+         background: #0067ff;
+         color: #ffffff;
+         font-weight: 500;
+         border-radius: 20px;
+         padding: 8px 16px;
+         display: flex;
+         align-items: center;
+
+         img {
+            margin-left: 6px;
+         }
       }
    }
 `;
@@ -52,7 +78,7 @@ export default class Nav extends Component {
       let userLoggedIn;
       if (localStorage.length > 0) {
          userLoggedIn = (
-            <div>
+            <React.Fragment>
                <Link
                   href={{
                      pathname: '/user/[user]',
@@ -69,11 +95,11 @@ export default class Nav extends Component {
                >
                   <span onClick={this.props.signOut}>Log Out</span>
                </Link>
-            </div>
+            </React.Fragment>
          );
       } else if (localStorage.length === 0) {
          userLoggedIn = (
-            <div>
+            <React.Fragment>
                <Link
                   href={{
                      pathname: '/signup',
@@ -92,7 +118,7 @@ export default class Nav extends Component {
                >
                   <span>Sign Up</span>
                </Link>
-            </div>
+            </React.Fragment>
          );
       }
       this.setState({
@@ -111,37 +137,42 @@ export default class Nav extends Component {
             >
                <h1>order 4</h1>
             </Link>
-
-            <div className="menu">
-               <Link
-                  href={{
-                     pathname: '/orders/all',
-                  }}
-                  as={{ pathname: `/orders/all` }}
-               >
-                  <a href="/orders/all">
-                     <span>Orders</span>
-                  </a>
-               </Link>
-               <Link
-                  href={{
-                     pathname: '/',
-                  }}
-               >
-                  <a href="/">
-                     <span>Chains</span>
-                  </a>
-               </Link>
-               {this.state.navItems}
-               <Link
-                  href={{
-                     pathname: '/create-order',
-                     query: { userId: '5cfed94deedaa400045dbb3b' },
-                  }}
-                  as={{ pathname: `/create-order` }}
-               >
-                  <span>Create an Order</span>
-               </Link>
+            <div className="menu-container">
+               <div className="menu">
+                  <Link
+                     href={{
+                        pathname: '/',
+                     }}
+                  >
+                     <a href="/">
+                        <span>Chains</span>
+                     </a>
+                  </Link>
+                  <Link
+                     href={{
+                        pathname: '/orders/all',
+                     }}
+                     as={{ pathname: `/orders/all` }}
+                  >
+                     <a href="/orders/all">
+                        <span>Orders</span>
+                     </a>
+                  </Link>
+                  {this.state.navItems}
+                  <Link
+                     href={{
+                        pathname: '/create-order',
+                     }}
+                     as={{ pathname: `/create-order` }}
+                  >
+                     <a href="/create-order">
+                        <span className="create">
+                           Create Order
+                           <img src="../static/plus.svg" alt="plus-icon" />
+                        </span>
+                     </a>
+                  </Link>
+               </div>
             </div>
          </NavBar>
       );

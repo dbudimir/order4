@@ -3,9 +3,10 @@ import styled from 'styled-components';
 
 const Error = styled.div`
    color: red;
-   line-height: 0;
    margin-bottom: 12px;
-   font-weight: 700;
+   font-weight: 400;
+   margin: -6px auto 12px;
+   line-height: 1.25;
 `;
 
 class ErrorMessage extends Component {

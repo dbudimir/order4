@@ -22,7 +22,7 @@ export default function Layout() {
          window.GA_INITIALIZED = true;
       }
       logPageView();
-   }, []);
+   });
 
    const signOut = e => {
       e.preventDefault();

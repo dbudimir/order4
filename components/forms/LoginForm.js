@@ -59,9 +59,7 @@ class LoginForm extends Component {
             break;
          case 'password':
             passwordValid = value.length >= 7;
-            formErrors.password = passwordValid
-               ? ''
-               : "Please use a password that's longer thant 7 characters";
+            formErrors.password = passwordValid ? '' : 'Minimum seven characters.';
             break;
          default:
             break;
@@ -107,6 +105,7 @@ class LoginForm extends Component {
                userId: response.data.userId,
             };
             this.props.updateUser(user);
+            this.props.updateAction('');
          });
    };
 
@@ -133,7 +132,10 @@ class LoginForm extends Component {
                <ErrorMessage message={this.state.formErrors.password} state={this.state} />
                <input name="submit" onClick={this.onSubmit} type="submit" value="Log In" />
                <span className="sign-up-now">
-                  Don't have an account? <Link to="/signup"> Click here to sign up now</Link>
+                  Don't have an account?{' '}
+                  <Link to="/signup">
+                     <a href="/signup">Sign up now>></a>
+                  </Link>
                </span>
             </Form>
          </div>

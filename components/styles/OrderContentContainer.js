@@ -1,4 +1,10 @@
 import styled from 'styled-components';
+import { generateMedia } from 'styled-media-query';
+
+const customMedia = generateMedia({
+   tablet: '768px',
+   mobile: '548px',
+});
 
 const OrderContentContainer = styled.div`
    background-color: #ffffff;
@@ -10,6 +16,10 @@ const OrderContentContainer = styled.div`
    font-family: Roboto, sans-serif;
    display: flex;
    flex-direction: column;
+
+   ${customMedia.lessThan('tablet')`
+		flex-basis: 100%;
+  `};
 
    .chain {
       display: flex;

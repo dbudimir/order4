@@ -78,8 +78,8 @@ class SignupForm extends Component {
                userId: response.data.userId,
             };
             this.props.updateUser(user);
+            this.props.updateAction('');
          });
-      alert("You're in!");
    };
 
    validateFields(fieldName, value) {
@@ -100,9 +100,7 @@ class SignupForm extends Component {
             break;
          case 'password':
             passwordValid = value.length >= 7;
-            formErrors.password = passwordValid
-               ? ''
-               : "Please use a password that's longer thant 7 characters";
+            formErrors.password = passwordValid ? '' : 'Minimum seven characters.';
             break;
          case 'passwordConfirm':
             confirmPasswordValid = this.state.password === this.state.passwordConfirm;

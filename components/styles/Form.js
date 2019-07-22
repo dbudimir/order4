@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 const Form = styled.div`
    display: block;
+   width: 280px;
+   max-width: 92%;
    margin: 60px auto 0;
-   width: fit-content;
    font-family: Roboto, sans-serif;
 
    h3 {
@@ -18,34 +19,38 @@ const Form = styled.div`
 
    input {
       width: 100%;
-      height: 48px;
-      font-size: 24px;
-      border: 0px;
+      height: 36px;
+      font-size: 19px;
       padding: 0px 0px 0px 10px;
       background-color: #f8f8f8;
-      border-radius: 8px;
-      box-shadow: inset rgba(0, 0, 0, 0.2) 0px 0px 4px 0;
+      border-radius: 4px;
+      box-shadow: inset rgba(0, 0, 0, 0.1) 0px 0px 4px 0;
       box-sizing: border-box;
+      border: 1px solid #00000030;
    }
-
-   /* input::placeholder {
-      font-size: 32px;
-      padding: 6px 6px 0;
-      line-height: 1;
-   } */
 
    input[name='submit'] {
       border-radius: 6px;
-      margin-bottom: 64px;
       border-bottom: 0px;
-      font-size: 24px;
-      font-weight: 800;
-      background-color: #fa8320;
-      width: 200px;
+      font-size: 20px;
+      font-weight: 500;
+      background-color: #0067ff;
+      width: fit-content;
+      padding: 6px 18px;
+      height: auto;
+      color: #ffffff;
+      margin-top: 12px;
    }
 
-   span {
+   .sign-up-now {
       display: block;
+      margin-top: 64px;
+
+      a {
+         font-weight: 600;
+         text-decoration: none;
+         color: #0067ff;
+      }
    }
 `;
 

@@ -37,10 +37,11 @@ class Orders extends Component {
       const { orders } = this.props;
       shuffle(orders);
       const orderCard = orders.map((order, index) => {
-         // const orderSize = JSON.stringify(order.orderContent[0]).length;
          if (
             order.orderName !== null &&
             order.orderName !== undefined &&
+            order.orderName.includes('test') !== true &&
+            order.orderName.includes('Test') !== true &&
             Object.keys(order).length > 4
          ) {
             return <OrderContent orderID={order._id} key={index} />;
