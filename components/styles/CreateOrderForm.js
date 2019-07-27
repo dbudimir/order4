@@ -3,14 +3,14 @@ import styled from 'styled-components';
 const Form = styled.div`
    max-width: 600px;
    display: block;
-   margin: 60px auto 120px;
+   margin: 60px auto 240px;
 
    h2 {
       margin-top: 60px;
    }
 
    h3 {
-      font-family: Roboto, serif;
+      font-family: Nunito, serif;
       min-width: fit-content;
       margin: 32px 0px 12px 0;
       font-size: 24px;
@@ -21,16 +21,33 @@ const Form = styled.div`
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
+      font-family: Nunito, serif;
    }
 
    .field-label {
-      font-family: Roboto, serif;
+      font-family: Nunito, serif;
       font-weight: 500;
       font-size: 20px;
       margin: 24px 0 12px;
    }
 
+   .select-container {
+      width: 100%;
+      position: relative;
+
+      img {
+         position: absolute;
+         right: 0;
+         height: 42%;
+         margin: 0 12px;
+         top: 50%;
+         transform: translateY(-50%);
+      }
+   }
+
    .select-chain {
+      margin: 0px 12px;
+
       h3 {
          width: 100%;
       }
@@ -94,7 +111,7 @@ const Form = styled.div`
                line-height: 24px;
                width: fit-content;
                cursor: pointer;
-               font-family: Roboto;
+               font-family: Nunito;
                font-weight: 400;
                display: flex;
                align-items: center;
@@ -181,13 +198,14 @@ const Form = styled.div`
       input[name='orderName'] {
          width: 100%;
          height: 48px;
-         font-size: 24px;
+         font-size: 22px;
          border: 0px;
          padding: 0px 0px 0px 12px;
          background-color: #f8f8f8;
          border-radius: 8px;
          box-shadow: inset rgba(0, 0, 0, 0.2) 0px 0px 4px 0;
          box-sizing: border-box;
+         font-family: Nunito;
       }
 
       textarea {
@@ -211,7 +229,7 @@ const Form = styled.div`
          background-color: #42b5b4;
          border: none;
          color: white;
-         font-family: Roboto;
+         font-family: Nunito;
          font-weight: 600;
       }
 
@@ -222,13 +240,14 @@ const Form = styled.div`
          input {
             width: 100%;
             height: 48px;
-            font-size: 24px;
+            font-size: 22px;
             border: 0px;
             margin: 0px 6px 6px 0px;
             padding: 0px 0px 0px 12px;
             background-color: #f8f8f8;
             border-radius: 8px;
             box-shadow: inset rgba(0, 0, 0, 0.2) 0px 0px 4px 0;
+            font-family: Nunito;
          }
 
          button {
@@ -244,13 +263,17 @@ const Form = styled.div`
       }
 
       button[name='submit'] {
-         width: 80%;
+         width: 60%;
          display: block;
          margin: 0 auto;
          height: 48px;
-         margin-top: 32px;
-         border-radius: 8px;
+         margin-top: 48px;
+         border-radius: 100px;
+         color: #ffffff;
          font-size: 24px;
+         background-color: #0067ff;
+         border: 0px;
+         cursor: pointer;
       }
    }
 `;

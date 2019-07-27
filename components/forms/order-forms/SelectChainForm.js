@@ -21,13 +21,16 @@ class SelectChainForm extends Component {
          <div className="select-chain">
             <form>
                <h3>Select a restaurant...</h3>
-               <select onChange={this.updateState} className="text-input" name="chainName">
-                  <option value="" disabled selected>
-                     Select Restaurant
-                  </option>
-                  <option value="Chipotle">Chipotle</option>
-                  <option value="&pizza">&pizza</option>
-               </select>
+               <div className="select-container">
+                  <select onChange={this.updateState} className="text-input" name="chainName">
+                     <option value="" disabled selected>
+                        Select Chain
+                     </option>
+                     <option value="Chipotle">Chipotle</option>
+                     <option value="&pizza">&pizza</option>
+                  </select>
+                  <img src="../../static/arrow-down.svg" alt="link-out-icon" />
+               </div>
             </form>
          </div>
       );

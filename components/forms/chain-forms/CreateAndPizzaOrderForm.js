@@ -140,13 +140,16 @@ class CreateAndPizzOrder extends Component {
                   <div>
                      <div>
                         <span className="field-label">Dough</span>
-                        <select onChange={this.updateState} className="text-input" name="dough">
-                           <option value="" disabled selected>
-                              Select Dough
-                           </option>
-                           <option value="Traditional">Traditional</option>
-                           <option value="Gluten Free">Gluten Free</option>
-                        </select>
+                        <div className="select-container">
+                           <select onChange={this.updateState} className="text-input" name="dough">
+                              <option value="" disabled selected>
+                                 Select Dough
+                              </option>
+                              <option value="Traditional">Traditional</option>
+                              <option value="Gluten Free">Gluten Free</option>
+                           </select>
+                           <img src="../../static/arrow-down.svg" alt="link-out-icon" />
+                        </div>
                      </div>
                   </div>
 

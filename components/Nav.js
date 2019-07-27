@@ -12,7 +12,7 @@ const NavBar = styled.div`
    color: #000000;
    max-width: 100%;
    padding: 12px 12px;
-   font-family: Roboto, serif;
+   font-family: Nunito, serif;
 
    a {
       text-decoration: none;
@@ -21,7 +21,7 @@ const NavBar = styled.div`
    h1 {
       color: #000000;
       text-decoration: none;
-      text-transform: uppercase;
+      text-transform: capitalize;
       font-size: 36px;
       font-weight: 900;
       margin: 0px 24px 6px 0px;
@@ -35,18 +35,19 @@ const NavBar = styled.div`
       display: flex;
       justify-content: space-between;
       align-items: center;
-		margin-bottom: 6px;
+      margin-bottom: 6px;
       width: 550px;
+      font-weight: 700;
 
       span {
          font-size: 18px;
+         cursor: pointer;
       }
 
       .create {
          font-size: 18px;
          background: #0067ff;
          color: #ffffff;
-         font-weight: 500;
          border-radius: 20px;
          padding: 8px 16px;
          display: flex;
@@ -86,7 +87,9 @@ export default class Nav extends Component {
                   }}
                   as={{ pathname: `/user/${localStorage.userId}` }}
                >
-                  <span>My Orders</span>
+                  <a href={`/user/${localStorage.userId}`}>
+                     <span>My Orders</span>
+                  </a>
                </Link>
                <Link
                   href={{
@@ -107,7 +110,9 @@ export default class Nav extends Component {
                   }}
                   as={{ pathname: `/login` }}
                >
-                  <span>Log In</span>
+                  <a href="/signup">
+                     <span>Log In</span>
+                  </a>
                </Link>
                <Link
                   href={{
@@ -116,7 +121,9 @@ export default class Nav extends Component {
                   }}
                   as={{ pathname: `/signup` }}
                >
-                  <span>Sign Up</span>
+                  <a href="/signup">
+                     <span>Sign Up</span>
+                  </a>
                </Link>
             </React.Fragment>
          );
@@ -135,7 +142,9 @@ export default class Nav extends Component {
                }}
                as={{ pathname: '/' }}
             >
-               <h1>order 4</h1>
+               <a href="/">
+                  <h1>order 4</h1>
+               </a>
             </Link>
             <div className="menu-container">
                <div className="menu">

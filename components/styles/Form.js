@@ -5,7 +5,7 @@ const Form = styled.div`
    width: 280px;
    max-width: 92%;
    margin: 60px auto 0;
-   font-family: Roboto, sans-serif;
+   font-family: Nunito, sans-serif;
 
    h3 {
       margin-bottom: 32px;

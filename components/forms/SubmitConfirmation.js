@@ -10,7 +10,7 @@ import LoginForm from './LoginForm';
 
 const ModalOuter = styled.div`
    position: fixed;
-   z-index: 1;
+   z-index: 10;
    left: 0;
    top: 0;
    width: 100%;
@@ -18,16 +18,16 @@ const ModalOuter = styled.div`
    overflow: auto;
    background-color: rgb(0, 0, 0);
    background-color: rgba(0, 0, 0, 0.4);
-   font-family: Roboto, sans-serif;
+   font-family: Nunito, sans-serif;
 
    .modal-content {
       background-color: #fefefe;
       margin: 15% auto;
       padding: 20px;
       border: 1px solid #888;
-      width: 1024px;
+      width: 840px;
       max-width: 94%;
-      min-height: 400px;
+      min-height: 460px;
       border-radius: 12px;
       display: flex;
       flex-wrap: wrap;
@@ -48,10 +48,11 @@ const ModalOuter = styled.div`
             font-size: 20px;
             line-height: 1.4;
             font-weight: 300;
+            padding-right: 12px;
          }
 
          button {
-            font-family: Roboto, sans-serif;
+            font-family: Nunito, sans-serif;
             font-size: 18px;
             padding: 8px 24px;
             border-radius: 4px;
@@ -87,11 +88,11 @@ const ModalOuter = styled.div`
                margin-bottom: 24px;
             }
             .signup-form {
-               margin: 0 auto;
+               margin: 30px auto;
             }
 
             .login-form {
-               margin: 0 auto;
+               margin: 30px auto;
             }
 
             .sign-up-now {
@@ -101,7 +102,6 @@ const ModalOuter = styled.div`
       }
       .order-content-container {
          margin-bottom: 0px;
-         max-height: fit-content;
 
          h3 {
             font-size: 18px;

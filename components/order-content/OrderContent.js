@@ -96,15 +96,19 @@ class OrderContent extends Component {
                <p className="tags">{tags}</p>
                <div className="actions">
                   <TwitterShareButton
-                     url={`/orders/${this.props.orderID}`}
+                     url={`https://order4.dbudi.now.sh/orders/${this.props.orderID}`}
                      title={`Check out ${this.state.orderName} at ${this.state.chainName}. https://order4.dbudi.now.sh/orders/${this.props.orderID}`}
                      hashtags={this.state.tags}
                   >
                      <TwitterIcon size={24} round />
                   </TwitterShareButton>
-                  <FacebookShareButton url={`/orders/${this.props.orderID}`}>
+                  <FacebookShareButton
+                     url={`https://order4.dbudi.now.sh/orders/${this.props.orderID}`}
+                     quote={`Check out ${this.state.orderName} at ${this.state.chainName}. https://order4.dbudi.now.sh/orders/${this.props.orderID}`}
+                  >
                      <FacebookIcon size={24} round />
                   </FacebookShareButton>
+						<div>
                   <Link
                      href={{
                         pathname: '/orders/[usider]',
@@ -116,6 +120,7 @@ class OrderContent extends Component {
                         <img src="../../static/external-link.svg" alt="link-out-icon" />
                      </a>
                   </Link>
+						</div>
                </div>
             </div>
          </OrderContentContainer>

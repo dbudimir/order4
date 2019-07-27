@@ -16,6 +16,7 @@ class Chains extends Component {
 
       return (
          <div>
+            <Head />
             <Layout />
             <h1>Chain: {router.query.name}</h1>
             <Link href="/">

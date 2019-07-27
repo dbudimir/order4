@@ -11,6 +11,7 @@ import UserContext from './UserContext';
 const Navbar = styled.div`
    position: sticky;
    top: 0px;
+   z-index: 10;
 `;
 
 export default function Layout() {

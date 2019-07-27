@@ -60,13 +60,16 @@ class CreateChipotleOrder extends Component {
          tortilla = (
             <div>
                <span className="field-label">Select a Tortilla</span>
-               <select onChange={this.updateState} className="text-input" name="tortilla">
-                  <option value="" disabled selected>
-                     Tortilla
-                  </option>
-                  <option value="Soft Flour Toritilla">Soft Flour Toritilla</option>
-                  <option value="Crispy Corn Tortilla">Crispy Corn Tortilla</option>
-               </select>
+               <div className="select-container">
+                  <select onChange={this.updateState} className="text-input" name="tortilla">
+                     <option value="" disabled selected>
+                        Tortilla
+                     </option>
+                     <option value="Soft Flour Toritilla">Soft Flour Toritilla</option>
+                     <option value="Crispy Corn Tortilla">Crispy Corn Tortilla</option>
+                  </select>
+                  <img src="../../static/arrow-down.svg" alt="arrow-down" />
+               </div>
             </div>
          );
       }
@@ -100,15 +103,18 @@ class CreateChipotleOrder extends Component {
                <h3>Customize your order...</h3>
                <form>
                   <span className="field-label">Select a Meal Type</span>
-                  <select onChange={this.updateState} className="text-input" name="mealType">
-                     <option value="" disabled selected>
-                        Meal Type
-                     </option>
-                     <option value="Burrito">Burrito</option>
-                     <option value="Burrito Bowl">Burrito Bowl</option>
-                     <option value="Tacos">Tacos</option>
-                     <option value="Salad">Salad</option>
-                  </select>
+                  <div className="select-container">
+                     <select onChange={this.updateState} className="text-input" name="mealType">
+                        <option value="" disabled selected>
+                           Meal Type
+                        </option>
+                        <option value="Burrito">Burrito</option>
+                        <option value="Burrito Bowl">Burrito Bowl</option>
+                        <option value="Tacos">Tacos</option>
+                        <option value="Salad">Salad</option>
+                     </select>
+                     <img src="../../static/arrow-down.svg" alt="arrow-down" />
+                  </div>
 
                   {tortilla}
 
@@ -118,26 +124,32 @@ class CreateChipotleOrder extends Component {
                   </div>
 
                   <span className="field-label">Select Rice </span>
-                  <select onChange={this.updateState} className="text-input" name="rice">
-                     <option value="" disabled selected>
-                        Rice
-                     </option>
-                     <option value="White Rice">White Rice</option>
-                     <option value="Brown Rice">Brown Rice</option>
-                     <option value="Both (half/half)">Both (half/half)</option>
-                     <option value="No Rice">No Rice</option>
-                  </select>
+                  <div className="select-container">
+                     <select onChange={this.updateState} className="text-input" name="rice">
+                        <option value="" disabled selected>
+                           Rice
+                        </option>
+                        <option value="White Rice">White Rice</option>
+                        <option value="Brown Rice">Brown Rice</option>
+                        <option value="Both (half/half)">Both (half/half)</option>
+                        <option value="No Rice">No Rice</option>
+                     </select>
+                     <img src="../../static/arrow-down.svg" alt="arrow-down" />
+                  </div>
 
                   <span className="field-label">Select Beans</span>
-                  <select onChange={this.updateState} className="text-input" name="beans">
-                     <option value="" disabled selected>
-                        Beans
-                     </option>
-                     <option value="Black Beans">Black Beans</option>
-                     <option value="Pinto Beans">Pinto Beans</option>
-                     <option value="Both (half/half)">Both (half/half)</option>
-                     <option value="No Beans">No Beans</option>
-                  </select>
+                  <div className="select-container">
+                     <select onChange={this.updateState} className="text-input" name="beans">
+                        <option value="" disabled selected>
+                           Beans
+                        </option>
+                        <option value="Black Beans">Black Beans</option>
+                        <option value="Pinto Beans">Pinto Beans</option>
+                        <option value="Both (half/half)">Both (half/half)</option>
+                        <option value="No Beans">No Beans</option>
+                     </select>
+                     <img src="../../static/arrow-down.svg" alt="arrow-down" />
+                  </div>
 
                   <span className="field-label">Add Toppings</span>
                   <div onChange={this.getSelected} className="toppings">

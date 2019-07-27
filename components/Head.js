@@ -21,7 +21,10 @@ const Head = props => (
          rel="stylesheet"
          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,500i,700,900&display=swap"
       />
-
+      <link
+         rel="stylesheet"
+         href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800,900&display=swap"
+      />
       <meta name="google-site-verification" content="QGQHndVahNquANX0j-ntmMNLiI8CeVlK2mbyEm6L42o" />
       <meta property="og:url" content={props.url || defaultOGURL} />
       <meta property="og:title" content={props.title || ''} />

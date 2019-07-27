@@ -13,7 +13,7 @@ const OrderContentContainer = styled.div`
    flex-basis: 46%;
    border-radius: 12px;
    box-shadow: 0 5.125px 10px -1.125px rgba(0, 0, 0, 0.1);
-   font-family: Roboto, sans-serif;
+   font-family: Nunito, sans-serif;
    display: flex;
    flex-direction: column;
 
@@ -35,7 +35,6 @@ const OrderContentContainer = styled.div`
       }
 
       h3 {
-         text-transform: capitalize;
          margin: 0px;
       }
    }
@@ -46,6 +45,7 @@ const OrderContentContainer = styled.div`
 
    .description {
       margin-top: 12px;
+      margin-bottom: 6px;
       font-weight: 400;
       border-bottom: 2px solid #eeeef1;
       padding-bottom: 12px;
@@ -54,14 +54,20 @@ const OrderContentContainer = styled.div`
 
    .order-content {
       flex-grow: 100;
+
+      p {
+         line-height: 2;
+         margin: 6px 0px;
+         font-weight: 700;
+      }
    }
 
    span {
-      display: inline-block;
       background-color: #eeeef1;
       padding: 1px 4px;
       border-radius: 4px;
       margin: 0 0 4px 4px;
+      font-weight: 400;
    }
 
    .tag-row {
@@ -79,10 +85,14 @@ const OrderContentContainer = styled.div`
 
       .actions {
          display: flex;
+         flex-direction: row;
+         align-items: inherit;
       }
 
       .actions > * {
          margin-left: 8px;
+         cursor: pointer;
+         max-height: 24px;
       }
    }
 `;

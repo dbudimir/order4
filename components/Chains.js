@@ -4,6 +4,10 @@ import styled from 'styled-components';
 
 import OrderContent from './order-content/OrderContent';
 
+const ChainContent = styled.div`
+   position: relative;
+`;
+
 const ChainContainer = styled.div`
    display: flex;
    flex-direction: column;
@@ -14,13 +18,35 @@ const ChainContainer = styled.div`
    a {
       color: #0067ff;
       text-decoration: none;
-      font-family: Roboto;
+      font-family: Nunito;
 
       h2 {
          font-size: 36px;
          border-bottom: 4px solid;
          padding-bottom: 12px;
+         font-weight: 800;
       }
+   }
+
+   .fade-bar {
+      position: absolute;
+      background-color: #000000;
+      height: calc(100% - 120px);
+      width: 32px;
+      right: 0;
+      background: -moz-linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0) 100%);
+      background: -webkit-gradient(
+         linear,
+         left top,
+         right top,
+         color-stop(0%, rgba(0, 0, 0, 0)),
+         color-stop(100%, rgba(255, 255, 255, 1))
+      );
+      background: -webkit-linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0) 100%);
+      background: -o-linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0) 100%);
+      background: -ms-linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0) 100%);
+      background: linear-gradient(270deg, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0) 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#FFFFFF',GradientType=1 );
    }
 
    .chain-row {
@@ -62,7 +88,6 @@ class Chains extends Component {
    render() {
       const chainOrders = this.props.chains.chains;
       const chainRows = chainOrders.map((chain, index) => {
-         console.log(chain);
          const orders = chain.orders.map((order, index) => {
             if (
                chain.name === order.chainName &&
@@ -76,7 +101,7 @@ class Chains extends Component {
             }
          });
          return (
-            <div>
+            <ChainContent>
                <Link
                   href={{
                      pathname: '/chains/[name]',
@@ -88,8 +113,9 @@ class Chains extends Component {
                      <h2 className="chain-name">{chain.name}</h2>
                   </a>
                </Link>
+               <div className="fade-bar"></div>
                <div className="chain-row">{orders}</div>
-            </div>
+            </ChainContent>
          );
       });
 

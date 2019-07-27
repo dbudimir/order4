@@ -112,7 +112,7 @@ class LoginForm extends Component {
    render() {
       return (
          <div className="form">
-            <Form className="user-form">
+            <Form className="login-form">
                <h3>Log In</h3>
                <input
                   name="email"
@@ -134,7 +134,7 @@ class LoginForm extends Component {
                <span className="sign-up-now">
                   Don't have an account?{' '}
                   <Link to="/signup">
-                     <a href="/signup">Sign up now>></a>
+                     <a href="/signup">Sign up now.</a>
                   </Link>
                </span>
             </Form>

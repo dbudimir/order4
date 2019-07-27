@@ -16,7 +16,7 @@ const CHAIN_ANDPIZZA = '&pizza';
 
 const FormHeader = styled.h2`
    font-size: 48px;
-   font-family: Roboto, serif;
+   font-family: Nunito, serif;
    margin: 0 0 32px;
 `;
 
