@@ -202,8 +202,8 @@ const Form = styled.div`
          border: 0px;
          padding: 0px 0px 0px 12px;
          background-color: #f8f8f8;
-         border-radius: 8px;
-         box-shadow: inset rgba(0, 0, 0, 0.2) 0px 0px 4px 0;
+         border-radius: 4px;
+         box-shadow: inset rgba(0, 0, 0, 0.1) 0px 0px 4px 0;
          box-sizing: border-box;
          font-family: Nunito;
       }
@@ -214,8 +214,8 @@ const Form = styled.div`
          border: 0px;
          padding: 12px 0px 0px 12px;
          background-color: #f8f8f8;
-         border-radius: 8px;
-         box-shadow: inset rgba(0, 0, 0, 0.2) 0px 0px 4px 0;
+         border-radius: 4px;
+         box-shadow: inset rgba(0, 0, 0, 0.1) 0px 0px 4px 0;
          box-sizing: border-box;
       }
 
@@ -245,8 +245,8 @@ const Form = styled.div`
             margin: 0px 6px 6px 0px;
             padding: 0px 0px 0px 12px;
             background-color: #f8f8f8;
-            border-radius: 8px;
-            box-shadow: inset rgba(0, 0, 0, 0.2) 0px 0px 4px 0;
+            border-radius: 4px;
+            box-shadow: inset rgba(0, 0, 0, 0.1) 0px 0px 4px 0;
             font-family: Nunito;
          }
 
@@ -255,7 +255,7 @@ const Form = styled.div`
             width: 20%;
             max-width: 90px;
             margin: 0px;
-            border-radius: 8px;
+            border-radius: 4px;
             padding: 0px;
             line-height: 0;
             background-color: red;

@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
+import Head from './Head';
+
 const NavBar = styled.div`
    background: #ffffff;
    display: flex;
@@ -136,6 +138,7 @@ export default class Nav extends Component {
    render() {
       return (
          <NavBar>
+            <Head />
             <Link
                href={{
                   pathname: '/',

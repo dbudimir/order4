@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import 'isomorphic-fetch';
 
 import styled from 'styled-components';
+import TagPage from '../../../components/styles/TagPage';
 
 import Head from '../../../components/Head';
 import Layout from '../../../components/Layout';
@@ -31,19 +32,29 @@ class Tag extends Component {
 
       return (
          <div>
-            <Head />
+            <Head
+               title={`The Best ${this.props.tag.charAt(0).toUpperCase() +
+                  this.props.tag.slice(1)} Orders at ${this.props.name.charAt(0).toUpperCase() +
+                  this.props.name.slice(1)}`}
+               description={`Check out the most popular ${this.props.tag} custom orders at ${this.props.name}. Or, submit your own custom order and share it with your friends.`}
+            />
             <Layout />
-            <h1>
-               The most popular {this.props.tag} orders at {this.props.name}
-            </h1>
-            <OrderContainer>{orderCard}</OrderContainer>
+            <TagPage className="tag-order-container">
+               <h1>
+                  {`The most popular
+                  ${this.props.tag.charAt(0).toUpperCase() + this.props.tag.slice(1)} orders at
+                  ${this.props.name.charAt(0).toUpperCase() + this.props.name.slice(1)}`}
+               </h1>
+               <OrderContainer>{orderCard}</OrderContainer>
+            </TagPage>
          </div>
       );
    }
 }
 
 Tag.getInitialProps = async ({ query }) => {
-   const lookup = `${query.name}/${query.tag}`;
+   const chainUpper = query.name.charAt(0).toUpperCase() + query.name.slice(1);
+   const lookup = `${chainUpper}/${query.tag}`;
    const res = await fetch(`https://qsr-order-api.herokuapp.com/api/orders/chain/${lookup}`);
    const data = await res.json();
 

@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
-
 import 'isomorphic-fetch';
 
 import styled from 'styled-components';
+import TagPage from '../../components/styles/TagPage';
 
 import Head from '../../components/Head';
 import Layout from '../../components/Layout';
@@ -32,9 +32,16 @@ class Tag extends Component {
 
       return (
          <div>
-            <Head />
+            <Head
+               title={`The Best ${this.props.tag.charAt(0).toUpperCase() +
+                  this.props.tag.slice(1)} Custom Orders`}
+               description={`Check out the most popular ${this.props.tag} custom orders on Order 4. Or, submit your own custom order and share it with your friends.`}
+            />
             <Layout />
-            <OrderContainer>{orderCard}</OrderContainer>
+            <TagPage className="tag-order-container">
+               <h1>The most popular {this.props.tag} custom orders.</h1>
+               <OrderContainer>{orderCard}</OrderContainer>
+            </TagPage>
          </div>
       );
    }
