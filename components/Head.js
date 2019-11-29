@@ -21,7 +21,7 @@ class Head extends Component {
         />
         <meta
           name="google-site-verification"
-          content="QGQHndVahNquANX0j-ntmMNLiI8CeVlK2mbyEm6L42o"
+          content="0tikEBJv6jfDzlVrMSFJmAOFrQCMM0c47FLBfIyeck4"
         />
       </NextHead>
     );

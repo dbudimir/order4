@@ -4,6 +4,7 @@ import Router from 'next/router';
 import UserContext from '../components/UserContext';
 
 import { NextSeo } from 'next-seo';
+import Head from '../components/Head';
 
 export default class MyApp extends App {
   constructor(props) {
@@ -100,6 +101,8 @@ export default class MyApp extends App {
             cardType: 'summary_large_image'
           }}
         />
+
+        <Head />
 
         <UserContext.Provider
           value={{

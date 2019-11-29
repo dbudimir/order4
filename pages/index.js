@@ -9,7 +9,7 @@ class Index extends Component {
   render() {
     return (
       <div>
-        <Head title="Home" />
+        <Head />
         <Layout />
         <Chains chains={this.props} />
       </div>
