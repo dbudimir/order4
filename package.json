@@ -13,17 +13,18 @@
 		"express": "^4.17.1",
 		"isomorphic-fetch": "^2.2.1",
 		"isomorphic-unfetch": "^3.0.0",
-		"next": "^9.0.3-canary.4",
+		"next": "^9.1.4",
 		"next-routes": "^1.4.2",
-		"node-sass": "^4.12.0",
+		"next-seo": "^3.0.0",
+		"node-sass": "^4.13.0",
 		"path-match": "^1.2.4",
 		"prop-types": "^15.7.2",
-		"react": "^16.8.6",
-		"react-dom": "^16.8.6",
-		"react-ga": "^2.6.0",
-		"react-share": "^3.0.0",
+		"react": "^16.12.0",
+		"react-dom": "^16.12.0",
+		"react-ga": "^2.7.0",
+		"react-share": "^3.0.1",
 		"shuffle-array": "^1.0.1",
-		"styled-components": "^4.3.2",
+		"styled-components": "^4.4.1",
 		"styled-media-query": "^2.1.2",
 		"unique-concat": "^0.2.2"
 	},
@@ -43,8 +44,8 @@
 		}
 	},
 	"devDependencies": {
-		"@types/node": "^12.6.8",
-		"@types/react": "^16.8.23",
+		"@types/node": "^12.12.14",
+		"@types/react": "^16.9.13",
 		"eslint": "^5.16.0",
 		"eslint-config-airbnb": "^17.1.1",
 		"eslint-config-prettier": "^4.3.0",
@@ -52,10 +53,11 @@
 		"eslint-plugin-html": "^5.0.5",
 		"eslint-plugin-import": "^2.18.2",
 		"eslint-plugin-jsx-a11y": "^6.2.3",
-		"eslint-plugin-prettier": "^3.1.0",
-		"eslint-plugin-react": "^7.14.3",
-		"eslint-plugin-react-hooks": "^1.6.1",
+		"eslint-plugin-prettier": "^3.1.1",
+		"eslint-plugin-react": "^7.17.0",
+		"eslint-plugin-react-hooks": "^1.7.0",
+		"install-peers": "^1.0.3",
 		"now-next-routes": "^1.1.2",
-		"prettier": "^1.18.2"
+		"prettier": "^1.19.1"
 	}
 }

@@ -9,60 +9,60 @@ import Layout from '../../components/Layout';
 import OrderContent from '../../components/order-content/OrderContent';
 
 const H1 = styled.h1`
-   max-width: 1024px;
-   margin: 60px auto 48px;
-   padding: 0px 12px;
-   font-family: Roboto, sans-serif;
-   font-size: 42px;
-   font-weight: 900;
+  max-width: 1024px;
+  margin: 60px auto 48px;
+  padding: 0px 12px;
+  font-family: Roboto, sans-serif;
+  font-size: 42px;
+  font-weight: 900;
 `;
 
 const OrderContainer = styled.div`
-   display: flex;
-   flex-direction: row;
-   flex-wrap: wrap;
-   justify-content: space-between;
-   max-width: 1024px;
-   margin: 60px auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1024px;
+  margin: 60px auto;
 
-   .order-content-container {
-      flex-basis: 100%;
-   }
+  .order-content-container {
+    flex-basis: 100%;
+  }
 `;
 
 class User extends Component {
-   constructor(props) {
-      super(props);
-      this.state = { orders: [] };
-   }
+  constructor(props) {
+    super(props);
+    this.state = { orders: [] };
+  }
 
-   render() {
-      console.log(this.props);
-      const orderCard = this.props.orders.map((order, index) => (
-         <OrderContent orderID={order._id} key={index} />
-      ));
+  render() {
+    console.log(this.props);
+    const orderCard = this.props.orders.map((order, index) => (
+      <OrderContent orderID={order._id} key={index} />
+    ));
 
-      return (
-         <div>
-            <Head title={`Custom orders created by ${this.props.fullName}`} />
-            <Layout />
-            <H1>{`Custom orders created by ${this.props.fullName}`}</H1>
-            <OrderContainer className="order-content-container">{orderCard}</OrderContainer>
-         </div>
-      );
-   }
+    return (
+      <div>
+        <Head title={`Custom orders created by ${this.props.fullName}`} />
+        <Layout />
+        <H1>{`Custom orders created by ${this.props.fullName}`}</H1>
+        <OrderContainer className="order-content-container">{orderCard}</OrderContainer>
+      </div>
+    );
+  }
 }
 
 User.getInitialProps = async ({ query }) => {
-   // const id = (await query.id) === undefined ? '' : query.user;
-   const res = await fetch(`https://qsr-order-api.herokuapp.com/api/users/${query.user}`);
-   const data = await res.json();
+  // const id = (await query.id) === undefined ? '' : query.user;
+  const res = await fetch(`https://qsr-order-api.herokuapp.com/api/users/${query.user}`);
+  const data = await res.json();
 
-   return {
-      orders: data[0].orders,
-      fullName: data[0].userFullName,
-      userId: query.user,
-   };
+  return {
+    orders: data[0].orders,
+    fullName: data[0].userFullName,
+    userId: query.user
+  };
 };
 
 export default User;

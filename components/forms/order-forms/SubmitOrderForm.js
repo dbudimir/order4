@@ -4,96 +4,96 @@ import styled from 'styled-components';
 import TagForm from '../TagForm';
 
 const Form = styled.div`
-   .label {
-      margin-top: 12px;
-      font-weight: 800;
-   }
-   span {
-      display: block;
-   }
+  .label {
+    margin-top: 12px;
+    font-weight: 800;
+  }
+  span {
+    display: block;
+  }
 `;
 
 class SubmitOrder extends Component {
-   constructor(props) {
-      super(props);
-      this.state = {
-         user: {},
-      };
-   }
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: {}
+    };
+  }
 
-   updateState = async event => {
-      const { target } = event;
-      const { value } = target;
-      const { name } = target;
+  updateState = async event => {
+    const { target } = event;
+    const { value } = target;
+    const { name } = target;
 
-      await this.setState({
-         order: {
-            ...this.state.order,
-            [name]: value,
-         },
-      });
-      this.props.setOrderDetails(this.state.order);
-   };
+    await this.setState({
+      order: {
+        ...this.state.order,
+        [name]: value
+      }
+    });
+    this.props.setOrderDetails(this.state.order);
+  };
 
-   updateUserState = event => {
-      const { target } = event;
-      const { value } = target;
-      const { name } = target;
+  updateUserState = event => {
+    const { target } = event;
+    const { value } = target;
+    const { name } = target;
 
-      this.setState({
-         user: {
-            [name]: value,
-         },
-      });
-   };
+    this.setState({
+      user: {
+        [name]: value
+      }
+    });
+  };
 
-   updateTags = newTags => {
-      this.setState(prevState => ({
-         order: {
-            tags: newTags,
-         },
-      }));
-      this.props.setOrderDetails(this.state.order);
-   };
+  updateTags = newTags => {
+    this.setState(prevState => ({
+      order: {
+        tags: newTags
+      }
+    }));
+    this.props.setOrderDetails(this.state.order);
+  };
 
-   render() {
-      return (
-         <div>
-            <Form>
-               <div className="submit-order">
-                  <h3>Add details...</h3>
-                  <span className="field-label">
-                     Name Your Order (ex. "The Belly Buster", "The Big Cheese")
-                  </span>
-                  <input
-                     onChange={this.updateState}
-                     className="text-input"
-                     name="orderName"
-                     placeholder="Name your order"
-                  />
-                  <span className="field-label">Short Description</span>
-                  <textarea
-                     onChange={this.updateState}
-                     className="text-input"
-                     name="description"
-                     rows="4"
-                  />
-                  <br />
-                  <TagForm setTags={this.updateTags} />
-                  <br />
-                  <button
-                     onClick={this.props.toggleSubmitConfirmation}
-                     className="button"
-                     name="submit"
-                     type="submit"
-                  >
-                     Submit Order
-                  </button>
-               </div>
-            </Form>
-         </div>
-      );
-   }
+  render() {
+    return (
+      <div>
+        <Form>
+          <div className="submit-order">
+            <h3>Add details...</h3>
+            <span className="field-label">
+              Name Your Order (ex. "The Belly Buster", "The Big Cheese")
+            </span>
+            <input
+              onChange={this.updateState}
+              className="text-input"
+              name="orderName"
+              placeholder="Name your order"
+            />
+            <span className="field-label">Short Description</span>
+            <textarea
+              onChange={this.updateState}
+              className="text-input"
+              name="description"
+              rows="4"
+            />
+            <br />
+            <TagForm setTags={this.updateTags} />
+            <br />
+            <button
+              onClick={this.props.toggleSubmitConfirmation}
+              className="button"
+              name="submit"
+              type="submit"
+            >
+              Submit Order
+            </button>
+          </div>
+        </Form>
+      </div>
+    );
+  }
 }
 
 export default SubmitOrder;
