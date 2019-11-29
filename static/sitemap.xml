@@ -5,7 +5,7 @@
 			https://order4.dbudi.now.sh/chains/[name]
 		</loc>
 		<lastmod>
-			2019-07-27
+			2019-08-07
 		</lastmod>
 		<changefreq>
 			always
@@ -19,7 +19,7 @@
 			https://order4.dbudi.now.sh/chains/[name]/[tag]
 		</loc>
 		<lastmod>
-			2019-07-27
+			2019-08-07
 		</lastmod>
 		<changefreq>
 			always
@@ -103,7 +103,7 @@
 			https://order4.dbudi.now.sh/tag/[tag]
 		</loc>
 		<lastmod>
-			2019-07-27
+			2019-08-07
 		</lastmod>
 		<changefreq>
 			always
@@ -366,6 +366,188 @@
 	</url>
 	<url>
 		<loc>
+			https://order4.dbudi.now.sh/tag/spotlight
+		</loc>
+		<lastmod>
+			2019-07-21
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://order4.dbudi.now.sh/tag/Yuli
+		</loc>
+		<lastmod>
+			2019-07-21
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://order4.dbudi.now.sh/tag/ketogenic
+		</loc>
+		<lastmod>
+			2019-07-21
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://order4.dbudi.now.sh/tag/vegan
+		</loc>
+		<lastmod>
+			2019-07-21
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://order4.dbudi.now.sh/tag/vegan
+		</loc>
+		<lastmod>
+			2019-07-21
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://order4.dbudi.now.sh/tag/thomas
+		</loc>
+		<lastmod>
+			2019-07-21
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://order4.dbudi.now.sh/tag/vegan
+		</loc>
+		<lastmod>
+			2019-07-21
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://order4.dbudi.now.sh/tag/social%20driver
+		</loc>
+		<lastmod>
+			2019-07-21
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://order4.dbudi.now.sh/tag/vegan
+		</loc>
+		<lastmod>
+			2019-07-21
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://order4.dbudi.now.sh/tag/spicy
+		</loc>
+		<lastmod>
+			2019-07-21
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://order4.dbudi.now.sh/tag/vishal
+		</loc>
+		<lastmod>
+			2019-07-21
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://order4.dbudi.now.sh/tag/will
+		</loc>
+		<lastmod>
+			2019-07-21
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://order4.dbudi.now.sh/tag/ray
+		</loc>
+		<lastmod>
+			2019-07-21
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
 			https://order4.dbudi.now.sh/chains/chipotle/vegan
 		</loc>
 		<lastmod>
@@ -548,6 +730,160 @@
 	</url>
 	<url>
 		<loc>
+			https://order4.dbudi.now.sh/chains/chipotle/spotlight
+		</loc>
+		<lastmod>
+			2019-07-21
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://order4.dbudi.now.sh/chains/chipotle/Yuli
+		</loc>
+		<lastmod>
+			2019-07-21
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://order4.dbudi.now.sh/chains/chipotle/ketogenic
+		</loc>
+		<lastmod>
+			2019-07-21
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://order4.dbudi.now.sh/chains/chipotle/vegan
+		</loc>
+		<lastmod>
+			2019-07-21
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://order4.dbudi.now.sh/chains/chipotle/thomas
+		</loc>
+		<lastmod>
+			2019-07-21
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://order4.dbudi.now.sh/chains/chipotle/social%20driver
+		</loc>
+		<lastmod>
+			2019-07-21
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://order4.dbudi.now.sh/chains/chipotle/vegan
+		</loc>
+		<lastmod>
+			2019-07-21
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://order4.dbudi.now.sh/chains/chipotle/spicy
+		</loc>
+		<lastmod>
+			2019-07-21
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://order4.dbudi.now.sh/chains/chipotle/vishal
+		</loc>
+		<lastmod>
+			2019-07-21
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://order4.dbudi.now.sh/chains/chipotle/will
+		</loc>
+		<lastmod>
+			2019-07-21
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://order4.dbudi.now.sh/chains/chipotle/ray
+		</loc>
+		<lastmod>
+			2019-07-21
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
 			https://order4.dbudi.now.sh/chains/&amp;pizza/healthy
 		</loc>
 		<lastmod>
@@ -577,6 +913,20 @@
 	<url>
 		<loc>
 			https://order4.dbudi.now.sh/chains/&amp;pizza/gluten%20free
+		</loc>
+		<lastmod>
+			2019-07-21
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://order4.dbudi.now.sh/chains/&amp;pizza/vegan
 		</loc>
 		<lastmod>
 			2019-07-21

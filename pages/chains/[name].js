@@ -3,8 +3,22 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import { withRouter } from 'next/router';
 
+import styled from 'styled-components';
+
 import Head from '../../components/Head';
 import Layout from '../../components/Layout';
+
+const ChainContainer = styled.div`
+   display: flex;
+   flex-direction: column;
+    width: 1024px;
+    max-width: 94%;
+    margin: 40px auto 120px;
+   h1 {
+		color: rgb(0, 103, 255);
+    	font-family: Nunito;
+   }
+`;
 
 class Chains extends Component {
    static getInitialProps({ query }) {
@@ -18,7 +32,9 @@ class Chains extends Component {
          <div>
             <Head />
             <Layout />
-            <h1>Chain: {router.query.name}</h1>
+				<ChainContainer>
+            	<h1>Chain: {router.query.name}</h1>
+				</ChainContainer>
             <Link href="/">
                <a>Go back to the list of posts</a>
             </Link>

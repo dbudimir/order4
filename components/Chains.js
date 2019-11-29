@@ -13,7 +13,7 @@ const ChainContainer = styled.div`
    flex-direction: column;
    width: 1024px;
    max-width: 94%;
-   margin: 60px auto;
+   margin: 40px auto 120px;
 
    a {
       color: #0067ff;
@@ -58,7 +58,7 @@ const ChainContainer = styled.div`
 
       .order-content-container {
          text-decoration: none;
-         min-width: 260px;
+         min-width: 280px;
          margin-right: 24px;
          display: inline-flex;
 
@@ -68,6 +68,7 @@ const ChainContainer = styled.div`
 
          .description {
             margin-top: 0px;
+            font-size: 16px;
          }
 
          .order-content {
@@ -88,7 +89,7 @@ class Chains extends Component {
    render() {
       const chainOrders = this.props.chains.chains;
       const chainRows = chainOrders.map((chain, index) => {
-         const orders = chain.orders.map((order, index) => {
+         const orders = chain.orders.map((order, ordersIndex) => {
             if (
                chain.name === order.chainName &&
                order.orderName !== null &&
@@ -97,7 +98,7 @@ class Chains extends Component {
                order.orderName.includes('Test') !== true &&
                Object.keys(order).length > 4
             ) {
-               return <OrderContent orderID={order._id} key={index} />;
+               return <OrderContent orderID={order._id} key={ordersIndex} />;
             }
          });
          return (

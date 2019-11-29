@@ -180,7 +180,7 @@ export default class Nav extends Component {
                      <a href="/create-order">
                         <span className="create">
                            Create Order
-                           <img src="../static/plus.svg" alt="plus-icon" />
+                           <img src="https://order4.dbudi.now.sh/static/plus.svg" alt="plus-icon" />
                         </span>
                      </a>
                   </Link>

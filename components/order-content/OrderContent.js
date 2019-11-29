@@ -108,19 +108,19 @@ class OrderContent extends Component {
                   >
                      <FacebookIcon size={24} round />
                   </FacebookShareButton>
-						<div>
-                  <Link
-                     href={{
-                        pathname: '/orders/[usider]',
-                        query: { id: this.props.orderID },
-                     }}
-                     as={{ pathname: `/orders/${this.props.orderID}` }}
-                  >
-                     <a href={`/orders/${this.props.orderID}`}>
-                        <img src="../../static/external-link.svg" alt="link-out-icon" />
-                     </a>
-                  </Link>
-						</div>
+                  <div>
+                     <Link
+                        href={{
+                           pathname: '/orders/[usider]',
+                           query: { id: this.props.orderID },
+                        }}
+                        as={{ pathname: `/orders/${this.props.orderID}` }}
+                     >
+                        <a href={`/orders/${this.props.orderID}`}>
+                           <img src="../../static/external-link.svg" alt="link-out-icon" />
+                        </a>
+                     </Link>
+                  </div>
                </div>
             </div>
          </OrderContentContainer>
