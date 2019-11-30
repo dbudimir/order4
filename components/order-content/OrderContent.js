@@ -38,7 +38,7 @@ class OrderContent extends Component {
     } else {
       const { order, chainName } = this.props.orderState;
 
-      await this.setState({
+      this.setState({
         orderDescription: order.description,
         orderContent: order,
         tags: JSON.parse(

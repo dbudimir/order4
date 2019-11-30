@@ -56,14 +56,14 @@ export default class MyApp extends App {
     }
   };
 
-  signOut = async () => {
-    await this.setState({
+  signOut = () => {
+    this.setState({
       userName: '',
       email: '',
       userId: '',
       isLoggedIn: false
     });
-    await localStorage.clear();
+    localStorage.clear();
     Router.push('/');
   };
 

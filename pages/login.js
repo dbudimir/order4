@@ -2,17 +2,17 @@ import React, { useContext } from 'react';
 
 import Layout from '../components/Layout';
 import UserContext from '../components/UserContext';
-import SignupForm from '../components/forms/SignupForm';
+import LoginForm from '../components/forms/LoginForm';
 
-function Signup({ updateUser = () => {} }) {
+function Login({ updateUser = () => {} }) {
   const userStatus = useContext(UserContext);
 
   return (
     <div>
       <Layout />
-      <SignupForm signIn={userStatus.signIn} updateUser={updateUser} />;
+      <LoginForm signIn={userStatus.signIn} updateUser={updateUser} />;
     </div>
   );
 }
 
-export default Signup;
+export default Login;

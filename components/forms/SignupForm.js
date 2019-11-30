@@ -62,23 +62,24 @@ class SignupForm extends Component {
         ...state
       })
       // .post('http://localhost:8040/api/users/signup', {
-      //    ...state,
+      //   ...state
       // })
       .then(response => {
-        localStorage.token = response.data.token;
         this.setState({
-          userId: response.data.userId,
-          isLoggedIn: true
+          isLoggedIn: true,
+          userId: response.data._id
         });
-        this.props.signIn(response.data.userName, this.state.email, response.data.userId, true);
+        this.props.signIn(response.data.userName, response.data.email, response.data._id, true);
         const user = {
           userFullName: response.data.userFullName,
           userName: response.data.userName,
-          email: this.state.email,
-          userId: response.data.userId
+          email: response.data.email,
+          userId: response.data._id
         };
         this.props.updateUser(user);
-        this.props.updateAction('');
+        if (window.location.pathname !== ('/login' || '/signup')) {
+          this.props.updateAction('');
+        }
       });
   };
 

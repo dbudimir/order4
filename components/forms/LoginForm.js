@@ -88,24 +88,26 @@ class LoginForm extends Component {
       .post('https://qsr-order-api.herokuapp.com/api/users/login/', {
         ...state
       })
-      // .post('http://localhost:8040/api/users/login/', {
-      //    ...state,
+      // .post('http://localhost:8040/api/users/login', {
+      //   ...state
       // })
       .then(response => {
-        localStorage.token = response.data.token;
+        console.log(response);
         this.setState({
           isLoggedIn: true,
           userId: response.data.userId
         });
-        this.props.signIn(response.data.userName, this.state.email, response.data.userId, true);
+        this.props.signIn(response.data.userName, response.data.email, response.data.userId, true);
         const user = {
           userFullName: response.data.userFullName,
           userName: response.data.userName,
-          email: this.state.email,
+          email: response.data.email,
           userId: response.data.userId
         };
         this.props.updateUser(user);
-        this.props.updateAction('');
+        if (window.location.pathname !== ('/login' || '/signup')) {
+          this.props.updateAction('');
+        }
       });
   };
 
@@ -132,9 +134,9 @@ class LoginForm extends Component {
           <ErrorMessage message={this.state.formErrors.password} state={this.state} />
           <input name="submit" onClick={this.onSubmit} type="submit" value="Log In" />
           <span className="sign-up-now">
-            Don't have an account?{' '}
+            Don't have an account?
             <Link to="/signup">
-              <a href="/signup">Sign up now.</a>
+              <a href="/signup"> Sign up now.</a>
             </Link>
           </span>
         </Form>

@@ -96,7 +96,9 @@ export default class Nav extends Component {
               pathname: '/'
             }}
           >
-            <span onClick={this.props.signOut}>Log Out</span>
+            <span onClick={this.props.signOut}>
+              <a href="/">Log Out</a>
+            </span>
           </Link>
         </React.Fragment>
       );
@@ -105,12 +107,12 @@ export default class Nav extends Component {
         <React.Fragment>
           <Link
             href={{
-              pathname: '/signup',
+              pathname: '/login',
               query: { action: 'login' }
             }}
             as={{ pathname: `/login` }}
           >
-            <a href="/signup">
+            <a href="/login">
               <span>Log In</span>
             </a>
           </Link>

@@ -87,8 +87,9 @@ class Chains extends Component {
   }
 
   render() {
-    const chainOrders = this.props.chains.chains;
-    const chainRows = chainOrders.map((chain, index) => {
+    const chainOrders = this.props.chains;
+    const chainRows = chainOrders.map((chain, chainsIndex) => {
+      console.log('lap');
       const orders = chain.orders.map((order, ordersIndex) => {
         if (
           chain.name === order.chainName &&
@@ -98,11 +99,11 @@ class Chains extends Component {
           order.orderName.includes('Test') !== true &&
           Object.keys(order).length > 4
         ) {
-          return <OrderContent orderID={order._id} key={ordersIndex} />;
+          return <OrderContent orderID={order._id} key={chain.name + ' - ' + ordersIndex} />;
         }
       });
       return (
-        <ChainContent>
+        <ChainContent key={chainsIndex}>
           <Link
             href={{
               pathname: '/chains/[name]',
