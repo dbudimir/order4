@@ -2,10 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/[name]
+			https://mealdig.com//chains/[name]
 		</loc>
 		<lastmod>
-			2019-08-07
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -16,10 +16,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/[name]/[tag]
+			https://mealdig.com//chains/[name]/[tag]
 		</loc>
 		<lastmod>
-			2019-08-07
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -30,10 +30,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/create-order
+			https://mealdig.com//create-order
 		</loc>
 		<lastmod>
-			2019-07-27
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -44,10 +44,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/
+			https://mealdig.com//
 		</loc>
 		<lastmod>
-			2019-07-27
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -58,10 +58,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/orders/[id]
+			https://mealdig.com//login
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -72,10 +72,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/orders/all
+			https://mealdig.com//orders/[id]
 		</loc>
 		<lastmod>
-			2019-07-22
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -86,10 +86,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/signup
+			https://mealdig.com//orders/all
 		</loc>
 		<lastmod>
-			2019-07-27
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -100,10 +100,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/[tag]
+			https://mealdig.com//signup
 		</loc>
 		<lastmod>
-			2019-08-07
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -114,10 +114,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/user/[user]
+			https://mealdig.com//tag/[tag]
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -128,10 +128,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/vegan
+			https://mealdig.com//user/[user]
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -142,10 +142,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/tasty
+			https://mealdig.com/tag/vegan
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -156,10 +156,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/yum
+			https://mealdig.com/tag/tasty
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -170,10 +170,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/vegan
+			https://mealdig.com/tag/yum
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -184,10 +184,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/vegetarian
+			https://mealdig.com/tag/vegan
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -198,10 +198,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/healthy
+			https://mealdig.com/tag/vegetarian
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -212,10 +212,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/
+			https://mealdig.com/tag/healthy
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -226,10 +226,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/healthy
+			https://mealdig.com/tag/
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -240,10 +240,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/hangover%20food
+			https://mealdig.com/tag/healthy
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -254,10 +254,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/gluten%20free
+			https://mealdig.com/tag/hangover%20food
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -268,10 +268,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/vegan
+			https://mealdig.com/tag/gluten%20free
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -282,10 +282,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/vegan
+			https://mealdig.com/tag/vegan
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -296,10 +296,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/drunk
+			https://mealdig.com/tag/vegan
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -310,10 +310,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/burrito
+			https://mealdig.com/tag/drunk
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -324,10 +324,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/cheesy
+			https://mealdig.com/tag/burrito
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -338,10 +338,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/vegan
+			https://mealdig.com/tag/cheesy
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -352,10 +352,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/plant%20based
+			https://mealdig.com/tag/vegan
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -366,10 +366,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/spotlight
+			https://mealdig.com/tag/plant%20based
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -380,10 +380,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/Yuli
+			https://mealdig.com/tag/spotlight
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -394,10 +394,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/ketogenic
+			https://mealdig.com/tag/Yuli
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -408,10 +408,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/vegan
+			https://mealdig.com/tag/ketogenic
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -422,10 +422,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/vegan
+			https://mealdig.com/tag/vegan
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -436,10 +436,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/thomas
+			https://mealdig.com/tag/vegan
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -450,10 +450,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/vegan
+			https://mealdig.com/tag/thomas
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -464,10 +464,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/social%20driver
+			https://mealdig.com/tag/vegan
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -478,10 +478,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/vegan
+			https://mealdig.com/tag/social%20driver
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -492,10 +492,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/spicy
+			https://mealdig.com/tag/vegan
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -506,10 +506,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/vishal
+			https://mealdig.com/tag/spicy
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -520,10 +520,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/will
+			https://mealdig.com/tag/vishal
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -534,10 +534,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/tag/ray
+			https://mealdig.com/tag/will
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -548,10 +548,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/chipotle/vegan
+			https://mealdig.com/tag/ray
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -562,10 +562,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/chipotle/tasty
+			https://mealdig.com/tag/vegan
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -576,10 +576,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/chipotle/yum
+			https://mealdig.com/tag/healthy
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -590,10 +590,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/chipotle/vegan
+			https://mealdig.com/tag/dylan
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -604,10 +604,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/chipotle/vegetarian
+			https://mealdig.com/tag/Laura%20
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -618,10 +618,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/chipotle/healthy
+			https://mealdig.com/tag/bnol
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -632,10 +632,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/chipotle/
+			https://mealdig.com/tag/spicy
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -646,10 +646,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/chipotle/vegan
+			https://mealdig.com/tag/healthy
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -660,10 +660,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/chipotle/drunk
+			https://mealdig.com/tag/hangover
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -674,10 +674,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/chipotle/burrito
+			https://mealdig.com/chains/chipotle/vegan
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -688,10 +688,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/chipotle/cheesy
+			https://mealdig.com/chains/chipotle/tasty
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -702,10 +702,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/chipotle/vegan
+			https://mealdig.com/chains/chipotle/yum
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -716,10 +716,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/chipotle/plant%20based
+			https://mealdig.com/chains/chipotle/vegan
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -730,10 +730,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/chipotle/spotlight
+			https://mealdig.com/chains/chipotle/vegetarian
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -744,10 +744,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/chipotle/Yuli
+			https://mealdig.com/chains/chipotle/healthy
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -758,10 +758,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/chipotle/ketogenic
+			https://mealdig.com/chains/chipotle/
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -772,10 +772,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/chipotle/vegan
+			https://mealdig.com/chains/chipotle/vegan
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -786,10 +786,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/chipotle/thomas
+			https://mealdig.com/chains/chipotle/drunk
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -800,10 +800,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/chipotle/social%20driver
+			https://mealdig.com/chains/chipotle/burrito
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -814,10 +814,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/chipotle/vegan
+			https://mealdig.com/chains/chipotle/cheesy
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -828,10 +828,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/chipotle/spicy
+			https://mealdig.com/chains/chipotle/vegan
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -842,10 +842,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/chipotle/vishal
+			https://mealdig.com/chains/chipotle/plant%20based
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -856,10 +856,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/chipotle/will
+			https://mealdig.com/chains/chipotle/spotlight
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -870,10 +870,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/chipotle/ray
+			https://mealdig.com/chains/chipotle/Yuli
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -884,10 +884,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/&amp;pizza/healthy
+			https://mealdig.com/chains/chipotle/ketogenic
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -898,10 +898,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/&amp;pizza/hangover%20food
+			https://mealdig.com/chains/chipotle/vegan
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -912,10 +912,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/&amp;pizza/gluten%20free
+			https://mealdig.com/chains/chipotle/thomas
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -926,10 +926,10 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/&amp;pizza/vegan
+			https://mealdig.com/chains/chipotle/social%20driver
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
@@ -940,10 +940,248 @@
 	</url>
 	<url>
 		<loc>
-			https://order4.dbudi.now.sh/chains/&amp;pizza/vegan
+			https://mealdig.com/chains/chipotle/vegan
 		</loc>
 		<lastmod>
-			2019-07-21
+			2019-11-29
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://mealdig.com/chains/chipotle/spicy
+		</loc>
+		<lastmod>
+			2019-11-29
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://mealdig.com/chains/chipotle/vishal
+		</loc>
+		<lastmod>
+			2019-11-29
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://mealdig.com/chains/chipotle/will
+		</loc>
+		<lastmod>
+			2019-11-29
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://mealdig.com/chains/chipotle/ray
+		</loc>
+		<lastmod>
+			2019-11-29
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://mealdig.com/chains/chipotle/vegan
+		</loc>
+		<lastmod>
+			2019-11-29
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://mealdig.com/chains/chipotle/healthy
+		</loc>
+		<lastmod>
+			2019-11-29
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://mealdig.com/chains/chipotle/dylan
+		</loc>
+		<lastmod>
+			2019-11-29
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://mealdig.com/chains/chipotle/bnol
+		</loc>
+		<lastmod>
+			2019-11-29
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://mealdig.com/chains/chipotle/spicy
+		</loc>
+		<lastmod>
+			2019-11-29
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://mealdig.com/chains/chipotle/healthy
+		</loc>
+		<lastmod>
+			2019-11-29
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://mealdig.com/chains/chipotle/hangover
+		</loc>
+		<lastmod>
+			2019-11-29
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://mealdig.com/chains/&amp;pizza/healthy
+		</loc>
+		<lastmod>
+			2019-11-29
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://mealdig.com/chains/&amp;pizza/hangover%20food
+		</loc>
+		<lastmod>
+			2019-11-29
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://mealdig.com/chains/&amp;pizza/gluten%20free
+		</loc>
+		<lastmod>
+			2019-11-29
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://mealdig.com/chains/&amp;pizza/vegan
+		</loc>
+		<lastmod>
+			2019-11-29
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://mealdig.com/chains/&amp;pizza/vegan
+		</loc>
+		<lastmod>
+			2019-11-29
+		</lastmod>
+		<changefreq>
+			always
+		</changefreq>
+		<priority>
+			0.5
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://mealdig.com/chains/&amp;pizza/Laura%20
+		</loc>
+		<lastmod>
+			2019-11-29
 		</lastmod>
 		<changefreq>
 			always
