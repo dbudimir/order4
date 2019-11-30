@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import 'isomorphic-fetch';
 
-import Head from '../components/Head';
 import Layout from '../components/Layout';
 import Chains from '../components/Chains';
 
@@ -9,7 +8,6 @@ class Index extends Component {
   render() {
     return (
       <div>
-        <Head />
         <Layout />
         <Chains chains={this.props} />
       </div>

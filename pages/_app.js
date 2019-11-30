@@ -3,8 +3,12 @@ import App from 'next/app';
 import Router from 'next/router';
 import UserContext from '../components/UserContext';
 
+import TagManager from 'react-gtm-module';
+const tagManagerArgs = {
+  gtmId: 'GTM-KGFF5HN'
+};
+
 import { NextSeo } from 'next-seo';
-import Head from '../components/Head';
 
 export default class MyApp extends App {
   constructor(props) {
@@ -29,6 +33,7 @@ export default class MyApp extends App {
   }
 
   componentDidMount = () => {
+    TagManager.initialize(tagManagerArgs);
     const user = localStorage;
     this.setState({
       user
@@ -70,7 +75,7 @@ export default class MyApp extends App {
     return (
       <React.Fragment>
         <NextSeo
-          title="Order 4 | Custom fast-casual meals."
+          title="MealDig | Custom fast-casual meals."
           description="This example uses more of the available config options."
           canonical="https://www.canonical.ie/"
           openGraph={{
@@ -101,8 +106,6 @@ export default class MyApp extends App {
             cardType: 'summary_large_image'
           }}
         />
-
-        <Head />
 
         <UserContext.Provider
           value={{

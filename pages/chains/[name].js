@@ -5,7 +5,6 @@ import { withRouter } from 'next/router';
 
 import styled from 'styled-components';
 
-import Head from '../../components/Head';
 import { NextSeo } from 'next-seo';
 import Layout from '../../components/Layout';
 
@@ -32,10 +31,9 @@ class Chains extends Component {
 
     return (
       <div>
-        <Head />
         <NextSeo
-          title={`Custom meal orders at ${router.query.name} | Order 4`}
-          description={`Explore the most popular custom meal orders at ${router.query.name}. | Order 4`}
+          title={`Custom meal orders at ${router.query.name} | MealDig`}
+          description={`Explore the most popular custom meal orders at ${router.query.name}. | MealDig`}
         />
         <Layout />
         <ChainContainer>

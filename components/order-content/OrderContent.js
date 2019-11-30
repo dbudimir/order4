@@ -92,15 +92,15 @@ class OrderContent extends Component {
           <p className="tags">{tags}</p>
           <div className="actions">
             <TwitterShareButton
-              url={`https://order4.dbudi.now.sh/orders/${this.props.orderID}`}
-              title={`Check out ${this.state.orderName} at ${this.state.chainName}. https://order4.dbudi.now.sh/orders/${this.props.orderID}`}
+              url={`https://mealdig.com/orders/${this.props.orderID}`}
+              title={`Check out ${this.state.orderName} at ${this.state.chainName}. https://mealdig.com/orders/${this.props.orderID}`}
               hashtags={this.state.tags}
             >
               <TwitterIcon size={24} round />
             </TwitterShareButton>
             <FacebookShareButton
-              url={`https://order4.dbudi.now.sh/orders/${this.props.orderID}`}
-              quote={`Check out ${this.state.orderName} at ${this.state.chainName}. https://order4.dbudi.now.sh/orders/${this.props.orderID}`}
+              url={`https://mealdig.com/orders/${this.props.orderID}`}
+              quote={`Check out ${this.state.orderName} at ${this.state.chainName}. https://mealdig.com/orders/${this.props.orderID}`}
             >
               <FacebookIcon size={24} round />
             </FacebookShareButton>

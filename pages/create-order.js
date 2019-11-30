@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import Form from '../components/styles/CreateOrderForm';
 
-import Head from '../components/Head';
 import Layout from '../components/Layout';
 import CreateChipotleOrder from '../components/forms/chain-forms/CreateChipotleOrder';
 import CreateAndPizzOrder from '../components/forms/chain-forms/CreateAndPizzaOrderForm';
@@ -97,7 +96,6 @@ class CreateOrder extends Component {
 
     return (
       <div>
-        <Head />
         <Layout />
         <Form>
           <FormHeader>Create Your Order</FormHeader>

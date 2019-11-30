@@ -2,11 +2,11 @@
 import React, { Component } from 'react';
 import 'isomorphic-fetch';
 
+import { NextSeo } from 'next-seo';
+
 import styled from 'styled-components';
 import TagPage from '../../components/styles/TagPage';
 
-import Head from '../../components/Head';
-import { NextSeo } from 'next-seo';
 import Layout from '../../components/Layout';
 import OrderContent from '../../components/order-content/OrderContent';
 
@@ -33,7 +33,6 @@ class Tag extends Component {
 
     return (
       <div>
-        <Head />
         <NextSeo
           title={`The Best ${this.props.tag.charAt(0).toUpperCase() +
             this.props.tag.slice(1)} Custom Meal Orders`}

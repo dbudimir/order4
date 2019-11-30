@@ -2,9 +2,10 @@
 import React, { Component } from 'react';
 import 'isomorphic-fetch';
 
+import { NextSeo } from 'next-seo';
+
 import styled from 'styled-components';
 
-import Head from '../../components/Head';
 import Layout from '../../components/Layout';
 import OrderContent from '../../components/order-content/OrderContent';
 
@@ -44,7 +45,7 @@ class User extends Component {
 
     return (
       <div>
-        <Head title={`Custom orders created by ${this.props.fullName}`} />
+        <NextSeo title={`Custom orders created by ${this.props.fullName}`} />
         <Layout />
         <H1>{`Custom orders created by ${this.props.fullName}`}</H1>
         <OrderContainer className="order-content-container">{orderCard}</OrderContainer>

@@ -5,7 +5,6 @@ import 'isomorphic-fetch';
 
 import styled from 'styled-components';
 
-import Head from '../../components/Head';
 import Layout from '../../components/Layout';
 import OrderContent from '../../components/order-content/OrderContent';
 
@@ -50,7 +49,6 @@ class Orders extends Component {
 
     return (
       <div>
-        <Head title="All Orders" />
         <Layout />
         <H1>Popular Orders</H1>
         <OrderContainer className="order-container">{orderCard}</OrderContainer>
