@@ -13,6 +13,8 @@ const NavBar = styled.div`
   max-width: 100%;
   padding: 12px 12px;
   font-family: Nunito, serif;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 1px rgba(27, 31, 35, 0.1) !important;
 
   a {
     text-decoration: none;
@@ -24,7 +26,7 @@ const NavBar = styled.div`
     text-transform: capitalize;
     font-size: 36px;
     font-weight: 900;
-    margin: 0px 24px 6px 0px;
+    margin: 0 24px 0 0;
   }
   .menu-container {
     overflow-x: scroll;
@@ -35,7 +37,6 @@ const NavBar = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 6px;
     width: 550px;
     font-weight: 700;
 

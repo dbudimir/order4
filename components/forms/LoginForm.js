@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Link from 'next/link';
 import axios from 'axios';
 
 import Form from '../styles/Form';
@@ -20,7 +19,8 @@ class LoginForm extends Component {
       emailValid: false,
       passwordValid: false,
       allValid: false,
-      isLoggedIn: ''
+      isLoggedIn: '',
+      forgotPassword: false
     };
   }
 
@@ -81,6 +81,11 @@ class LoginForm extends Component {
     });
   };
 
+  forgotPassword = () => {
+    console.log('oopsie');
+    this.props.resetPassword();
+  };
+
   onSubmit = async event => {
     event.preventDefault();
     const { state } = this;
@@ -113,21 +118,31 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div className="form">
-        <Form className="login-form">
+      <Form className="form">
+        <div className="login-form">
           <h3>Log In</h3>
+          <div className="form-input-label">
+            <span>Email</span>
+          </div>
           <input
             name="email"
             onChange={this.updateState}
-            value={this.state.email}
+            value={this.state.email || ''}
             type="text"
             placeholder="Enter your email"
           />
           <ErrorMessage message={this.state.formErrors.email} state={this.state} />
+          <div className="form-input-label">
+            <span>Password</span>
+            <span className="forgot-password" onClick={this.forgotPassword}>
+              Forgot Password?
+            </span>
+          </div>
+
           <input
             name="password"
             onChange={this.updateState}
-            value={this.state.password}
+            value={this.state.password || ''}
             type="password"
             placeholder="Enter your password"
           />
@@ -135,12 +150,10 @@ class LoginForm extends Component {
           <input name="submit" onClick={this.onSubmit} type="submit" value="Log In" />
           <span className="sign-up-now">
             Don't have an account?
-            <Link to="/signup">
-              <a href="/signup"> Sign up now.</a>
-            </Link>
+            <a href="/signup"> Sign up now.</a>
           </span>
-        </Form>
-      </div>
+        </div>
+      </Form>
     );
   }
 }

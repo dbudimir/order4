@@ -1,5 +1,5 @@
 {
   "version": 2,
   "name": "order4",
-  "builds": [{ "src": "package.json", "use": "@now/next@canary" }]
+  "builds": [{ "src": "package.json", "use": "@now/next@2.1.0" }]
 }

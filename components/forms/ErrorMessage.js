@@ -5,7 +5,7 @@ const Error = styled.div`
   color: red;
   margin-bottom: 12px;
   font-weight: 400;
-  margin: -6px auto 12px;
+  margin: -12px auto 12px;
   line-height: 1.25;
 `;
 

@@ -135,54 +135,69 @@ class SignupForm extends Component {
 
   render() {
     return (
-      <div className="form">
-        <Form className="signup-form">
+      <Form className="form">
+        <div className="signup-form">
           <h3>Sign Up</h3>
           <form>
+            <div className="form-input-label">
+              <span>Name</span>
+            </div>
             <input
               name="userFullName"
               onChange={this.updateState}
-              value={this.state.userFullName}
+              value={this.state.userFullName || ''}
               type="text"
               placeholder="Enter your full name"
             />
             <ErrorMessage />
+            <div className="form-input-label">
+              <span>User Name</span>
+            </div>
             <input
               name="userName"
               onChange={this.updateState}
-              value={this.state.userName}
+              value={this.state.userName || ''}
               type="text"
               placeholder="Enter a username"
             />
             <ErrorMessage message={this.state.formErrors.userName} state={this.state} />
+            <div className="form-input-label">
+              <span>Email</span>
+            </div>
             <input
               name="email"
               onChange={this.updateState}
-              value={this.state.email}
+              value={this.state.email || ''}
               type="text"
               placeholder="Email"
             />
             <ErrorMessage message={this.state.formErrors.email} state={this.state} />
+            <div className="form-input-label">
+              <span>Create Password</span>
+            </div>
             <input
               name="password"
               onChange={this.updateState}
-              value={this.state.password}
+              value={this.state.password || ''}
               type="password"
               placeholder="Password"
             />
             <ErrorMessage message={this.state.formErrors.password} state={this.state} />
+            <div className="form-input-label">
+              <span>Confirm Password</span>
+            </div>
             <input
               name="passwordConfirm"
               onChange={this.updateState}
-              value={this.state.passwordConfirm}
+              value={this.state.passwordConfirm || ''}
               type="password"
               placeholder="Re-enter password"
             />
             <ErrorMessage message={this.state.formErrors.confirmPassword} state={this.state} />
             <input name="submit" onClick={this.onSubmit} type="submit" value="Sign Up" />
           </form>
-        </Form>
-      </div>
+        </div>
+      </Form>
     );
   }
 }
