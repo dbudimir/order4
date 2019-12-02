@@ -3,6 +3,8 @@ import App from 'next/app';
 import Router from 'next/router';
 import UserContext from '../components/UserContext';
 
+import fonts from '../utils/fonts';
+
 import TagManager from 'react-gtm-module';
 const tagManagerArgs = {
   gtmId: 'GTM-KGFF5HN'
@@ -22,15 +24,15 @@ export default class MyApp extends App {
     };
   }
 
-  static async getInitialProps({ Component, router, ctx }) {
-    let pageProps = {};
+  //   static async getInitialProps({ Component, router, ctx }) {
+  //     let pageProps = {};
 
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx);
-    }
+  //     if (Component.getInitialProps) {
+  //       pageProps = await Component.getInitialProps(ctx);
+  //     }
 
-    return { pageProps };
-  }
+  //     return { pageProps };
+  //   }
 
   componentDidMount = () => {
     TagManager.initialize(tagManagerArgs);
@@ -38,6 +40,7 @@ export default class MyApp extends App {
     this.setState({
       user
     });
+    fonts();
   };
 
   signIn = (userName, email, userId, isLoggedIn) => {

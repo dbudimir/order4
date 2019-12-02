@@ -1,63 +1,64 @@
 {
-	"name": "create-next-example-app",
-	"scripts": {
-		"dev": "next",
-		"build": "next build",
-		"start": "next start"
-	},
-	"dependencies": {
-		"axios": "^0.19.0",
-		"babel-eslint": "10.0.1",
-		"babel-plugin-import-static-files": "^1.0.4",
-		"change-case": "^3.1.0",
-		"isomorphic-fetch": "^2.2.1",
-		"isomorphic-unfetch": "^3.0.0",
-		"next": "^9.1.4",
-		"next-routes": "^1.4.2",
-		"next-seo": "^3.0.0",
-		"node-sass": "^4.13.0",
-		"path-match": "^1.2.4",
-		"prop-types": "^15.7.2",
-		"react": "^16.12.0",
-		"react-dom": "^16.12.0",
-		"react-ga": "^2.7.0",
-		"react-gtm-module": "^2.0.8",
-		"react-share": "^3.0.1",
-		"shuffle-array": "^1.0.1",
-		"styled-components": "^4.4.1",
-		"styled-media-query": "^2.1.2",
-		"unique-concat": "^0.2.2"
-	},
-	"eslintConfig": {
-		"extends": "wesbos",
-		"rules": {
-			"prettier/prettier": [
-				"error",
-				{
-					"trailingComma": "es5",
-					"singleQuote": true,
-					"printWidth": 100,
-					"tabWidth": 3,
-					"jsxBracketSameLine": false
-				}
-			]
-		}
-	},
-	"devDependencies": {
-		"@types/node": "^12.12.14",
-		"@types/react": "^16.9.13",
-		"eslint": "^5.16.0",
-		"eslint-config-airbnb": "^17.1.1",
-		"eslint-config-prettier": "^4.3.0",
-		"eslint-config-wesbos": "0.0.19",
-		"eslint-plugin-html": "^5.0.5",
-		"eslint-plugin-import": "^2.18.2",
-		"eslint-plugin-jsx-a11y": "^6.2.3",
-		"eslint-plugin-prettier": "^3.1.1",
-		"eslint-plugin-react": "^7.17.0",
-		"eslint-plugin-react-hooks": "^1.7.0",
-		"install-peers": "^1.0.3",
-		"now-next-routes": "^1.1.2",
-		"prettier": "^1.19.1"
-	}
+  "name": "create-next-example-app",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "babel-eslint": "10.0.1",
+    "babel-plugin-import-static-files": "^1.0.4",
+    "change-case": "^3.1.0",
+    "fontfaceobserver": "^2.1.0",
+    "isomorphic-fetch": "^2.2.1",
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "^9.1.4",
+    "next-routes": "^1.4.2",
+    "next-seo": "^3.0.0",
+    "node-sass": "^4.13.0",
+    "path-match": "^1.2.4",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-gtm-module": "^2.0.8",
+    "react-share": "^3.0.1",
+    "shuffle-array": "^1.0.1",
+    "styled-components": "^4.4.1",
+    "styled-media-query": "^2.1.2",
+    "unique-concat": "^0.2.2",
+    "webfontloader": "^1.6.28"
+  },
+  "eslintConfig": {
+    "extends": "wesbos",
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "trailingComma": "es5",
+          "singleQuote": true,
+          "printWidth": 100,
+          "tabWidth": 3,
+          "jsxBracketSameLine": false
+        }
+      ]
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.14",
+    "@types/react": "^16.9.13",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-config-wesbos": "0.0.19",
+    "eslint-plugin-html": "^5.0.5",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "install-peers": "^1.0.3",
+    "now-next-routes": "^1.1.2",
+    "prettier": "^1.19.1"
+  }
 }

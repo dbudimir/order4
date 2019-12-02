@@ -32,14 +32,6 @@ export default class MyDocument extends Document {
           <link rel="apple-touch-icon" href="/static/touch-icon.png" />
           <link rel="mask-icon" href="/static/favicon-mask.svg" color="#49B882" />
           <link rel="icon" href="/static/favicon.png" />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,500i,700,900&display=swap"
-          />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800,900&display=swap"
-          />
           <meta
             name="google-site-verification"
             content="0tikEBJv6jfDzlVrMSFJmAOFrQCMM0c47FLBfIyeck4"
