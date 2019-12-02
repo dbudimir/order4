@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import getAPI from '../../utils/functions';
 import axios from 'axios';
 
 import Form from '../styles/Form';
@@ -56,14 +57,14 @@ class SignupForm extends Component {
   onSubmit = async event => {
     event.preventDefault();
     const { state } = this;
-    console.log(this.state);
+
+    axios.post(`${geAPI()}/api/api/users/signup/`, {
+      ...state
+    });
     axios
-      .post('https://qsr-order-api.herokuapp.com/api/users/signup/', {
+      .post('https://qsr-order-api.herokuapp.com', {
         ...state
       })
-      // .post('http://localhost:8040/api/users/signup', {
-      //   ...state
-      // })
       .then(response => {
         this.setState({
           isLoggedIn: true,

@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import getAPI from '../../utils/functions';
 
 import Form from '../styles/Form';
+import styled from 'styled-components';
 
 import ErrorMessage from './ErrorMessage';
+
+const ErrorBar = styled.div`
+  width: 100%;
+  background-color: hsl(0, 100%, 93%);
+  color: hsl(0, 75%, 35%);
+  font-family: Nunito;
+  padding: 18px 12px;
+  font-size: 16px;
+  text-align: center;
+`;
 
 class ForgotPassword extends Component {
   constructor() {
@@ -15,6 +27,7 @@ class ForgotPassword extends Component {
       },
       emailValid: false,
       allValid: false,
+      existingUser: true,
       isLoggedIn: ''
     };
   }
@@ -69,61 +82,73 @@ class ForgotPassword extends Component {
     });
   };
 
-  onSubmit = async event => {
-    event.preventDefault();
+  sendRecoveryEmail = state => {
     axios
-      //  .get(`https://qsr-order-api.herokuapp.com/api/email/${this.state.email}`);
-      .get(`http://localhost:8040/api/email/${this.state.email}`)
+      .post(`${getAPI()}/api/email/send`, {
+        ...state
+      })
       .then(response => {
         console.log(response);
       });
-    //  axios
-    //    // .post('https://qsr-order-api.herokuapp.com/api/email/send/', {
-    //    //   ...state
-    //    // })
-    //    .post('http://localhost:8040/api/email/send', {
-    //      ...state
-    //    })
-    //    .then(response => {
-    //      console.log(response);
-    //      this.props.signIn(response.data.userName, response.data.email, response.data.userId, true);
-    //      const user = {
-    //        userFullName: response.data.userFullName,
-    //        userName: response.data.userName,
-    //        email: response.data.email,
-    //        userId: response.data.userId
-    //      };
-    //      this.props.updateUser(user);
-    //      if (window.location.pathname !== ('/login' || '/signup')) {
-    //        this.props.updateAction('');
-    //      }
-    //    });
+  };
+
+  onSubmit = async event => {
+    event.preventDefault();
+    const { state } = this;
+    axios.post(`${getAPI()}/api/email/`, { ...state }).then(response => {
+      if (!response.data.message) {
+        response.data.location = `${getAPI()}`;
+
+        this.sendRecoveryEmail(response);
+      } else {
+        this.setState({
+          existingUser: false
+        });
+      }
+    });
   };
 
   render() {
+    let errorBar;
+    switch (this.state.existingUser) {
+      case true:
+        errorBar = '';
+        break;
+      case false:
+        errorBar = (
+          <ErrorBar>
+            <span>Sorry! There is no MealDig user with that email address. </span>
+          </ErrorBar>
+        );
+        break;
+      default:
+        break;
+    }
     return (
-      <Form className="form">
-        <div className="login-form">
-          <h3>Recover Password</h3>
-          <div className="form-input-label">
-            <span>Email</span>
+      <React.Fragment>
+        {errorBar}
+        <Form className="form">
+          <div className="forgot-password-form">
+            <h3>Recover Password</h3>
+            <div className="form-input-label">
+              <span>Email</span>
+            </div>
+            <input
+              name="email"
+              onChange={this.updateState}
+              value={this.state.email || ''}
+              type="text"
+              placeholder="Enter your email"
+            />
+            <ErrorMessage message={this.state.formErrors.email} state={this.state} />
+            <input name="submit" onClick={this.onSubmit} type="submit" value="Get Recovery Link" />
+            <span className="sign-up-now">
+              Don't have an account?
+              <a href="/signup"> Sign up now.</a>
+            </span>
           </div>
-          <input
-            name="email"
-            onChange={this.updateState}
-            value={this.state.email || ''}
-            type="text"
-            placeholder="Enter your email"
-          />
-          <ErrorMessage message={this.state.formErrors.email} state={this.state} />
-
-          <input name="submit" onClick={this.onSubmit} type="submit" value="Get Recovery Link" />
-          <span className="sign-up-now">
-            Don't have an account?
-            <a href="/signup"> Sign up now.</a>
-          </span>
-        </div>
-      </Form>
+        </Form>
+      </React.Fragment>
     );
   }
 }

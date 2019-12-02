@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import Router from 'next/router';
+import getAPI from '../../utils/functions';
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -127,12 +128,9 @@ export default function SubmitConfirmation(props) {
     if (localStorage.length > 0) {
       const reqBody = { order: props.orderState.order, userId: localStorage.userId };
       axios
-        .post('https://qsr-order-api.herokuapp.com/api/user-order/create/existing-user', {
+        .post(`${getAPI()}/api/user-order/create/existing-user`, {
           ...reqBody
         })
-        // .post('http://localhost:8040/api/user-order/create/existing-user', {
-        //    ...reqBody,
-        // })
         .then(response => {
           console.log(response.data);
           Router.push(`/user/${localStorage.userId}`);
@@ -140,12 +138,9 @@ export default function SubmitConfirmation(props) {
     } else if (localStorage.length === 0) {
       const reqBody = { order: props.orderState.order };
       axios
-        .post('https://qsr-order-api.herokuapp.com/api/user-order/create/order', {
+        .post(`${getAPI()}/api/user-order/create/order`, {
           ...reqBody
         })
-        // .post('http://localhost:8040/api/user-order/create/order', {
-        //    ...reqBody,
-        // })
         .then(response => {
           console.log(response.data);
           Router.push(

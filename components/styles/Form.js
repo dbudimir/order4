@@ -6,7 +6,9 @@ const Form = styled.div`
   margin: 60px auto;
 
   .login-form,
-  .signup-form {
+  .signup-form,
+  .forgot-password-form,
+  .reset-password-form {
     font-family: Nunito, sans-serif;
     background: #ffffff;
     padding: 24px;
@@ -15,8 +17,17 @@ const Form = styled.div`
     border-color: #e6e5e5;
 
     h3 {
-      margin: 0 0 32px 0;
+      margin: 0 0 24px 0;
       font-size: 28px;
+    }
+
+    ul {
+      padding-inline-start: 24px;
+      font-size: 16px;
+
+      li {
+        margin-bottom: 12px;
+      }
     }
 
     .form-input-label {
@@ -35,11 +46,6 @@ const Form = styled.div`
         }
       }
     }
-
-    /* .label {
-    margin-top: 12px;
-    font-weight: 800;
-  } */
 
     input {
       width: 100%;

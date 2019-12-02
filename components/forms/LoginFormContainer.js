@@ -1,8 +1,4 @@
 import React, { Component } from 'react';
-// import Link from 'next/link';
-// import axios from 'axios';
-
-// import Form from '../styles/Form';
 
 import LoginForm from './LoginForm';
 import ForgotPassword from './ForgotPassword';
@@ -16,7 +12,6 @@ class LoginFormContainer extends Component {
   }
 
   forgotPassword = () => {
-    console.log('oopsie');
     this.setState({
       forgotPassword: true
     });

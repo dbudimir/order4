@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import getAPI from '../../utils/functions';
 
 import Form from '../styles/Form';
 
@@ -82,7 +83,6 @@ class LoginForm extends Component {
   };
 
   forgotPassword = () => {
-    console.log('oopsie');
     this.props.resetPassword();
   };
 
@@ -90,12 +90,9 @@ class LoginForm extends Component {
     event.preventDefault();
     const { state } = this;
     axios
-      .post('https://qsr-order-api.herokuapp.com/api/users/login/', {
+      .post(`${getAPI()}/api/users/login/`, {
         ...state
       })
-      // .post('http://localhost:8040/api/users/login', {
-      //   ...state
-      // })
       .then(response => {
         console.log(response);
         this.setState({
