@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import getAPI from '../../utils/functions';
 
 import Form from '../styles/Form';
 import styled from 'styled-components';
@@ -84,7 +83,7 @@ class ForgotPassword extends Component {
 
   sendRecoveryEmail = state => {
     axios
-      .post(`${getAPI()}/api/email/send`, {
+      .post(process.env.api_key + `/api/email/send`, {
         ...state
       })
       .then(response => {
@@ -95,9 +94,9 @@ class ForgotPassword extends Component {
   onSubmit = async event => {
     event.preventDefault();
     const { state } = this;
-    axios.post(`${getAPI()}/api/email/`, { ...state }).then(response => {
+    axios.post(process.env.api_key + `/api/email/`, { ...state }).then(response => {
       if (!response.data.message) {
-        response.data.location = `${getAPI()}`;
+        response.data.location = process.env.api_key;
 
         this.sendRecoveryEmail(response);
       } else {

@@ -117,6 +117,7 @@ export default class Nav extends Component {
               <span>Log In</span>
             </a>
           </Link>
+
           <Link
             href={{
               pathname: '/signup',
@@ -146,6 +147,7 @@ export default class Nav extends Component {
           as={{ pathname: '/' }}
         >
           <a href="/">
+            {/* <h1>MEALdig</h1> */}
             <h1>MEALdig</h1>
           </a>
         </Link>

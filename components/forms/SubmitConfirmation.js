@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import Router from 'next/router';
-import getAPI from '../../utils/functions';
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -128,7 +127,7 @@ export default function SubmitConfirmation(props) {
     if (localStorage.length > 0) {
       const reqBody = { order: props.orderState.order, userId: localStorage.userId };
       axios
-        .post(`${getAPI()}/api/user-order/create/existing-user`, {
+        .post(process.env.api_key + `/api/user-order/create/existing-user`, {
           ...reqBody
         })
         .then(response => {
@@ -138,7 +137,7 @@ export default function SubmitConfirmation(props) {
     } else if (localStorage.length === 0) {
       const reqBody = { order: props.orderState.order };
       axios
-        .post(`${getAPI()}/api/user-order/create/order`, {
+        .post(process.env.api_key + `/api/user-order/create/order`, {
           ...reqBody
         })
         .then(response => {

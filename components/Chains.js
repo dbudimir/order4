@@ -89,7 +89,6 @@ class Chains extends Component {
   render() {
     const chainOrders = this.props.chains;
     const chainRows = chainOrders.map((chain, chainsIndex) => {
-      console.log('lap');
       const orders = chain.orders.map((order, ordersIndex) => {
         if (
           chain.name === order.chainName &&

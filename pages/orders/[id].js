@@ -41,7 +41,7 @@ class Orders extends Component {
 }
 
 Orders.getInitialProps = async ({ query }) => {
-  const res = await fetch(`https://qsr-order-api.herokuapp.com/api/orders/id/${query.id}`);
+  const res = await fetch(process.env.api_key + `/api/orders/id/${query.id}`);
   const data = await res.json();
 
   return {

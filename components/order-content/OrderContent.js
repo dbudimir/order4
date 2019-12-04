@@ -20,7 +20,7 @@ class OrderContent extends Component {
   async componentDidMount() {
     if (this.props.orderState === undefined) {
       await axios
-        .get(`https://qsr-order-api.herokuapp.com/api/orders/id/${this.props.orderID}`)
+        .get(process.env.api_key + `/api/orders/id/${this.props.orderID}`)
         .then(res => {
           const { data } = res;
           this.setState({
@@ -77,7 +77,7 @@ class OrderContent extends Component {
       );
     }
 
-    const tags = this.state.tags.map(tag => <span>{tag}</span>);
+    const tags = this.state.tags.map((tag, index) => <span key={index}>{tag}</span>);
 
     return (
       <OrderContentContainer className="order-content-container">

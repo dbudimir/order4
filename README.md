@@ -2,7 +2,7 @@
 
 The app lets users input and share their favorite customized orders at quick service restaurants like &pizza and Chipotle. Orders in the database will automatically be rolled up into categories which automatically generate SEO friendly pages
 
-![enter image description here](https://order4.dbudi.now.sh/static/order-4-thumb.png)
+![enter image description here](https://order4.dbudi.now.sh/public/order-4-thumb.png)
 
  ## Highlights
  

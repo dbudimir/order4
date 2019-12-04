@@ -49,7 +49,7 @@ class Tag extends Component {
 }
 
 Tag.getInitialProps = async ({ query }) => {
-  const res = await fetch(`https://qsr-order-api.herokuapp.com/api/orders/tag/${query.tag}`);
+  const res = await fetch(process.env.api_key + `/api/orders/tag/${query.tag}`);
   const data = await res.json();
 
   return {

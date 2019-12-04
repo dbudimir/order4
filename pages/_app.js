@@ -29,6 +29,7 @@ export default class MyApp extends App {
 
   //     if (Component.getInitialProps) {
   //       pageProps = await Component.getInitialProps(ctx);
+  //       // pageProps.url = Routes.match(ctx.asPath);
   //     }
 
   //     return { pageProps };

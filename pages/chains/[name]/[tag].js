@@ -56,7 +56,7 @@ class Tag extends Component {
 Tag.getInitialProps = async ({ query }) => {
   const chainUpper = query.name.charAt(0).toUpperCase() + query.name.slice(1);
   const lookup = `${chainUpper}/${query.tag}`;
-  const res = await fetch(`https://qsr-order-api.herokuapp.com/api/orders/chain/${lookup}`);
+  const res = await fetch(publicRuntimeConfig.api_key + `api/orders/chain/${lookup}`);
   const data = await res.json();
 
   return {

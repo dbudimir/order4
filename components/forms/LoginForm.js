@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import getAPI from '../../utils/functions';
 
 import Form from '../styles/Form';
+import styled from 'styled-components';
 
 import ErrorMessage from './ErrorMessage';
+
+const ErrorBar = styled.div`
+  width: 100%;
+  background-color: hsl(0, 100%, 93%);
+  color: hsl(0, 75%, 35%);
+  font-family: Nunito;
+  padding: 18px 12px;
+  font-size: 16px;
+  text-align: center;
+`;
 
 class LoginForm extends Component {
   constructor() {
@@ -20,6 +30,10 @@ class LoginForm extends Component {
       emailValid: false,
       passwordValid: false,
       allValid: false,
+      credentialValidation: {
+        emailMatch: true,
+        passwordMatch: true
+      },
       isLoggedIn: '',
       forgotPassword: false
     };
@@ -89,68 +103,109 @@ class LoginForm extends Component {
   onSubmit = async event => {
     event.preventDefault();
     const { state } = this;
+    const creds = { email: state.email, password: state.password };
+    console.log(creds);
     axios
-      .post(`${getAPI()}/api/users/login/`, {
-        ...state
+      .post(process.env.api_key + `/api/users/login`, {
+        ...creds
       })
       .then(response => {
-        console.log(response);
-        this.setState({
-          isLoggedIn: true,
-          userId: response.data.userId
-        });
-        this.props.signIn(response.data.userName, response.data.email, response.data.userId, true);
-        const user = {
-          userFullName: response.data.userFullName,
-          userName: response.data.userName,
-          email: response.data.email,
-          userId: response.data.userId
-        };
-        this.props.updateUser(user);
-        if (window.location.pathname !== ('/login' || '/signup')) {
-          this.props.updateAction('');
+        if (response.data.passwordMatch === false) {
+          this.setState({
+            credentialValidation: {
+              passwordMatch: false
+            }
+          });
+        } else if (response.data.emailMatch === false) {
+          this.setState({
+            credentialValidation: {
+              emailMatch: false
+            }
+          });
+        } else {
+          console.log(response);
+          //  this.setState({
+          //    isLoggedIn: true,
+          //    userId: response.data.userId
+          //  });
+          //  this.props.signIn(
+          //    response.data.userName,
+          //    response.data.email,
+          //    response.data.userId,
+          //    true
+          //  );
+          //  const user = {
+          //    userFullName: response.data.userFullName,
+          //    userName: response.data.userName,
+          //    email: response.data.email,
+          //    userId: response.data.userId
+          //  };
+          //  this.props.updateUser(user);
+          //  if (window.location.pathname !== ('/login' || '/signup')) {
+          //    this.props.updateAction('');
+          //  }
         }
       });
   };
 
   render() {
+    console.log(this.state);
+
+    let errorBar;
+    if (this.state.credentialValidation.emailMatch === false) {
+      errorBar = (
+        <ErrorBar>
+          <span>Sorry! There is no MealDig user with that email address. </span>
+        </ErrorBar>
+      );
+    } else if (this.state.credentialValidation.passwordMatch === false) {
+      errorBar = (
+        <ErrorBar>
+          <span>The email and password combination is incorrect.</span>
+        </ErrorBar>
+      );
+    }
+
     return (
-      <Form className="form">
-        <div className="login-form">
-          <h3>Log In</h3>
-          <div className="form-input-label">
-            <span>Email</span>
-          </div>
-          <input
-            name="email"
-            onChange={this.updateState}
-            value={this.state.email || ''}
-            type="text"
-            placeholder="Enter your email"
-          />
-          <ErrorMessage message={this.state.formErrors.email} state={this.state} />
-          <div className="form-input-label">
-            <span>Password</span>
-            <span className="forgot-password" onClick={this.forgotPassword}>
-              Forgot Password?
+      <React.Fragment>
+        {errorBar}
+        <Form className="form">
+          <div className="login-form">
+            <h3>Log In</h3>
+            <div className="form-input-label">
+              <span>Email</span>
+            </div>
+            <input
+              name="email"
+              onChange={this.updateState}
+              value={this.state.email || ''}
+              type="text"
+              placeholder="Enter your email"
+            />
+            <ErrorMessage message={this.state.formErrors.email} state={this.state} />
+            <div className="form-input-label">
+              <span>Password</span>
+              <span className="forgot-password" onClick={this.forgotPassword}>
+                Forgot Password?
+              </span>
+            </div>
+
+            <input
+              name="password"
+              onChange={this.updateState}
+              value={this.state.password || ''}
+              type="password"
+              placeholder="Enter your password"
+            />
+            <ErrorMessage message={this.state.formErrors.password} state={this.state} />
+            <input name="submit" onClick={this.onSubmit} type="submit" value="Log In" />
+            <span className="sign-up-now">
+              Don't have an account?
+              <a href="/signup"> Sign up now.</a>
             </span>
           </div>
-
-          <input
-            name="password"
-            onChange={this.updateState}
-            value={this.state.password || ''}
-            type="password"
-            placeholder="Enter your password"
-          />
-          <ErrorMessage message={this.state.formErrors.password} state={this.state} />
-          <input name="submit" onClick={this.onSubmit} type="submit" value="Log In" />
-          <span className="sign-up-now">
-            Don't have an account?
-            <a href="/signup"> Sign up now.</a>
-          </span>
-        </div>
-      </Form>
+        </Form>
+      </React.Fragment>
     );
   }
 }

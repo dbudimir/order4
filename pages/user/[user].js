@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import 'isomorphic-fetch';
-
 import { NextSeo } from 'next-seo';
 
 import styled from 'styled-components';
@@ -54,9 +53,9 @@ class User extends Component {
   }
 }
 
-User.getInitialProps = async ({ query }) => {
-  // const id = (await query.id) === undefined ? '' : query.user;
-  const res = await fetch(`https://qsr-order-api.herokuapp.com/api/users/${query.user}`);
+User.getInitialProps = async ({ req, query }) => {
+  const res = await fetch(process.env.api_key + `/api/users/${query.user}`);
+  //   const res = await fetch(`${process.env.API_HOST}api/users/${query.user}`);
   const data = await res.json();
 
   return {

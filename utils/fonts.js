@@ -21,7 +21,7 @@ const fonts = () => {
     'https://fonts.googleapis.com/css?family=Roboto:300,400,500,500i,700,900&display=swap';
   linkRoboto.rel = 'stylesheet';
 
-  document.head.appendChild(linkNunito);
+  document.head.appendChild(linkRoboto);
 
   const roboto = new FontFaceObserver('Roboto');
 

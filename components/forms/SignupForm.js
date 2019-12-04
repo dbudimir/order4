@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import getAPI from '../../utils/functions';
 import axios from 'axios';
 
 import Form from '../styles/Form';
@@ -58,11 +57,8 @@ class SignupForm extends Component {
     event.preventDefault();
     const { state } = this;
 
-    axios.post(`${geAPI()}/api/api/users/signup/`, {
-      ...state
-    });
     axios
-      .post('https://qsr-order-api.herokuapp.com', {
+      .post(process.env.api_key + `/api/users/signup`, {
         ...state
       })
       .then(response => {
@@ -78,9 +74,10 @@ class SignupForm extends Component {
           userId: response.data._id
         };
         this.props.updateUser(user);
-        if (window.location.pathname !== ('/login' || '/signup')) {
-          this.props.updateAction('');
-        }
+        console.log(window.location.pathname);
+        //   if (window.location.pathname !== ('/login' || '/signup')) {
+        //     this.props.updateAction('');
+        //   }
       });
   };
 

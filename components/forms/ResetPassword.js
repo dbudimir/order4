@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import getAPI from '../../utils/functions';
 
 import Form from '../styles/Form';
 import styled from 'styled-components';
@@ -92,7 +91,7 @@ class ResetPassword extends Component {
 
   confirmPasswordReset = state => {
     axios
-      .post(`${getAPI()}/api/email/send-confirm`, {
+      .post(process.env.api_key + `/api/email/send-confirm`, {
         ...state
       })
       .then(response => {
@@ -113,7 +112,7 @@ class ResetPassword extends Component {
       token: token
     };
 
-    axios.post(`${getAPI()}/api/email/confirm-token`, { newPassword }).then(response => {
+    axios.post(process.env.api_key + `/api/email/confirm-token`, { newPassword }).then(response => {
       console.log(response);
       this.setState({
         isLoggedIn: true,
@@ -168,7 +167,7 @@ class ResetPassword extends Component {
               placeholder="Re-enter password"
             />
             <ErrorMessage message={this.state.formErrors.confirmPassword} state={this.state} />
-            <input name="submit" onClick={this.onSubmit} type="submit" value="Sign Up" />
+            <input name="submit" onClick={this.onSubmit} type="submit" value="Save Password" />
           </form>
         </div>
       </Form>

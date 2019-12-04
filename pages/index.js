@@ -5,6 +5,9 @@ import Layout from '../components/Layout';
 import Chains from '../components/Chains';
 
 class Index extends Component {
+  componentDidMount() {
+    console.log(this.props);
+  }
   render() {
     return (
       <div>
@@ -16,10 +19,12 @@ class Index extends Component {
 }
 
 Index.getInitialProps = async () => {
-  const res = await fetch(`https://qsr-order-api.herokuapp.com/api/chains/Chipotle`);
+  console.log(process.env.api_key);
+
+  const res = await fetch(process.env.api_key + `/api/chains/Chipotle`);
   const data = await res.json();
 
-  const res2 = await fetch(`https://qsr-order-api.herokuapp.com/api/chains/&pizza`);
+  const res2 = await fetch(process.env.api_key + '/api/chains/&pizza');
   const data2 = await res2.json();
 
   return {
