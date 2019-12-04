@@ -124,26 +124,26 @@ class LoginForm extends Component {
           });
         } else {
           console.log(response);
-          //  this.setState({
-          //    isLoggedIn: true,
-          //    userId: response.data.userId
-          //  });
-          //  this.props.signIn(
-          //    response.data.userName,
-          //    response.data.email,
-          //    response.data.userId,
-          //    true
-          //  );
-          //  const user = {
-          //    userFullName: response.data.userFullName,
-          //    userName: response.data.userName,
-          //    email: response.data.email,
-          //    userId: response.data.userId
-          //  };
-          //  this.props.updateUser(user);
-          //  if (window.location.pathname !== ('/login' || '/signup')) {
-          //    this.props.updateAction('');
-          //  }
+          this.setState({
+            isLoggedIn: true,
+            userId: response.data.userId
+          });
+          this.props.signIn(
+            response.data.userName,
+            response.data.email,
+            response.data.userId,
+            true
+          );
+          const user = {
+            userFullName: response.data.userFullName,
+            userName: response.data.userName,
+            email: response.data.email,
+            userId: response.data.userId
+          };
+          this.props.updateUser(user);
+          if (window.location.pathname !== ('/login' || '/signup')) {
+            this.props.updateAction('');
+          }
         }
       });
   };
