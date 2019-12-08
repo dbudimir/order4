@@ -26,13 +26,17 @@ class SubmitOrder extends Component {
     const { value } = target;
     const { name } = target;
 
-    this.setState({
-      order: {
-        ...this.state.order,
-        [name]: value
+    this.setState(
+      {
+        order: {
+          ...this.state.order,
+          [name]: value
+        }
+      },
+      () => {
+        this.props.setOrderDetails(this.state.order);
       }
-    });
-    this.props.setOrderDetails(this.state.order);
+    );
   };
 
   updateUserState = event => {

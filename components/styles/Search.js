@@ -12,9 +12,9 @@ const SearchRow = styled.div`
   .search-container {
     display: flex;
     flex-direction: column;
-    padding: 140px 0 200px;
-    width: 768px;
-    max-width: 96%;
+    padding: 160px 0 200px;
+    max-width: 768px;
+    width: 96%;
     margin: 0 auto;
 
     .header-text {
@@ -25,7 +25,7 @@ const SearchRow = styled.div`
       h1 {
         font-family: Nunito;
         font-size: 48px;
-        font-weight: 900;
+        font-weight: 800;
         margin: 0px;
       }
 
@@ -58,20 +58,23 @@ const SearchRow = styled.div`
       .select-container {
         position: relative;
 
+        &:after {
+          content: '◀';
+          transform: rotate(-90deg);
+          right: 6px;
+          top: -3px;
+          padding-top: 4px;
+          height: 100%;
+          position: absolute;
+          pointer-events: none;
+        }
+
         .chain-select {
           width: 260px;
           font-size: 22px;
           padding: 0 18px;
           font-family: Nunito, sans-serif;
-        }
-
-        img {
-          position: absolute;
-          right: 0;
-          height: 42%;
-          margin: 0 12px;
-          top: 50%;
-          transform: translateY(-50%);
+          position: relative;
         }
       }
 
@@ -133,7 +136,49 @@ const SearchRow = styled.div`
 
         img {
           padding-right: 12px;
+          max-height: 22px;
         }
+      }
+    }
+
+    .no-suggestions {
+      background-color: #ffffff;
+      margin-top: 24px;
+      padding: 24px;
+      border-radius: 3px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      font-size: 20px;
+      font-family: Nunito;
+
+      .copy {
+        width: 65%;
+
+        h3 {
+          margin: 0 0 18px 0;
+          font-size: 24px;
+        }
+
+        span {
+          margin: 0 0 24px 0;
+          font-size: 18px;
+        }
+      }
+
+      a {
+        font-size: 18px;
+        background: #0067ff;
+        color: #ffffff;
+        border-radius: 20px;
+        padding: 8px 16px;
+        display: flex;
+        align-items: center;
+        width: fit-content;
+        text-decoration: none;
+        font-weight: 700;
+        padding: 12px 18px;
+        border-radius: 100px;
       }
     }
   }

@@ -127,7 +127,7 @@ class CreateChipotleOrder extends Component {
             <div className="select-container">
               <select onChange={this.updateState} className="text-input" name="rice">
                 <option value="" disabled selected>
-                  Rice
+                  Select rice
                 </option>
                 <option value="White Rice">White Rice</option>
                 <option value="Brown Rice">Brown Rice</option>
@@ -141,7 +141,7 @@ class CreateChipotleOrder extends Component {
             <div className="select-container">
               <select onChange={this.updateState} className="text-input" name="beans">
                 <option value="" disabled selected>
-                  Beans
+                  Select beans
                 </option>
                 <option value="Black Beans">Black Beans</option>
                 <option value="Pinto Beans">Pinto Beans</option>

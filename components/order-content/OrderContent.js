@@ -12,8 +12,7 @@ class OrderContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tags: [],
-      chainOrderContent: ''
+      tags: []
     };
   }
 
@@ -50,34 +49,38 @@ class OrderContent extends Component {
         chainName
       });
     }
-    this.getChain();
   }
 
-  getChain = () => {
-    if (this.state.chainName === 'Chipotle') {
-      this.setState({
-        chainOrderContent: <ChipotleOrder orderState={this.state.orderContent} />
-      });
-    } else if (this.state.chainName === '&pizza') {
-      this.setState({
-        chainOrderContent: <AndPizzaOrder orderState={this.state.orderContent} />
-      });
-    }
-  };
-
   render() {
+    console.log(this.state);
+
     let chainLogo;
+    let chainOrderContent;
+
     if (this.state.chainName === 'Chipotle') {
       chainLogo = (
         <img className="chain-logo" src="../../static/chipotle-logo.png" alt="chipotle-logo" />
       );
+      chainOrderContent = <ChipotleOrder orderState={this.state.orderContent} />;
     } else if (this.state.chainName === '&pizza') {
       chainLogo = (
         <img className="chain-logo" src="../../static/and-pizza-logo.png" alt="and-pizza-logo" />
       );
+      chainOrderContent = <AndPizzaOrder orderState={this.state.orderContent} />;
     }
 
-    const tags = this.state.tags.map((tag, index) => <span key={index}>{tag}</span>);
+    const tags = this.state.tags.map((tag, index) => (
+      <Link
+        href={{
+          pathname: `/chains/${this.state.chainName.toLowerCase()}/${tag}`
+        }}
+        as={{ pathname: `/chains/${this.state.chainName.toLowerCase()}/${tag}` }}
+      >
+        <a href={`/chains/${this.state.chainName.toLowerCase()}/${tag}`}>
+          <span key={index}>{tag.replace(/-/g, ' ')}</span>
+        </a>
+      </Link>
+    ));
 
     return (
       <OrderContentContainer className="order-content-container">
@@ -87,9 +90,9 @@ class OrderContent extends Component {
         </div>
         <h2 className="order-name">{this.state.orderName}</h2>
         <p className="description">{this.state.orderDescription}</p>
-        {this.state.chainOrderContent}
+        {chainOrderContent}
         <div className="tag-row">
-          <p className="tags">{tags}</p>
+          <div className="tags">{tags}</div>
           <div className="actions">
             <TwitterShareButton
               url={`https://mealdig.com/orders/${this.props.orderID}`}

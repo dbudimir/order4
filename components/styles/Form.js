@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Form = styled.div`
   max-width: 340px;
   width: 92%;
-  margin: 60px auto;
+  margin: 120px auto;
 
   .login-form,
   .signup-form,

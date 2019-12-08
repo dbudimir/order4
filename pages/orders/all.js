@@ -14,7 +14,7 @@ const H1 = styled.h1`
   padding: 0px 12px;
   font-family: Roboto, sans-serif;
   font-size: 42px;
-  font-weight: 900;
+  font-weight: 800;
 `;
 
 const OrderContainer = styled.div`

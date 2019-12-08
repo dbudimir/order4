@@ -1,8 +1,12 @@
+//Utilities
 import React, { Component } from 'react';
 import Router from 'next/router';
+import Link from 'next/link';
 import tagIndex from '../public/static/tag-index.json';
-
+//Styles
 import SearchRow from './styles/Search';
+//Components
+import ErrorMessageBar from '../components/forms/ErrorMessageBar';
 
 export default class Search extends Component {
   static propTypes = {
@@ -17,6 +21,8 @@ export default class Search extends Component {
     super();
     this.state = {
       suggestions: tagIndex,
+      // Numbber of current suggestions provided
+      suggestionCount: 0,
       // The active selection's index
       activeSuggestion: 0,
       // The suggestions that match the user's input
@@ -26,7 +32,13 @@ export default class Search extends Component {
       // What the user has entered
       selectedChain: '',
       // What the user has entered
-      userInput: ''
+      userInput: '',
+      // Error toggles
+      errorMessages: {
+        noInputError: false,
+        noChainError: false,
+        noTagError: false
+      }
     };
   }
 
@@ -40,19 +52,27 @@ export default class Search extends Component {
       suggestion => suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
     );
 
+    //Count number of suggestions
+    let suggestionCount = document.querySelectorAll('.suggestions > li').length;
+
     // Update the user input and filtered suggestions, reset the active
     // suggestion and make sure the suggestions are shown
-    this.setState({
-      activeSuggestion: 0,
-      filteredSuggestions,
-      showSuggestions: true,
-      userInput: e.currentTarget.value
-    });
+    if (e.target.className !== 'search-action chain-select')
+      this.setState({
+        activeSuggestion: 0,
+        suggestionCount,
+        filteredSuggestions,
+        showSuggestions: true,
+        userInput: e.currentTarget.value,
+        errorMessages: {
+          noInputError: false,
+          noChainError: false
+        }
+      });
   };
 
   // Event fired when the user clicks on a suggestion
   runSearch = e => {
-    console.log(this.state);
     let chainName = document.querySelector('.chain-select').value;
     let tagInput = '';
 
@@ -64,14 +84,42 @@ export default class Search extends Component {
 
     this.setState(
       {
-        activeSuggestion: 0,
-        filteredSuggestions: [],
-        showSuggestions: false,
         selectedChain: chainName,
-        userInput: tagInput
+        userInput: tagInput,
+        errorMessages: {
+          noInputError: false,
+          noTagError: false
+        }
       },
       () => {
-        Router.push(`/chains/${this.state.selectedChain}/${this.state.userInput}`);
+        console.log(this.state);
+        if (this.state.selectedChain === '' && this.state.userInput === '') {
+          this.setState({
+            errorMessages: {
+              noInputError: true
+            }
+          });
+          console.log('error for missing both');
+        } else if (this.state.selectedChain === '') {
+          this.setState({
+            errorMessages: {
+              noChainError: true
+            }
+          });
+          console.log('missing chain');
+        } else if (this.state.userInput === '') {
+          this.setState({
+            errorMessages: {
+              noTagError: true
+            }
+          });
+          console.log('missing tag');
+        } else {
+          // Execute search
+          if (this.state.suggestionCount > 0) {
+            Router.push(`/chains/${this.state.selectedChain}/${this.state.userInput}`);
+          }
+        }
       }
     );
   };
@@ -122,15 +170,24 @@ export default class Search extends Component {
       onChange,
       runSearch,
       onKeyDown,
-      state: { activeSuggestion, filteredSuggestions, showSuggestions, userInput }
+      state: {
+        activeSuggestion,
+        filteredSuggestions,
+        showSuggestions,
+        selectedChain,
+        userInput,
+        errorMessages
+      }
     } = this;
 
     let suggestionsListComponent;
+    let errorBarComponent;
+    let noSuggestionsComponent;
 
     if (showSuggestions && userInput) {
       if (filteredSuggestions.length) {
         suggestionsListComponent = (
-          <ul class="suggestions">
+          <ul className="suggestions">
             {filteredSuggestions.map((suggestion, index) => {
               let className;
 
@@ -148,58 +205,85 @@ export default class Search extends Component {
           </ul>
         );
       } else {
-        suggestionsListComponent = (
-          <div class="no-suggestions">
-            <em>No suggestions, you're on your own!</em>
+        noSuggestionsComponent = (
+          <div className="no-suggestions">
+            <div className="copy">
+              <h3>Oh no!</h3>
+              <span>
+                We cant find any {userInput} custom meals. Be the first to submit your facorrite
+                custom meal in this category.
+              </span>
+            </div>
+            <Link
+              href={{
+                pathname: '/create-order'
+              }}
+              as={{ pathname: `/create-order` }}
+            >
+              <a href={`/create-order`}>Build Custom Meal</a>
+            </Link>
           </div>
         );
       }
     }
 
+    if (errorMessages.noInputError === true) {
+      errorBarComponent = (
+        <ErrorMessageBar message={'Please enter a chain and tag before searching.'} />
+      );
+    } else if (errorMessages.noChainError === true) {
+      errorBarComponent = <ErrorMessageBar message={'Please enter a chain before searching.'} />;
+    } else if (errorMessages.noTagError === true) {
+      errorBarComponent = <ErrorMessageBar message={'Please enter a tag before searching.'} />;
+    }
+
     return (
-      <SearchRow>
-        <div className="search-container">
-          <div className="header-text">
-            <h1>MEALdig</h1>
-            <h2>
-              Discover new meals and custom orders at your favorite fast-casual dining spots. Select
-              a chain and search for a meal type to get started.
-            </h2>
+      <React.Fragment>
+        {errorBarComponent}
+        <SearchRow>
+          <div className="search-container">
+            <div className="header-text">
+              <h1>MEALdig</h1>
+              <h2>
+                Discover new meals and custom orders at your favorite fast-casual dining spots.
+                Select a chain and search for a meal type to get started.
+              </h2>
+            </div>
+            <div className="search-box-container">
+              <div className="select-container">
+                <select
+                  className="search-action chain-select"
+                  onChange={this.onChange}
+                  name="chain"
+                >
+                  <option value="" disabled selected>
+                    Select chain
+                  </option>
+                  <option value="chipotle">Chipotle</option>
+                  <option value="&pizza">&Pizza</option>
+                </select>
+              </div>
+              <div className="autocomplete-input">
+                <input
+                  className="search-action tag-input"
+                  type="text"
+                  onChange={onChange}
+                  onKeyDown={onKeyDown}
+                  onKeyUp={this.onEnter}
+                  value={userInput}
+                  placeholder="low carb, vegan, keto..."
+                />
+                {suggestionsListComponent}
+              </div>
+              <div className="search-action search-submit" onClick={this.runSearch}>
+                <span>Search</span>
+                <img src="../static/search.svg" alt="search" />
+              </div>
+            </div>
+            {noSuggestionsComponent}
           </div>
-          <div className="search-box-container">
-            <div className="select-container">
-              <select
-                className="search-action chain-select"
-                onChange={this.updateChain}
-                name="chain"
-              >
-                <option value="" disabled selected>
-                  Select chain
-                </option>
-                <option value="chipotle">Chipotle</option>
-                <option value="&pizza">&Pizza</option>
-              </select>
-              <img src="../../static/arrow-down.svg" alt="link-out-icon" />
-            </div>
-            <div className="autocomplete-input">
-              <input
-                className="search-action tag-input"
-                type="text"
-                onChange={onChange}
-                onKeyDown={onKeyDown}
-                onKeyUp={this.onEnter}
-                value={userInput}
-                placeholder="low carb, vegan, keto..."
-              />
-              {suggestionsListComponent}
-            </div>
-            <div className="search-action search-submit" onClick={this.runSearch}>
-              <span>Search</span>
-              <img src="../static/search.svg" alt="search" />
-            </div>
-          </div>
-        </div>
-      </SearchRow>
+        </SearchRow>
+      </React.Fragment>
     );
   }
 }

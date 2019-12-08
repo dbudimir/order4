@@ -25,7 +25,7 @@ const NavBar = styled.div`
     text-decoration: none;
     text-transform: capitalize;
     font-size: 36px;
-    font-weight: 900;
+    font-weight: 800;
     margin: 0 24px 0 0;
   }
   .menu-container {

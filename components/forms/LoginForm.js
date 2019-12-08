@@ -1,20 +1,12 @@
+//Utilities
 import React, { Component } from 'react';
 import axios from 'axios';
-
-import Form from '../styles/Form';
 import styled from 'styled-components';
-
+//Styles
+import Form from '../styles/Form';
+//Components
+import ErrorMessageBar from './ErrorMessageBar';
 import ErrorMessage from './ErrorMessage';
-
-const ErrorBar = styled.div`
-  width: 100%;
-  background-color: hsl(0, 100%, 93%);
-  color: hsl(0, 75%, 35%);
-  font-family: Nunito;
-  padding: 18px 12px;
-  font-size: 16px;
-  text-align: center;
-`;
 
 class LoginForm extends Component {
   constructor() {
@@ -151,16 +143,10 @@ class LoginForm extends Component {
     let errorBar;
     if (this.state.credentialValidation.emailMatch === false) {
       errorBar = (
-        <ErrorBar>
-          <span>Sorry! There is no MealDig user with that email address. </span>
-        </ErrorBar>
+        <ErrorMessageBar message={'Sorry! There is no MealDig user with that email address.'} />
       );
     } else if (this.state.credentialValidation.passwordMatch === false) {
-      errorBar = (
-        <ErrorBar>
-          <span>The email and password combination is incorrect.</span>
-        </ErrorBar>
-      );
+      errorBar = <ErrorMessageBar message={'The email and password combination is incorrect.'} />;
     }
 
     return (
