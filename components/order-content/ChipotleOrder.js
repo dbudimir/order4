@@ -27,7 +27,7 @@ class ChipotleOrder extends Component {
         <span key={`filling-${index}`}>{filling}</span>
       )),
       toppings: this.state.toppings.map((topping, index) => (
-        <span key={`topping-${index}`}> {`topping-${index}`}</span>
+        <span key={`topping-${index}`}>{topping}</span>
       ))
     });
   }

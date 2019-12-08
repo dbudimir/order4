@@ -104,7 +104,7 @@ class LoginForm extends Component {
     event.preventDefault();
     const { state } = this;
     const creds = { email: state.email, password: state.password };
-    console.log(creds);
+
     axios
       .post(process.env.api_key + `/api/users/login`, {
         ...creds
@@ -123,7 +123,6 @@ class LoginForm extends Component {
             }
           });
         } else {
-          console.log(response);
           this.setState({
             isLoggedIn: true,
             userId: response.data.userId
@@ -149,8 +148,6 @@ class LoginForm extends Component {
   };
 
   render() {
-    console.log(this.state);
-
     let errorBar;
     if (this.state.credentialValidation.emailMatch === false) {
       errorBar = (

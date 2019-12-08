@@ -1,82 +1,156 @@
 import React, { Component } from 'react';
 
+import styled from 'styled-components';
+
+const TagInput = styled.div`
+  .tag-container {
+    font-size: 20px;
+    font-family: Nunito;
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0px;
+      width: 100%;
+      list-style: none;
+
+      .inserted-tag {
+        padding: 4px 12px;
+        border-radius: 3px;
+        background-color: #44b5b4;
+        margin: 0 8px 8px 0px;
+        display: flex;
+        align-items: center;
+        color: #ffffff;
+
+        button {
+          align-items: center;
+          appearance: none;
+          background: #333333;
+          border: none;
+          border-radius: 50%;
+          color: white;
+          cursor: pointer;
+          display: inline-flex;
+          font-size: 12px;
+          height: 15px;
+          justify-content: center;
+          line-height: 0;
+          margin-left: 8px;
+          transform: rotate(45deg);
+          width: 15px;
+        }
+      }
+
+      .tag-input {
+        align-items: center;
+        background: transparent;
+        padding: 6px 0px;
+        color: white;
+        display: flex;
+        font-weight: 300;
+        list-style: none;
+        width: 100%;
+        margin-top: 8px;
+        background: #f8f8f8;
+        border-radius: 4px;
+        box-shadow: inset rgba(0, 0, 0, 0.1) 0px 0px 4px 0;
+        box-sizing: border-box;
+
+        input {
+          height: 100%;
+          font-size: 22px;
+          font-family: Nunito;
+          border: none;
+          background: transparent;
+          width: 100%;
+          padding: 4px 0px 4px 12px;
+          border: none;
+          width: 100%;
+        }
+      }
+    }
+  }
+`;
+
 export default class TagForm extends Component {
   constructor() {
     super();
     this.state = {
-      nextArrayItem: '',
-      tags: ['']
+      cleanTags: [],
+      tags: []
     };
   }
 
-  updateState = idx => event => {
-    const { target } = event;
-    const { value } = target;
-    const { name } = target;
-
+  updateState = () => {
     this.setState(
       {
-        [name]: value
+        cleanTags: []
       },
       () => {
-        this.handleTagNameChange(value, idx);
+        let newArray = [];
+        this.state.tags.forEach(tag => {
+          newArray.push(tag.replace(/ /g, '-'));
+        });
+        this.props.setTags(newArray);
       }
     );
   };
 
-  handleTagNameChange = async (value, idx) => {
-    const newArray = (this.state.tags[idx] = value);
-
-    await this.setState({
-      nextArrayItem: newArray
-    });
-    this.props.setTags(this.state.tags);
+  removeTag = i => {
+    const newTags = [...this.state.tags];
+    newTags.splice(i, 1);
+    this.setState({ tags: newTags });
+    this.updateState();
   };
 
-  handleAddTag = async value => {
-    await this.setState(prevState => ({
-      tags: [...prevState.tags, '']
-    }));
-  };
-
-  handleRemoveTag = idx => async () => {
-    const removedTag = [...this.state.tags];
-    if (idx !== -1) {
-      removedTag.splice(idx, 1);
-      await this.setState({
-        tags: removedTag
-      });
-      this.props.setTags(this.state.tags);
+  inputKeyDown = e => {
+    const val = e.target.value;
+    if (e.key === 'Enter' && val) {
+      if (this.state.tags.find(tag => tag.toLowerCase() === val.toLowerCase())) {
+        return;
+      }
+      this.setState({ tags: [...this.state.tags, val] });
+      this.tagInput.value = null;
+    } else if (e.key === 'Backspace' && !val) {
+      this.removeTag(this.state.tags.length - 1);
     }
+    this.updateState();
   };
 
   render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <span className="field-label">Add Tags</span>
+    const { tags } = this.state;
 
-        {this.state.tags.map((tag, idx) => (
-          <div className="tag">
-            <input
-              type="text"
-              name={`tag${idx}`}
-              value={this.state.tags[idx]}
-              placeholder="(ex. healthy, vegan, spicy)"
-              onChange={this.updateState(idx)}
-            />
-            <button type="button" onClick={this.handleRemoveTag(idx)} className="small">
-              Remove
-            </button>
-          </div>
-        ))}
-        <button
-          type="button"
-          onClick={() => this.handleAddTag(this.state.currentTag)}
-          className="small"
-        >
-          Add Another Tag
-        </button>
-      </form>
+    return (
+      <TagInput>
+        <div className="tag-container">
+          <ul className="tag-list">
+            {tags.map((tag, i) => (
+              <li className="inserted-tag" key={tag}>
+                {tag}
+                <button
+                  type="button"
+                  onClick={() => {
+                    this.removeTag(i);
+                  }}
+                >
+                  +
+                </button>
+              </li>
+            ))}
+            <li className="tag-input">
+              <input
+                type="text"
+                placeholder="(ex. healthy, vegan, spicey)"
+                onKeyDown={this.inputKeyDown}
+                ref={c => {
+                  this.tagInput = c;
+                }}
+              />
+            </li>
+          </ul>
+        </div>
+      </TagInput>
     );
   }
 }

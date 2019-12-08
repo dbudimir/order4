@@ -24,17 +24,6 @@ export default class MyApp extends App {
     };
   }
 
-  //   static async getInitialProps({ Component, router, ctx }) {
-  //     let pageProps = {};
-
-  //     if (Component.getInitialProps) {
-  //       pageProps = await Component.getInitialProps(ctx);
-  //       // pageProps.url = Routes.match(ctx.asPath);
-  //     }
-
-  //     return { pageProps };
-  //   }
-
   componentDidMount = () => {
     TagManager.initialize(tagManagerArgs);
     const user = localStorage;
@@ -81,7 +70,7 @@ export default class MyApp extends App {
         <NextSeo
           title="MealDig | Custom fast-casual meals."
           description="This example uses more of the available config options."
-          canonical="https://www.canonical.ie/"
+          canonical="https://mealdig.com/"
           openGraph={{
             url: 'https://www.url.ie/a',
             title: 'Open Graph Title',

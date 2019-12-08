@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'isomorphic-fetch';
 
 import Layout from '../components/Layout';
+import Search from '../components/Search';
 import Chains from '../components/Chains';
 
 class Index extends Component {
@@ -12,6 +13,7 @@ class Index extends Component {
     return (
       <div>
         <Layout />
+        <Search />
         <Chains chains={this.props.chains} />
       </div>
     );
@@ -19,8 +21,6 @@ class Index extends Component {
 }
 
 Index.getInitialProps = async () => {
-  console.log(process.env.api_key);
-
   const res = await fetch(process.env.api_key + `/api/chains/Chipotle`);
   const data = await res.json();
 

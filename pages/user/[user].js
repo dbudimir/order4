@@ -37,7 +37,6 @@ class User extends Component {
   }
 
   render() {
-    console.log(this.props);
     const orderCard = this.props.orders.map((order, index) => (
       <OrderContent orderID={order._id} key={index} />
     ));

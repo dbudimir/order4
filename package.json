@@ -1,9 +1,11 @@
 {
   "name": "create-next-example-app",
   "scripts": {
-    "dev now": "now dev",
+    "build-sitemap": "node node_modules/.bin/buildSitemap.js",
+    "get-tags": "node -e 'require(\"./utils/tag-store.js\").getTags()'",
+    "dev-now": "now dev",
     "dev": "next",
-    "build": "next build",
+    "build": "npm run get-tags; npm run build-sitemap; next build",
     "start": "next start"
   },
   "dependencies": {
@@ -14,13 +16,14 @@
     "dotenv": "^8.2.0",
     "fontfaceobserver": "^2.1.0",
     "install": "^0.13.0",
+    "install-peerdeps": "^2.0.1",
     "isomorphic-fetch": "^2.2.1",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^9.1.4",
     "next-routes": "^1.4.2",
     "next-seo": "^3.0.0",
     "node-sass": "^4.13.0",
-    "npm": "^6.13.1",
+    "npm": "^6.13.2",
     "path-match": "^1.2.4",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",

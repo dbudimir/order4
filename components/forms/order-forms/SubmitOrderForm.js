@@ -21,12 +21,12 @@ class SubmitOrder extends Component {
     };
   }
 
-  updateState = async event => {
+  updateState = event => {
     const { target } = event;
     const { value } = target;
     const { name } = target;
 
-    await this.setState({
+    this.setState({
       order: {
         ...this.state.order,
         [name]: value
@@ -48,12 +48,17 @@ class SubmitOrder extends Component {
   };
 
   updateTags = newTags => {
-    this.setState(prevState => ({
-      order: {
-        tags: newTags
+    console.log(newTags);
+    this.setState(
+      {
+        order: {
+          tags: newTags
+        }
+      },
+      () => {
+        this.props.setOrderDetails(this.state.order);
       }
-    }));
-    this.props.setOrderDetails(this.state.order);
+    );
   };
 
   render() {
@@ -78,7 +83,8 @@ class SubmitOrder extends Component {
               name="description"
               rows="4"
             />
-            <br />
+            <span className="field-label">Add Tags</span>
+            <span>Type in your tags and press enter to confirm.</span>
             <TagForm setTags={this.updateTags} />
             <br />
             <button

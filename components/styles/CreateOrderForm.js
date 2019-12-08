@@ -219,49 +219,6 @@ const Form = styled.div`
       box-sizing: border-box;
     }
 
-    .small {
-      font-size: 16px;
-      width: fit-content;
-      border-radius: 8px;
-      height: 48px;
-      padding: 0px 12px;
-      margin-top: 6px;
-      background-color: #42b5b4;
-      border: none;
-      color: white;
-      font-family: Nunito;
-      font-weight: 600;
-    }
-
-    .tag {
-      width: 100%;
-      display: flex;
-
-      input {
-        width: 100%;
-        height: 48px;
-        font-size: 22px;
-        border: 0px;
-        margin: 0px 6px 6px 0px;
-        padding: 0px 0px 0px 12px;
-        background-color: #f8f8f8;
-        border-radius: 4px;
-        box-shadow: inset rgba(0, 0, 0, 0.1) 0px 0px 4px 0;
-        font-family: Nunito;
-      }
-
-      button {
-        font-size: 16px;
-        width: 20%;
-        max-width: 90px;
-        margin: 0px;
-        border-radius: 4px;
-        padding: 0px;
-        line-height: 0;
-        background-color: red;
-      }
-    }
-
     button[name='submit'] {
       width: 60%;
       display: block;

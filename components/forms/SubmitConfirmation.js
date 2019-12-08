@@ -222,6 +222,8 @@ export default function SubmitConfirmation(props) {
       break;
   }
 
+  console.log(props);
+
   return (
     <ModalOuter>
       <div className="modal-content">
