@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import { generateMedia } from 'styled-media-query';
 
-const customMedia = generateMedia({
-  tablet: '768px',
-  mobile: '548px'
-});
+const size = {
+  tablet: 'only screen and (max-width : 768px)',
+  phone: 'only screen and (max-width : 548px)'
+};
 
 const OrderContentContainer = styled.div`
   background-color: #ffffff;
@@ -17,9 +16,9 @@ const OrderContentContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  ${customMedia.lessThan('tablet')`
-		flex-basis: 100%;
-  `};
+  @media ${size.tablet} {
+    flex-basis: 100%;
+  }
 
   .chain {
     display: flex;
@@ -30,7 +29,6 @@ const OrderContentContainer = styled.div`
     .chain-logo {
       max-height: 26px;
       max-width: 120px;
-
       float: right;
     }
 

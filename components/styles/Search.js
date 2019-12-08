@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+const size = {
+  tablet: 'only screen and (max-width : 768px)',
+  phone: 'only screen and (max-width : 548px)'
+};
+
 const SearchRow = styled.div`
   background: #1774ff;
   display: flex;
@@ -7,7 +12,7 @@ const SearchRow = styled.div`
   .search-container {
     display: flex;
     flex-direction: column;
-    padding: 200px 0;
+    padding: 140px 0 200px;
     width: 768px;
     max-width: 96%;
     margin: 0 auto;
@@ -27,16 +32,17 @@ const SearchRow = styled.div`
       h2 {
         margin: 16px auto 48px;
         font-family: Roboto, sans-serif;
-        font-weight: 100;
+        font-weight: 300;
         font-size: 18px;
-        max-width: 580px;
+        max-width: 600px;
         line-height: 1.5;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.75px;
       }
     }
 
     .search-box-container {
       display: flex;
+      flex-direction: row;
       justify-content: space-between;
 
       .search-action {
@@ -71,7 +77,7 @@ const SearchRow = styled.div`
 
       .autocomplete-input {
         width: 100%;
-        margin: 0px 18px;
+        margin: 0px 12px;
         display: flex;
         flex-direction: column;
         position: relative;
@@ -114,9 +120,40 @@ const SearchRow = styled.div`
       }
 
       .search-submit {
-        min-width: 50px;
         display: flex;
         justify-content: center;
+        align-items: center;
+
+        span {
+          font-family: Nunito;
+          font-size: 22px;
+          padding: 0px 12px;
+          font-weight: 700;
+        }
+
+        img {
+          padding-right: 12px;
+        }
+      }
+    }
+  }
+
+  @media ${size.tablet} {
+    .search-container {
+      .search-box-container {
+        flex-direction: column;
+
+        .search-action {
+          margin-bottom: 12px;
+        }
+
+        .chain-select {
+          width: 100% !important;
+        }
+
+        .autocomplete-input {
+          margin: 0 auto !important;
+        }
       }
     }
   }

@@ -14,7 +14,7 @@ const NavBar = styled.div`
   padding: 12px 12px;
   font-family: Nunito, serif;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-  box-shadow: 0 1px 1px rgba(27, 31, 35, 0.1) !important;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
 
   a {
     text-decoration: none;
@@ -147,7 +147,6 @@ export default class Nav extends Component {
           as={{ pathname: '/' }}
         >
           <a href="/">
-            {/* <h1>MEALdig</h1> */}
             <h1>MEALdig</h1>
           </a>
         </Link>

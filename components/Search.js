@@ -52,17 +52,15 @@ export default class Search extends Component {
 
   // Event fired when the user clicks on a suggestion
   runSearch = e => {
+    console.log(this.state);
     let chainName = document.querySelector('.chain-select').value;
     let tagInput = '';
 
     if (e === undefined) {
       tagInput = document.querySelector('.tag-input').value;
     } else {
-      tagInput = e.currentTarget.innerText;
+      tagInput = this.state.userInput;
     }
-
-    //  let tagInput = typeof e === undefined ? e.currentTarget.innerText : currentTag;
-    console.log(tagInput);
 
     this.setState(
       {
@@ -89,8 +87,7 @@ export default class Search extends Component {
   onKeyDown = e => {
     const { activeSuggestion, filteredSuggestions } = this.state;
 
-    // User pressed the enter key, update the input and close the
-    // suggestions
+    // User pressed the enter key, update the input and close the suggestions
     if (e.keyCode === 13) {
       this.setState({
         activeSuggestion: 0,
@@ -113,6 +110,10 @@ export default class Search extends Component {
       }
 
       this.setState({ activeSuggestion: activeSuggestion + 1 });
+    }
+    // Keep user input up to date
+    else {
+      this.setState({ userInput: document.querySelector('.tag-input').value });
     }
   };
 
@@ -193,6 +194,7 @@ export default class Search extends Component {
               {suggestionsListComponent}
             </div>
             <div className="search-action search-submit" onClick={this.runSearch}>
+              <span>Search</span>
               <img src="../static/search.svg" alt="search" />
             </div>
           </div>
