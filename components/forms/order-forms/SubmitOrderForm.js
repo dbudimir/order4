@@ -52,7 +52,6 @@ class SubmitOrder extends Component {
   };
 
   updateTags = newTags => {
-    console.log(newTags);
     this.setState(
       {
         order: {

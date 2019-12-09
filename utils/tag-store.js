@@ -9,7 +9,6 @@ module.exports.getTags = async function() {
 
   data.map(tag => {
     jointArray = [...jointArray, ...tag.tags];
-    //  console.log(tag.tags);
   });
 
   const uniqueArray = jointArray.reduce((newArray, item) => {

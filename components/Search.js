@@ -73,13 +73,17 @@ export default class Search extends Component {
 
   // Event fired when the user clicks on a suggestion
   runSearch = e => {
+    //  console.log(e);
+    //  console.log(document.querySelector('.tag-input').value);
     let chainName = document.querySelector('.chain-select').value;
     let tagInput = '';
 
     if (e === undefined) {
       tagInput = document.querySelector('.tag-input').value;
+    } else if (e.currentTarget.innerText === 'Search') {
+      tagInput = this.state.filteredSuggestions[this.state.activeSuggestion];
     } else {
-      tagInput = this.state.userInput;
+      tagInput = e.currentTarget.innerText;
     }
 
     this.setState(
@@ -92,7 +96,6 @@ export default class Search extends Component {
         }
       },
       () => {
-        console.log(this.state);
         if (this.state.selectedChain === '' && this.state.userInput === '') {
           this.setState({
             errorMessages: {
@@ -116,9 +119,7 @@ export default class Search extends Component {
           console.log('missing tag');
         } else {
           // Execute search
-          if (this.state.suggestionCount > 0) {
-            Router.push(`/chains/${this.state.selectedChain}/${this.state.userInput}`);
-          }
+          Router.push(`/chains/${this.state.selectedChain}/${this.state.userInput}`);
         }
       }
     );

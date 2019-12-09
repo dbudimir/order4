@@ -8,9 +8,6 @@ import Search from '../components/Search';
 import Chains from '../components/Chains';
 
 class Index extends Component {
-  componentDidMount() {
-    console.log(this.props);
-  }
   render() {
     return (
       <div>

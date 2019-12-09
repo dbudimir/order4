@@ -52,8 +52,6 @@ class OrderContent extends Component {
   }
 
   render() {
-    console.log(this.state);
-
     let chainLogo;
     let chainOrderContent;
 
@@ -77,7 +75,7 @@ class OrderContent extends Component {
         as={{ pathname: `/chains/${this.state.chainName.toLowerCase()}/${tag}` }}
       >
         <a href={`/chains/${this.state.chainName.toLowerCase()}/${tag}`}>
-          <span key={index}>{tag.replace(/-/g, ' ')}</span>
+          <span key={`tag-${index}`}>{tag.replace(/-/g, ' ')}</span>
         </a>
       </Link>
     ));

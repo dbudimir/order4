@@ -1,4 +1,5 @@
 import Document, { Head, Main, NextScript } from 'next/document';
+import React, { Component } from 'react';
 
 // Import styled components ServerStyleSheet
 import { ServerStyleSheet } from 'styled-components';
@@ -24,7 +25,7 @@ export default class MyDocument extends Document {
     };
 
     return (
-      <html>
+      <React.Fragment>
         <Head>
           <meta charSet="UTF-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -37,14 +38,14 @@ export default class MyDocument extends Document {
             as="font"
             href="/static/fonts/Nunito/nunito-v12-latin-800.woff2"
             type="font/woff2"
-            crossorigin="anonymous"
+            crossOrigin="anonymous"
           />
           <link
             rel="preload"
             as="font"
             href="/static/fonts/Roboto/roboto-v20-latin-300.woff2"
             type="font/woff2"
-            crossorigin="anonymous"
+            crossOrigin="anonymous"
           />
           <style
             dangerouslySetInnerHTML={{
@@ -56,7 +57,7 @@ export default class MyDocument extends Document {
               font-display: swap;
               font-weight: 300;
               src: local('Nunito Light'), local('Nunito-Light'),
-                url('../static/fonts/Nunito/nunito-v12-latin-300.woff2') format('woff2');
+					 url('/static/fonts/Nunito/nunito-v12-latin-300.woff2') format('woff2');
             }
             /* nunito-regular - latin */
             @font-face {
@@ -65,7 +66,7 @@ export default class MyDocument extends Document {
               font-display: swap;
               font-weight: 400;
               src: local('Nunito Regular'), local('Nunito-Regular'),
-                url('../static/fonts/Nunito/nunito-v12-latin-regular.woff2') format('woff2');
+                url('/static/fonts/Nunito/nunito-v12-latin-regular.woff2') format('woff2');
             }
             /* nunito-600 - latin */
             @font-face {
@@ -74,7 +75,7 @@ export default class MyDocument extends Document {
               font-display: swap;
               font-weight: 600;
               src: local('Nunito SemiBold'), local('Nunito-SemiBold'),
-                url('../static/fonts/Nunito/nunito-v12-latin-600.woff2') format('woff2');
+                url('/static/fonts/Nunito/nunito-v12-latin-600.woff2') format('woff2');
             }
             /* nunito-700 - latin */
             @font-face {
@@ -83,7 +84,7 @@ export default class MyDocument extends Document {
               font-display: swap;
               font-weight: 700;
               src: local('Nunito Bold'), local('Nunito-Bold'),
-                url('../static/fonts/Nunito/nunito-v12-latin-700.woff2') format('woff2');
+                url('/static/fonts/Nunito/nunito-v12-latin-700.woff2') format('woff2');
             }
             /* nunito-800 - latin */
             @font-face {
@@ -92,7 +93,7 @@ export default class MyDocument extends Document {
               font-display: swap;
               font-weight: 800;
               src: local('Nunito ExtraBold'), local('Nunito-ExtraBold'),
-                url('../static/fonts/Nunito/nunito-v12-latin-800.woff2') format('woff2');
+                url('/static/fonts/Nunito/nunito-v12-latin-800.woff2') format('woff2');
             }
             /* nunito-900 - latin */
             @font-face {
@@ -101,7 +102,7 @@ export default class MyDocument extends Document {
               font-display: swap;
               font-weight: 900;
               src: local('Nunito Black'), local('Nunito-Black'),
-                url('../static/fonts/Nunito/nunito-v12-latin-900.woff2') format('woff2');
+                url('/static/fonts/Nunito/nunito-v12-latin-900.woff2') format('woff2');
             }
 
             /* roboto-100 - latin */
@@ -111,7 +112,7 @@ export default class MyDocument extends Document {
               font-display: swap;
               font-weight: 100;
               src: local('Roboto Thin'), local('Roboto-Thin'),
-                url('../static/fonts/Roboto/roboto-v20-latin-100.woff2') format('woff2');
+                url('/static/fonts/Roboto/roboto-v20-latin-100.woff2') format('woff2');
             }
             /* roboto-300 - latin */
             @font-face {
@@ -120,7 +121,7 @@ export default class MyDocument extends Document {
               font-display: swap;
               font-weight: 300;
               src: local('Roboto Light'), local('Roboto-Light'),
-                url('../static/fonts/Roboto/roboto-v20-latin-300.woff2') format('woff2');
+                url('/static/fonts/Roboto/roboto-v20-latin-300.woff2') format('woff2');
             }
             /* roboto-regular - latin */
             @font-face {
@@ -129,7 +130,7 @@ export default class MyDocument extends Document {
               font-display: swap;
               font-weight: 400;
               src: local('Roboto Regular'), local('Roboto-Regular'),
-                url('../static/fonts/Roboto/roboto-v20-latin-300italic.woff2') format('woff2');
+                url('/static/fonts/Roboto/roboto-v20-latin-300italic.woff2') format('woff2');
             }
             /* roboto-300italic - latin */
             @font-face {
@@ -138,7 +139,7 @@ export default class MyDocument extends Document {
               font-display: swap;
               font-weight: 300;
               src: local('Roboto Light Italic'), local('Roboto-LightItalic'),
-                url('../static/fonts/Roboto/roboto-v20-latin-300italic.woff2') format('woff2');
+                url('/static/fonts/Roboto/roboto-v20-latin-300italic.woff2') format('woff2');
             }
             /* roboto-500 - latin */
             @font-face {
@@ -165,7 +166,7 @@ export default class MyDocument extends Document {
               font-display: swap;
               font-weight: 900;
               src: local('Roboto Black'), local('Roboto-Black'),
-                url('../static/fonts/Roboto/roboto-v20-latin-900.woff2') format('woff2');
+                url('/static/fonts/Roboto/roboto-v20-latin-900.woff2') format('woff2');
             }
           `
             }}
@@ -182,7 +183,7 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
-      </html>
+      </React.Fragment>
     );
   }
 }

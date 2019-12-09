@@ -184,7 +184,21 @@ const SearchRow = styled.div`
   }
 
   @media ${size.tablet} {
+    display: flex;
+    flex-direction: column;
+    padding: 25vw 0;
+
     .search-container {
+      height: calc(50vh - 74px);
+      padding: 0px;
+      width: 75%;
+
+      .header-text {
+        h2 {
+          font-size: 16px;
+        }
+      }
+
       .search-box-container {
         flex-direction: column;
 

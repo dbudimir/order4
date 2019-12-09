@@ -115,7 +115,6 @@ const ModalOuter = styled.div`
 `;
 
 export default function SubmitConfirmation(props) {
-  console.log(props.orderState.order);
   const userStatus = useContext(UserContext);
 
   const updateModal = action => {
@@ -131,7 +130,6 @@ export default function SubmitConfirmation(props) {
           ...reqBody
         })
         .then(response => {
-          console.log(response.data);
           Router.push(`/user/${localStorage.userId}`);
         });
     } else if (localStorage.length === 0) {
@@ -141,7 +139,6 @@ export default function SubmitConfirmation(props) {
           ...reqBody
         })
         .then(response => {
-          console.log(response.data);
           Router.push(
             {
               pathname: `/orders/${response.data._id}`,
@@ -221,8 +218,6 @@ export default function SubmitConfirmation(props) {
     default:
       break;
   }
-
-  console.log(props);
 
   return (
     <ModalOuter>
