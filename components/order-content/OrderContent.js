@@ -70,7 +70,8 @@ class OrderContent extends Component {
     const tags = this.state.tags.map((tag, index) => (
       <Link
         href={{
-          pathname: `/chains/${this.state.chainName.toLowerCase()}/${tag}`
+          pathname: `/chains/${this.state.chainName.toLowerCase()}/${tag}`,
+          query: { chainName: this.state.chainName.toLowerCase(), tag: tag }
         }}
         as={{ pathname: `/chains/${this.state.chainName.toLowerCase()}/${tag}` }}
       >

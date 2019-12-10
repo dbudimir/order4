@@ -9,41 +9,50 @@ import SearchRow from './styles/Search';
 import ErrorMessageBar from '../components/forms/ErrorMessageBar';
 
 export default class Search extends Component {
-  static propTypes = {
-    suggestions: tagIndex
-  };
-
-  static defaultProps = {
-    suggestions: tagIndex
-  };
+  static propTypes = { suggestions: tagIndex };
+  static defaultProps = { suggestions: tagIndex };
 
   constructor(props) {
     super();
     this.state = {
-      suggestions: tagIndex,
-      // Numbber of current suggestions provided
-      suggestionCount: 0,
-      // The active selection's index
-      activeSuggestion: 0,
-      // The suggestions that match the user's input
-      filteredSuggestions: [],
-      // Whether or not the suggestion list is shown
-      showSuggestions: false,
-      // What the user has entered
-      selectedChain: '',
-      // What the user has entered
-      userInput: '',
+      suggestions: tagIndex, // All possible tags
+      activeSuggestion: 0, // The active selection's index
+      filteredSuggestions: [], // The suggestions that match the user's input
+      showSuggestions: false, // Whether or not the suggestion list is shown
+      selectedChain: '', // What the user has entered
+      userInput: '', // What the user has entered
       // Error toggles
       errorMessages: {
         noInputError: false,
         noChainError: false,
-        noTagError: false
+        noTagError: false,
+        tagDoesNotExistError: false
       }
     };
   }
 
+  // Event fired when the user clicks on a suggestion
+  runSearch = e => {
+    if (this.state.selectedChain === '' && this.state.userInput === '') {
+      this.setState({ errorMessages: { noInputError: true } });
+      //
+    } else if (this.state.selectedChain === '') {
+      this.setState({ errorMessages: { noChainError: true } });
+      //
+    } else if (this.state.userInput === '') {
+      this.setState({ errorMessages: { noTagError: true } });
+      //
+    } else if (this.state.filteredSuggestions.length === 0) {
+      this.setState({ errorMessages: { tagDoesNotExistError: true } });
+      //
+    } else {
+      // Execute search
+      Router.push(`/chains/${this.state.selectedChain}/${this.state.userInput}`);
+    }
+  };
+
   // Event fired when the input value is changed
-  onChange = e => {
+  searchTextInput = e => {
     const { suggestions } = this.props;
     const userInput = e.currentTarget.value;
 
@@ -52,133 +61,70 @@ export default class Search extends Component {
       suggestion => suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
     );
 
-    //Count number of suggestions
-    let suggestionCount = document.querySelectorAll('.suggestions > li').length;
-
     // Update the user input and filtered suggestions, reset the active
     // suggestion and make sure the suggestions are shown
-    if (e.target.className !== 'search-action chain-select')
-      this.setState({
-        activeSuggestion: 0,
-        suggestionCount,
-        filteredSuggestions,
-        showSuggestions: true,
-        userInput: e.currentTarget.value,
-        errorMessages: {
-          noInputError: false,
-          noChainError: false
-        }
-      });
-  };
-
-  // Event fired when the user clicks on a suggestion
-  runSearch = e => {
-    //  console.log(e);
-    //  console.log(document.querySelector('.tag-input').value);
-    let chainName = document.querySelector('.chain-select').value;
-    let tagInput = '';
-
-    if (e === undefined) {
-      tagInput = document.querySelector('.tag-input').value;
-    } else if (e.currentTarget.innerText === 'Search') {
-      tagInput = this.state.filteredSuggestions[this.state.activeSuggestion];
-    } else {
-      tagInput = e.currentTarget.innerText;
-    }
-
-    this.setState(
-      {
-        selectedChain: chainName,
-        userInput: tagInput,
-        errorMessages: {
-          noInputError: false,
-          noTagError: false
-        }
-      },
-      () => {
-        if (this.state.selectedChain === '' && this.state.userInput === '') {
-          this.setState({
-            errorMessages: {
-              noInputError: true
-            }
-          });
-          console.log('error for missing both');
-        } else if (this.state.selectedChain === '') {
-          this.setState({
-            errorMessages: {
-              noChainError: true
-            }
-          });
-          console.log('missing chain');
-        } else if (this.state.userInput === '') {
-          this.setState({
-            errorMessages: {
-              noTagError: true
-            }
-          });
-          console.log('missing tag');
-        } else {
-          // Execute search
-          Router.push(`/chains/${this.state.selectedChain}/${this.state.userInput}`);
-        }
-      }
-    );
-  };
-
-  onEnter = e => {
-    if (e.keyCode === 13) {
-      // Trigger the button element with a click
-      this.runSearch();
-    }
+    this.setState({
+      filteredSuggestions,
+      showSuggestions: true,
+      userInput: e.currentTarget.value
+    });
   };
 
   // Event fired when the user presses a key down
-  onKeyDown = e => {
+  searchInteraction = e => {
     const { activeSuggestion, filteredSuggestions } = this.state;
+    let clickedTag = e.currentTarget.innerText.replace(/ /g, '-');
+
+    if (e.currentTarget.tagName === 'LI') {
+      console.log(clickedTag);
+      this.setState(
+        {
+          userInput: clickedTag
+        },
+        () => this.runSearch()
+      );
+    }
 
     // User pressed the enter key, update the input and close the suggestions
-    if (e.keyCode === 13) {
-      this.setState({
-        activeSuggestion: 0,
-        showSuggestions: false,
-        userInput: filteredSuggestions[activeSuggestion]
-      });
+    else if (e.keyCode === 13) {
+      this.setState(
+        {
+          activeSuggestion: 0,
+          showSuggestions: false,
+          userInput: filteredSuggestions[activeSuggestion]
+        },
+        () => this.runSearch()
+      );
     }
+
     // User pressed the up arrow, decrement the index
     else if (e.keyCode === 38) {
       if (activeSuggestion === 0) {
         return;
       }
-
       this.setState({ activeSuggestion: activeSuggestion - 1 });
     }
+
     // User pressed the down arrow, increment the index
     else if (e.keyCode === 40) {
       if (activeSuggestion - 1 === filteredSuggestions.length) {
         return;
       }
-
       this.setState({ activeSuggestion: activeSuggestion + 1 });
     }
+
     // Keep user input up to date
     else {
-      this.setState({ userInput: document.querySelector('.tag-input').value });
+      this.setState({
+        selectedChain: this.refs.chainSelect.value,
+        userInput: document.querySelector('.tag-input').value
+      });
     }
   };
 
   render() {
     const {
-      onChange,
-      runSearch,
-      onKeyDown,
-      state: {
-        activeSuggestion,
-        filteredSuggestions,
-        showSuggestions,
-        selectedChain,
-        userInput,
-        errorMessages
-      }
+      state: { activeSuggestion, filteredSuggestions, showSuggestions, userInput, errorMessages }
     } = this;
 
     let suggestionsListComponent;
@@ -198,8 +144,8 @@ export default class Search extends Component {
               }
 
               return (
-                <li className={className} key={suggestion} onClick={runSearch}>
-                  {suggestion}
+                <li className={className} key={suggestion} onClick={this.searchInteraction}>
+                  {suggestion.replace(/-/g, ' ')}
                 </li>
               );
             })}
@@ -236,6 +182,10 @@ export default class Search extends Component {
       errorBarComponent = <ErrorMessageBar message={'Please enter a chain before searching.'} />;
     } else if (errorMessages.noTagError === true) {
       errorBarComponent = <ErrorMessageBar message={'Please enter a tag before searching.'} />;
+    } else if (errorMessages.tagDoesNotExistError === true) {
+      errorBarComponent = (
+        <ErrorMessageBar message={`We can't find any custom orders with this tag.`} />
+      );
     }
 
     return (
@@ -254,8 +204,9 @@ export default class Search extends Component {
               <div className="select-container">
                 <select
                   className="search-action chain-select"
-                  onChange={this.onChange}
+                  onChange={this.searchInteraction}
                   name="chain"
+                  ref="chainSelect"
                 >
                   <option value="" disabled selected>
                     Select chain
@@ -268,9 +219,8 @@ export default class Search extends Component {
                 <input
                   className="search-action tag-input"
                   type="text"
-                  onChange={onChange}
-                  onKeyDown={onKeyDown}
-                  onKeyUp={this.onEnter}
+                  onChange={this.searchTextInput}
+                  onKeyDown={this.searchInteraction}
                   value={userInput}
                   placeholder="low carb, vegan, keto..."
                 />

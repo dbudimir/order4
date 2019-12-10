@@ -27,6 +27,8 @@ class Tag extends Component {
   }
 
   render() {
+    console.log(this.props);
+    let cleanTag = this.props.tag.replace(/-/g, ' ');
     const orderCard = this.props.orders.map((order, index) => (
       <OrderContent orderID={order._id} key={index} />
     ));
@@ -37,13 +39,13 @@ class Tag extends Component {
           title={`The Best ${this.props.tag.charAt(0).toUpperCase() +
             this.props.tag.slice(1)} Orders at ${this.props.name.charAt(0).toUpperCase() +
             this.props.name.slice(1)}`}
-          description={`Check out the most popular ${this.props.tag} custom orders at ${this.props.name}. Or, submit your own custom order and share it with your friends.`}
+          description={`Check out the most popular ${cleanTag} custom orders at ${this.props.name}. Or, submit your own custom order and share it with your friends.`}
         />
         <Layout />
         <TagPage className="tag-order-container">
           <h1>
             {`The most popular
-                  ${this.props.tag.charAt(0).toUpperCase() + this.props.tag.slice(1)} orders at
+                  ${cleanTag.charAt(0).toUpperCase() + cleanTag.slice(1)} orders at
                   ${this.props.name.charAt(0).toUpperCase() + this.props.name.slice(1)}`}
           </h1>
           <OrderContainer>{orderCard}</OrderContainer>
@@ -62,7 +64,8 @@ Tag.getInitialProps = async ({ query }) => {
   return {
     orders: data,
     name: query.name,
-    tag: query.tag
+    tag: query.tag,
+    full: query
   };
 };
 

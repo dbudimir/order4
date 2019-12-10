@@ -6,6 +6,15 @@ const size = {
 };
 
 const SearchRow = styled.div`
+  textarea,
+  input.text,
+  input[type='text'],
+  input[type='button'],
+  input[type='submit'],
+  .input-checkbox {
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
   background: #1774ff;
   display: flex;
 
@@ -105,14 +114,16 @@ const SearchRow = styled.div`
           max-height: 300px;
           box-shadow: 0 5.125px 10px -1.125px rgba(0, 0, 0, 0.1);
           z-index: 1;
+          width: 75%;
 
           li {
-            padding: 6px 12px;
+            padding: 10px 12px;
             font-size: 22px;
+            line-height: 1.25;
           }
 
           .suggestion-active,
-          .suggestions li:hover {
+          li:hover {
             background-color: #5196e836;
             color: #000000;
             cursor: pointer;

@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 
 import styled from 'styled-components';
 
-import Nav from './Nav';
+import Nav from './navigation/Nav';
 
 import UserContext from './UserContext';
 

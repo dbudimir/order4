@@ -54,7 +54,7 @@ export default class MyApp extends App {
       isLoggedIn: false
     });
     localStorage.clear();
-    Router.push('/');
+    Router.reload('/');
   };
 
   switchNextAction = nextAction => this.setState({ nextAction });
