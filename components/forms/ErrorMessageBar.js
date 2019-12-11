@@ -7,13 +7,14 @@ import styled from 'styled-components';
 
 const ErrorBar = styled.div`
   width: 100%;
+  max-width: 100%;
   background-color: hsl(0, 100%, 93%);
   color: hsl(0, 75%, 35%);
   font-family: Nunito;
   padding: 18px 12px;
   font-size: 16px;
   text-align: center;
-  position: absolute;
+  position: fixed;
 `;
 
 class ErrorMessageBar extends Component {

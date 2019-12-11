@@ -197,12 +197,13 @@ const SearchRow = styled.div`
   @media ${size.tablet} {
     display: flex;
     flex-direction: column;
-    padding: 25vw 0;
+    padding: 32px 0;
 
     .search-container {
       height: calc(50vh - 74px);
       padding: 0px;
-      width: 75%;
+      width: 78%;
+      height: 600px;
 
       .header-text {
         h2 {

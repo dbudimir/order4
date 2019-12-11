@@ -8,7 +8,7 @@ const size = {
 const OrderContentContainer = styled.div`
   background-color: #ffffff;
   padding: 18px 12px;
-  margin-bottom: 28px;
+  margin-bottom: 32px;
   flex-basis: 46%;
   border-radius: 12px;
   box-shadow: 0 5.125px 10px -1.125px rgba(0, 0, 0, 0.1);

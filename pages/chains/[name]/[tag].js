@@ -10,16 +10,6 @@ import TagPage from '../../../components/styles/TagPage';
 import Layout from '../../../components/Layout';
 import OrderContent from '../../../components/order-content/OrderContent';
 
-const OrderContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  h3 {
-    text-transform: capitalize;
-  }
-`;
-
 class Tag extends Component {
   constructor(props) {
     super(props);
@@ -27,7 +17,6 @@ class Tag extends Component {
   }
 
   render() {
-    console.log(this.props);
     let cleanTag = this.props.tag.replace(/-/g, ' ');
     const orderCard = this.props.orders.map((order, index) => (
       <OrderContent orderID={order._id} key={index} />
@@ -43,12 +32,30 @@ class Tag extends Component {
         />
         <Layout />
         <TagPage className="tag-order-container">
-          <h1>
-            {`The most popular
-                  ${cleanTag.charAt(0).toUpperCase() + cleanTag.slice(1)} orders at
+          <div className="background-image-container"></div>
+          <div className="content-container">
+            <div className="col-left">
+              <div className="headline-container">
+                <h1>
+                  {`The most popular
+                  ${cleanTag.charAt(0).toUpperCase() + cleanTag.slice(1)} custom orders at
                   ${this.props.name.charAt(0).toUpperCase() + this.props.name.slice(1)}`}
-          </h1>
-          <OrderContainer>{orderCard}</OrderContainer>
+                </h1>
+              </div>
+              <div className="order-list">{orderCard}</div>
+            </div>
+            <div className="col-right">
+              <div className="more-tag-cta">
+                <span>Check all the most popular {this.props.tag} on MEALdig.</span>
+              </div>
+              <div className="more-chain-cta">
+                <span>See more popular custom meals at {this.props.name}</span>
+              </div>
+              <div className="signup-cta">
+                <span>Submit your favorite custom meals today.</span>
+              </div>
+            </div>
+          </div>
         </TagPage>
       </div>
     );

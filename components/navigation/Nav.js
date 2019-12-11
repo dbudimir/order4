@@ -12,18 +12,35 @@ export default class Nav extends Component {
     super(props);
     this.state = {
       navItems: '',
+      width: 0,
+      height: 0,
       style: {
-        display: `none`
+        display: ``
+      },
+      imgStyle: {
+        filter: `hue-rotate(${Math.floor(Math.random() * (180 - 0 + 1)) + 0}deg)`
       }
     };
   }
 
   componentDidMount() {
-    this.setState({
-      isLoggedIn: localStorage.isLoggedIn
-    });
+    window.addEventListener('resize', this.updateDimensions);
     this.getStatus();
   }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateDimensions);
+  }
+
+  updateDimensions = () => {
+    this.setState({
+      width: window.innerWidth,
+      height: window.innerHeight,
+      style: {
+        display: window.innerWidth > 768 ? 'block' : 'none'
+      }
+    });
+  };
 
   getStatus = () => {
     let userLoggedIn;
@@ -38,17 +55,18 @@ export default class Nav extends Component {
   };
 
   openMobileMenu = () => {
+    console.log(this.state);
+    let displayValue = this.state.style.display === 'none' ? 'block' : 'none';
     this.setState({
-      style: { display: this.state.style.display === 'none' ? 'block' : 'none' }
+      style: { display: displayValue }
     });
   };
 
   render() {
-    console.log(this.state.style);
     return (
       <NavBar>
-        <div class="nav-left">
-          <div class="left-nav-icon"></div>
+        <div className="nav-left">
+          <div className="left-nav-icon"></div>
           <Link
             href={{
               pathname: '/'
@@ -59,8 +77,8 @@ export default class Nav extends Component {
               <h1>MEALdig</h1>
             </a>
           </Link>
-          <div class="right-nav-icon" onClick={this.openMobileMenu}>
-            <img src="../static/hamburger-icon.png" />
+          <div className="right-nav-icon" onClick={this.openMobileMenu}>
+            <img src="../static/hamburger-icon.png" style={this.state.imgStyle} />
           </div>
         </div>
 
