@@ -10,7 +10,7 @@ const OrderContentContainer = styled.div`
   padding: 18px 12px;
   margin-bottom: 32px;
   flex-basis: 46%;
-  border-radius: 12px;
+  border-radius: 4px;
   box-shadow: 0 5.125px 10px -1.125px rgba(0, 0, 0, 0.1);
   font-family: Nunito, sans-serif;
   display: flex;

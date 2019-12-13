@@ -4,10 +4,10 @@ import 'isomorphic-fetch';
 
 import { NextSeo } from 'next-seo';
 
-import styled from 'styled-components';
 import TagPage from '../../../components/styles/TagPage';
 
 import Layout from '../../../components/Layout';
+import RightColumn from '.../../../components/RightColumn';
 import OrderContent from '../../../components/order-content/OrderContent';
 
 class Tag extends Component {
@@ -44,17 +44,7 @@ class Tag extends Component {
               </div>
               <div className="order-list">{orderCard}</div>
             </div>
-            <div className="col-right">
-              <div className="more-tag-cta">
-                <span>Check all the most popular {this.props.tag} on MEALdig.</span>
-              </div>
-              <div className="more-chain-cta">
-                <span>See more popular custom meals at {this.props.name}</span>
-              </div>
-              <div className="signup-cta">
-                <span>Submit your favorite custom meals today.</span>
-              </div>
-            </div>
+            <RightColumn tag={this.props.tag} chainName={this.props.name} />
           </div>
         </TagPage>
       </div>

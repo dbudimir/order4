@@ -57,12 +57,20 @@ class OrderContent extends Component {
 
     if (this.state.chainName === 'Chipotle') {
       chainLogo = (
-        <img className="chain-logo" src="../../static/chipotle-logo.png" alt="chipotle-logo" />
+        <img
+          className="chain-logo"
+          src="../../static/chain-logos/chipotle-logo.png"
+          alt="chipotle-logo"
+        />
       );
       chainOrderContent = <ChipotleOrder orderState={this.state.orderContent} />;
     } else if (this.state.chainName === '&pizza') {
       chainLogo = (
-        <img className="chain-logo" src="../../static/and-pizza-logo.png" alt="and-pizza-logo" />
+        <img
+          className="chain-logo"
+          src="../../static/chain-logos/and-pizza-logo.png"
+          alt="and-pizza-logo"
+        />
       );
       chainOrderContent = <AndPizzaOrder orderState={this.state.orderContent} />;
     }

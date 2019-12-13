@@ -6,10 +6,18 @@ import Nav from './navigation/Nav';
 
 import UserContext from './UserContext';
 
-const Navbar = styled.div`
-  position: sticky;
-  top: 0px;
-  z-index: 10;
+const GlobalLayout = styled.div`
+  .navbar {
+    position: sticky;
+    top: 0px;
+    z-index: 10;
+  }
+
+  .feedback-icon {
+    position: fixed;
+    bottom: 12px;
+    right: 12px;
+  }
 `;
 
 export default function Layout() {
@@ -21,8 +29,13 @@ export default function Layout() {
   };
 
   return (
-    <Navbar>
-      <Nav signOut={signOut} />
-    </Navbar>
+    <GlobalLayout>
+      <div className="navbar">
+        <Nav signOut={signOut} />
+      </div>
+      <div className="feedback-icon">
+        <img src="/static/info.svg" />
+      </div>
+    </GlobalLayout>
   );
 }

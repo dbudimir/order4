@@ -4,74 +4,122 @@ const TagPages = styled.div`
   max-width: 100%;
 
   .background-image-container {
-    background-image: url('/static/chain-backgrounds/chipotle-chain-background.jpg');
-    background-position: (50% 50%);
-    height: 400px;
+    background-color: #9883e5;
+    height: 30px;
   }
 
   .content-container {
     max-width: 1024px;
     display: flex;
-    margin: -300px auto;
+    margin: 0 auto;
     justify-content: space-between;
 
     .col-left {
       width: 62.5%;
 
       .headline-container {
-        border-radius: 12px;
-        box-shadow: 0 5.125px 10px -1.125px rgba(0, 0, 0, 0.1);
-        background: #ffffff;
-        padding: 18px;
-        margin-bottom: 32px;
+        padding: 0px 18px;
+        margin: 48px 0px;
+        border-left: 6px solid #9883e5;
 
         h1 {
           font-family: Nunito, sans-serif;
-          margin: 0px;
           text-transform: capitalize;
+          font-size: 36px;
+          margin: 0px;
         }
       }
     }
 
     .col-right {
+      margin-top: 200px;
       width: 33.5%;
 
-      .more-tag-cta {
+      a {
+        text-decoration: none;
+        color: #000000;
       }
 
       .more-tag-cta,
       .more-chain-cta,
       .signup-cta {
         font-family: Nunito, sans-serif;
-        text-align: center;
-        margin-bottom: 24px;
-        padding: 12px;
+        margin-bottom: 32px;
       }
 
       .more-tag-cta {
         background-color: #ffffff;
-        border-radius: 4px;
         overflow: hidden;
-        border-bottom: 12px solid #000000;
+        border-left: 3px solid #000000;
         font-size: 18px;
+        padding: 0px 12px;
+        font-weight: 700;
+        cursor: pointer;
+
+        &:hover {
+          border-left: 3px solid #0067ff;
+        }
       }
 
       .more-chain-cta {
         background-color: #ffffff;
-        border-radius: 4px;
         overflow: hidden;
-        border-bottom: 12px solid #000000;
+        border-left: 3px solid #000000;
         font-size: 18px;
+        padding: 0px 12px;
+        display: flex;
+        flex-direction: row-reverse;
+        font-weight: 700;
+        cursor: pointer;
+
+        &:hover {
+          border-left: 3px solid #0067ff;
+        }
+
+        img {
+          height: 50px;
+          padding: 0 12px 0 0;
+        }
       }
 
       .signup-cta {
-        border-radius: 10px;
-        background: #0067ff;
+        border: 1px solid #0067ff;
         position: sticky;
         top: 100px;
-        color: #ffffff;
+        padding: 18px 12px;
+        text-align: center;
 
-        font-size: 24px;
+        .cta-text {
+          font-size: 18px;
+          display: block;
+          margin-bottom: 18px;
+        }
+
+        .signup,
+        .create {
+          font-size: 18px;
+          background: #0067ff;
+          border: 1px solid #0067ff;
+          color: #ffffff;
+          display: flex;
+          align-items: center;
+          width: 100%;
+          text-align: center;
+          justify-content: center;
+          padding: 8px 0px;
+          border-radius: 8px;
+          font-weight: 700;
+          cursor: pointer;
+        }
+
+        .signup {
+          background: #ffffff;
+          color: #0067ff;
+        }
+
+        .create {
+          margin-bottom: 12px;
+        }
       }
     }
   }
