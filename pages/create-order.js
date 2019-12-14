@@ -4,11 +4,11 @@ import styled from 'styled-components';
 import Form from '../components/styles/CreateOrderForm';
 
 import Layout from '../components/Layout';
-import CreateChipotleOrder from '../components/forms/chain-forms/CreateChipotleOrder';
-import CreateAndPizzOrder from '../components/forms/chain-forms/CreateAndPizzaOrderForm';
+import CreateChipotleOrder from '../components/forms/order-forms/chain-forms/CreateChipotleOrder';
+import CreateAndPizzOrder from '../components/forms/order-forms/chain-forms/CreateAndPizzaOrderForm';
 import SelectChainForm from '../components/forms/order-forms/SelectChainForm';
 import SubmitOrder from '../components/forms/order-forms/SubmitOrderForm';
-import SubmitConfirmation from '../components/forms/SubmitConfirmation';
+import SubmitConfirmation from '../components/forms/order-forms/SubmitConfirmation';
 
 const CHAIN_CHIPOTLE = 'Chipotle';
 const CHAIN_ANDPIZZA = '&pizza';

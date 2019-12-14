@@ -18,10 +18,10 @@ export default class RightColumn extends Component {
     console.log(tagName);
 
     return (
-      <div className="coP-right">
+      <div className="col-right">
         <Link
           href={{
-            pathname: `/tags/${this.props.tag}e`
+            pathname: `/tags/${this.props.tag}`
           }}
           as={{ pathname: `/tags/${this.props.tag}` }}
         >
@@ -33,7 +33,7 @@ export default class RightColumn extends Component {
         </Link>
         <Link
           href={{
-            pathname: `/chains/${this.props.chainName}e`
+            pathname: `/chains/${this.props.chainName}`
           }}
           as={{ pathname: `/chains/${this.props.chainName}` }}
         >

@@ -34,7 +34,7 @@ export default function Layout() {
         <Nav signOut={signOut} />
       </div>
       <div className="feedback-icon">
-        <img src="/static/info.svg" />
+        <img src="/static/icons/info.svg" />
       </div>
     </GlobalLayout>
   );

@@ -2,8 +2,9 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
-import { FacebookShareButton, TwitterShareButton, FacebookIcon, TwitterIcon } from 'react-share';
 import OrderContentContainer from '../styles/OrderContentContainer';
+
+import ActionBar from './ActionBar';
 
 import ChipotleOrder from './ChipotleOrder';
 import AndPizzaOrder from './AndPizzaOrder';
@@ -23,9 +24,11 @@ class OrderContent extends Component {
         .then(res => {
           const { data } = res;
           this.setState({
+            orderId: data[0]._id,
             orderDescription: data[0].description,
             orderContent: data[0].orderContent[0],
             tags: data[0].tags,
+            favoriteCount: data[0].favoriteCount,
             orderName: data[0].orderName,
             chainName: data[0].chainName,
             createdAt: data[0].createdAt
@@ -77,6 +80,7 @@ class OrderContent extends Component {
 
     const tags = this.state.tags.map((tag, index) => (
       <Link
+        key={`tag-${index}`}
         href={{
           pathname: `/chains/${this.state.chainName.toLowerCase()}/${tag}`,
           query: { chainName: this.state.chainName.toLowerCase(), tag: tag }
@@ -91,42 +95,17 @@ class OrderContent extends Component {
 
     return (
       <OrderContentContainer className="order-content-container">
-        <div className="chain">
-          <h3>{this.state.chainName}</h3>
-          {chainLogo}
-        </div>
-        <h2 className="order-name">{this.state.orderName}</h2>
-        <p className="description">{this.state.orderDescription}</p>
-        {chainOrderContent}
-        <div className="tag-row">
-          <div className="tags">{tags}</div>
-          <div className="actions">
-            <TwitterShareButton
-              url={`https://mealdig.com/orders/${this.props.orderID}`}
-              title={`Check out ${this.state.orderName} at ${this.state.chainName}. https://mealdig.com/orders/${this.props.orderID}`}
-              hashtags={this.state.tags}
-            >
-              <TwitterIcon size={24} round />
-            </TwitterShareButton>
-            <FacebookShareButton
-              url={`https://mealdig.com/orders/${this.props.orderID}`}
-              quote={`Check out ${this.state.orderName} at ${this.state.chainName}. https://mealdig.com/orders/${this.props.orderID}`}
-            >
-              <FacebookIcon size={24} round />
-            </FacebookShareButton>
-            <div>
-              <Link
-                href={{
-                  pathname: '/orders/[usider]',
-                  query: { id: this.props.orderID }
-                }}
-                as={{ pathname: `/orders/${this.props.orderID}` }}
-              >
-                <a href={`/orders/${this.props.orderID}`}>
-                  <img src="../../static/external-link.svg" alt="link-out-icon" />
-                </a>
-              </Link>
-            </div>
+        <ActionBar favoriteCount={this.state.favoriteCount} orderId={this.state.orderId} />
+        <div className="order-data">
+          <div className="chain">
+            <h3>{this.state.chainName}</h3>
+            {chainLogo}
+          </div>
+          <h2 className="order-name">{this.state.orderName}</h2>
+          <p className="description">{this.state.orderDescription}</p>
+          {chainOrderContent}
+          <div className="tag-row">
+            <div className="tags">{tags}</div>
           </div>
         </div>
       </OrderContentContainer>

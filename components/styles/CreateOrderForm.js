@@ -35,7 +35,7 @@ const Form = styled.div`
     width: 100%;
     position: relative;
 
-    img {
+    svg {
       position: absolute;
       right: 0;
       height: 42%;

@@ -68,7 +68,21 @@ class CreateChipotleOrder extends Component {
               <option value="Soft Flour Toritilla">Soft Flour Toritilla</option>
               <option value="Crispy Corn Tortilla">Crispy Corn Tortilla</option>
             </select>
-            <img src="../../static/arrow-down.svg" alt="arrow-down" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-arrow-down"
+            >
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
           </div>
         </div>
       );
@@ -113,7 +127,21 @@ class CreateChipotleOrder extends Component {
                 <option value="Tacos">Tacos</option>
                 <option value="Salad">Salad</option>
               </select>
-              <img src="../../static/arrow-down.svg" alt="arrow-down" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-arrow-down"
+              >
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <polyline points="19 12 12 19 5 12"></polyline>
+              </svg>
             </div>
 
             {tortilla}
@@ -134,7 +162,21 @@ class CreateChipotleOrder extends Component {
                 <option value="Both (half/half)">Both (half/half)</option>
                 <option value="No Rice">No Rice</option>
               </select>
-              <img src="../../static/arrow-down.svg" alt="arrow-down" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-arrow-down"
+              >
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <polyline points="19 12 12 19 5 12"></polyline>
+              </svg>
             </div>
 
             <span className="field-label">Select Beans</span>
@@ -148,7 +190,21 @@ class CreateChipotleOrder extends Component {
                 <option value="Both (half/half)">Both (half/half)</option>
                 <option value="No Beans">No Beans</option>
               </select>
-              <img src="../../static/arrow-down.svg" alt="arrow-down" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-arrow-down"
+              >
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <polyline points="19 12 12 19 5 12"></polyline>
+              </svg>
             </div>
 
             <span className="field-label">Add Toppings</span>

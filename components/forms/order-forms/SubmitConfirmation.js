@@ -3,10 +3,10 @@ import Router from 'next/router';
 import axios from 'axios';
 import styled from 'styled-components';
 
-import UserContext from '../UserContext';
-import OrderContent from '../order-content/OrderContent';
-import SignupForm from './SignupForm';
-import LoginForm from './LoginForm';
+import UserContext from '../../UserContext';
+import OrderContent from '../../order-content/OrderContent';
+import SignupForm from '../SignupForm';
+import LoginForm from '../LoginForm';
 
 const ModalOuter = styled.div`
   position: fixed;
@@ -126,9 +126,7 @@ export default function SubmitConfirmation(props) {
     if (localStorage.length > 0) {
       const reqBody = { order: props.orderState.order, userId: localStorage.userId };
       axios
-        .post(process.env.api_key + `/api/user-order/create/existing-user`, {
-          ...reqBody
-        })
+        .post(process.env.api_key + `/api/user-order/create/existing-user`, { ...reqBody })
         .then(response => {
           Router.push(`/user/${localStorage.userId}`);
         });

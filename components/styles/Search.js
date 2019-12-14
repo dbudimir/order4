@@ -67,15 +67,13 @@ const SearchRow = styled.div`
       .select-container {
         position: relative;
 
-        &:after {
-          content: '◀';
-          transform: rotate(-90deg);
-          right: 6px;
-          top: -3px;
-          padding-top: 4px;
-          height: 100%;
+        svg {
           position: absolute;
-          pointer-events: none;
+          right: 0;
+          height: 42%;
+          margin: 0 12px;
+          top: 50%;
+          transform: translateY(-50%);
         }
 
         .chain-select {

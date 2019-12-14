@@ -58,7 +58,7 @@ const ChainContainer = styled.div`
 
     .order-content-container {
       text-decoration: none;
-      min-width: 280px;
+      min-width: 360px;
       margin-right: 24px;
       display: inline-flex;
 

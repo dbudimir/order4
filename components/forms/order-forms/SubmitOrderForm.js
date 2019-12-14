@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import TagForm from '../TagForm';
+import TagForm from './TagForm';
 
 const Form = styled.div`
   .label {
