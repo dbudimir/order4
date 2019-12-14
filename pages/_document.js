@@ -104,7 +104,6 @@ export default class MyDocument extends Document {
               src: local('Nunito Black'), local('Nunito-Black'),
                 url('/static/fonts/Nunito/nunito-v12-latin-900.woff2') format('woff2');
             }
-
             /* roboto-100 - latin */
             @font-face {
               font-family: 'Roboto';
