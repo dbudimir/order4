@@ -11,36 +11,63 @@ export default class ActionBar extends Component {
     this.state = {
       favoritesClass: 'favorites',
       orderId: props.orderId,
-      favoriteCount: props.favoriteCounts
+      favoriteCount: props.favoriteCount,
+      loggedInUserFavorite: false
     };
   }
 
-  componentDidMount() {}
-
-  handleFavorite = async e => {
-    if ((localStorage.isLoggedIn = true)) {
-      console.log('user is logged in');
-      // console.log(this.props.orderId);
-      // console.log(this.state.orderId);
-      const reqBody = { userId: localStorage.userId, orderId: this.props.orderId };
-      await axios
-        .post(process.env.api_key + `/api/orders/favorite`, { ...reqBody })
-        .then(res => {
-          console.log(res);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-
+  componentDidMount() {
+    console.log(this.props);
+    if (
+      this.props.usersFavorited !== undefined &&
+      this.props.usersFavorited.includes(localStorage.userId)
+    ) {
       this.setState(
         {
-          favoritesClass:
-            this.state.favoritesClass === 'favorites' ? 'favorites svg-clicked' : 'favorites',
-          favoriteCount: this.props.favoriteCount + 1
+          favoritesClass: 'favorites svg-clicked',
+          orderId: this.props.orderID,
+          favoriteCount: this.props.favoriteCount,
+          loggedInUserFavorite: true
         },
         () => {
           console.log(this.state);
         }
+      );
+    }
+  }
+
+  favoriteUnfavorite = (apiURL, updateCount, favoriteClass) => {
+    console.log(this.state.loggedInUserFavorite);
+    this.setState(
+      {
+        favoritesClass: favoriteClass,
+        loggedInUserFavorite: this.state.loggedInUserFavorite === true ? false : true,
+        favoriteCount: updateCount
+      },
+      () => {
+        console.log(this.state);
+      }
+    );
+
+    const reqBody = { userId: localStorage.userId, orderId: this.props.orderId };
+    axios
+      .post(process.env.api_key + apiURL, { ...reqBody })
+      .then(res => {})
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  handleFavoriteClick = e => {
+    if (this.state.loggedInUserFavorite) {
+      // Add favorite
+      this.favoriteUnfavorite(`/api/orders/unfavorite`, this.state.favoriteCount - 1, 'favorites');
+    } else if (localStorage.isLoggedIn === true) {
+      // Remove favorite
+      this.favoriteUnfavorite(
+        `/api/orders/favorite`,
+        this.state.favoriteCount + 1,
+        'favorites svg-clicked'
       );
     } else {
       console.log('pleae create an account to favortie order');
@@ -48,14 +75,11 @@ export default class ActionBar extends Component {
   };
 
   render() {
-    let favoriteCount =
-      this.state.favoriteCount > this.props.favoriteCount
-        ? this.state.favoriteCount
-        : this.props.favoriteCount;
+    let showModal;
 
     return (
       <div className="user-actions">
-        <div className={this.state.favoritesClass} onClick={this.handleFavorite}>
+        <div className={this.state.favoritesClass} onClick={this.handleFavoriteClick}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -70,7 +94,7 @@ export default class ActionBar extends Component {
             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
           </svg>
 
-          <span className="like-count">{favoriteCount}</span>
+          <span className="like-count">{this.state.favoriteCount}</span>
         </div>
         <TwitterShareButton
           url={`https://mealdig.com/orders/${this.props.orderID}`}

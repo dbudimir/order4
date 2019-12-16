@@ -53,7 +53,7 @@ const OrderContentContainer = styled.div`
     }
 
     div {
-      margin: 6px 0px;
+      margin: 3px 0px;
     }
   }
 

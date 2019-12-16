@@ -15,8 +15,6 @@ export default class RightColumn extends Component {
     let capitalTagName = toTitleCase(tagName);
     let chainName = toTitleCase(this.props.chainName);
 
-    console.log(tagName);
-
     return (
       <div className="col-right">
         <Link

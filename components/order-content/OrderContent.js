@@ -17,9 +17,9 @@ class OrderContent extends Component {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     if (this.props.orderState === undefined) {
-      await axios
+      axios
         .get(process.env.api_key + `/api/orders/id/${this.props.orderID}`)
         .then(res => {
           const { data } = res;
@@ -29,6 +29,7 @@ class OrderContent extends Component {
             orderContent: data[0].orderContent[0],
             tags: data[0].tags,
             favoriteCount: data[0].favoriteCount,
+            usersFavorited: data[0].usersFavorited,
             orderName: data[0].orderName,
             chainName: data[0].chainName,
             createdAt: data[0].createdAt
@@ -95,7 +96,12 @@ class OrderContent extends Component {
 
     return (
       <OrderContentContainer className="order-content-container">
-        <ActionBar favoriteCount={this.state.favoriteCount} orderId={this.state.orderId} />
+        <ActionBar
+          key={this.state.orderId}
+          favoriteCount={this.state.favoriteCount}
+          orderId={this.state.orderId}
+          usersFavorited={this.state.usersFavorited}
+        />
         <div className="order-data">
           <div className="chain">
             <h3>{this.state.chainName}</h3>

@@ -47,6 +47,7 @@ export default class MyApp extends App {
   };
 
   signOut = () => {
+    console.log('signing out');
     this.setState({
       userName: '',
       email: '',
@@ -54,7 +55,7 @@ export default class MyApp extends App {
       isLoggedIn: false
     });
     localStorage.clear();
-    Router.reload('/');
+    Router.push('/');
   };
 
   switchNextAction = nextAction => this.setState({ nextAction });
