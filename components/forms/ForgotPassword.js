@@ -143,7 +143,9 @@ class ForgotPassword extends Component {
             <input name="submit" onClick={this.onSubmit} type="submit" value="Get Recovery Link" />
             <span className="sign-up-now">
               Don't have an account?
-              <a href="/signup"> Sign up now.</a>
+              <Link href="/signup">
+                <a> Sign up now.</a>
+              </Link>
             </span>
           </div>
         </Form>

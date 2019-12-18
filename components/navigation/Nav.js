@@ -55,7 +55,6 @@ export default class Nav extends Component {
   };
 
   openMobileMenu = () => {
-    console.log(this.state);
     let displayValue = this.state.style.display === 'none' ? 'block' : 'none';
     this.setState({
       style: { display: displayValue }
@@ -73,7 +72,7 @@ export default class Nav extends Component {
             }}
             as={{ pathname: '/' }}
           >
-            <a href="/">
+            <a>
               <h1>MEALdig</h1>
             </a>
           </Link>
@@ -89,7 +88,7 @@ export default class Nav extends Component {
                 pathname: '/'
               }}
             >
-              <a href="/">
+              <a>
                 <span>Chains</span>
               </a>
             </Link>
@@ -99,7 +98,7 @@ export default class Nav extends Component {
               }}
               as={{ pathname: `/orders/all` }}
             >
-              <a href="/orders/all">
+              <a>
                 <span>Orders</span>
               </a>
             </Link>
@@ -110,7 +109,7 @@ export default class Nav extends Component {
               }}
               as={{ pathname: `/create-order` }}
             >
-              <a href="/create-order">
+              <a>
                 <span className="create">
                   Create Order
                   <img src="/static/plus.svg" alt="plus-icon" />

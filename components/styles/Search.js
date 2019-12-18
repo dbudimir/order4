@@ -1,11 +1,28 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const size = {
   tablet: 'only screen and (max-width : 768px)',
   phone: 'only screen and (max-width : 548px)'
 };
 
+const slide = keyframes`
+0% {
+	background-position: 0 -350%;
+}
+100% {
+	background-position: 0 375%;
+}
+`;
+
 const SearchRow = styled.div`
+  display: flex;
+  background-color: #1774ff;
+  background-image: url(/static/background-animation.svg);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center center;
+  animation: ${slide} 20s linear infinite;
+
   textarea,
   input.text,
   input[type='text'],
@@ -15,8 +32,6 @@ const SearchRow = styled.div`
     -webkit-appearance: none;
     border-radius: 0;
   }
-  background: #1774ff;
-  display: flex;
 
   .search-container {
     display: flex;
@@ -66,6 +81,7 @@ const SearchRow = styled.div`
 
       .select-container {
         position: relative;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
 
         svg {
           position: absolute;
@@ -92,6 +108,7 @@ const SearchRow = styled.div`
         flex-direction: column;
         position: relative;
         font-family: Nunito, sans-serif;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
 
         .tag-input {
           padding: 0 18px;
@@ -135,6 +152,7 @@ const SearchRow = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
 
         span {
           font-family: Nunito;

@@ -76,7 +76,6 @@ export default class Search extends Component {
     let clickedTag = e.currentTarget.innerText.replace(/ /g, '-');
 
     if (e.currentTarget.tagName === 'LI') {
-      console.log(clickedTag);
       this.setState(
         {
           userInput: clickedTag

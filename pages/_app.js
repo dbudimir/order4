@@ -46,16 +46,20 @@ export default class MyApp extends App {
     }
   };
 
-  signOut = () => {
-    console.log('signing out');
-    this.setState({
-      userName: '',
-      email: '',
-      userId: '',
-      isLoggedIn: false
-    });
-    localStorage.clear();
-    Router.push('/');
+  signOut = async () => {
+    console.log('signing out now');
+    this.setState(
+      {
+        userName: '',
+        email: '',
+        userId: '',
+        isLoggedIn: false
+      },
+      () => {
+        localStorage.clear();
+        Router.push('/');
+      }
+    );
   };
 
   switchNextAction = nextAction => this.setState({ nextAction });

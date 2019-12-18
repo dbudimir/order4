@@ -3,8 +3,6 @@ import Link from 'next/link';
 import axios from 'axios';
 import { FacebookShareButton, TwitterShareButton, FacebookIcon, TwitterIcon } from 'react-share';
 
-import UserContext from '../UserContext';
-
 export default class ActionBar extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +15,6 @@ export default class ActionBar extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
     if (
       this.props.usersFavorited !== undefined &&
       this.props.usersFavorited.includes(localStorage.userId)
@@ -29,24 +26,19 @@ export default class ActionBar extends Component {
           favoriteCount: this.props.favoriteCount,
           loggedInUserFavorite: true
         },
-        () => {
-          console.log(this.state);
-        }
+        () => {}
       );
     }
   }
 
   favoriteUnfavorite = (apiURL, updateCount, favoriteClass) => {
-    console.log(this.state.loggedInUserFavorite);
     this.setState(
       {
         favoritesClass: favoriteClass,
         loggedInUserFavorite: this.state.loggedInUserFavorite === true ? false : true,
         favoriteCount: updateCount
       },
-      () => {
-        console.log(this.state);
-      }
+      () => {}
     );
 
     const reqBody = { userId: localStorage.userId, orderId: this.props.orderId };
@@ -59,10 +51,10 @@ export default class ActionBar extends Component {
   };
 
   handleFavoriteClick = e => {
-    if (this.state.loggedInUserFavorite) {
+    if (this.state.loggedInUserFavorite === true) {
       // Add favorite
       this.favoriteUnfavorite(`/api/orders/unfavorite`, this.state.favoriteCount - 1, 'favorites');
-    } else if (localStorage.isLoggedIn === true) {
+    } else if (localStorage.isLoggedIn === 'true') {
       // Remove favorite
       this.favoriteUnfavorite(
         `/api/orders/favorite`,
@@ -75,8 +67,6 @@ export default class ActionBar extends Component {
   };
 
   render() {
-    let showModal;
-
     return (
       <div className="user-actions">
         <div className={this.state.favoritesClass} onClick={this.handleFavoriteClick}>

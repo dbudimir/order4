@@ -14,7 +14,7 @@ const ErrorBar = styled.div`
   padding: 18px 12px;
   font-size: 16px;
   text-align: center;
-  position: fixed;
+  position: absolute;
 `;
 
 class ErrorMessageBar extends Component {

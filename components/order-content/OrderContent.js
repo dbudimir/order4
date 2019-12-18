@@ -83,7 +83,7 @@ class OrderContent extends Component {
       <Link
         key={`tag-${index}`}
         href={{
-          pathname: `/chains/${this.state.chainName.toLowerCase()}/${tag}`,
+          pathname: `/chains/[name]/[tag]`,
           query: { chainName: this.state.chainName.toLowerCase(), tag: tag }
         }}
         as={{ pathname: `/chains/${this.state.chainName.toLowerCase()}/${tag}` }}

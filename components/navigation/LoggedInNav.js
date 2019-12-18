@@ -1,5 +1,6 @@
 //Utilities
 import React, { Component } from 'react';
+import Router from 'next/router';
 import Link from 'next/link';
 
 export default class LoggedInNav extends Component {
@@ -9,6 +10,13 @@ export default class LoggedInNav extends Component {
       navItems: ''
     };
   }
+
+  handleSignOut = e => {
+    this.props.signOut(e);
+    window.location.replace('/');
+
+    //  Router.push('/');
+  };
 
   render() {
     return (
@@ -24,13 +32,9 @@ export default class LoggedInNav extends Component {
             <span>My Orders</span>
           </a>
         </Link>
-        <Link
-          href={{
-            pathname: '/'
-          }}
-        >
-          <span onClick={this.props.signOut}>
-            <a href="/">Log Out</a>
+        <Link href="/">
+          <span onClick={this.handleSignOut}>
+            <a>Log Out</a>
           </span>
         </Link>
       </React.Fragment>

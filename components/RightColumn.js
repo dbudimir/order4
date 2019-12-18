@@ -19,7 +19,7 @@ export default class RightColumn extends Component {
       <div className="col-right">
         <Link
           href={{
-            pathname: `/tags/${this.props.tag}`
+            pathname: `/tags/[tag]`
           }}
           as={{ pathname: `/tags/${this.props.tag}` }}
         >
@@ -31,7 +31,7 @@ export default class RightColumn extends Component {
         </Link>
         <Link
           href={{
-            pathname: `/chains/${this.props.chainName}`
+            pathname: `/chains/[name]`
           }}
           as={{ pathname: `/chains/${this.props.chainName}` }}
         >

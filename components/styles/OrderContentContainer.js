@@ -59,6 +59,7 @@ const OrderContentContainer = styled.div`
 
   .order-data {
     padding: 12px 12px;
+    width: 100%;
 
     .chain {
       display: flex;
