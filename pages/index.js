@@ -4,6 +4,7 @@ import 'isomorphic-fetch';
 import { NextSeo } from 'next-seo';
 
 import Layout from '../components/Layout';
+import Footer from '../components/Footer';
 import Search from '../components/Search';
 import Chains from '../components/Chains';
 
@@ -18,12 +19,13 @@ class Index extends Component {
         <Layout />
         <Search />
         <Chains chains={this.props.chains} />
+        <Footer />
       </div>
     );
   }
 }
 
-Index.getInitialProps = async () => {
+export async function getServerSideProps(context) {
   const res = await fetch(process.env.api_key + `/api/chains/Chipotle`);
   const data = await res.json();
 
@@ -31,8 +33,8 @@ Index.getInitialProps = async () => {
   const data2 = await res2.json();
 
   return {
-    chains: [data, data2]
+    props: { chains: [data, data2] }
   };
-};
+}
 
 export default Index;

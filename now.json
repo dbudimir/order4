@@ -4,7 +4,7 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@now/next@2.1.0"
+      "use": "@now/next@2.3.9"
     }
   ],
   "build": {

@@ -1,17 +1,14 @@
 import React, { useContext, useEffect } from 'react';
+import UserContext from './UserContext';
 
 import styled from 'styled-components';
 
 import Nav from './navigation/Nav';
 
-import UserContext from './UserContext';
-
 const GlobalLayout = styled.div`
-  .navbar {
-    position: sticky;
-    top: 0px;
-    z-index: 10;
-  }
+  position: sticky;
+  top: 0px;
+  z-index: 10;
 
   .feedback-icon {
     position: fixed;
