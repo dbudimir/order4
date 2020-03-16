@@ -10,7 +10,7 @@ export default class ActionBar extends Component {
       favoritesClass: 'favorites',
       orderId: props.orderId,
       favoriteCount: props.favoriteCount,
-      loggedInUserFavorite: false
+      loggedInUserFavorite: null
     };
   }
 
@@ -36,33 +36,47 @@ export default class ActionBar extends Component {
       {
         favoritesClass: favoriteClass,
         loggedInUserFavorite: this.state.loggedInUserFavorite === true ? false : true,
+        orderId: this.props.orderId,
         favoriteCount: updateCount
       },
       () => {}
     );
 
-    const reqBody = { userId: localStorage.userId, orderId: this.props.orderId };
+    let reqBody = { userId: localStorage.userId, orderId: this.props.orderId };
+
     axios
       .post(process.env.api_key + apiURL, { ...reqBody })
-      .then(res => {})
+      .then(res => {
+        console.log(res);
+      })
       .catch(err => {
         console.log(err);
       });
   };
 
   handleFavoriteClick = e => {
-    if (this.state.loggedInUserFavorite === true) {
-      // Add favorite
-      this.favoriteUnfavorite(`/api/orders/unfavorite`, this.state.favoriteCount - 1, 'favorites');
-    } else if (localStorage.isLoggedIn === 'true') {
-      // Remove favorite
-      this.favoriteUnfavorite(
-        `/api/orders/favorite`,
-        this.state.favoriteCount + 1,
-        'favorites svg-clicked'
-      );
+    console.log(this.state.loggedInUserFavorite);
+    if (localStorage.isLoggedIn === 'true') {
+      if (this.state.loggedInUserFavorite === false || this.state.loggedInUserFavorite === null) {
+        console.log('favoriting');
+        // Add favorite
+        this.favoriteUnfavorite(
+          `/api/orders/favorite`,
+          this.state.favoriteCount + 1,
+          'favorites svg-clicked'
+        );
+      } else if (this.state.isLoggedInUserFavorite !== false) {
+        console.log('unfavoriting');
+        console.log(this.state);
+        // Remove favorite
+        this.favoriteUnfavorite(
+          `/api/orders/unfavorite`,
+          this.state.favoriteCount - 1,
+          'favorites'
+        );
+      }
     } else {
-      console.log('pleae create an account to favortie order');
+      alert('Please create an account to favortie order.');
     }
   };
 

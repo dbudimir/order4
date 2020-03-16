@@ -99,7 +99,7 @@ class OrderContent extends Component {
         <ActionBar
           key={this.state.orderId}
           favoriteCount={this.state.favoriteCount}
-          orderID={this.state.orderId}
+          orderId={this.state.orderId}
           usersFavorited={this.state.usersFavorited}
         />
         <div className="order-data">
