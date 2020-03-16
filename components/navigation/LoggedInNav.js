@@ -24,11 +24,11 @@ export default class LoggedInNav extends Component {
         <Link
           href={{
             pathname: '/user/[user]',
-            query: { userId: localStorage.userId }
+            query: { userId: localStorage.username }
           }}
-          as={{ pathname: `/user/${localStorage.userId}` }}
+          as={{ pathname: `/user/${localStorage.username}` }}
         >
-          <a href={`/user/${localStorage.userId}`}>
+          <a href={`/user/${localStorage.username}`}>
             <span>My Orders</span>
           </a>
         </Link>

@@ -75,7 +75,6 @@ class Orders extends Component {
   };
 
   render() {
-    console.log(this.state);
     let sortedOrders = () => {
       if (this.state.sortOrder === 'popular') {
         return this.state.orders.sort(

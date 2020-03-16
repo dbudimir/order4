@@ -14,7 +14,7 @@ const OrderContentContainer = styled.div`
   box-shadow: 0 5.125px 10px -1.125px rgba(0, 0, 0, 0.1);
   font-family: Nunito, sans-serif;
   display: flex;
-  flex-direction: row-reverse;
+  position: relative;
 
   @media ${size.tablet} {
     flex-basis: 100%;
@@ -62,7 +62,7 @@ const OrderContentContainer = styled.div`
     width: 100%;
 
     .chain {
-      display: flex;
+      display: block;
       width: 100%;
       justify-content: space-between;
       align-items: center;
@@ -70,7 +70,21 @@ const OrderContentContainer = styled.div`
       .chain-logo {
         max-height: 26px;
         max-width: 120px;
-        float: right;
+        display: block;
+      }
+
+      .created-by {
+        width: 100%;
+
+        p {
+          font-size: 14px;
+
+          span {
+            padding: 0px;
+            margin: 0px;
+            background: transparent;
+          }
+        }
       }
 
       h3 {

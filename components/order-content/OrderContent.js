@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
+import Moment from 'react-moment';
+
 import OrderContentContainer from '../styles/OrderContentContainer';
 
 import ActionBar from './ActionBar';
@@ -13,7 +15,8 @@ class OrderContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tags: []
+      tags: [],
+      userData: []
     };
   }
 
@@ -32,7 +35,8 @@ class OrderContent extends Component {
             usersFavorited: data[0].usersFavorited,
             orderName: data[0].orderName,
             chainName: data[0].chainName,
-            createdAt: data[0].createdAt
+            createdAt: data[0].createdAt,
+            userData: data[0].users
           });
         })
         .catch(err => {
@@ -58,6 +62,8 @@ class OrderContent extends Component {
   render() {
     let chainLogo;
     let chainOrderContent;
+    let orderUserName =
+      this.state.userData.length === 0 ? 'unknown' : this.state.userData[0].userName;
 
     if (this.state.chainName === 'Chipotle') {
       chainLogo = (
@@ -96,16 +102,33 @@ class OrderContent extends Component {
 
     return (
       <OrderContentContainer className="order-content-container">
-        <ActionBar
-          key={this.state.orderId}
-          favoriteCount={this.state.favoriteCount}
-          orderId={this.state.orderId}
-          usersFavorited={this.state.usersFavorited}
-        />
         <div className="order-data">
           <div className="chain">
-            <h3>{this.state.chainName}</h3>
+            {/* <h3>{this.state.chainName}</h3> */}
             {chainLogo}
+            <div className="created-by">
+              <p>
+                Created by
+                <Link
+                  href={{
+                    pathname: `/user/[user]`,
+                    query: { user: orderUserName }
+                  }}
+                  as={{ pathname: `/user/${orderUserName}` }}
+                >
+                  <a href={`/user/${orderUserName}`}>
+                    <span> {orderUserName} </span>
+                  </a>
+                </Link>
+                <span>
+                  {this.state.userData.length === 0 ? (
+                    ''
+                  ) : (
+                    <Moment fromNow>{this.state.createdAt}</Moment>
+                  )}
+                </span>
+              </p>
+            </div>
           </div>
           <h2 className="order-name">{this.state.orderName}</h2>
           <p className="description">{this.state.orderDescription}</p>
@@ -114,6 +137,13 @@ class OrderContent extends Component {
             <div className="tags">{tags}</div>
           </div>
         </div>
+
+        <ActionBar
+          key={this.state.orderId}
+          favoriteCount={this.state.favoriteCount}
+          orderId={this.state.orderId}
+          usersFavorited={this.state.usersFavorited}
+        />
       </OrderContentContainer>
     );
   }

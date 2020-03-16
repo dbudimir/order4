@@ -55,10 +55,8 @@ export default class ActionBar extends Component {
   };
 
   handleFavoriteClick = e => {
-    console.log(this.state.loggedInUserFavorite);
     if (localStorage.isLoggedIn === 'true') {
       if (this.state.loggedInUserFavorite === false || this.state.loggedInUserFavorite === null) {
-        console.log('favoriting');
         // Add favorite
         this.favoriteUnfavorite(
           `/api/orders/favorite`,
@@ -66,8 +64,6 @@ export default class ActionBar extends Component {
           'favorites svg-clicked'
         );
       } else if (this.state.isLoggedInUserFavorite !== false) {
-        console.log('unfavoriting');
-        console.log(this.state);
         // Remove favorite
         this.favoriteUnfavorite(
           `/api/orders/unfavorite`,
@@ -101,15 +97,15 @@ export default class ActionBar extends Component {
           <span className="like-count">{this.state.favoriteCount}</span>
         </div>
         <TwitterShareButton
-          url={`https://mealdig.com/orders/${this.props.orderID}`}
-          title={`Check out ${this.state.orderName} at ${this.state.chainName}. https://mealdig.com/orders/${this.props.orderID}`}
+          url={`https://mealdig.com/orders/${this.props.orderId}`}
+          title={`Check out ${this.state.orderName} at ${this.state.chainName}. https://mealdig.com/orders/${this.props.orderId}`}
           hashtags={this.state.tags}
         >
           <TwitterIcon size={24} round />
         </TwitterShareButton>
         <FacebookShareButton
-          url={`https://mealdig.com/orders/${this.props.orderID}`}
-          quote={`Check out ${this.state.orderName} at ${this.state.chainName}. https://mealdig.com/orders/${this.props.orderID}`}
+          url={`https://mealdig.com/orders/${this.props.orderId}`}
+          quote={`Check out ${this.state.orderName} at ${this.state.chainName}. https://mealdig.com/orders/${this.props.orderId}`}
         >
           <FacebookIcon size={24} round />
         </FacebookShareButton>
@@ -117,11 +113,11 @@ export default class ActionBar extends Component {
           <Link
             href={{
               pathname: '/orders/[usider]',
-              query: { id: this.props.orderID }
+              query: { id: this.props.orderId }
             }}
-            as={{ pathname: `/orders/${this.props.orderID}` }}
+            as={{ pathname: `/orders/${this.props.orderId}` }}
           >
-            <a href={`/orders/${this.props.orderID}`}>
+            <a href={`/orders/${this.props.orderId}`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"

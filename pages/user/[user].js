@@ -54,7 +54,6 @@ class User extends Component {
 
 User.getInitialProps = async ({ req, query }) => {
   const res = await fetch(process.env.api_key + `/api/users/${query.user}`);
-  //   const res = await fetch(`${process.env.API_HOST}api/users/${query.user}`);
   const data = await res.json();
 
   return {
