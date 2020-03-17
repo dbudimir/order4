@@ -128,7 +128,7 @@ export default function SubmitConfirmation(props) {
       axios
         .post(process.env.api_key + `/api/user-order/create/existing-user`, { ...reqBody })
         .then(response => {
-          Router.push(`/user/${localStorage.userId}`);
+          Router.push(`/user/${localStorage.username}`);
         });
     } else if (localStorage.length === 0) {
       const reqBody = { order: props.orderState.order };

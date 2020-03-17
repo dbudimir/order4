@@ -2,14 +2,17 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
-import Moment from 'react-moment';
 
 import OrderContentContainer from '../styles/OrderContentContainer';
 
-import ActionBar from './ActionBar';
+// Components pulling innformaton relevent to all chains
+import ActionBar from './all-orders/ActionBar';
+import CreatedMeta from './all-orders/CreatedMeta';
+import OrderTags from './all-orders/OrderTags';
 
-import ChipotleOrder from './ChipotleOrder';
-import AndPizzaOrder from './AndPizzaOrder';
+// Components pulling innformaton relevent to a specific chain
+import ChainLogo from './chain-specific/ChainLogo';
+import ChainContent from './chain-specific/ChainContent';
 
 class OrderContent extends Component {
   constructor(props) {
@@ -44,7 +47,6 @@ class OrderContent extends Component {
         });
     } else {
       const { order, chainName } = this.props.orderState;
-
       this.setState({
         orderDescription: order.description,
         orderContent: order,
@@ -60,81 +62,18 @@ class OrderContent extends Component {
   }
 
   render() {
-    let chainLogo;
-    let chainOrderContent;
-    let orderUserName =
-      this.state.userData.length === 0 ? 'unknown' : this.state.userData[0].userName;
-
-    if (this.state.chainName === 'Chipotle') {
-      chainLogo = (
-        <img
-          className="chain-logo"
-          src="../../static/chain-logos/chipotle-logo.png"
-          alt="chipotle-logo"
-        />
-      );
-      chainOrderContent = <ChipotleOrder orderState={this.state.orderContent} />;
-    } else if (this.state.chainName === '&pizza') {
-      chainLogo = (
-        <img
-          className="chain-logo"
-          src="../../static/chain-logos/and-pizza-logo.png"
-          alt="and-pizza-logo"
-        />
-      );
-      chainOrderContent = <AndPizzaOrder orderState={this.state.orderContent} />;
-    }
-
-    const tags = this.state.tags.map((tag, index) => (
-      <Link
-        key={`tag-${index}`}
-        href={{
-          pathname: `/chains/[name]/[tag]`,
-          query: { chainName: this.state.chainName.toLowerCase(), tag: tag }
-        }}
-        as={{ pathname: `/chains/${this.state.chainName.toLowerCase()}/${tag}` }}
-      >
-        <a href={`/chains/${this.state.chainName.toLowerCase()}/${tag}`}>
-          <span key={`tag-${index}`}>{tag.replace(/-/g, ' ')}</span>
-        </a>
-      </Link>
-    ));
-
     return (
       <OrderContentContainer className="order-content-container">
         <div className="order-data">
-          <div className="chain">
-            {/* <h3>{this.state.chainName}</h3> */}
-            {chainLogo}
-            <div className="created-by">
-              <p>
-                Created by
-                <Link
-                  href={{
-                    pathname: `/user/[user]`,
-                    query: { user: orderUserName }
-                  }}
-                  as={{ pathname: `/user/${orderUserName}` }}
-                >
-                  <a href={`/user/${orderUserName}`}>
-                    <span> {orderUserName} </span>
-                  </a>
-                </Link>
-                <span>
-                  {this.state.userData.length === 0 ? (
-                    ''
-                  ) : (
-                    <Moment fromNow>{this.state.createdAt}</Moment>
-                  )}
-                </span>
-              </p>
-            </div>
+          <ChainLogo chainName={this.state.chainName} />
+          <div className="order-info">
+            <h2 className="order-name">{this.state.orderName}</h2>
+            <p className="description">{this.state.orderDescription}</p>
           </div>
-          <h2 className="order-name">{this.state.orderName}</h2>
-          <p className="description">{this.state.orderDescription}</p>
-          {chainOrderContent}
-          <div className="tag-row">
-            <div className="tags">{tags}</div>
+          <ChainContent chainName={this.state.chainName} orderState={this.state.orderContent} />
+          <div className="order-meta">
+            <OrderTags chainName={this.state.chainName} tags={this.state.tags} />
+            <CreatedMeta userData={this.state.userData} dateCreated={this.state.createdAt} />
           </div>
         </div>
 

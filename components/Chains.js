@@ -96,6 +96,7 @@ class Chains extends Component {
           order.orderName !== undefined &&
           order.orderName.includes('test') !== true &&
           order.orderName.includes('Test') !== true &&
+          order.tags.length > 0 &&
           Object.keys(order).length > 4
         ) {
           return <OrderContent orderID={order._id} key={chain.name + ' - ' + ordersIndex} />;
