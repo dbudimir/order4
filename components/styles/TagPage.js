@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const TagPages = styled.div`
   max-width: 100%;
+  margin-bottom: 200px;
 
   .background-image-container {
     background-color: #9883e5;

@@ -75,19 +75,19 @@ class Orders extends Component {
   };
 
   render() {
+    console.log(this.state.sortOrder);
     let sortedOrders = () => {
       if (this.state.sortOrder === 'popular') {
-        return this.state.orders.sort(
-          (a, b) => parseFloat(b.favoriteCount) - parseFloat(a.favoriteCount)
-        );
+        return this.state.orders.sort((a, b) => b.favoriteCount - a.favoriteCount);
       } else if (this.state.sortOrder === 'recent') {
-        return this.state.orders.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
-      } else if (this.state.sortOrder === 'oldest') {
         return this.state.orders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      } else if (this.state.sortOrder === 'oldest') {
+        return this.state.orders.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
       }
     };
 
     let orderCards = sortedOrders().map((order, index) => {
+      console.log(order);
       if (
         order.orderName !== null &&
         order.orderName !== undefined &&

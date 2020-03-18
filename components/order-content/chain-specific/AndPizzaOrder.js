@@ -45,7 +45,7 @@ class AndPizzaOrder extends Component {
 
   render() {
     return (
-      <div className="order-content">
+      <React.Fragment>
         <p>
           Dough: <span>{this.state.dough}</span>
         </p>
@@ -54,7 +54,7 @@ class AndPizzaOrder extends Component {
         <p>Finishes: {this.state.finishes}</p>
         <p>Proteins: {this.state.proteins}</p>
         <p>Veggies: {this.state.veggies}</p>
-      </div>
+      </React.Fragment>
     );
   }
 }

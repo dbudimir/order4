@@ -13,7 +13,14 @@ const GlobalLayout = styled.div`
   .feedback-icon {
     position: fixed;
     bottom: 12px;
-    right: 12px;
+    left: 12px;
+    background: #ffffff;
+    border-radius: 100%;
+    box-shadow: 0 11px 40px 0 rgba(0, 0, 0, 0.25), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+
+    img {
+      padding: 3px 3px 0 3px;
+    }
   }
 `;
 

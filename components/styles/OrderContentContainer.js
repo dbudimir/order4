@@ -5,16 +5,99 @@ const size = {
   phone: 'only screen and (max-width : 548px)'
 };
 
+const ModalContainer = styled.div`
+  margin-right: 24px;
+
+  .modal-container-true {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.75);
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height: 100vh;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .order-content-container {
+      display: flex;
+      flex-wrap: wrap;
+      width: 1024px;
+      height: max-content;
+
+      .title-bar {
+        display: flex;
+        justify-content: flex-end;
+        background-color: #f5f6f7;
+        padding: 6px;
+        width: 100%;
+
+        div {
+          display: flex;
+          align-items: center;
+          padding: 4px;
+          border-radius: 4px;
+
+          &:hover {
+            background-color: #dfe2e4;
+            cursor: pointer;
+          }
+
+          p {
+            font-size: 16px;
+            margin: 0 6px 0 0;
+            letter-spacing: 1px;
+          }
+
+          svg {
+            width: 20px;
+            height: 20px;
+            stroke-width: 1.5;
+          }
+        }
+      }
+      .user-actions {
+        flex-direction: row;
+        width: 100%;
+
+        div {
+          margin-right: 6px;
+        }
+
+        svg {
+          margin: 0 6px 0 0;
+        }
+
+        .favorites {
+          flex-direction: row;
+        }
+      }
+    }
+  }
+
+  .modal-container {
+    width: 100%;
+
+    .order-content-container {
+      .title-bar {
+        display: none;
+      }
+    }
+  }
+`;
+
 const OrderContentContainer = styled.div`
   background-color: #ffffff;
+  width: 100%;
   margin-bottom: 32px;
-  flex-basis: 46%;
   border-radius: 4px;
   overflow: hidden;
   box-shadow: 0 5.125px 10px -1.125px rgba(0, 0, 0, 0.1);
   font-family: Nunito, sans-serif;
   display: flex;
-  position: relative;
+  text-decoration: none;
+  min-width: 360px;
 
   @media ${size.tablet} {
     flex-basis: 100%;
@@ -34,6 +117,10 @@ const OrderContentContainer = styled.div`
     }
 
     .order-info {
+      .order-name {
+        margin-bottom: 12px;
+      }
+
       .description {
         margin-top: 12px;
         margin-bottom: 6px;
@@ -45,6 +132,8 @@ const OrderContentContainer = styled.div`
     }
 
     .order-content {
+      flex-grow: 1;
+
       p {
         line-height: 2;
         margin: 6px 0px;
@@ -73,6 +162,10 @@ const OrderContentContainer = styled.div`
           width: 100%;
           span {
             font-weight: 700;
+            &:hover {
+              background-color: #0067ff;
+              color: #ffffff;
+            }
           }
         }
 
@@ -109,7 +202,7 @@ const OrderContentContainer = styled.div`
       background-color: #eeeef1;
       padding: 1px 4px;
       border-radius: 4px;
-      margin: 0 0 4px 4px;
+      margin: 0 4px 4px 0;
       font-weight: 400;
     }
   }
@@ -157,4 +250,4 @@ const OrderContentContainer = styled.div`
   }
 `;
 
-export default OrderContentContainer;
+export { ModalContainer, OrderContentContainer };

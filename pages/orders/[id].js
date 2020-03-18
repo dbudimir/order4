@@ -40,14 +40,13 @@ class Orders extends Component {
   }
 }
 
-Orders.getInitialProps = async ({ query }) => {
-  const res = await fetch(process.env.api_key + `/api/orders/id/${query.id}`);
+export async function getServerSideProps(context) {
+  const res = await fetch(process.env.api_key + `/api/orders/id/${context.query.id}`);
   const data = await res.json();
 
   return {
-    order: data,
-    orderId: query.id
+    props: { order: data, orderId: context.query.id }
   };
-};
+}
 
 export default Orders;

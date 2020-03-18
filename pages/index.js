@@ -13,8 +13,8 @@ class Index extends Component {
     return (
       <div>
         <NextSeo
-          title={`MealDig | Custom fast-casual meal orders.`}
-          description={`Discover popular meals and custom orders at your favorite fast-casual dining spots.`}
+          title={`MealDig | The custom food order database.`}
+          description={`Discover popular meals and custom food orders at your favorite fast-casual dining spots.`}
         />
         <Layout />
         <Search />

@@ -7,6 +7,7 @@ import { NextSeo } from 'next-seo';
 import TagPage from '../../../components/styles/TagPage';
 
 import Layout from '../../../components/Layout';
+import Footer from '../../../components/Footer';
 import RightColumn from '.../../../components/RightColumn';
 import OrderContent from '../../../components/order-content/OrderContent';
 
@@ -47,23 +48,25 @@ class Tag extends Component {
             <RightColumn tag={this.props.tag} chainName={this.props.name} />
           </div>
         </TagPage>
+        <Footer />
       </div>
     );
   }
 }
-
-Tag.getInitialProps = async ({ query }) => {
-  const chainUpper = query.name.charAt(0).toUpperCase() + query.name.slice(1);
-  const lookup = `${chainUpper}/${query.tag}`;
+export async function getServerSideProps(context) {
+  const chainUpper = context.query.name.charAt(0).toUpperCase() + context.query.name.slice(1);
+  const lookup = `${chainUpper}/${context.query.tag}`;
   const res = await fetch(process.env.api_key + `/api/orders/chain/${lookup}`);
   const data = await res.json();
 
   return {
-    orders: data,
-    name: query.name,
-    tag: query.tag,
-    full: query
+    props: {
+      orders: data,
+      name: context.query.name,
+      tag: context.query.tag,
+      full: context.query
+    }
   };
-};
+}
 
 export default Tag;

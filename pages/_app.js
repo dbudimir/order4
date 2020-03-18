@@ -47,7 +47,6 @@ export default class MyApp extends App {
   };
 
   signOut = async () => {
-    console.log('signing out now');
     this.setState(
       {
         userName: '',

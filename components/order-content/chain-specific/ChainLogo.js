@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Link from 'next/link';
 
 class ChainLogo extends Component {
   constructor(props) {
@@ -28,7 +29,19 @@ class ChainLogo extends Component {
         />
       );
     }
-    return <React.Fragment>{chainLogo}</React.Fragment>;
+    return (
+      <React.Fragment>
+        <Link
+          href={{
+            pathname: '/chains/[name]',
+            query: { chainName: this.props.chainName }
+          }}
+          as={{ pathname: `/chains/${this.props.chainName}` }}
+        >
+          <a href={`/chains${this.props.chainName}`}>{chainLogo}</a>
+        </Link>
+      </React.Fragment>
+    );
   }
 }
 
