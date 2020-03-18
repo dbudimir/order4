@@ -47,20 +47,11 @@ class Chains extends Component {
   }
 
   render() {
+    console.log(this.props.chains);
     const chainOrders = this.props.chains;
     const chainRows = chainOrders.map((chain, chainsIndex) => {
-      const orders = chain.orders.map((order, ordersIndex) => {
-        if (
-          chain.name === order.chainName &&
-          order.orderName !== null &&
-          order.orderName !== undefined &&
-          order.orderName.includes('test') !== true &&
-          order.orderName.includes('Test') !== true &&
-          order.tags.length > 0 &&
-          Object.keys(order).length > 4
-        ) {
-          return <OrderContent orderID={order._id} key={chain.name + ' - ' + ordersIndex} />;
-        }
+      const orders = chain.map((order, ordersIndex) => {
+        return <OrderContent orderID={order._id} key={chain.name + ' - ' + ordersIndex} />;
       });
 
       return (

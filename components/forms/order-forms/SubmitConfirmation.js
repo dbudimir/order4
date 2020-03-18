@@ -106,10 +106,6 @@ const ModalOuter = styled.div`
       h3 {
         font-size: 18px;
       }
-
-      .actions {
-        display: none;
-      }
     }
   }
 `;

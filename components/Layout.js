@@ -12,8 +12,8 @@ const GlobalLayout = styled.div`
 
   .feedback-icon {
     position: fixed;
-    bottom: 12px;
-    left: 12px;
+    bottom: 20px;
+    left: 20px;
     background: #ffffff;
     border-radius: 100%;
     box-shadow: 0 11px 40px 0 rgba(0, 0, 0, 0.25), 0 2px 10px 0 rgba(0, 0, 0, 0.12);

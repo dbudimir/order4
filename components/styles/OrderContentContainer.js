@@ -23,7 +23,7 @@ const ModalContainer = styled.div`
     .order-content-container {
       display: flex;
       flex-wrap: wrap;
-      width: 1024px;
+      max-width: 1024px;
       height: max-content;
 
       .title-bar {
@@ -57,20 +57,34 @@ const ModalContainer = styled.div`
           }
         }
       }
+
+      .order-data {
+        .description {
+          display: block;
+        }
+      }
+
       .user-actions {
         flex-direction: row;
         width: 100%;
 
-        div {
-          margin-right: 6px;
-        }
-
-        svg {
-          margin: 0 6px 0 0;
-        }
-
         .favorites {
           flex-direction: row;
+        }
+
+        div {
+          margin-right: 6px;
+          svg {
+            margin: 0 6px 0 0;
+          }
+        }
+
+        div:last-of-type {
+          height: 24px;
+
+          svg {
+            margin: 3px 0 0 0;
+          }
         }
       }
     }
@@ -117,17 +131,19 @@ const OrderContentContainer = styled.div`
     }
 
     .order-info {
+      margin-bottom: 6px;
+      border-bottom: 2px solid #eeeef1;
+      padding-bottom: 12px;
+
       .order-name {
         margin-bottom: 12px;
       }
 
       .description {
         margin-top: 12px;
-        margin-bottom: 6px;
         font-weight: 400;
-        border-bottom: 2px solid #eeeef1;
-        padding-bottom: 12px;
         font-size: 18px;
+        display: none;
       }
     }
 
@@ -167,18 +183,6 @@ const OrderContentContainer = styled.div`
               color: #ffffff;
             }
           }
-        }
-
-        .actions {
-          display: flex;
-          flex-direction: row;
-          align-items: inherit;
-        }
-
-        .actions > * {
-          margin-left: 8px;
-          cursor: pointer;
-          max-height: 24px;
         }
       }
 
@@ -228,7 +232,6 @@ const OrderContentContainer = styled.div`
     }
 
     svg {
-      margin-bottom: 4px;
       fill: none;
       cursor: pointer;
     }

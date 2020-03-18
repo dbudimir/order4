@@ -112,7 +112,7 @@ export default class ActionBar extends Component {
         <div>
           <Link
             href={{
-              pathname: '/orders/[usider]',
+              pathname: '/orders/[id]',
               query: { id: this.props.orderId }
             }}
             as={{ pathname: `/orders/${this.props.orderId}` }}
