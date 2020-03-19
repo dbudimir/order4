@@ -92,6 +92,7 @@ const ModalContainer = styled.div`
 
   .modal-container {
     width: 100%;
+    margin-bottom: 32px;
 
     .order-content-container {
       .title-bar {
@@ -104,7 +105,6 @@ const ModalContainer = styled.div`
 const OrderContentContainer = styled.div`
   background-color: #ffffff;
   width: 100%;
-  margin-bottom: 32px;
   border-radius: 4px;
   overflow: hidden;
   box-shadow: 0 5.125px 10px -1.125px rgba(0, 0, 0, 0.1);
@@ -112,6 +112,12 @@ const OrderContentContainer = styled.div`
   display: flex;
   text-decoration: none;
   min-width: 360px;
+  border: 1px solid #f5f6f7;
+
+  &:hover {
+    border: 1px solid rgb(0, 103, 255);
+    cursor: pointer;
+  }
 
   @media ${size.tablet} {
     flex-basis: 100%;
@@ -176,11 +182,17 @@ const OrderContentContainer = styled.div`
           margin: 0px;
           text-transform: capitalize;
           width: 100%;
-          span {
-            font-weight: 700;
-            &:hover {
-              background-color: #0067ff;
-              color: #ffffff;
+
+          a {
+            text-decoration: none;
+
+            span {
+              font-weight: 700;
+
+              &:hover {
+                background-color: #0067ff;
+                color: #ffffff;
+              }
             }
           }
         }

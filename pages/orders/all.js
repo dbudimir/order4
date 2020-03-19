@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
-import shuffle from 'shuffle-array';
 import 'isomorphic-fetch';
 
 import styled from 'styled-components';
@@ -75,7 +74,6 @@ class Orders extends Component {
   };
 
   render() {
-    console.log(this.state.sortOrder);
     let sortedOrders = () => {
       if (this.state.sortOrder === 'popular') {
         return this.state.orders.sort((a, b) => b.favoriteCount - a.favoriteCount);

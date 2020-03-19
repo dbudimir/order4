@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import 'isomorphic-fetch';
-
 import { NextSeo } from 'next-seo';
+import fetch from 'isomorphic-fetch';
 
 import Layout from '../components/Layout';
 import Footer from '../components/Footer';
@@ -10,7 +9,15 @@ import Chains from '../components/Chains';
 
 class Index extends Component {
   render() {
-    console.log(this.props.chains);
+    let chainName = '';
+    const chainOrders = this.props.chains;
+
+    // Start function that generates row for each chain
+    const chainRows = chainOrders.map((chain, chainsIndex) => {
+      chainName = chain[0].chainName;
+      return <Chains chain={chain} index={chainsIndex} />;
+    });
+
     return (
       <div>
         <NextSeo
@@ -19,7 +26,7 @@ class Index extends Component {
         />
         <Layout />
         <Search />
-        <Chains chains={this.props.chains} />
+        {chainRows}
         <Footer />
       </div>
     );

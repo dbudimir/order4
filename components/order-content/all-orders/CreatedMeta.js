@@ -15,7 +15,7 @@ export default class CreatedMeta extends Component {
     return (
       <div className="created-by">
         <p>
-          Created by
+          Created by{' '}
           <Link
             href={{
               pathname: `/user/[user]`,
@@ -24,9 +24,9 @@ export default class CreatedMeta extends Component {
             as={{ pathname: `/user/${orderUserName}` }}
           >
             <a href={`/user/${orderUserName}`}>
-              <span> {orderUserName} </span>
+              <span>{orderUserName}</span>
             </a>
-          </Link>
+          </Link>{' '}
           <span>
             {this.props.userData.length === 0 ? (
               ''

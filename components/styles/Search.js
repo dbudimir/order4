@@ -5,23 +5,12 @@ const size = {
   phone: 'only screen and (max-width : 548px)'
 };
 
-const slide = keyframes`
-0% {
-	background-position: 0 -350%;
-}
-100% {
-	background-position: 0 375%;
-}
-`;
-
 const SearchRow = styled.div`
   display: flex;
   background-color: #1774ff;
-  background-image: url(/static/background-animation.svg);
   background-repeat: no-repeat;
   background-size: 100% auto;
   background-position: center center;
-  animation: ${slide} 20s linear infinite;
 
   textarea,
   input.text,
