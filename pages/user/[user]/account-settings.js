@@ -10,13 +10,39 @@ import styled from 'styled-components';
 
 import Layout from '../../../components/Layout';
 
-const H1 = styled.h1`
+const AccountSettingsContainer = styled.div`
   max-width: 1024px;
   margin: 60px auto 48px;
-  padding: 0px 12px;
   font-family: Roboto, sans-serif;
-  font-size: 42px;
-  font-weight: 800;
+
+  h1 {
+    font-size: 42px;
+    font-weight: 800;
+  }
+
+  .item-container {
+    margin-bottom: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    .item-title {
+      width: 100%;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    input {
+      margin-right: 24px;
+    }
+  }
+
+  .save-button {
+    border: 1px solid #000000;
+    padding: 12px 6px;
+    text-align: center;
+    cursor: pointer;
+  }
 `;
 
 class AccountSettings extends Component {
@@ -26,7 +52,6 @@ class AccountSettings extends Component {
   }
 
   updateState = event => {
-    console.log(this.state);
     const { target } = event;
     const { value } = target;
     const { name } = target;
@@ -38,7 +63,7 @@ class AccountSettings extends Component {
 
   saveUserSettings = () => {
     const reqBody = this.state;
-    console.log(reqBody);
+
     axios
       .post(process.env.api_key + `/api/users/update-user`, {
         ...reqBody
@@ -48,34 +73,72 @@ class AccountSettings extends Component {
 
   render() {
     let user = this.state;
+    let createdDate = new Date(user.createdAt);
     console.log(user);
+
     return (
       <React.Fragment>
         <NextSeo title={`Profile for ${user.userFullName}`} />
         <Layout />
-        <H1>{`Profile for ${user.userFullName}`}</H1>
-        <div>Name: {user.userFullName}</div>
-        <div>Username: {user.userName}</div>
-        <div>Email: {user.email}</div>
-        <div>See all {user.orders.length} orders</div>
-        <hr />
-        <input
-          name="userName"
-          onChange={this.updateState}
-          type="text"
-          placeholder="Enter your email"
-        />
-        <div onClick={this.saveUserSettings}>Save settings</div>
+        <AccountSettingsContainer>
+          <h1>{`Profile for ${user.userFullName}`}</h1>
+          <div className="item-container">
+            <span className="item-title">Name:</span>
+            <input
+              name="userFullName"
+              onChange={this.updateState}
+              type="text"
+              placeholder="Enter new name"
+            />
+            <div className="updated-value"> {user.userFullName}</div>
+          </div>
+
+          <div className="item-container">
+            <span className="item-title">User Name:</span>
+            <input
+              name="userName"
+              onChange={this.updateState}
+              type="text"
+              placeholder="Enter new username"
+            />
+            <div className="updated-value"> {user.userName}</div>
+          </div>
+
+          <div className="item-container">
+            <span className="item-title">Email</span>
+            <input
+              name="email"
+              onChange={this.updateState}
+              type="text"
+              placeholder="Enter new email"
+            />
+            <div className="updated-value"> {user.email}</div>
+          </div>
+
+          <div>User was created on {createdDate.toString()}</div>
+          <div>See all {user.orders.length} orders</div>
+          <hr />
+          <div className="save-button" onClick={this.saveUserSettings}>
+            Save settings
+          </div>
+        </AccountSettingsContainer>
       </React.Fragment>
     );
   }
 }
 
 export async function getServerSideProps(context) {
-  const res = await fetch(process.env.api_key + `/api/users/${context.query.user}`);
-  const data = await res.json();
+  let data;
+  if (context.query.user.length === 24) {
+    const res = await fetch(process.env.api_key + `/api/users/id/${context.query.user}`);
+    data = await res.json();
+  } else {
+    const res = await fetch(process.env.api_key + `/api/users/${context.query.user}`);
+    data = await res.json();
+  }
 
   return {
+    //  props: { data }
     props: { data }
   };
 }

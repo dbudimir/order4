@@ -90,8 +90,8 @@ class SignupForm extends Component {
 
     switch (fieldName) {
       case 'userName':
-        userNameValid = value.length >= 1;
-        formErrors.userName = userNameValid ? '' : 'Please enter a valid user name';
+        userNameValid = value.length >= 1 && value.length <= 20;
+        formErrors.userName = userNameValid ? '' : 'Enter a valid user name (20 characters max)';
         break;
       case 'email':
         emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);

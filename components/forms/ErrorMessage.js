@@ -7,6 +7,7 @@ const Error = styled.div`
   font-weight: 400;
   margin: -12px auto 12px;
   line-height: 1.25;
+  font-size: 14px;
 `;
 
 class ErrorMessage extends Component {
