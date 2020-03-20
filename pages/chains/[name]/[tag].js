@@ -8,7 +8,7 @@ import TagPage from '../../../components/styles/TagPage';
 
 import Layout from '../../../components/Layout';
 import Footer from '../../../components/Footer';
-import RightColumn from '.../../../components/RightColumn';
+import RightColumn from '../../../components/RightColumn';
 import OrderContent from '../../../components/order-content/OrderContent';
 
 class Tag extends Component {

@@ -42,12 +42,12 @@ class User extends Component {
     ));
 
     return (
-      <div>
+      <React.Fragment>
         <NextSeo title={`Custom orders created by ${this.props.fullName}`} />
         <Layout />
         <H1>{`Custom orders created by ${this.props.fullName}`}</H1>
         <OrderContainer className="order-content-container">{orderCard}</OrderContainer>
-      </div>
+      </React.Fragment>
     );
   }
 }
