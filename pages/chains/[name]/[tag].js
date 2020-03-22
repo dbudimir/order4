@@ -39,7 +39,7 @@ class Tag extends Component {
               <div className="headline-container">
                 <h1>
                   {`The most popular
-                  ${cleanTag.charAt(0).toUpperCase() + cleanTag.slice(1)} custom orders at
+                  ${cleanTag.charAt(0).toUpperCase() + cleanTag.slice(1)} custom meals at
                   ${this.props.name.charAt(0).toUpperCase() + this.props.name.slice(1)}`}
                 </h1>
               </div>

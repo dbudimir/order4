@@ -25,7 +25,7 @@ export default class RightColumn extends Component {
         >
           <a href={`/tags/${this.props.tag}`}>
             <div className="more-tag-cta">
-              <span>See more popular {capitalTagName} custom orders at other chains.</span>
+              <span>See more popular {capitalTagName} custom orders at other restaurantsow.</span>
             </div>
           </a>
         </Link>

@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import { ModalContainer, OrderContentContainer } from '../styles/OrderContentContainer';
+import { AdminPanel, ModalContainer, OrderContentContainer } from '../styles/OrderContentContainer';
 
 // Components pulling innformaton relevent to all chains
 import ActionBar from './all-orders/ActionBar';
@@ -39,7 +39,8 @@ class OrderContent extends Component {
             orderName: data[0].orderName,
             chainName: data[0].chainName,
             createdAt: data[0].createdAt,
-            userData: data[0].users
+            userData: data[0].users,
+            accessLevel: localStorage.accessLevel
           });
         })
         .catch(err => {
@@ -56,10 +57,22 @@ class OrderContent extends Component {
           })
         ),
         orderName: order.orderName,
-        chainName
+        chainName,
+        accessLevel: localStorage.accessLevel
       });
     }
   }
+
+  deleteOrder = e => {
+    axios
+      .delete(process.env.api_key + `/api/orders/delete/${this.props.orderID}`)
+      .then(res => {
+        console.log('sucessfully deleted');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   openOrderModal = e => {
     window.history.pushState('object or string', 'Title', `/orders/${this.state.orderId}`);
@@ -73,7 +86,7 @@ class OrderContent extends Component {
     window.history.pushState('object or string', 'Title', '/');
     e.stopPropagation();
     this.setState(prevState => ({
-      orderContentModal: 'modal-container'
+      orderContentModal: false
     }));
   };
 
@@ -81,67 +94,79 @@ class OrderContent extends Component {
     let chainRowModalDisplay =
       this.state.orderContentModal === true ? 'modal-container-true' : 'modal-container';
 
+    let adminPanel;
+    if (this.state.accessLevel === 'admin' && this.state.orderContentModal === true) {
+      adminPanel = (
+        <AdminPanel>
+          <span onClick={this.deleteOrder}>DELETE ORDER</span>
+        </AdminPanel>
+      );
+    }
+
     return (
-      <ModalContainer onClick={e => this.closeOrderModal(e)}>
-        <div className={chainRowModalDisplay}>
-          <OrderContentContainer className="order-content-container">
-            <div className="title-bar">
-              <div>
-                <p>CLOSE</p>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="feather feather-x-circle"
-                >
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="15" y1="9" x2="9" y2="15"></line>
-                  <line x1="9" y1="9" x2="15" y2="15"></line>
-                </svg>
+      <React.Fragment>
+        {adminPanel}
+        <ModalContainer onClick={e => this.closeOrderModal(e)}>
+          <div className={chainRowModalDisplay}>
+            <OrderContentContainer className="order-content-container">
+              <div className="title-bar">
+                <div>
+                  <p>CLOSE</p>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="feather feather-x-circle"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="15" y1="9" x2="9" y2="15"></line>
+                    <line x1="9" y1="9" x2="15" y2="15"></line>
+                  </svg>
+                </div>
               </div>
-            </div>
-            {/* Everything left of the action bar */}
-            <div className="order-data">
-              {/* Pulls in the correct logo */}
-              <ChainLogo chainName={this.state.chainName} onClick={e => this.openOrderModal(e)} />
+              {/* Everything left of the action bar */}
+              <div className="order-data">
+                {/* Pulls in the correct logo */}
+                <ChainLogo chainName={this.state.chainName} onClick={e => this.openOrderModal(e)} />
 
-              {/* Pulls in user enterted title and description */}
-              <div className="order-info" onClick={e => this.openOrderModal(e)}>
-                <h2 className="order-name">{this.state.orderName}</h2>
-                <p className="description">{this.state.orderDescription}</p>
+                {/* Pulls in user enterted title and description */}
+                <div className="order-info" onClick={e => this.openOrderModal(e)}>
+                  <h2 className="order-name">{this.state.orderName}</h2>
+                  <p className="description">{this.state.orderDescription}</p>
+                </div>
+
+                {/* Pulls in conntent specific to this chain */}
+                <div className="order-content" onClick={e => this.openOrderModal(e)}>
+                  <ChainContent
+                    chainName={this.state.chainName}
+                    orderState={this.state.orderContent}
+                  />
+                </div>
+
+                {/* Pulls in tags, user created and date created */}
+                <div className="order-meta ">
+                  <OrderTags chainName={this.state.chainName} tags={this.state.tags} />
+                  <CreatedMeta userData={this.state.userData} dateCreated={this.state.createdAt} />
+                </div>
               </div>
 
-              {/* Pulls in conntent specific to this chain */}
-              <div className="order-content" onClick={e => this.openOrderModal(e)}>
-                <ChainContent
-                  chainName={this.state.chainName}
-                  orderState={this.state.orderContent}
-                />
-              </div>
-
-              {/* Pulls in tags, user created and date created */}
-              <div className="order-meta ">
-                <OrderTags chainName={this.state.chainName} tags={this.state.tags} />
-                <CreatedMeta userData={this.state.userData} dateCreated={this.state.createdAt} />
-              </div>
-            </div>
-
-            {/* Where a user can take action on the order. */}
-            <ActionBar
-              key={this.state.orderId}
-              favoriteCount={this.state.favoriteCount}
-              orderId={this.state.orderId}
-              usersFavorited={this.state.usersFavorited}
-            />
-          </OrderContentContainer>
-        </div>
-      </ModalContainer>
+              {/* Where a user can take action on the order. */}
+              <ActionBar
+                key={this.state.orderId}
+                favoriteCount={this.state.favoriteCount}
+                orderId={this.state.orderId}
+                usersFavorited={this.state.usersFavorited}
+              />
+            </OrderContentContainer>
+          </div>
+        </ModalContainer>
+      </React.Fragment>
     );
   }
 }

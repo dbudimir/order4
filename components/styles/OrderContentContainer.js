@@ -5,6 +5,27 @@ const size = {
   phone: 'only screen and (max-width : 548px)'
 };
 
+const AdminPanel = styled.div`
+  background: #fb542b;
+  width: 100%;
+  padding: 6px 12px;
+  position: fixed;
+  z-index: 100;
+  top: 0px;
+  left: 0px;
+
+  span {
+    font-family: Nunito;
+    padding: 4px 8px;
+    background: #ffffff;
+    border-radius: 4px;
+    display: block;
+    width: max-content;
+    font-weight: 800;
+    font-size: 14px;
+  }
+`;
+
 const ModalContainer = styled.div`
   margin-right: 24px;
 
@@ -265,4 +286,4 @@ const OrderContentContainer = styled.div`
   }
 `;
 
-export { ModalContainer, OrderContentContainer };
+export { AdminPanel, ModalContainer, OrderContentContainer };

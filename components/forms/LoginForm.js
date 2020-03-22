@@ -123,6 +123,7 @@ class LoginForm extends Component {
             response.data.userName,
             response.data.email,
             response.data.userId,
+            response.data.accessLevel,
             true
           );
           const user = {

@@ -33,7 +33,7 @@ const OrderContainer = styled.div`
 class User extends Component {
   constructor(props) {
     super(props);
-    this.state = { orders: [] };
+    this.state = { props };
   }
 
   render() {
@@ -52,15 +52,17 @@ class User extends Component {
   }
 }
 
-User.getInitialProps = async ({ req, query }) => {
-  const res = await fetch(process.env.api_key + `/api/users/${query.user}`);
+export async function getServerSideProps(context) {
+  const res = await fetch(process.env.api_key + `/api/users/${context.query.user}`);
   const data = await res.json();
 
   return {
-    orders: data[0].orders,
-    fullName: data[0].userFullName,
-    userId: query.user
+    props: {
+      orders: data[0].orders,
+      fullName: data[0].userFullName,
+      userId: context.query.user
+    }
   };
-};
+}
 
 export default User;

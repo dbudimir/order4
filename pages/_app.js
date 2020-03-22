@@ -17,6 +17,7 @@ export default class MyApp extends App {
       userName: '',
       email: '',
       userId: '',
+      accessLevel: '',
       isLoggedIn: '',
       nextAction: ''
     };
@@ -30,16 +31,18 @@ export default class MyApp extends App {
     });
   };
 
-  signIn = (userName, email, userId, isLoggedIn) => {
+  signIn = (userName, email, userId, accessLevel, isLoggedIn) => {
     this.setState({
       userName,
       email,
       userId,
+      accessLevel,
       isLoggedIn
     });
     localStorage.setItem('username', userName);
     localStorage.setItem('email', email);
     localStorage.setItem('userId', userId);
+    localStorage.setItem('accessLevel', accessLevel);
     localStorage.setItem('isLoggedIn', isLoggedIn);
     if (window.location.pathname !== '/create-order') {
       Router.push('/');
@@ -106,6 +109,7 @@ export default class MyApp extends App {
             userName: this.state.userName,
             userEmail: this.state.email,
             userId: this.state.userId,
+            accessLevel: this.state.accessLevel,
             isLoggedIn: this.state.isLoggedIn,
             nextAction: this.state.nextAction,
             signIn: this.signIn,

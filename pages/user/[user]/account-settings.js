@@ -63,7 +63,6 @@ class AccountSettings extends Component {
 
   saveUserSettings = () => {
     const reqBody = this.state;
-
     axios
       .post(process.env.api_key + `/api/users/update-user`, {
         ...reqBody
@@ -82,6 +81,7 @@ class AccountSettings extends Component {
         <Layout />
         <AccountSettingsContainer>
           <h1>{`Profile for ${user.userFullName}`}</h1>
+          {/* Update user full name */}
           <div className="item-container">
             <span className="item-title">Name:</span>
             <input
@@ -92,7 +92,7 @@ class AccountSettings extends Component {
             />
             <div className="updated-value"> {user.userFullName}</div>
           </div>
-
+          {/* Update username */}
           <div className="item-container">
             <span className="item-title">User Name:</span>
             <input
@@ -103,7 +103,7 @@ class AccountSettings extends Component {
             />
             <div className="updated-value"> {user.userName}</div>
           </div>
-
+          {/* Update user email */}
           <div className="item-container">
             <span className="item-title">Email</span>
             <input
@@ -114,7 +114,17 @@ class AccountSettings extends Component {
             />
             <div className="updated-value"> {user.email}</div>
           </div>
-
+          {/* Update user access level */}
+          <div className="item-container">
+            <span className="item-title">Access Level</span>
+            <input
+              name="accessLevel"
+              onChange={this.updateState}
+              type="text"
+              placeholder="Enter new access level"
+            />
+            <div className="updated-value"> {user.accessLevel}</div>
+          </div>
           <div>User was created on {createdDate.toString()}</div>
           <div>See all {user.orders.length} orders</div>
           <hr />
