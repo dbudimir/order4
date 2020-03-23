@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import Form from '../styles/Form';
+import Link from 'next/link';
+
 import styled from 'styled-components';
+import Form from '../styles/Form';
 
 import ErrorMessage from './ErrorMessage';
 
@@ -22,19 +24,19 @@ class ForgotPassword extends Component {
     this.state = {
       email: '',
       formErrors: {
-        email: ''
+        email: '',
       },
       emailValid: false,
       allValid: false,
       existingUser: true,
-      isLoggedIn: ''
+      isLoggedIn: '',
     };
   }
 
   componentDidMount = () => {
     this.setState({
       email: this.props.email,
-      isLoggedIn: false
+      isLoggedIn: false,
     });
   };
 
@@ -45,7 +47,7 @@ class ForgotPassword extends Component {
 
     this.setState(
       {
-        [name]: value
+        [name]: value,
       },
       () => {
         this.validateFields(name, value);
@@ -69,7 +71,7 @@ class ForgotPassword extends Component {
     this.setState(
       {
         formErrors,
-        emailValid
+        emailValid,
       },
       this.validateAll
     );
@@ -77,14 +79,14 @@ class ForgotPassword extends Component {
 
   validateAll = () => {
     this.setState({
-      allValid: this.state.emailValid
+      allValid: this.state.emailValid,
     });
   };
 
   sendRecoveryEmail = state => {
     axios
-      .post(process.env.api_key + `/api/email/send`, {
-        ...state
+      .post(`${process.env.api_key}/api/email/send`, {
+        ...state,
       })
       .then(response => {
         console.log(response);
@@ -94,14 +96,14 @@ class ForgotPassword extends Component {
   onSubmit = async event => {
     event.preventDefault();
     const { state } = this;
-    axios.post(process.env.api_key + `/api/email/`, { ...state }).then(response => {
+    axios.post(`${process.env.api_key}/api/email/`, { ...state }).then(response => {
       if (!response.data.message) {
         response.data.location = process.env.api_key;
 
         this.sendRecoveryEmail(response);
       } else {
         this.setState({
-          existingUser: false
+          existingUser: false,
         });
       }
     });

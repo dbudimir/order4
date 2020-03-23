@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Layout from '../components/Layout';
@@ -10,8 +11,12 @@ const PageContainer = styled.div`
   height: 100vh;
 `;
 
-function Login({ updateUser = () => {} }) {
+const Login = ({ updateUser = () => {} }) => {
   const userStatus = useContext(UserContext);
+
+  Login.propTypes = {
+    updateUser: PropTypes.func,
+  };
 
   return (
     <PageContainer>
@@ -19,6 +24,6 @@ function Login({ updateUser = () => {} }) {
       <LoginFormContainer signIn={userStatus.signIn} updateUser={updateUser} />
     </PageContainer>
   );
-}
+};
 
 export default Login;

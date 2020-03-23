@@ -1,5 +1,5 @@
 import Document, { Head, Main, NextScript } from 'next/document';
-import React, { Component } from 'react';
+import React from 'react';
 
 // Import styled components ServerStyleSheet
 import { ServerStyleSheet } from 'styled-components';
@@ -21,7 +21,7 @@ export default class MyDocument extends Document {
 
   render() {
     const bodyStyle = {
-      margin: 0
+      margin: 0,
     };
 
     return (
@@ -167,7 +167,7 @@ export default class MyDocument extends Document {
               src: local('Roboto Black'), local('Roboto-Black'),
                 url('/static/fonts/Roboto/roboto-v20-latin-900.woff2') format('woff2');
             }
-          `
+          `,
             }}
           />
           <meta

@@ -1,14 +1,15 @@
 import React from 'react';
 import App from 'next/app';
 import Router from 'next/router';
-import UserContext from '../components/UserContext';
 
 import TagManager from 'react-gtm-module';
-const tagManagerArgs = {
-  gtmId: 'GTM-KGFF5HN'
-};
 
 import { NextSeo } from 'next-seo';
+import UserContext from '../components/UserContext';
+
+const tagManagerArgs = {
+  gtmId: 'GTM-KGFF5HN',
+};
 
 export default class MyApp extends App {
   constructor(props) {
@@ -19,7 +20,7 @@ export default class MyApp extends App {
       userId: '',
       accessLevel: '',
       isLoggedIn: '',
-      nextAction: ''
+      nextAction: '',
     };
   }
 
@@ -27,7 +28,7 @@ export default class MyApp extends App {
     TagManager.initialize(tagManagerArgs);
     const user = localStorage;
     this.setState({
-      user
+      user,
     });
   };
 
@@ -37,7 +38,7 @@ export default class MyApp extends App {
       email,
       userId,
       accessLevel,
-      isLoggedIn
+      isLoggedIn,
     });
     localStorage.setItem('username', userName);
     localStorage.setItem('email', email);
@@ -55,7 +56,7 @@ export default class MyApp extends App {
         userName: '',
         email: '',
         userId: '',
-        isLoggedIn: false
+        isLoggedIn: false,
       },
       () => {
         localStorage.clear();
@@ -84,23 +85,23 @@ export default class MyApp extends App {
                 url: 'https://www.example.ie/og-image-01.jpg',
                 width: 800,
                 height: 600,
-                alt: 'Og Image Alt'
+                alt: 'Og Image Alt',
               },
               {
                 url: 'https://www.example.ie/og-image-02.jpg',
                 width: 900,
                 height: 800,
-                alt: 'Og Image Alt Second'
+                alt: 'Og Image Alt Second',
               },
               { url: 'https://www.example.ie/og-image-03.jpg' },
-              { url: 'https://www.example.ie/og-image-04.jpg' }
+              { url: 'https://www.example.ie/og-image-04.jpg' },
             ],
-            site_name: 'SiteName'
+            site_name: 'SiteName',
           }}
           twitter={{
             handle: '@handle',
             site: '@site',
-            cardType: 'summary_large_image'
+            cardType: 'summary_large_image',
           }}
         />
 
@@ -114,7 +115,7 @@ export default class MyApp extends App {
             nextAction: this.state.nextAction,
             signIn: this.signIn,
             signOut: this.signOut,
-            switchNextAction: this.switchNextAction
+            switchNextAction: this.switchNextAction,
           }}
         >
           <Component {...pageProps} />

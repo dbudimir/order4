@@ -23,24 +23,25 @@ const OrderContainer = styled.div`
 class Tag extends Component {
   constructor(props) {
     super(props);
-    this.state = { orders: [] };
+    this.state = { ...props };
   }
 
   render() {
-    const orderCard = this.props.orders.map((order, index) => (
+    const allOrders = this.state;
+    const orderCard = allOrders.orders.map((order, index) => (
       <OrderContent orderID={order._id} key={index} />
     ));
 
     return (
       <div>
         <NextSeo
-          title={`The Best ${this.props.tag.charAt(0).toUpperCase() +
-            this.props.tag.slice(1)} Custom Meal Orders`}
-          description={`Check out the most popular ${this.props.tag} custom meal orders at fast-casual restaurants. Or, submit your own custom order and share it with your friends.`}
+          title={`The Best ${allOrders.tag.charAt(0).toUpperCase() +
+            allOrders.tag.slice(1)} Custom Meal Orders`}
+          description={`Check out the most popular ${allOrders.tag} custom meal orders at fast-casual restaurants. Or, submit your own custom order and share it with your friends.`}
         />
         <Layout />
         <TagPage className="tag-order-container">
-          <h1>The most popular {this.props.tag} custom orders.</h1>
+          <h1>The most popular {allOrders.tag} custom orders.</h1>
           <OrderContainer>{orderCard}</OrderContainer>
         </TagPage>
       </div>
@@ -49,12 +50,12 @@ class Tag extends Component {
 }
 
 Tag.getInitialProps = async ({ query }) => {
-  const res = await fetch(process.env.api_key + `/api/orders/tag/${query.tag}`);
+  const res = await fetch(`${process.env.api_key}/api/orders/tag/${query.tag}`);
   const data = await res.json();
 
   return {
     orders: data,
-    tag: query.tag
+    tag: query.tag,
   };
 };
 

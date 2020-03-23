@@ -25,56 +25,58 @@ class CreateOrder extends Component {
     this.state = {
       chainName: '',
       order: {},
-      user: {}
+      user: {},
     };
   }
 
   updateChain = chain => {
     this.setState(prevState => ({
       ...prevState,
-      chainName: chain
+      chainName: chain,
     }));
   };
 
   updateOrder = order => {
     this.setState(prevState => ({
       ...prevState,
-      order
+      order,
     }));
   };
 
   updateOrderDetails = orderDetails => {
     this.setState(prevState => ({
       ...prevState,
-      order: { ...this.state.order, ...orderDetails }
+      order: { ...prevState.order, ...orderDetails },
     }));
   };
 
   updateUser = user => {
     this.setState(prevState => ({
       ...prevState,
-      user
+      user,
     }));
   };
 
-  toggleSubmitConfirmation = event => {
+  toggleSubmitConfirmation = () => {
     this.setState(prevState => ({
       ...prevState,
-      orderSubmitted: !prevState.orderSubmitted
+      orderSubmitted: !prevState.orderSubmitted,
     }));
   };
 
   render() {
+    const { createOrder } = this.state;
+
     let orderForm;
-    if (this.state.chainName === CHAIN_CHIPOTLE) {
+    if (createOrder.chainName === CHAIN_CHIPOTLE) {
       orderForm = <CreateChipotleOrder setOrder={this.updateOrder} />;
     }
-    if (this.state.chainName === CHAIN_ANDPIZZA) {
+    if (createOrder.chainName === CHAIN_ANDPIZZA) {
       orderForm = <CreateAndPizzOrder setOrder={this.updateOrder} />;
     }
 
     let submitOrder;
-    if (this.state.chainName !== '') {
+    if (createOrder.chainName !== '') {
       submitOrder = (
         <SubmitOrder
           setOrderDetails={this.updateOrderDetails}
@@ -84,7 +86,7 @@ class CreateOrder extends Component {
     }
 
     let submitConfirmation;
-    if (this.state.orderSubmitted === true) {
+    if (createOrder.orderSubmitted === true) {
       submitConfirmation = (
         <SubmitConfirmation
           orderState={this.state}

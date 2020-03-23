@@ -19,14 +19,14 @@ class OrderContent extends Component {
     this.state = {
       tags: [],
       userData: [],
-      orderContentModal: false
+      orderContentModal: false,
     };
   }
 
   componentDidMount() {
     if (this.props.orderState === undefined) {
       axios
-        .get(process.env.api_key + `/api/orders/id/${this.props.orderID}`)
+        .get(`${process.env.api_key}/api/orders/id/${this.props.orderID}`)
         .then(res => {
           const { data } = res;
           this.setState({
@@ -40,7 +40,7 @@ class OrderContent extends Component {
             chainName: data[0].chainName,
             createdAt: data[0].createdAt,
             userData: data[0].users,
-            accessLevel: localStorage.accessLevel
+            accessLevel: localStorage.accessLevel,
           });
         })
         .catch(err => {
@@ -58,14 +58,14 @@ class OrderContent extends Component {
         ),
         orderName: order.orderName,
         chainName,
-        accessLevel: localStorage.accessLevel
+        accessLevel: localStorage.accessLevel,
       });
     }
   }
 
   deleteOrder = e => {
     axios
-      .delete(process.env.api_key + `/api/orders/delete/${this.props.orderID}`)
+      .delete(`${process.env.api_key}/api/orders/delete/${this.props.orderID}`)
       .then(res => {
         console.log('sucessfully deleted');
       })
@@ -78,7 +78,7 @@ class OrderContent extends Component {
     window.history.pushState('object or string', 'Title', `/orders/${this.state.orderId}`);
     e.stopPropagation();
     this.setState(prevState => ({
-      orderContentModal: !prevState.orderContentModal
+      orderContentModal: !prevState.orderContentModal,
     }));
   };
 
@@ -86,12 +86,12 @@ class OrderContent extends Component {
     window.history.pushState('object or string', 'Title', '/');
     e.stopPropagation();
     this.setState(prevState => ({
-      orderContentModal: false
+      orderContentModal: false,
     }));
   };
 
   render() {
-    let chainRowModalDisplay =
+    const chainRowModalDisplay =
       this.state.orderContentModal === true ? 'modal-container-true' : 'modal-container';
 
     let adminPanel;

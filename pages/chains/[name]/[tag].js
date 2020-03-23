@@ -14,22 +14,23 @@ import OrderContent from '../../../components/order-content/OrderContent';
 class Tag extends Component {
   constructor(props) {
     super(props);
-    this.state = { orders: [] };
+    this.state = { ...props };
   }
 
   render() {
-    let cleanTag = this.props.tag.replace(/-/g, ' ');
-    const orderCard = this.props.orders.map((order, index) => (
+    const allOrders = this.state;
+    const cleanTag = allOrders.tag.replace(/-/g, ' ');
+    const orderCard = allOrders.orders.map((order, index) => (
       <OrderContent orderID={order._id} key={index} />
     ));
 
     return (
       <div>
         <NextSeo
-          title={`The Best ${this.props.tag.charAt(0).toUpperCase() +
-            this.props.tag.slice(1)} Orders at ${this.props.name.charAt(0).toUpperCase() +
-            this.props.name.slice(1)}`}
-          description={`Check out the most popular ${cleanTag} custom orders at ${this.props.name}. Or, submit your own custom order and share it with your friends.`}
+          title={`The Best ${allOrders.tag.charAt(0).toUpperCase() +
+            allOrders.tag.slice(1)} Orders at ${allOrders.name.charAt(0).toUpperCase() +
+            allOrders.name.slice(1)}`}
+          description={`Check out the most popular ${cleanTag} custom orders at ${allOrders.name}. Or, submit your own custom order and share it with your friends.`}
         />
         <Layout />
         <TagPage className="tag-order-container">
@@ -40,12 +41,12 @@ class Tag extends Component {
                 <h1>
                   {`The most popular
                   ${cleanTag.charAt(0).toUpperCase() + cleanTag.slice(1)} custom meals at
-                  ${this.props.name.charAt(0).toUpperCase() + this.props.name.slice(1)}`}
+                  ${allOrders.name.charAt(0).toUpperCase() + allOrders.name.slice(1)}`}
                 </h1>
               </div>
               <div className="order-list">{orderCard}</div>
             </div>
-            <RightColumn tag={this.props.tag} chainName={this.props.name} />
+            <RightColumn tag={allOrders.tag} chainName={allOrders.name} />
           </div>
         </TagPage>
         <Footer />
@@ -56,7 +57,7 @@ class Tag extends Component {
 export async function getServerSideProps(context) {
   const chainUpper = context.query.name.charAt(0).toUpperCase() + context.query.name.slice(1);
   const lookup = `${chainUpper}/${context.query.tag}`;
-  const res = await fetch(process.env.api_key + `/api/orders/chain/${lookup}`);
+  const res = await fetch(`${process.env.api_key}/api/orders/chain/${lookup}`);
   const data = await res.json();
 
   return {
@@ -64,8 +65,8 @@ export async function getServerSideProps(context) {
       orders: data,
       name: context.query.name,
       tag: context.query.tag,
-      full: context.query
-    }
+      full: context.query,
+    },
   };
 }
 

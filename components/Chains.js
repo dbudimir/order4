@@ -94,25 +94,25 @@ class Chains extends Component {
     super(props);
     this.state = {
       chains: [],
-      sortOrder: 'popular'
+      sortOrder: 'popular',
     };
   }
 
   sortOrders = e => {
     this.setState({
-      sortOrder: e.target.value
+      sortOrder: e.target.value,
     });
   };
 
   render() {
-    let chainName = this.props.chain[0].chainName;
+    const { chainName } = this.props.chain[0];
     return (
       <ChainContainer>
         <div className="chain-header">
           <Link
             href={{
               pathname: '/chains/[name]',
-              query: { chainName: chainName }
+              query: { chainName },
             }}
             as={{ pathname: `/chains/${chainName}` }}
           >

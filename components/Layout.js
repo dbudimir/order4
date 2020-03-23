@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
-import UserContext from './UserContext';
-
 import styled from 'styled-components';
+import UserContext from './UserContext';
 
 import Nav from './navigation/Nav';
 

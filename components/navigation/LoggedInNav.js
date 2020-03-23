@@ -1,4 +1,4 @@
-//Utilities
+// Utilities
 import React, { Component } from 'react';
 import Router from 'next/router';
 import Link from 'next/link';
@@ -7,7 +7,7 @@ export default class LoggedInNav extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      navItems: ''
+      navItems: '',
     };
   }
 
@@ -24,7 +24,7 @@ export default class LoggedInNav extends Component {
         <Link
           href={{
             pathname: '/user/[user]',
-            query: { userId: localStorage.username }
+            query: { userId: localStorage.username },
           }}
           as={{ pathname: `/user/${localStorage.username}` }}
         >

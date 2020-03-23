@@ -33,19 +33,20 @@ const OrderContainer = styled.div`
 class User extends Component {
   constructor(props) {
     super(props);
-    this.state = { props };
+    this.state = { ...props };
   }
 
   render() {
-    const orderCard = this.props.orders.map((order, index) => (
+    const allOrders = this.state;
+    const orderCard = allOrders.orders.map((order, index) => (
       <OrderContent orderID={order._id} key={index} />
     ));
 
     return (
       <React.Fragment>
-        <NextSeo title={`Custom orders created by ${this.props.fullName}`} />
+        <NextSeo title={`Custom orders created by ${allOrders.fullName}`} />
         <Layout />
-        <H1>{`Custom orders created by ${this.props.fullName}`}</H1>
+        <H1>{`Custom orders created by ${allOrders.fullName}`}</H1>
         <OrderContainer className="order-content-container">{orderCard}</OrderContainer>
       </React.Fragment>
     );
@@ -53,15 +54,15 @@ class User extends Component {
 }
 
 export async function getServerSideProps(context) {
-  const res = await fetch(process.env.api_key + `/api/users/${context.query.user}`);
+  const res = await fetch(`${process.env.api_key}/api/users/${context.query.user}`);
   const data = await res.json();
 
   return {
     props: {
       orders: data[0].orders,
       fullName: data[0].userFullName,
-      userId: context.query.user
-    }
+      userId: context.query.user,
+    },
   };
 }
 

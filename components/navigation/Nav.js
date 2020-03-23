@@ -1,11 +1,11 @@
-//Utilities
+// Utilities
 import React, { Component } from 'react';
 import Link from 'next/link';
-//Styles
-import NavBar from '../../components/styles/NavBar';
-//Components
-import LoggedInNav from '../navigation/LoggedInNav';
-import LoggedOutNav from '../navigation/LoggedOutNav';
+// Styles
+import NavBar from '../styles/NavBar';
+// Components
+import LoggedInNav from './LoggedInNav';
+import LoggedOutNav from './LoggedOutNav';
 
 export default class Nav extends Component {
   constructor(props) {
@@ -15,11 +15,11 @@ export default class Nav extends Component {
       width: 0,
       height: 0,
       style: {
-        display: ``
+        display: ``,
       },
       imgStyle: {
-        filter: `hue-rotate(${Math.floor(Math.random() * (180 - 0 + 1)) + 0}deg)`
-      }
+        filter: `hue-rotate(${Math.floor(Math.random() * (180 - 0 + 1)) + 0}deg)`,
+      },
     };
   }
 
@@ -37,8 +37,8 @@ export default class Nav extends Component {
       width: window.innerWidth,
       height: window.innerHeight,
       style: {
-        display: window.innerWidth > 768 ? 'block' : 'none'
-      }
+        display: window.innerWidth > 768 ? 'block' : 'none',
+      },
     });
   };
 
@@ -50,14 +50,14 @@ export default class Nav extends Component {
       userLoggedIn = <LoggedOutNav />;
     }
     this.setState({
-      navItems: userLoggedIn
+      navItems: userLoggedIn,
     });
   };
 
   openMobileMenu = () => {
-    let displayValue = this.state.style.display === 'none' ? 'block' : 'none';
+    const displayValue = this.state.style.display === 'none' ? 'block' : 'none';
     this.setState({
-      style: { display: displayValue }
+      style: { display: displayValue },
     });
   };
 
@@ -68,7 +68,7 @@ export default class Nav extends Component {
           <div className="left-nav-icon"></div>
           <Link
             href={{
-              pathname: '/'
+              pathname: '/',
             }}
             as={{ pathname: '/' }}
           >
@@ -85,7 +85,7 @@ export default class Nav extends Component {
           <div className="menu">
             <Link
               href={{
-                pathname: '/'
+                pathname: '/',
               }}
             >
               <a>
@@ -94,7 +94,7 @@ export default class Nav extends Component {
             </Link>
             <Link
               href={{
-                pathname: '/orders/all'
+                pathname: '/orders/all',
               }}
               as={{ pathname: `/orders/all` }}
             >
@@ -105,7 +105,7 @@ export default class Nav extends Component {
             {this.state.navItems}
             <Link
               href={{
-                pathname: '/create-order'
+                pathname: '/create-order',
               }}
               as={{ pathname: `/create-order` }}
             >

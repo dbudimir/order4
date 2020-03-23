@@ -63,29 +63,31 @@ class Orders extends Component {
     super(props);
     this.state = {
       sortOrder: 'popular',
-      orders: this.props.orders
+      orders: props.orders,
     };
   }
 
   sortOrders = e => {
     this.setState({
-      sortOrder: e.target.value
+      sortOrder: e.target.value,
     });
   };
 
   render() {
-    let sortedOrders = () => {
+    // THIS IS WRONG
+    const sortedOrders = () => {
       if (this.state.sortOrder === 'popular') {
         return this.state.orders.sort((a, b) => b.favoriteCount - a.favoriteCount);
-      } else if (this.state.sortOrder === 'recent') {
+      }
+      if (this.state.sortOrder === 'recent') {
         return this.state.orders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-      } else if (this.state.sortOrder === 'oldest') {
+      }
+      if (this.state.sortOrder === 'oldest') {
         return this.state.orders.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
       }
     };
 
-    let orderCards = sortedOrders().map((order, index) => {
-      console.log(order);
+    const orderCards = sortedOrders().map((order, index) => {
       if (
         order.orderName !== null &&
         order.orderName !== undefined &&
@@ -136,11 +138,11 @@ class Orders extends Component {
   }
 }
 
-export async function getServerSideProps(context) {
-  const res = await fetch(process.env.api_key + '/api/orders/');
+export async function getServerSideProps() {
+  const res = await fetch(`${process.env.api_key}/api/orders/`);
   const data = await res.json();
   return {
-    props: { orders: data }
+    props: { orders: data },
   };
 }
 

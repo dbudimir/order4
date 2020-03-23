@@ -8,21 +8,25 @@ import Search from '../components/Search';
 import Chains from '../components/Chains';
 
 class Index extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { ...props };
+  }
+
   render() {
-    let chainName = '';
-    const chainOrders = this.props.chains;
+    const index = this.state;
+    const chainOrders = index.chains;
 
     // Start function that generates row for each chain
-    const chainRows = chainOrders.map((chain, chainsIndex) => {
-      chainName = chain[0].chainName;
-      return <Chains chain={chain} index={chainsIndex} />;
-    });
+    const chainRows = chainOrders.map((chain, chainsIndex) => (
+      <Chains chain={chain} index={chainsIndex} />
+    ));
 
     return (
       <div>
         <NextSeo
-          title={`MealDig | The custom food order database.`}
-          description={`Discover popular meals and custom food orders at your favorite fast-casual dining spots.`}
+          title="MealDig | The custom food order database."
+          description="Discover popular meals and custom food orders at your favorite fast-casual dining spots."
         />
         <Layout />
         <Search />
@@ -33,30 +37,30 @@ class Index extends Component {
   }
 }
 
-export async function getServerSideProps(context) {
-  const res = await fetch(process.env.api_key + `/api/chains/Chipotle`);
+// Serverside get props
+export async function getServerSideProps() {
+  const res = await fetch(`${process.env.api_key}/api/chains/Chipotle`);
   const data = await res.json();
 
-  const res2 = await fetch(process.env.api_key + '/api/chains/&pizza');
+  const res2 = await fetch(`${process.env.api_key}/api/chains/&pizza`);
   const data2 = await res2.json();
 
-  let chainsList = [data.orders, data2.orders];
+  const chainsList = [data.orders, data2.orders];
 
-  let cleanList = chainsList.map(chain =>
-    chain.filter(order => {
-      return (
+  const cleanList = chainsList.map(chain =>
+    chain.filter(
+      order =>
         order.orderName !== null &&
         order.orderName !== undefined &&
         order.orderName.includes('test') !== true &&
         order.orderName.includes('Test') !== true &&
         order.tags.length > 0 &&
         Object.keys(order).length > 4
-      );
-    })
+    )
   );
 
   return {
-    props: { chains: cleanList }
+    props: { chains: cleanList },
   };
 }
 

@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Layout from '../components/Layout';
@@ -12,6 +13,10 @@ const PageContainer = styled.div`
 
 function Signup({ updateUser = () => {} }) {
   const userStatus = useContext(UserContext);
+
+  Signup.propTypes = {
+    updateUser: PropTypes.func,
+  };
 
   return (
     <PageContainer>

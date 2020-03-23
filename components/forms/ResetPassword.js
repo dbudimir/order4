@@ -1,43 +1,74 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import Form from '../styles/Form';
-import styled from 'styled-components';
 
 import ErrorMessage from './ErrorMessage';
 
-const ErrorBar = styled.div`
-  width: 100%;
-  background-color: hsl(0, 100%, 93%);
-  color: hsl(0, 75%, 35%);
-  font-family: Nunito;
-  padding: 18px 12px;
-  font-size: 16px;
-  text-align: center;
-`;
-
 class ResetPassword extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       userId: '',
-      password: '',
+      password: props.password,
       passwordConfirm: '',
+      isLoggedIn: false,
       formErrors: {
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
       },
       passwordValid: false,
       confirmPasswordValid: false,
-      allValid: false
+      allValid: false,
     };
   }
 
   componentDidMount = () => {
     this.setState({
       password: this.props.password,
-      isLoggedIn: false
+      isLoggedIn: false,
     });
+  };
+
+  onSubmit = event => {
+    event.preventDefault();
+
+    const url = window.location.href;
+    const token = url.substring(url.indexOf('=') + 1);
+
+    const newPassword = {
+      password: this.state.password,
+      token,
+    };
+
+    axios.post(`${process.env.api_key}/api/email/confirm-token`, { newPassword }).then(response => {
+      this.setState({
+        isLoggedIn: true,
+        userId: response.data.userId,
+      });
+      this.props.signIn(response.data.userName, response.data.email, response.data.userId, true);
+      const user = {
+        userFullName: response.data.userFullName,
+        userName: response.data.userName,
+        email: response.data.email,
+        userId: response.data.userId,
+      };
+      this.props.updateUser(user);
+      if (window.location.pathname !== '/reset-password') {
+        this.props.updateAction('');
+      }
+    });
+  };
+
+  confirmPasswordReset = state => {
+    axios
+      .post(`${process.env.api_key}/api/email/send-confirm`, {
+        ...state,
+      })
+      .then(response => {
+        console.log(response);
+      });
   };
 
   updateState = event => {
@@ -47,7 +78,7 @@ class ResetPassword extends Component {
 
     this.setState(
       {
-        [name]: value
+        [name]: value,
       },
       () => {
         this.validateFields(name, value);
@@ -56,6 +87,7 @@ class ResetPassword extends Component {
   };
 
   validateFields(fieldName, value) {
+    const { state } = this;
     const { formErrors } = this.state;
     let { passwordValid } = this.state;
     let { confirmPasswordValid } = this.state;
@@ -66,7 +98,7 @@ class ResetPassword extends Component {
         formErrors.password = passwordValid ? '' : 'Minimum seven characters.';
         break;
       case 'passwordConfirm':
-        confirmPasswordValid = this.state.password === this.state.passwordConfirm;
+        confirmPasswordValid = state.password === state.passwordConfirm;
         formErrors.confirmPassword = confirmPasswordValid ? '' : 'The passwords do not match.';
         break;
       default:
@@ -77,62 +109,28 @@ class ResetPassword extends Component {
       {
         formErrors,
         passwordValid,
-        confirmPasswordValid
+        confirmPasswordValid,
       },
       this.validateAll
     );
   }
 
   validateAll() {
+    const { state } = this;
     this.setState({
-      allValid: this.state.confirmPasswordValid
+      allValid: state.confirmPasswordValid,
     });
   }
 
-  confirmPasswordReset = state => {
-    axios
-      .post(process.env.api_key + `/api/email/send-confirm`, {
-        ...state
-      })
-      .then(response => {
-        console.log(response);
-      });
-  };
-
-  onSubmit = async event => {
-    event.preventDefault();
-    const { state } = this;
-
-    console.log(state);
-    let url = window.location.href;
-    let token = url.substring(url.indexOf('=') + 1);
-
-    let newPassword = {
-      password: state.password,
-      token: token
+  render() {
+    ResetPassword.propTypes = {
+      password: PropTypes.string,
+      signIn: PropTypes.func,
+      updateUser: PropTypes.func,
+      updateAction: PropTypes.func,
     };
 
-    axios.post(process.env.api_key + `/api/email/confirm-token`, { newPassword }).then(response => {
-      console.log(response);
-      this.setState({
-        isLoggedIn: true,
-        userId: response.data.userId
-      });
-      this.props.signIn(response.data.userName, response.data.email, response.data.userId, true);
-      const user = {
-        userFullName: response.data.userFullName,
-        userName: response.data.userName,
-        email: response.data.email,
-        userId: response.data.userId
-      };
-      this.props.updateUser(user);
-      if (window.location.pathname !== '/reset-password') {
-        this.props.updateAction('');
-      }
-    });
-  };
-
-  render() {
+    const thisUser = this.state;
     return (
       <Form className="form">
         <div className="reset-password-form">
@@ -151,22 +149,22 @@ class ResetPassword extends Component {
             <input
               name="password"
               onChange={this.updateState}
-              value={this.state.password || ''}
+              value={thisUser.password || ''}
               type="password"
               placeholder="Password"
             />
-            <ErrorMessage message={this.state.formErrors.password} state={this.state} />
+            <ErrorMessage message={thisUser.formErrors.password} state={thisUser} />
             <div className="form-input-label">
               <span>Re-enter Your New Password</span>
             </div>
             <input
               name="passwordConfirm"
               onChange={this.updateState}
-              value={this.state.passwordConfirm || ''}
+              value={thisUser.passwordConfirm || ''}
               type="password"
               placeholder="Re-enter password"
             />
-            <ErrorMessage message={this.state.formErrors.confirmPassword} state={this.state} />
+            <ErrorMessage message={thisUser.formErrors.confirmPassword} state={this.state} />
             <input name="submit" onClick={this.onSubmit} type="submit" value="Save Password" />
           </form>
         </div>

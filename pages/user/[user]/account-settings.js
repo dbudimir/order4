@@ -42,6 +42,7 @@ const AccountSettingsContainer = styled.div`
     padding: 12px 6px;
     text-align: center;
     cursor: pointer;
+    width: 100%;
   }
 `;
 
@@ -51,29 +52,35 @@ class AccountSettings extends Component {
     this.state = { ...props.data[0] };
   }
 
+  componentDidMount() {
+    document.addEventListener('keydown', this.saveUserSettings);
+  }
+
   updateState = event => {
     const { target } = event;
     const { value } = target;
     const { name } = target;
 
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
-  saveUserSettings = () => {
+  saveUserSettings = e => {
     const reqBody = this.state;
-    axios
-      .post(process.env.api_key + `/api/users/update-user`, {
-        ...reqBody
-      })
-      .then(response => console.log(response));
+
+    if (e.keyCode === 13 || e.type === 'click') {
+      axios
+        .post(`${process.env.api_key}/api/users/update-user`, {
+          ...reqBody,
+        })
+        .then(response => console.log(response));
+    }
   };
 
   render() {
-    let user = this.state;
-    let createdDate = new Date(user.createdAt);
-    console.log(user);
+    const user = this.state;
+    const createdDate = new Date(user.createdAt);
 
     return (
       <React.Fragment>
@@ -82,6 +89,7 @@ class AccountSettings extends Component {
         <AccountSettingsContainer>
           <h1>{`Profile for ${user.userFullName}`}</h1>
           {/* Update user full name */}
+
           <div className="item-container">
             <span className="item-title">Name:</span>
             <input
@@ -126,11 +134,22 @@ class AccountSettings extends Component {
             <div className="updated-value"> {user.accessLevel}</div>
           </div>
           <div>User was created on {createdDate.toString()}</div>
-          <div>See all {user.orders.length} orders</div>
+          <Link
+            href={{
+              pathname: '/user/[user]',
+              query: { userId: user.userName },
+            }}
+            as={{ pathname: `/user/${user.userName}` }}
+          >
+            <a href={`/user/${user.userName}`}>
+              <div>See all {user.orders.length} orders</div>
+            </a>
+          </Link>
+
           <hr />
-          <div className="save-button" onClick={this.saveUserSettings}>
+          <button type="button" className="save-button" onClick={this.saveUserSettings}>
             Save settings
-          </div>
+          </button>
         </AccountSettingsContainer>
       </React.Fragment>
     );
@@ -140,16 +159,16 @@ class AccountSettings extends Component {
 export async function getServerSideProps(context) {
   let data;
   if (context.query.user.length === 24) {
-    const res = await fetch(process.env.api_key + `/api/users/id/${context.query.user}`);
+    const res = await fetch(`${process.env.api_key}/api/users/id/${context.query.user}`);
     data = await res.json();
   } else {
-    const res = await fetch(process.env.api_key + `/api/users/${context.query.user}`);
+    const res = await fetch(`${process.env.api_key}/api/users/${context.query.user}`);
     data = await res.json();
   }
 
   return {
     //  props: { data }
-    props: { data }
+    props: { data },
   };
 }
 

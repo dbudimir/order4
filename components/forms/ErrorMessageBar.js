@@ -1,9 +1,7 @@
-//Utilities
+// Utilities
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-//Styles
-
-//Components
 
 const ErrorBar = styled.div`
   width: 100%;
@@ -19,10 +17,15 @@ const ErrorBar = styled.div`
 
 class ErrorMessageBar extends Component {
   render() {
+    ErrorMessageBar.propTypes = {
+      message: PropTypes.string,
+    };
+
+    const { props } = this;
     return (
       <div>
         <ErrorBar>
-          <span>{this.props.message}</span>
+          <span>{props.message}</span>
         </ErrorBar>
       </div>
     );

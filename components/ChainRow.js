@@ -7,7 +7,7 @@ class ChainRow extends Component {
     super(props);
     this.state = {
       sortedOrders: [],
-      sortOrder: this.props.sortOrder
+      sortOrder: this.props.sortOrder,
     };
   }
 
@@ -48,18 +48,16 @@ class ChainRow extends Component {
   }
 
   render() {
-    let chainRow = this.props.chainRow;
+    const { chainRow } = this.props;
 
-    const orders = chainRow.map((order, ordersIndex) => {
-      return (
-        <OrderContent
-          orderID={order._id}
-          favoriteCount={order.favoriteCount}
-          createdDate={order.createdAt}
-          key={chainRow[0].chainName + ' - ' + ordersIndex}
-        />
-      );
-    });
+    const orders = chainRow.map((order, ordersIndex) => (
+      <OrderContent
+        orderID={order._id}
+        favoriteCount={order.favoriteCount}
+        createdDate={order.createdAt}
+        key={`${chainRow[0].chainName} - ${ordersIndex}`}
+      />
+    ));
 
     switch (this.props.sortOrder) {
       case 'popular':

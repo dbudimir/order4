@@ -23,11 +23,12 @@ const OrderContainer = styled.div`
 class Orders extends Component {
   constructor(props) {
     super(props);
-    this.state = { order: [] };
+    this.state = { ...props };
   }
 
   render() {
-    const orderCard = this.props.order.map((order, index) => (
+    const allOrders = this.props;
+    const orderCard = allOrders.order.map((order, index) => (
       <OrderContent orderID={order._id} key={index} />
     ));
 
@@ -41,11 +42,11 @@ class Orders extends Component {
 }
 
 export async function getServerSideProps(context) {
-  const res = await fetch(process.env.api_key + `/api/orders/id/${context.query.id}`);
+  const res = await fetch(`${process.env.api_key}/api/orders/id/${context.query.id}`);
   const data = await res.json();
 
   return {
-    props: { order: data, orderId: context.query.id }
+    props: { order: data, orderId: context.query.id },
   };
 }
 
