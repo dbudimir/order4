@@ -1,5 +1,9 @@
+/* eslint-disable jsx-a11y/interactive-supports-focus */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+
 // Utilities
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Link from 'next/link';
 // Styles
 import NavBar from '../styles/NavBar';
@@ -12,8 +16,6 @@ export default class Nav extends Component {
     super(props);
     this.state = {
       navItems: '',
-      width: 0,
-      height: 0,
       style: {
         display: ``,
       },
@@ -32,20 +34,11 @@ export default class Nav extends Component {
     window.removeEventListener('resize', this.updateDimensions);
   }
 
-  updateDimensions = () => {
-    this.setState({
-      width: window.innerWidth,
-      height: window.innerHeight,
-      style: {
-        display: window.innerWidth > 768 ? 'block' : 'none',
-      },
-    });
-  };
-
   getStatus = () => {
+    const { props } = this;
     let userLoggedIn;
     if (localStorage.length > 0) {
-      userLoggedIn = <LoggedInNav signOut={this.props.signOut} />;
+      userLoggedIn = <LoggedInNav signOut={props.signOut} />;
     } else if (localStorage.length === 0) {
       userLoggedIn = <LoggedOutNav />;
     }
@@ -55,13 +48,19 @@ export default class Nav extends Component {
   };
 
   openMobileMenu = () => {
-    const displayValue = this.state.style.display === 'none' ? 'block' : 'none';
+    const { state } = this;
+    const displayValue = state.style.display === 'none' ? 'block' : 'none';
     this.setState({
       style: { display: displayValue },
     });
   };
 
   render() {
+    Nav.propTypes = {
+      signOut: PropTypes.func,
+    };
+
+    const { state } = this;
     return (
       <NavBar>
         <div className="nav-left">
@@ -76,12 +75,16 @@ export default class Nav extends Component {
               <h1>MEALdig</h1>
             </a>
           </Link>
-          <div className="right-nav-icon" onClick={this.openMobileMenu}>
-            <img src="../static/hamburger-icon.png" style={this.state.imgStyle} />
+          <div className="right-nav-icon" role="menuitem" onClick={this.openMobileMenu}>
+            <img
+              src="https://mealdig.com/static/hamburger-icon.png"
+              style={state.imgStyle}
+              alt="menu-icon"
+            />
           </div>
         </div>
 
-        <div className="menu-container" style={this.state.style}>
+        <div className="menu-container" style={state.style}>
           <div className="menu">
             <Link
               href={{
@@ -102,7 +105,7 @@ export default class Nav extends Component {
                 <span>Orders</span>
               </a>
             </Link>
-            {this.state.navItems}
+            {state.navItems}
             <Link
               href={{
                 pathname: '/create-order',

@@ -1,5 +1,7 @@
-/* eslint-disable react/prop-types */
+/* eslint-disable jsx-a11y/interactive-supports-focus */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import { AdminPanel, ModalContainer, OrderContentContainer } from '../styles/OrderContentContainer';
@@ -24,9 +26,11 @@ class OrderContent extends Component {
   }
 
   componentDidMount() {
-    if (this.props.orderState === undefined) {
+    const { props } = this;
+
+    if (props.orderState === undefined) {
       axios
-        .get(`${process.env.api_key}/api/orders/id/${this.props.orderID}`)
+        .get(`${process.env.api_key}/api/orders/id/${props.orderID}`)
         .then(res => {
           const { data } = res;
           this.setState({
@@ -47,7 +51,7 @@ class OrderContent extends Component {
           console.log(err);
         });
     } else {
-      const { order, chainName } = this.props.orderState;
+      const { order, chainName } = props.orderState;
       this.setState({
         orderDescription: order.description,
         orderContent: order,
@@ -63,9 +67,11 @@ class OrderContent extends Component {
     }
   }
 
-  deleteOrder = e => {
+  deleteOrder = () => {
+    const { props } = this;
+
     axios
-      .delete(`${process.env.api_key}/api/orders/delete/${this.props.orderID}`)
+      .delete(`${process.env.api_key}/api/orders/delete/${props.orderID}`)
       .then(res => {
         console.log('sucessfully deleted');
       })
@@ -75,7 +81,9 @@ class OrderContent extends Component {
   };
 
   openOrderModal = e => {
-    window.history.pushState('object or string', 'Title', `/orders/${this.state.orderId}`);
+    const { state } = this;
+
+    window.history.pushState('object or string', 'Title', `/orders/${state.orderId}`);
     e.stopPropagation();
     this.setState(prevState => ({
       orderContentModal: !prevState.orderContentModal,
@@ -85,20 +93,29 @@ class OrderContent extends Component {
   closeOrderModal = e => {
     window.history.pushState('object or string', 'Title', '/');
     e.stopPropagation();
-    this.setState(prevState => ({
+    this.setState({
       orderContentModal: false,
-    }));
+    });
   };
 
   render() {
+    OrderContent.propTypes = {
+      orderState: PropTypes.object,
+      orderID: PropTypes.string,
+    };
+
+    const { state } = this;
+
     const chainRowModalDisplay =
-      this.state.orderContentModal === true ? 'modal-container-true' : 'modal-container';
+      state.orderContentModal === true ? 'modal-container-true' : 'modal-container';
 
     let adminPanel;
-    if (this.state.accessLevel === 'admin' && this.state.orderContentModal === true) {
+    if (state.accessLevel === 'admin' && state.orderContentModal === true) {
       adminPanel = (
         <AdminPanel>
-          <span onClick={this.deleteOrder}>DELETE ORDER</span>
+          <span onClick={this.deleteOrder} role="button">
+            DELETE ORDER
+          </span>
         </AdminPanel>
       );
     }
@@ -106,7 +123,10 @@ class OrderContent extends Component {
     return (
       <React.Fragment>
         {adminPanel}
-        <ModalContainer onClick={e => this.closeOrderModal(e)}>
+        <ModalContainer
+          className="order-content-container-outer"
+          onClick={e => this.closeOrderModal(e)}
+        >
           <div className={chainRowModalDisplay}>
             <OrderContentContainer className="order-content-container">
               <div className="title-bar">
@@ -133,35 +153,32 @@ class OrderContent extends Component {
               {/* Everything left of the action bar */}
               <div className="order-data">
                 {/* Pulls in the correct logo */}
-                <ChainLogo chainName={this.state.chainName} onClick={e => this.openOrderModal(e)} />
+                <ChainLogo chainName={state.chainName} onClick={e => this.openOrderModal(e)} />
 
                 {/* Pulls in user enterted title and description */}
-                <div className="order-info" onClick={e => this.openOrderModal(e)}>
-                  <h2 className="order-name">{this.state.orderName}</h2>
-                  <p className="description">{this.state.orderDescription}</p>
+                <div className="order-info" role="button" onClick={e => this.openOrderModal(e)}>
+                  <h2 className="order-name">{state.orderName}</h2>
+                  <p className="description">{state.orderDescription}</p>
                 </div>
 
                 {/* Pulls in conntent specific to this chain */}
-                <div className="order-content" onClick={e => this.openOrderModal(e)}>
-                  <ChainContent
-                    chainName={this.state.chainName}
-                    orderState={this.state.orderContent}
-                  />
+                <div className="order-content" role="button" onClick={e => this.openOrderModal(e)}>
+                  <ChainContent chainName={state.chainName} orderState={state.orderContent} />
                 </div>
 
                 {/* Pulls in tags, user created and date created */}
                 <div className="order-meta ">
-                  <OrderTags chainName={this.state.chainName} tags={this.state.tags} />
-                  <CreatedMeta userData={this.state.userData} dateCreated={this.state.createdAt} />
+                  <OrderTags chainName={state.chainName} tags={state.tags} />
+                  <CreatedMeta userData={state.userData} dateCreated={state.createdAt} />
                 </div>
               </div>
 
               {/* Where a user can take action on the order. */}
               <ActionBar
-                key={this.state.orderId}
-                favoriteCount={this.state.favoriteCount}
-                orderId={this.state.orderId}
-                usersFavorited={this.state.usersFavorited}
+                key={state.orderId}
+                favoriteCount={state.favoriteCount}
+                orderId={state.orderId}
+                usersFavorited={state.usersFavorited}
               />
             </OrderContentContainer>
           </div>

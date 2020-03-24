@@ -1,11 +1,14 @@
 /* eslint-disable react/prop-types */
+
+// Utilities
 import React, { Component } from 'react';
+import { NextSeo } from 'next-seo';
 import 'isomorphic-fetch';
 
-import { NextSeo } from 'next-seo';
-
+// Styles
 import TagPage from '../../../components/styles/TagPage';
 
+// Components
 import Layout from '../../../components/Layout';
 import Footer from '../../../components/Footer';
 import RightColumn from '../../../components/RightColumn';

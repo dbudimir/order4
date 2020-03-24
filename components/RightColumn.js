@@ -3,35 +3,35 @@ import Link from 'next/link';
 
 export default class RightColumn extends Component {
   render() {
-    var toTitleCase = function(str) {
+    const toTitleCase = function(str) {
       str = str.toLowerCase().split(' ');
-      for (var i = 0; i < str.length; i++) {
+      for (let i = 0; i < str.length; i++) {
         str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
       }
       return str.join(' ');
     };
 
-    let tagName = this.props.tag.replace(/-/g, ' ');
-    let capitalTagName = toTitleCase(tagName);
-    let chainName = toTitleCase(this.props.chainName);
+    const tagName = this.props.tag.replace(/-/g, ' ');
+    const capitalTagName = toTitleCase(tagName);
+    const chainName = toTitleCase(this.props.chainName);
 
     return (
       <div className="col-right">
         <Link
           href={{
-            pathname: `/tags/[tag]`
+            pathname: `/tags/[tag]`,
           }}
           as={{ pathname: `/tags/${this.props.tag}` }}
         >
           <a href={`/tags/${this.props.tag}`}>
             <div className="more-tag-cta">
-              <span>See more popular {capitalTagName} custom orders at other restaurantsow.</span>
+              <span>See more popular {capitalTagName} custom orders at other restaurants.</span>
             </div>
           </a>
         </Link>
         <Link
           href={{
-            pathname: `/chains/[name]`
+            pathname: `/chains/[name]`,
           }}
           as={{ pathname: `/chains/${this.props.chainName}` }}
         >
@@ -48,7 +48,7 @@ export default class RightColumn extends Component {
           </span>
           <Link
             href={{
-              pathname: '/create-order'
+              pathname: '/create-order',
             }}
             as={{ pathname: '/create-order' }}
           >
@@ -58,7 +58,7 @@ export default class RightColumn extends Component {
           </Link>
           <Link
             href={{
-              pathname: '/signup'
+              pathname: '/signup',
             }}
             as={{ pathname: '/signup' }}
           >

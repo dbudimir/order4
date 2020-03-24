@@ -65,18 +65,18 @@ class CreateOrder extends Component {
   };
 
   render() {
-    const { createOrder } = this.state;
+    const { state } = this;
 
     let orderForm;
-    if (createOrder.chainName === CHAIN_CHIPOTLE) {
+    if (state.chainName === CHAIN_CHIPOTLE) {
       orderForm = <CreateChipotleOrder setOrder={this.updateOrder} />;
     }
-    if (createOrder.chainName === CHAIN_ANDPIZZA) {
+    if (state.chainName === CHAIN_ANDPIZZA) {
       orderForm = <CreateAndPizzOrder setOrder={this.updateOrder} />;
     }
 
     let submitOrder;
-    if (createOrder.chainName !== '') {
+    if (state.chainName !== '') {
       submitOrder = (
         <SubmitOrder
           setOrderDetails={this.updateOrderDetails}
@@ -86,7 +86,7 @@ class CreateOrder extends Component {
     }
 
     let submitConfirmation;
-    if (createOrder.orderSubmitted === true) {
+    if (state.orderSubmitted === true) {
       submitConfirmation = (
         <SubmitConfirmation
           orderState={this.state}

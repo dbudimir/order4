@@ -1,15 +1,18 @@
-//Utilities
+// Utilities
 import React, { Component } from 'react';
 import Router from 'next/router';
 import Link from 'next/link';
 import tagIndex from '../public/static/tag-index.json';
-//Styles
+
+// Styles
 import SearchRow from './styles/Search';
-//Components
-import ErrorMessageBar from '../components/forms/ErrorMessageBar';
+
+// Components
+import ErrorMessageBar from './forms/ErrorMessageBar';
 
 export default class Search extends Component {
   static propTypes = { suggestions: tagIndex };
+
   static defaultProps = { suggestions: tagIndex };
 
   constructor(props) {
@@ -26,8 +29,8 @@ export default class Search extends Component {
         noInputError: false,
         noChainError: false,
         noTagError: false,
-        tagDoesNotExistError: false
-      }
+        tagDoesNotExistError: false,
+      },
     };
   }
 
@@ -66,19 +69,19 @@ export default class Search extends Component {
     this.setState({
       filteredSuggestions,
       showSuggestions: true,
-      userInput: e.currentTarget.value
+      userInput: e.currentTarget.value,
     });
   };
 
   // Event fired when the user presses a key down
   searchInteraction = e => {
     const { activeSuggestion, filteredSuggestions } = this.state;
-    let clickedTag = e.currentTarget.innerText.replace(/ /g, '-');
+    const clickedTag = e.currentTarget.innerText.replace(/ /g, '-');
 
     if (e.currentTarget.tagName === 'LI') {
       this.setState(
         {
-          userInput: clickedTag
+          userInput: clickedTag,
         },
         () => this.runSearch()
       );
@@ -90,7 +93,7 @@ export default class Search extends Component {
         {
           activeSuggestion: 0,
           showSuggestions: false,
-          userInput: filteredSuggestions[activeSuggestion]
+          userInput: filteredSuggestions[activeSuggestion],
         },
         () => this.runSearch()
       );
@@ -116,14 +119,14 @@ export default class Search extends Component {
     else {
       this.setState({
         selectedChain: this.refs.chainSelect.value,
-        userInput: document.querySelector('.tag-input').value
+        userInput: document.querySelector('.tag-input').value,
       });
     }
   };
 
   render() {
     const {
-      state: { activeSuggestion, filteredSuggestions, showSuggestions, userInput, errorMessages }
+      state: { activeSuggestion, filteredSuggestions, showSuggestions, userInput, errorMessages },
     } = this;
 
     let suggestionsListComponent;
@@ -162,11 +165,11 @@ export default class Search extends Component {
             </div>
             <Link
               href={{
-                pathname: '/create-order'
+                pathname: '/create-order',
               }}
               as={{ pathname: `/create-order` }}
             >
-              <a href={`/create-order`}>Build Custom Meal</a>
+              <a href="/create-order">Build Custom Meal</a>
             </Link>
           </div>
         );
@@ -175,12 +178,12 @@ export default class Search extends Component {
 
     if (errorMessages.noInputError === true) {
       errorBarComponent = (
-        <ErrorMessageBar message={'Please enter a chain and tag before searching.'} />
+        <ErrorMessageBar message="Please enter a chain and tag before searching." />
       );
     } else if (errorMessages.noChainError === true) {
-      errorBarComponent = <ErrorMessageBar message={'Please enter a chain before searching.'} />;
+      errorBarComponent = <ErrorMessageBar message="Please enter a chain before searching." />;
     } else if (errorMessages.noTagError === true) {
-      errorBarComponent = <ErrorMessageBar message={'Please enter a tag before searching.'} />;
+      errorBarComponent = <ErrorMessageBar message="Please enter a tag before searching." />;
     } else if (errorMessages.tagDoesNotExistError === true) {
       errorBarComponent = (
         <ErrorMessageBar message={`We can't find any custom orders with this tag.`} />

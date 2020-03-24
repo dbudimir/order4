@@ -1,8 +1,13 @@
 import styled from 'styled-components';
 
+const size = {
+  tablet: 'only screen and (max-width : 768px)',
+  phone: 'only screen and (max-width : 548px)',
+};
+
 const TagPages = styled.div`
   max-width: 100%;
-  margin-bottom: 200px;
+  margin-bottom: 48px;
 
   .background-image-container {
     background-color: #9883e5;
@@ -11,12 +16,19 @@ const TagPages = styled.div`
 
   .content-container {
     max-width: 1024px;
+    padding: 18px;
     display: flex;
     margin: 0 auto;
     justify-content: space-between;
+    @media ${size.tablet} {
+      flex-direction: column;
+    }
 
     .col-left {
       width: 62.5%;
+      @media ${size.tablet} {
+        width: 100%;
+      }
 
       .headline-container {
         padding: 0px 18px;
@@ -30,11 +42,18 @@ const TagPages = styled.div`
           margin: 0px;
         }
       }
+      .order-content-container-outer {
+        margin-right: 0px;
+      }
     }
 
     .col-right {
       margin-top: 200px;
       width: 33.5%;
+      @media ${size.tablet} {
+        margin-top: 24px;
+        width: 100%;
+      }
 
       a {
         text-decoration: none;
@@ -69,7 +88,7 @@ const TagPages = styled.div`
         font-size: 18px;
         padding: 0px 12px;
         display: flex;
-        flex-direction: row-reverse;
+        flex-direction: row;
         font-weight: 700;
         cursor: pointer;
 
@@ -80,6 +99,11 @@ const TagPages = styled.div`
         img {
           height: 50px;
           padding: 0 12px 0 0;
+          @media ${size.tablet} {
+            padding: 0 0 0 12px;
+            justify-content: space-between;
+            align-items: center;
+          }
         }
       }
 
