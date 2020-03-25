@@ -1,4 +1,4 @@
-//Utilities
+// Utilities
 import React, { Component } from 'react';
 import Link from 'next/link';
 
@@ -6,7 +6,7 @@ export default class LoggedOutNav extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      navItems: ''
+      // navItems: ''
     };
   }
 
@@ -16,7 +16,7 @@ export default class LoggedOutNav extends Component {
         <Link
           href={{
             pathname: '/login',
-            query: { action: 'login' }
+            query: { action: 'login' },
           }}
           as={{ pathname: `/login` }}
         >
@@ -28,7 +28,7 @@ export default class LoggedOutNav extends Component {
         <Link
           href={{
             pathname: '/signup',
-            query: { action: 'signup' }
+            query: { action: 'signup' },
           }}
           as={{ pathname: `/signup` }}
         >

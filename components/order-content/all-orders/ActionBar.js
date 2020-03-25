@@ -1,4 +1,7 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Link from 'next/link';
 import axios from 'axios';
 import { FacebookShareButton, TwitterShareButton, FacebookIcon, TwitterIcon } from 'react-share';
@@ -7,24 +10,21 @@ export default class ActionBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      ...props,
       favoritesClass: 'favorites',
-      orderId: props.orderId,
       favoriteCount: props.favoriteCount,
-      loggedInUserFavorite: null
+      loggedInUserFavorite: null,
     };
   }
 
   componentDidMount() {
-    if (
-      this.props.usersFavorited !== undefined &&
-      this.props.usersFavorited.includes(localStorage.userId)
-    ) {
+    const { usersFavorited, favoriteCount } = this.props;
+    if (usersFavorited !== undefined && usersFavorited.includes(localStorage.userId)) {
       this.setState(
         {
           favoritesClass: 'favorites svg-clicked',
-          orderId: this.props.orderID,
-          favoriteCount: this.props.favoriteCount,
-          loggedInUserFavorite: true
+          favoriteCount,
+          loggedInUserFavorite: true,
         },
         () => {}
       );
@@ -32,17 +32,18 @@ export default class ActionBar extends Component {
   }
 
   favoriteUnfavorite = (apiURL, updateCount, favoriteClass) => {
+    const { loggedInUserFavorite, orderId } = this.state;
+
     this.setState(
       {
         favoritesClass: favoriteClass,
-        loggedInUserFavorite: this.state.loggedInUserFavorite === true ? false : true,
-        orderId: this.props.orderId,
-        favoriteCount: updateCount
+        loggedInUserFavorite: loggedInUserFavorite !== true,
+        favoriteCount: updateCount,
       },
       () => {}
     );
 
-    let reqBody = { userId: localStorage.userId, orderId: this.props.orderId };
+    const reqBody = { userId: localStorage.userId, orderId };
 
     axios
       .post(process.env.api_key + apiURL, { ...reqBody })
@@ -54,22 +55,16 @@ export default class ActionBar extends Component {
       });
   };
 
-  handleFavoriteClick = e => {
+  handleFavoriteClick = () => {
+    const { loggedInUserFavorite, isLoggedInUserFavorite, favoriteCount } = this.state;
+
     if (localStorage.isLoggedIn === 'true') {
-      if (this.state.loggedInUserFavorite === false || this.state.loggedInUserFavorite === null) {
+      if (loggedInUserFavorite === false || loggedInUserFavorite === null) {
         // Add favorite
-        this.favoriteUnfavorite(
-          `/api/orders/favorite`,
-          this.state.favoriteCount + 1,
-          'favorites svg-clicked'
-        );
-      } else if (this.state.isLoggedInUserFavorite !== false) {
+        this.favoriteUnfavorite(`/api/orders/favorite`, favoriteCount + 1, 'favorites svg-clicked');
+      } else if (isLoggedInUserFavorite !== false) {
         // Remove favorite
-        this.favoriteUnfavorite(
-          `/api/orders/unfavorite`,
-          this.state.favoriteCount - 1,
-          'favorites'
-        );
+        this.favoriteUnfavorite(`/api/orders/unfavorite`, favoriteCount - 1, 'favorites');
       }
     } else {
       alert('Please create an account to favortie order.');
@@ -77,9 +72,17 @@ export default class ActionBar extends Component {
   };
 
   render() {
+    ActionBar.propTypes = {
+      favoriteCount: PropTypes.number,
+      usersFavorited: PropTypes.string,
+      orderId: PropTypes.string,
+    };
+
+    const { orderId } = this.props;
+    const { favoritesClass, favoriteCount, orderName, chainName, tags } = this.state;
     return (
       <div className="user-actions">
-        <div className={this.state.favoritesClass} onClick={this.handleFavoriteClick}>
+        <div className={favoritesClass} onClick={this.handleFavoriteClick}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -94,18 +97,18 @@ export default class ActionBar extends Component {
             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
           </svg>
 
-          <span className="like-count">{this.state.favoriteCount}</span>
+          <span className="like-count">{favoriteCount}</span>
         </div>
         <TwitterShareButton
-          url={`https://mealdig.com/orders/${this.props.orderId}`}
-          title={`Check out ${this.state.orderName} at ${this.state.chainName}. https://mealdig.com/orders/${this.props.orderId}`}
-          hashtags={this.state.tags}
+          url={`https://mealdig.com/orders/${orderId}`}
+          title={`Check out ${orderName} at ${chainName}. https://mealdig.com/orders/${orderId}`}
+          hashtags={tags}
         >
           <TwitterIcon size={24} round />
         </TwitterShareButton>
         <FacebookShareButton
-          url={`https://mealdig.com/orders/${this.props.orderId}`}
-          quote={`Check out ${this.state.orderName} at ${this.state.chainName}. https://mealdig.com/orders/${this.props.orderId}`}
+          url={`https://mealdig.com/orders/${orderId}`}
+          quote={`Check out ${orderName} at ${chainName}. https://mealdig.com/orders/${orderId}`}
         >
           <FacebookIcon size={24} round />
         </FacebookShareButton>
@@ -113,11 +116,11 @@ export default class ActionBar extends Component {
           <Link
             href={{
               pathname: '/orders/[id]',
-              query: { id: this.props.orderId }
+              query: { id: orderId },
             }}
-            as={{ pathname: `/orders/${this.props.orderId}` }}
+            as={{ pathname: `/orders/${orderId}` }}
           >
-            <a href={`/orders/${this.props.orderId}`}>
+            <a href={`/orders/${orderId}`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"

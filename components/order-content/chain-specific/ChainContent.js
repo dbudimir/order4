@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
+// Components
 import ChipotleOrder from './ChipotleOrder';
 import AndPizzaOrder from './AndPizzaOrder';
 
@@ -7,17 +9,23 @@ class ChainContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      chainName: props.chainName,
-      orderContent: props.orderState
+      ...props,
     };
   }
 
   render() {
+    ChainContent.propTypes = {
+      chainName: PropTypes.string,
+      orderState: PropTypes.object,
+    };
+
+    const { chainName, orderState } = this.props;
+
     let chainOrderContent;
-    if (this.props.chainName === 'Chipotle') {
-      chainOrderContent = <ChipotleOrder orderState={this.props.orderState} />;
-    } else if (this.props.chainName === '&pizza') {
-      chainOrderContent = <AndPizzaOrder orderState={this.props.orderState} />;
+    if (chainName === 'Chipotle') {
+      chainOrderContent = <ChipotleOrder orderState={orderState} />;
+    } else if (chainName === '&pizza') {
+      chainOrderContent = <AndPizzaOrder orderState={orderState} />;
     }
     return <React.Fragment>{chainOrderContent}</React.Fragment>;
   }

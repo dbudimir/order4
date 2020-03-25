@@ -10,53 +10,48 @@ class ResetPassword extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: '',
       password: props.password,
       passwordConfirm: '',
-      isLoggedIn: false,
       formErrors: {
         password: '',
         confirmPassword: '',
       },
       passwordValid: false,
       confirmPasswordValid: false,
-      allValid: false,
     };
   }
 
   componentDidMount = () => {
+    const { password } = this.props;
     this.setState({
-      password: this.props.password,
-      isLoggedIn: false,
+      password,
     });
   };
 
   onSubmit = event => {
+    const { signIn, updateUser, updateAction } = this.props;
+    const { password } = this.state;
     event.preventDefault();
 
     const url = window.location.href;
     const token = url.substring(url.indexOf('=') + 1);
 
     const newPassword = {
-      password: this.state.password,
+      password,
       token,
     };
 
     axios.post(`${process.env.api_key}/api/email/confirm-token`, { newPassword }).then(response => {
-      this.setState({
-        isLoggedIn: true,
-        userId: response.data.userId,
-      });
-      this.props.signIn(response.data.userName, response.data.email, response.data.userId, true);
+      signIn(response.data.userName, response.data.email, response.data.userId, true);
       const user = {
         userFullName: response.data.userFullName,
         userName: response.data.userName,
         email: response.data.email,
         userId: response.data.userId,
       };
-      this.props.updateUser(user);
+      updateUser(user);
       if (window.location.pathname !== '/reset-password') {
-        this.props.updateAction('');
+        updateAction('');
       }
     });
   };
@@ -105,20 +100,10 @@ class ResetPassword extends Component {
         break;
     }
 
-    this.setState(
-      {
-        formErrors,
-        passwordValid,
-        confirmPasswordValid,
-      },
-      this.validateAll
-    );
-  }
-
-  validateAll() {
-    const { state } = this;
     this.setState({
-      allValid: state.confirmPasswordValid,
+      formErrors,
+      passwordValid,
+      confirmPasswordValid,
     });
   }
 

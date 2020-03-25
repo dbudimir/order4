@@ -1,5 +1,8 @@
+// Utilities
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
+// Style
 import styled from 'styled-components';
 
 const TagInput = styled.div`
@@ -77,50 +80,58 @@ export default class TagForm extends Component {
   constructor() {
     super();
     this.state = {
-      cleanTags: [],
-      tags: []
+      tags: [],
     };
   }
 
   updateState = () => {
+    const { tags } = this.state;
+    const { setTags } = this.props;
+
+    const newArray = [];
     this.setState(
-      {
-        cleanTags: []
-      },
       () => {
-        let newArray = [];
-        this.state.tags.forEach(tag => {
+        tags.forEach(tag => {
           newArray.push(tag.replace(/ /g, '-'));
         });
-        this.props.setTags(newArray);
+      },
+      () => {
+        setTags(newArray);
       }
     );
   };
 
   removeTag = i => {
-    const newTags = [...this.state.tags];
+    const { tags } = this.state;
+    const newTags = [...tags];
     newTags.splice(i, 1);
     this.setState({ tags: newTags });
     this.updateState();
   };
 
-  inputKeyDown = e => {
+  inputKeyUp = e => {
+    const { tags } = this.state;
     const val = e.target.value;
     if (e.key === 'Enter' && val) {
-      if (this.state.tags.find(tag => tag.toLowerCase() === val.toLowerCase())) {
+      if (tags.find(tag => tag.toLowerCase() === val.toLowerCase())) {
         return;
       }
-      this.setState({ tags: [...this.state.tags, val] });
+      this.setState({ tags: [...tags, val] }, () => {
+        this.updateState();
+      });
+
       this.tagInput.value = null;
     } else if (e.key === 'Backspace' && !val) {
-      this.removeTag(this.state.tags.length - 1);
+      this.removeTag(tags.length - 1);
     }
-    this.updateState();
   };
 
   render() {
-    const { tags } = this.state;
+    TagForm.propTypes = {
+      setTags: PropTypes.func,
+    };
 
+    const { tags } = this.state;
     return (
       <TagInput>
         <div className="tag-container">
@@ -142,7 +153,7 @@ export default class TagForm extends Component {
               <input
                 type="text"
                 placeholder="(ex. healthy, vegan, spicey)"
-                onKeyDown={this.inputKeyDown}
+                onKeyUp={this.inputKeyUp}
                 ref={c => {
                   this.tagInput = c;
                 }}

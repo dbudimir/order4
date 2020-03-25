@@ -1,24 +1,33 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+
 // Utilities
 import React, { Component } from 'react';
-import Router from 'next/router';
+import PropTypes from 'prop-types';
 import Link from 'next/link';
 
 export default class LoggedInNav extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      navItems: '',
+      // navItems: '',
     };
   }
 
   handleSignOut = e => {
-    this.props.signOut(e);
+    const { signOut } = this.props;
+
+    signOut(e);
     window.location.replace('/');
 
     //  Router.push('/');
   };
 
   render() {
+    LoggedInNav.propTypes = {
+      signOut: PropTypes.func,
+    };
+
     return (
       <React.Fragment>
         <Link

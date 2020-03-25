@@ -30,17 +30,15 @@ class CreateOrder extends Component {
   }
 
   updateChain = chain => {
-    this.setState(prevState => ({
-      ...prevState,
+    this.setState({
       chainName: chain,
-    }));
+    });
   };
 
   updateOrder = order => {
-    this.setState(prevState => ({
-      ...prevState,
+    this.setState({
       order,
-    }));
+    });
   };
 
   updateOrderDetails = orderDetails => {
@@ -53,7 +51,7 @@ class CreateOrder extends Component {
   updateUser = user => {
     this.setState(prevState => ({
       ...prevState,
-      user,
+      user: { ...prevState.user, ...user },
     }));
   };
 

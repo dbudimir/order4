@@ -1,5 +1,8 @@
+// Utilities
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
+// Components
 import LoginForm from './LoginForm';
 import ForgotPassword from './ForgotPassword';
 
@@ -7,26 +10,29 @@ class LoginFormContainer extends Component {
   constructor() {
     super();
     this.state = {
-      forgotPassword: false
+      forgotPassword: false,
     };
   }
 
   forgotPassword = () => {
     this.setState({
-      forgotPassword: true
+      forgotPassword: true,
     });
   };
 
   render() {
-    if (this.state.forgotPassword === true) {
+    LoginFormContainer.propTypes = {
+      signIn: PropTypes.func,
+      updateUser: PropTypes.func,
+    };
+
+    const { signIn, updateUser } = this.props;
+    const { forgotPassword } = this.state;
+    if (forgotPassword === true) {
       return <ForgotPassword />;
     }
     return (
-      <LoginForm
-        resetPassword={this.forgotPassword}
-        signIn={this.props.signIn}
-        updateUser={this.props.updateUser}
-      />
+      <LoginForm resetPassword={this.forgotPassword} signIn={signIn} updateUser={updateUser} />
     );
   }
 }

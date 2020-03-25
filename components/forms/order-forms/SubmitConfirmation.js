@@ -1,4 +1,7 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import Router from 'next/router';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -111,6 +114,13 @@ const ModalOuter = styled.div`
 `;
 
 export default function SubmitConfirmation(props) {
+  SubmitConfirmation.propTypes = {
+    orderState: PropTypes.object,
+    updateUser: PropTypes.func,
+    toggleSubmitConfirmation: PropTypes.func,
+  };
+
+  const { orderState, toggleSubmitConfirmation } = props;
   const userStatus = useContext(UserContext);
 
   const updateModal = action => {
@@ -120,23 +130,23 @@ export default function SubmitConfirmation(props) {
   const submitOrder = event => {
     event.preventDefault();
     if (localStorage.length > 0) {
-      const reqBody = { order: props.orderState.order, userId: localStorage.userId };
+      const reqBody = { order: orderState.order, userId: localStorage.userId };
       axios
-        .post(process.env.api_key + `/api/user-order/create/existing-user`, { ...reqBody })
+        .post(`${process.env.api_key}/api/user-order/create/existing-user`, { ...reqBody })
         .then(response => {
           Router.push(`/user/${localStorage.username}`);
         });
     } else if (localStorage.length === 0) {
-      const reqBody = { order: props.orderState.order };
+      const reqBody = { order: orderState.order };
       axios
-        .post(process.env.api_key + `/api/user-order/create/order`, {
-          ...reqBody
+        .post(`${process.env.api_key}/api/user-order/create/order`, {
+          ...reqBody,
         })
         .then(response => {
           Router.push(
             {
               pathname: `/orders/${response.data._id}`,
-              query: { id: response.data._id }
+              query: { id: response.data._id },
             },
             `/orders/${response.data._id}`
           );
@@ -220,11 +230,11 @@ export default function SubmitConfirmation(props) {
           <h3>Nice!</h3>
           {userLoggedIn}
           {nextAction}
-          <span className="back-button" onClick={props.toggleSubmitConfirmation}>
+          <span className="back-button" onClick={toggleSubmitConfirmation}>
             {'<< Go Back'}
           </span>
         </div>
-        <OrderContent orderState={props.orderState} />
+        <OrderContent orderState={orderState} />
       </div>
     </ModalOuter>
   );

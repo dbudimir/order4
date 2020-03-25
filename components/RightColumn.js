@@ -1,8 +1,16 @@
+// Utilities
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Link from 'next/link';
 
 export default class RightColumn extends Component {
   render() {
+    RightColumn.propTypes = {
+      tag: PropTypes.string,
+      chainName: PropTypes.string,
+    };
+
+    const { tag, chainName } = this.props;
     const toTitleCase = function(str) {
       str = str.toLowerCase().split(' ');
       for (let i = 0; i < str.length; i++) {
@@ -11,9 +19,9 @@ export default class RightColumn extends Component {
       return str.join(' ');
     };
 
-    const tagName = this.props.tag.replace(/-/g, ' ');
+    const tagName = tag.replace(/-/g, ' ');
     const capitalTagName = toTitleCase(tagName);
-    const chainName = toTitleCase(this.props.chainName);
+    const chainNameLower = toTitleCase(chainName);
 
     return (
       <div className="col-right">
@@ -21,9 +29,9 @@ export default class RightColumn extends Component {
           href={{
             pathname: `/tags/[tag]`,
           }}
-          as={{ pathname: `/tags/${this.props.tag}` }}
+          as={{ pathname: `/tags/${tag}` }}
         >
-          <a href={`/tags/${this.props.tag}`}>
+          <a href={`/tags/${tag}`}>
             <div className="more-tag-cta">
               <span>See more popular {capitalTagName} custom orders at other restaurants.</span>
             </div>
@@ -33,12 +41,15 @@ export default class RightColumn extends Component {
           href={{
             pathname: `/chains/[name]`,
           }}
-          as={{ pathname: `/chains/${this.props.chainName}` }}
+          as={{ pathname: `/chains/${chainName}` }}
         >
-          <a href={`/chains/${this.props.chainName}`}>
+          <a href={`/chains/${chainName}`}>
             <div className="more-chain-cta">
-              <span>See more popular custom meals at {chainName}</span>
-              <img src="/static/chain-logos/square/chipotle-square-logo.png" />
+              <span>See more popular custom meals at {chainNameLower}</span>
+              <img
+                src="/static/chain-logos/square/chipotle-square-logo.png"
+                alt={`${chainName} Square Logo`}
+              />
             </div>
           </a>
         </Link>

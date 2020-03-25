@@ -1,8 +1,9 @@
 import Document, { Head, Main, NextScript } from 'next/document';
 import React from 'react';
 
-// Import styled components ServerStyleSheet
 import { ServerStyleSheet } from 'styled-components';
+
+// Import styled components ServerStyleSheet
 
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
@@ -20,10 +21,6 @@ export default class MyDocument extends Document {
   }
 
   render() {
-    const bodyStyle = {
-      margin: 0,
-    };
-
     return (
       <React.Fragment>
         <Head>
@@ -166,7 +163,11 @@ export default class MyDocument extends Document {
               font-weight: 900;
               src: local('Roboto Black'), local('Roboto-Black'),
                 url('/static/fonts/Roboto/roboto-v20-latin-900.woff2') format('woff2');
-            }
+				}
+				body {
+					margin: 0;
+					background: #eeeef1;
+				}
           `,
             }}
           />
@@ -178,7 +179,7 @@ export default class MyDocument extends Document {
           {/* Step 5: Output the styles in the head  */}
           {this.props.styleTags}
         </Head>
-        <body style={bodyStyle}>
+        <body>
           <Main />
           <NextScript />
         </body>

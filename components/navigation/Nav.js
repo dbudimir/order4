@@ -79,7 +79,7 @@ export default class Nav extends Component {
             <img
               src="https://mealdig.com/static/hamburger-icon.png"
               style={state.imgStyle}
-              alt="menu-icon"
+              alt="Menu Icon"
             />
           </div>
         </div>
@@ -115,7 +115,7 @@ export default class Nav extends Component {
               <a>
                 <span className="create">
                   Create Order
-                  <img src="/static/plus.svg" alt="plus-icon" />
+                  <img src="/static/plus.svg" alt="Plus Icon" />
                 </span>
               </a>
             </Link>

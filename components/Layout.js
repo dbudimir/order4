@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import UserContext from './UserContext';
 
@@ -38,7 +38,7 @@ export default function Layout() {
         <Nav signOut={signOut} />
       </div>
       <div className="feedback-icon">
-        <img src="/static/icons/info.svg" />
+        <img src="/static/icons/info.svg" alt="Share Feedback Icon" />
       </div>
     </GlobalLayout>
   );

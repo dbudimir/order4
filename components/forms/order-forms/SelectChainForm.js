@@ -1,22 +1,29 @@
+// Utilities
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class SelectChainForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { ...props };
   }
 
-  updateState = async event => {
-    const { target } = event;
+  updateState = e => {
+    const { setChain } = this.props;
+    const { target } = e;
     const { value } = target;
     const { name } = target;
-    await this.setState({
-      [name]: value
+    this.setState({
+      [name]: value,
     });
-    this.props.setChain(this.state.chainName);
+    setChain(e.target.value);
   };
 
   render() {
+    SelectChainForm.propTypes = {
+      setChain: PropTypes.func,
+    };
+
     return (
       <div className="select-chain">
         <form>

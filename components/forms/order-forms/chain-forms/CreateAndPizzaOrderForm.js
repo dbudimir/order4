@@ -1,4 +1,6 @@
+/* eslint-disable jsx-a11y/label-has-for */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Form = styled.div`
@@ -16,23 +18,25 @@ class CreateAndPizzOrder extends Component {
     super();
     this.state = {
       contentSchema: 'AndPizzaOrder',
-      chainName: '&pizza'
+      chainName: '&pizza',
     };
   }
 
-  updateState = async event => {
+  updateState = event => {
+    const { setOrder } = this.props;
     const { target } = event;
     const { value } = target;
     const { name } = target;
 
-    await this.setState({
-      [name]: value
+    this.setState({
+      [name]: value,
     });
 
-    this.props.setOrder(this.state);
+    setOrder(this.state);
   };
 
-  getSelected = async e => {
+  getSelected = () => {
+    const { setOrder } = this.props;
     const selectedSauces = [].filter
       .call(document.getElementsByName('sauce'), c => c.checked)
       .map(c => c.value);
@@ -48,28 +52,31 @@ class CreateAndPizzOrder extends Component {
     const selectedFinishes = [].filter
       .call(document.getElementsByName('finish'), c => c.checked)
       .map(c => c.value);
-    await this.setState({
+    this.setState({
       sauce: selectedSauces,
       cheese: selectedCheeses,
       veggies: selectedVeggies,
       proteins: selectedProteins,
-      finishes: selectedFinishes
+      finishes: selectedFinishes,
     });
-    this.props.setOrder(this.state);
+    setOrder(this.state);
   };
 
   submitOrder = async () => {
-    await this.setState(prevState => ({
+    const { setOrder } = this.props;
+    this.setState(prevState => ({
       ...prevState,
-      submitOrder: true
+      submitOrder: true,
     }));
-    this.props.setOrder(this.state);
+    setOrder(this.state);
   };
 
   render() {
-    // prettier-ignore
-    const sauces = ['Classic Tomato', 'Spicy Tomato', 'Garlic Ricotta', 'Mushroom Truffle', 'Basil Pesto']
+    CreateAndPizzOrder.propTypes = {
+      setOrder: PropTypes.func,
+    };
 
+    const sauces = ['Classic Tomato', 'Spicy Tomato', 'Garlic Ricotta', 'Mushroom Truffle', 'Basil Pesto'] // prettier-ignore
     const saucesSpans = sauces.map((sauce, i) => (
       <span className="checkbox-container">
         <input type="checkbox" id={sauce} name="sauce" value={sauce} key={i} />

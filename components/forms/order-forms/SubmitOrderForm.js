@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+// Components
 import TagForm from './TagForm';
 
 const Form = styled.div`
@@ -14,57 +16,52 @@ const Form = styled.div`
 `;
 
 class SubmitOrder extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: {}
-    };
+  constructor() {
+    super();
+    this.state = {};
   }
 
-  updateState = event => {
-    const { target } = event;
+  updateState = e => {
+    const { target } = e;
     const { value } = target;
     const { name } = target;
 
     this.setState(
       {
         order: {
-          ...this.state.order,
-          [name]: value
-        }
+          [name]: value,
+        },
       },
       () => {
-        this.props.setOrderDetails(this.state.order);
+        const { setOrderDetails } = this.props;
+        const { order } = this.state;
+        setOrderDetails(order);
       }
     );
-  };
-
-  updateUserState = event => {
-    const { target } = event;
-    const { value } = target;
-    const { name } = target;
-
-    this.setState({
-      user: {
-        [name]: value
-      }
-    });
   };
 
   updateTags = newTags => {
     this.setState(
       {
         order: {
-          tags: newTags
-        }
+          tags: newTags,
+        },
       },
       () => {
-        this.props.setOrderDetails(this.state.order);
+        const { setOrderDetails } = this.props;
+        const { order } = this.state;
+        setOrderDetails(order);
       }
     );
   };
 
   render() {
+    SubmitOrder.propTypes = {
+      setOrderDetails: PropTypes.func,
+      toggleSubmitConfirmation: PropTypes.func,
+    };
+
+    const { toggleSubmitConfirmation } = this.props;
     return (
       <div>
         <Form>
@@ -91,7 +88,7 @@ class SubmitOrder extends Component {
             <TagForm setTags={this.updateTags} />
             <br />
             <button
-              onClick={this.props.toggleSubmitConfirmation}
+              onClick={toggleSubmitConfirmation}
               className="button"
               name="submit"
               type="submit"

@@ -1,10 +1,14 @@
-//Utilities
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+// Utilities
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
-import styled from 'styled-components';
-//Styles
+
+// Styles
 import Form from '../styles/Form';
-//Components
+
+// Components
 import ErrorMessageBar from './ErrorMessageBar';
 import ErrorMessage from './ErrorMessage';
 
@@ -12,30 +16,31 @@ class LoginForm extends Component {
   constructor() {
     super();
     this.state = {
-      userId: '',
+      // userId: '',
       email: '',
       password: '',
       formErrors: {
         email: '',
-        password: ''
+        password: '',
       },
       emailValid: false,
       passwordValid: false,
-      allValid: false,
+      // allValid: false,
       credentialValidation: {
         emailMatch: true,
-        passwordMatch: true
+        passwordMatch: true,
       },
-      isLoggedIn: '',
-      forgotPassword: false
+      // isLoggedIn: '',
+      // forgotPassword: false,
     };
   }
 
   componentDidMount = () => {
+    const { email, password } = this.props;
     this.setState({
-      email: this.props.email,
-      password: this.props.password,
-      isLoggedIn: false
+      email,
+      password,
+      // isLoggedIn: false,
     });
   };
 
@@ -46,7 +51,7 @@ class LoginForm extends Component {
 
     this.setState(
       {
-        [name]: value
+        [name]: value,
       },
       () => {
         this.validateFields(name, value);
@@ -76,7 +81,7 @@ class LoginForm extends Component {
       {
         formErrors,
         emailValid,
-        passwordValid
+        passwordValid,
       },
       this.validateAll
     );
@@ -84,42 +89,44 @@ class LoginForm extends Component {
 
   validateAll = () => {
     this.setState({
-      allValid: this.state.emailValid && this.state.passwordValid
+      // allValid: this.state.emailValid && this.state.passwordValid,
     });
   };
 
   forgotPassword = () => {
-    this.props.resetPassword();
+    const { resetPassword } = this.props;
+    resetPassword();
   };
 
   onSubmit = async event => {
     event.preventDefault();
-    const { state } = this;
-    const creds = { email: state.email, password: state.password };
+    const { signIn, updateUser, updateAction } = this.props;
+    const { email, password } = this.state;
+    const creds = { email, password };
 
     axios
-      .post(process.env.api_key + `/api/users/login`, {
-        ...creds
+      .post(`${process.env.api_key}/api/users/login`, {
+        ...creds,
       })
       .then(response => {
         if (response.data.passwordMatch === false) {
           this.setState({
             credentialValidation: {
-              passwordMatch: false
-            }
+              passwordMatch: false,
+            },
           });
         } else if (response.data.emailMatch === false) {
           this.setState({
             credentialValidation: {
-              emailMatch: false
-            }
+              emailMatch: false,
+            },
           });
         } else {
           this.setState({
-            isLoggedIn: true,
-            userId: response.data.userId
+            // isLoggedIn: true,
+            // userId: response.data.userId,
           });
-          this.props.signIn(
+          signIn(
             response.data.userName,
             response.data.email,
             response.data.userId,
@@ -130,24 +137,35 @@ class LoginForm extends Component {
             userFullName: response.data.userFullName,
             userName: response.data.userName,
             email: response.data.email,
-            userId: response.data.userId
+            userId: response.data.userId,
           };
-          this.props.updateUser(user);
+          updateUser(user);
           if (window.location.pathname !== ('/login' || '/signup')) {
-            this.props.updateAction('');
+            updateAction('');
           }
         }
       });
   };
 
   render() {
+    LoginForm.propTypes = {
+      email: PropTypes.string,
+      password: PropTypes.string,
+      resetPassword: PropTypes.func,
+      signIn: PropTypes.func,
+      updateUser: PropTypes.func,
+      updateAction: PropTypes.func,
+    };
+
+    const { credentialValidation, email, formErrors, password } = this.state;
+
     let errorBar;
-    if (this.state.credentialValidation.emailMatch === false) {
+    if (credentialValidation.emailMatch === false) {
       errorBar = (
-        <ErrorMessageBar message={'Sorry! There is no MealDig user with that email address.'} />
+        <ErrorMessageBar message="Sorry! There is no MealDig user with that email address." />
       );
-    } else if (this.state.credentialValidation.passwordMatch === false) {
-      errorBar = <ErrorMessageBar message={'The email and password combination is incorrect.'} />;
+    } else if (credentialValidation.passwordMatch === false) {
+      errorBar = <ErrorMessageBar message="The email and password combination is incorrect." />;
     }
 
     return (
@@ -162,11 +180,11 @@ class LoginForm extends Component {
             <input
               name="email"
               onChange={this.updateState}
-              value={this.state.email || ''}
+              value={email || ''}
               type="text"
               placeholder="Enter your email"
             />
-            <ErrorMessage message={this.state.formErrors.email} state={this.state} />
+            <ErrorMessage message={formErrors.email} state={this.state} />
             <div className="form-input-label">
               <span>Password</span>
               <span className="forgot-password" onClick={this.forgotPassword}>
@@ -177,11 +195,11 @@ class LoginForm extends Component {
             <input
               name="password"
               onChange={this.updateState}
-              value={this.state.password || ''}
+              value={password || ''}
               type="password"
               placeholder="Enter your password"
             />
-            <ErrorMessage message={this.state.formErrors.password} state={this.state} />
+            <ErrorMessage message={formErrors.password} state={this.state} />
             <input name="submit" onClick={this.onSubmit} type="submit" value="Log In" />
             <span className="sign-up-now">
               Don't have an account?

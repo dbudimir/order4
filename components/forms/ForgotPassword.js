@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import Link from 'next/link';
@@ -34,8 +35,9 @@ class ForgotPassword extends Component {
   }
 
   componentDidMount = () => {
+    const { email } = this.props;
     this.setState({
-      email: this.props.email,
+      email,
       isLoggedIn: false,
     });
   };
@@ -78,8 +80,9 @@ class ForgotPassword extends Component {
   };
 
   validateAll = () => {
+    const { emailValid } = this.state;
     this.setState({
-      allValid: this.state.emailValid,
+      allValid: emailValid,
     });
   };
 
@@ -96,6 +99,7 @@ class ForgotPassword extends Component {
   onSubmit = async event => {
     event.preventDefault();
     const { state } = this;
+
     axios.post(`${process.env.api_key}/api/email/`, { ...state }).then(response => {
       if (!response.data.message) {
         response.data.location = process.env.api_key;
@@ -110,8 +114,14 @@ class ForgotPassword extends Component {
   };
 
   render() {
+    ForgotPassword.propTypes = {
+      email: PropTypes.string,
+    };
+
+    const { existingUser, email, formErrors } = this.state;
+
     let errorBar;
-    switch (this.state.existingUser) {
+    switch (existingUser) {
       case true:
         errorBar = '';
         break;
@@ -137,11 +147,11 @@ class ForgotPassword extends Component {
             <input
               name="email"
               onChange={this.updateState}
-              value={this.state.email || ''}
+              value={email || ''}
               type="text"
               placeholder="Enter your email"
             />
-            <ErrorMessage message={this.state.formErrors.email} state={this.state} />
+            <ErrorMessage message={formErrors.email} state={this.state} />
             <input name="submit" onClick={this.onSubmit} type="submit" value="Get Recovery Link" />
             <span className="sign-up-now">
               Don't have an account?

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import Form from '../styles/Form';
@@ -18,23 +19,24 @@ class SignupForm extends Component {
         userName: '',
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
       },
       userNameValid: false,
       emailValid: false,
       passwordValid: false,
       confirmPasswordValid: false,
-      allValid: false
+      allValid: false,
     };
   }
 
   componentDidMount = () => {
+    const { userName, email, password } = this.props;
     this.setState({
       userFullName: '',
-      userName: this.props.userName,
-      email: this.props.email,
-      password: this.props.password,
-      isLoggedIn: false
+      userName,
+      email,
+      password,
+      isLoggedIn: false,
     });
   };
 
@@ -45,7 +47,7 @@ class SignupForm extends Component {
 
     this.setState(
       {
-        [name]: value
+        [name]: value,
       },
       () => {
         this.validateFields(name, value);
@@ -55,25 +57,27 @@ class SignupForm extends Component {
 
   onSubmit = async event => {
     event.preventDefault();
+
+    const { signIn, updateUser } = this.props;
     const { state } = this;
 
     axios
-      .post(process.env.api_key + `/api/users/signup`, {
-        ...state
+      .post(`${process.env.api_key}/api/users/signup`, {
+        ...state,
       })
       .then(response => {
         this.setState({
           isLoggedIn: true,
-          userId: response.data._id
+          userId: response.data._id,
         });
-        this.props.signIn(response.data.userName, response.data.email, response.data._id, true);
+        signIn(response.data.userName, response.data.email, response.data._id, true);
         const user = {
           userFullName: response.data.userFullName,
           userName: response.data.userName,
           email: response.data.email,
-          userId: response.data._id
+          userId: response.data._id,
         };
-        this.props.updateUser(user);
+        updateUser(user);
         console.log(window.location.pathname);
         //   if (window.location.pathname !== ('/login' || '/signup')) {
         //     this.props.updateAction('');
@@ -82,11 +86,15 @@ class SignupForm extends Component {
   };
 
   validateFields(fieldName, value) {
-    const { formErrors } = this.state;
-    let { userNameValid } = this.state;
-    let { emailValid } = this.state;
-    let { passwordValid } = this.state;
-    let { confirmPasswordValid } = this.state;
+    let {
+      formErrors,
+      password,
+      userNameValid,
+      emailValid,
+      passwordValid,
+      confirmPasswordValid,
+      passwordConfirm,
+    } = this.state;
 
     switch (fieldName) {
       case 'userName':
@@ -102,7 +110,7 @@ class SignupForm extends Component {
         formErrors.password = passwordValid ? '' : 'Minimum seven characters.';
         break;
       case 'passwordConfirm':
-        confirmPasswordValid = this.state.password === this.state.passwordConfirm;
+        confirmPasswordValid = password === passwordConfirm;
         formErrors.confirmPassword = confirmPasswordValid ? '' : 'The passwords do not match.';
         break;
       default:
@@ -115,23 +123,31 @@ class SignupForm extends Component {
         userNameValid,
         emailValid,
         passwordValid,
-        confirmPasswordValid
+        confirmPasswordValid,
       },
       this.validateAll
     );
   }
 
   validateAll() {
+    const { userNameValid, emailValid, passwordValid, confirmPasswordValid } = this.state;
+
     this.setState({
-      allValid:
-        this.state.emailValid &&
-        this.state.passwordValid &&
-        this.state.confirmPasswordValid &&
-        this.state.userNameValid
+      allValid: emailValid && passwordValid && confirmPasswordValid && userNameValid,
     });
   }
 
   render() {
+    SignupForm.propTypes = {
+      email: PropTypes.string,
+      password: PropTypes.string,
+      userName: PropTypes.string,
+      signIn: PropTypes.func,
+      updateUser: PropTypes.func,
+    };
+
+    const { userFullName, userName, email, password, passwordConfirm, formErrors } = this.state;
+
     return (
       <Form className="form">
         <div className="signup-form">
@@ -143,7 +159,7 @@ class SignupForm extends Component {
             <input
               name="userFullName"
               onChange={this.updateState}
-              value={this.state.userFullName || ''}
+              value={userFullName || ''}
               type="text"
               placeholder="Enter your full name"
             />
@@ -154,44 +170,44 @@ class SignupForm extends Component {
             <input
               name="userName"
               onChange={this.updateState}
-              value={this.state.userName || ''}
+              value={userName || ''}
               type="text"
               placeholder="Enter a username"
             />
-            <ErrorMessage message={this.state.formErrors.userName} state={this.state} />
+            <ErrorMessage message={formErrors.userName} state={this.state} />
             <div className="form-input-label">
               <span>Email</span>
             </div>
             <input
               name="email"
               onChange={this.updateState}
-              value={this.state.email || ''}
+              value={email || ''}
               type="text"
               placeholder="Email"
             />
-            <ErrorMessage message={this.state.formErrors.email} state={this.state} />
+            <ErrorMessage message={formErrors.email} state={this.state} />
             <div className="form-input-label">
               <span>Create Password</span>
             </div>
             <input
               name="password"
               onChange={this.updateState}
-              value={this.state.password || ''}
+              value={password || ''}
               type="password"
               placeholder="Password"
             />
-            <ErrorMessage message={this.state.formErrors.password} state={this.state} />
+            <ErrorMessage message={formErrors.password} state={this.state} />
             <div className="form-input-label">
               <span>Confirm Password</span>
             </div>
             <input
               name="passwordConfirm"
               onChange={this.updateState}
-              value={this.state.passwordConfirm || ''}
+              value={passwordConfirm || ''}
               type="password"
               placeholder="Re-enter password"
             />
-            <ErrorMessage message={this.state.formErrors.confirmPassword} state={this.state} />
+            <ErrorMessage message={formErrors.confirmPassword} state={this.state} />
             <input name="submit" onClick={this.onSubmit} type="submit" value="Sign Up" />
           </form>
         </div>

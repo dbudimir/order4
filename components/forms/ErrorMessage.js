@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Error = styled.div`
@@ -12,9 +13,14 @@ const Error = styled.div`
 
 class ErrorMessage extends Component {
   render() {
+    ErrorMessage.propTypes = {
+      message: PropTypes.string,
+    };
+
+    const { message } = this.props;
     return (
       <Error className="error-message">
-        <p>{this.props.message}</p>
+        <p>{message}</p>
       </Error>
     );
   }

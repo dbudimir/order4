@@ -1,13 +1,18 @@
-import React, { Component } from 'react';
+/* eslint-disable class-methods-use-this */
 
+// Utilities
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+// Components
 import OrderContent from './order-content/OrderContent';
 
 class ChainRow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sortedOrders: [],
-      sortOrder: this.props.sortOrder,
+      // sortedOrders: [],
+      // sortOrder: this.props.sortOrder,
     };
   }
 
@@ -48,7 +53,12 @@ class ChainRow extends Component {
   }
 
   render() {
-    const { chainRow } = this.props;
+    ChainRow.propTypes = {
+      chainRow: PropTypes.array,
+      sortOrder: PropTypes.string,
+    };
+
+    const { chainRow, sortOrder } = this.props;
 
     const orders = chainRow.map((order, ordersIndex) => (
       <OrderContent
@@ -59,7 +69,7 @@ class ChainRow extends Component {
       />
     ));
 
-    switch (this.props.sortOrder) {
+    switch (sortOrder) {
       case 'popular':
         orders.sort(this.sortPopular);
         break;

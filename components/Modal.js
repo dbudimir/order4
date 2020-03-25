@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-let ModalContainer = styled.div`
+const ModalContainer = styled.div`
   height: 200px;
   width: 200px;
 `;

@@ -1,8 +1,8 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 const size = {
   tablet: 'only screen and (max-width : 768px)',
-  phone: 'only screen and (max-width : 548px)'
+  phone: 'only screen and (max-width : 548px)',
 };
 
 const SearchRow = styled.div`

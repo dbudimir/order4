@@ -1,4 +1,6 @@
+/* eslint-disable jsx-a11y/label-has-for */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Form = styled.div`
@@ -16,47 +18,66 @@ class CreateChipotleOrder extends Component {
     super();
     this.state = {
       contentSchema: 'ChipotleOrder',
-      chainName: 'Chipotle'
+      chainName: 'Chipotle',
     };
   }
 
-  updateState = async event => {
-    const { target } = event;
+  updateState = e => {
+    const { target } = e;
     const { value } = target;
     const { name } = target;
 
-    await this.setState({
-      [name]: value
-    });
-
-    this.props.setOrder(this.state);
+    this.setState(
+      {
+        [name]: value,
+      },
+      () => {
+        const { setOrder } = this.props;
+        setOrder(this.state);
+      }
+    );
   };
 
-  getSelected = async e => {
+  getSelected = () => {
     const selectedFillings = [].filter
       .call(document.getElementsByName('filling'), c => c.checked)
       .map(c => c.value);
     const selectedToppings = [].filter
       .call(document.getElementsByName('topping'), c => c.checked)
       .map(c => c.value);
-    await this.setState({
-      fillings: selectedFillings,
-      toppings: selectedToppings
-    });
-    this.props.setOrder(this.state);
+    this.setState(
+      {
+        fillings: selectedFillings,
+        toppings: selectedToppings,
+      },
+      () => {
+        const { setOrder } = this.props;
+        setOrder(this.state);
+      }
+    );
   };
 
-  submitOrder = async () => {
-    await this.setState(prevState => ({
-      ...prevState,
-      submitOrder: true
-    }));
-    this.props.setOrder(this.state);
+  submitOrder = () => {
+    this.setState(
+      prevState => ({
+        ...prevState,
+        submitOrder: true,
+      }),
+      () => {
+        const { setOrder } = this.props;
+        setOrder(this.state);
+      }
+    );
   };
 
   render() {
+    CreateChipotleOrder.propTypes = {
+      setOrder: PropTypes.func,
+    };
+
+    const { mealType } = this.state;
     let tortilla = '';
-    if (this.state.mealType === 'Tacos') {
+    if (mealType === 'Tacos') {
       tortilla = (
         <div>
           <span className="field-label">Select a Tortilla</span>

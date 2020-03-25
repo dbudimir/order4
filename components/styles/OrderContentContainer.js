@@ -160,7 +160,7 @@ const OrderContentContainer = styled.div`
     .order-info {
       margin-bottom: 6px;
       border-bottom: 2px solid #eeeef1;
-      padding-bottom: 12px;
+      padding-bottom: 6px;
 
       .order-name {
         margin-bottom: 12px;
@@ -170,7 +170,6 @@ const OrderContentContainer = styled.div`
         margin-top: 12px;
         font-weight: 400;
         font-size: 18px;
-        display: none;
       }
     }
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Link from 'next/link';
 import Moment from 'react-moment';
 
@@ -9,8 +10,14 @@ export default class CreatedMeta extends Component {
   }
 
   render() {
-    let orderUserName =
-      this.props.userData.length === 0 ? 'unknown' : this.props.userData[0].userName;
+    CreatedMeta.propTypes = {
+      userData: PropTypes.object,
+      dateCreated: PropTypes.string,
+    };
+
+    const { userData, dateCreated } = this.props;
+
+    const orderUserName = userData.length === 0 ? 'unknown' : userData[0].userName;
 
     return (
       <div className="created-by">
@@ -19,7 +26,7 @@ export default class CreatedMeta extends Component {
           <Link
             href={{
               pathname: `/user/[user]`,
-              query: { user: orderUserName }
+              query: { user: orderUserName },
             }}
             as={{ pathname: `/user/${orderUserName}` }}
           >
@@ -27,13 +34,7 @@ export default class CreatedMeta extends Component {
               <span>{orderUserName}</span>
             </a>
           </Link>{' '}
-          <span>
-            {this.props.userData.length === 0 ? (
-              ''
-            ) : (
-              <Moment fromNow>{this.props.dateCreated}</Moment>
-            )}
-          </span>
+          <span>{userData.length === 0 ? '' : <Moment fromNow>{dateCreated}</Moment>}</span>
         </p>
       </div>
     );

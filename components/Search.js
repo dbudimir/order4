@@ -1,3 +1,7 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+
 // Utilities
 import React, { Component } from 'react';
 import Router from 'next/router';
@@ -16,9 +20,9 @@ export default class Search extends Component {
   static defaultProps = { suggestions: tagIndex };
 
   constructor(props) {
-    super();
+    super(props);
     this.state = {
-      suggestions: tagIndex, // All possible tags
+      // suggestions: tagIndex, // All possible tags
       activeSuggestion: 0, // The active selection's index
       filteredSuggestions: [], // The suggestions that match the user's input
       showSuggestions: false, // Whether or not the suggestion list is shown
@@ -35,22 +39,23 @@ export default class Search extends Component {
   }
 
   // Event fired when the user clicks on a suggestion
-  runSearch = e => {
-    if (this.state.selectedChain === '' && this.state.userInput === '') {
+  runSearch = () => {
+    const { selectedChain, userInput, filteredSuggestions } = this.state;
+    if (selectedChain === '' && userInput === '') {
       this.setState({ errorMessages: { noInputError: true } });
       //
-    } else if (this.state.selectedChain === '') {
+    } else if (selectedChain === '') {
       this.setState({ errorMessages: { noChainError: true } });
       //
-    } else if (this.state.userInput === '') {
+    } else if (userInput === '') {
       this.setState({ errorMessages: { noTagError: true } });
       //
-    } else if (this.state.filteredSuggestions.length === 0) {
+    } else if (filteredSuggestions.length === 0) {
       this.setState({ errorMessages: { tagDoesNotExistError: true } });
       //
     } else {
       // Execute search
-      Router.push(`/chains/${this.state.selectedChain}/${this.state.userInput}`);
+      Router.push(`/chains/${selectedChain}/${userInput}`);
     }
   };
 
@@ -118,7 +123,7 @@ export default class Search extends Component {
     // Keep user input up to date
     else {
       this.setState({
-        selectedChain: this.refs.chainSelect.value,
+        selectedChain: this.chainSelect.value,
         userInput: document.querySelector('.tag-input').value,
       });
     }
@@ -208,7 +213,9 @@ export default class Search extends Component {
                   className="search-action chain-select"
                   onChange={this.searchInteraction}
                   name="chain"
-                  ref="chainSelect"
+                  ref={c => {
+                    this.chainSelect = c;
+                  }}
                 >
                   <option value="" disabled selected>
                     Select chain
@@ -245,7 +252,7 @@ export default class Search extends Component {
               </div>
               <div className="search-action search-submit" onClick={this.runSearch}>
                 <span>Search</span>
-                <img src="../static/icons/search.svg" alt="search" />
+                <img src="../static/icons/search.svg" alt="Search Icon" />
               </div>
             </div>
             {noSuggestionsComponent}

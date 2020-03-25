@@ -1,9 +1,13 @@
+// Utilities
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Link from 'next/link';
 import styled from 'styled-components';
 
+// Components
 import ChainRow from './ChainRow';
 
+// Styles
 const ChainContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -93,7 +97,7 @@ class Chains extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      chains: [],
+      // chains: [],
       sortOrder: 'popular',
     };
   }
@@ -105,7 +109,14 @@ class Chains extends Component {
   };
 
   render() {
-    const { chainName } = this.props.chain[0];
+    Chains.propTypes = {
+      chain: PropTypes.array,
+    };
+
+    const { chain } = this.props;
+    const { sortOrder } = this.state;
+    const { chainName } = chain[0];
+
     return (
       <ChainContainer>
         <div className="chain-header">
@@ -146,7 +157,7 @@ class Chains extends Component {
             </div>
           </SortOrder>
         </div>
-        <ChainRow chainRow={this.props.chain} sortOrder={this.state.sortOrder} />
+        <ChainRow chainRow={chain} sortOrder={sortOrder} />
       </ChainContainer>
     );
   }
