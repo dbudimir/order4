@@ -74,7 +74,7 @@ export default class ActionBar extends Component {
   render() {
     ActionBar.propTypes = {
       favoriteCount: PropTypes.number,
-      usersFavorited: PropTypes.string,
+      usersFavorited: PropTypes.array,
       orderId: PropTypes.string,
     };
 

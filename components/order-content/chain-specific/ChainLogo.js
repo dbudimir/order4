@@ -41,7 +41,7 @@ class ChainLogo extends Component {
           }}
           as={{ pathname: `/chains/${chainName}` }}
         >
-          <a href={`/chains${chainName}`}>{chainLogo}</a>
+          <a href={`/chains/${chainName}`}>{chainLogo}</a>
         </Link>
       </React.Fragment>
     );

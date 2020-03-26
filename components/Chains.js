@@ -13,7 +13,7 @@ const ChainContainer = styled.div`
   flex-direction: column;
   width: 1024px;
   max-width: 94%;
-  margin: 40px auto 120px;
+  margin: 40px auto;
 
   .chain-header {
     display: flex;
@@ -93,6 +93,7 @@ const SortOrder = styled.div`
   }
 `;
 
+// Container for ALL the chain rows appearing on the home page.
 class Chains extends Component {
   constructor(props) {
     super(props);

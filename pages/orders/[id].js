@@ -17,6 +17,13 @@ const OrderContainer = styled.div`
 
   .order-content-container {
     flex-basis: 100%;
+
+    .order-data {
+      .description {
+        display: block;
+        mask-image: unset;
+      }
+    }
   }
 `;
 

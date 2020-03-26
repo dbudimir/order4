@@ -1,10 +1,16 @@
+// Utilities
 import React, { Component } from 'react';
 import { NextSeo } from 'next-seo';
 import fetch from 'isomorphic-fetch';
 
+// Style
+import PageContent from '../components/styles/Home';
+
+// Components
 import Layout from '../components/Layout';
 import Footer from '../components/Footer';
 import Search from '../components/Search';
+import ChainButtons from '../components/ChainButtons';
 import Chains from '../components/Chains';
 
 class Index extends Component {
@@ -14,11 +20,13 @@ class Index extends Component {
   }
 
   render() {
-    const index = this.state;
-    const chainOrders = index.chains;
+    const { chains } = this.state;
+
+    const chainNames = [];
+    chains.map(chain => chainNames.push(chain[0].chainName));
 
     // Start function that generates row for each chain
-    const chainRows = chainOrders.map((chain, chainsIndex) => (
+    const chainRows = chains.map((chain, chainsIndex) => (
       <Chains chain={chain} index={chainsIndex} />
     ));
 
@@ -30,7 +38,10 @@ class Index extends Component {
         />
         <Layout />
         <Search />
-        {chainRows}
+        <PageContent>
+          <ChainButtons chainNames={chainNames} />
+          {chainRows}
+        </PageContent>
         <Footer />
       </div>
     );

@@ -26,6 +26,7 @@ class Tag extends Component {
     const orderCard = allOrders.orders.map((order, index) => (
       <OrderContent orderID={order._id} key={index} />
     ));
+    const pageURL = `https://mealdig.com/chains/${allOrders.name}/${cleanTag}`;
 
     return (
       <div>
@@ -34,7 +35,17 @@ class Tag extends Component {
             allOrders.tag.slice(1)} Orders at ${allOrders.name.charAt(0).toUpperCase() +
             allOrders.name.slice(1)}`}
           description={`Check out the most popular ${cleanTag} custom orders at ${allOrders.name}. Or, submit your own custom order and share it with your friends.`}
+          canonical={pageURL}
+          openGraph={{
+            url: pageURL,
+            title: `The Best ${allOrders.tag.charAt(0).toUpperCase() +
+              allOrders.tag.slice(1)} Orders at ${allOrders.name.charAt(0).toUpperCase() +
+              allOrders.name.slice(1)}`,
+            description: `Check out the most popular ${cleanTag} custom orders at ${allOrders.name}. Or, submit your own custom order and share it with your friends.`,
+            site_name: 'MealDig',
+          }}
         />
+
         <Layout />
         <TagPage className="tag-order-container">
           <div className="background-image-container"></div>

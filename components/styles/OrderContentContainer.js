@@ -82,6 +82,7 @@ const ModalContainer = styled.div`
       .order-data {
         .description {
           display: block;
+          mask-image: unset;
         }
       }
 
@@ -132,7 +133,7 @@ const OrderContentContainer = styled.div`
   font-family: Nunito, sans-serif;
   display: flex;
   text-decoration: none;
-  min-width: 360px;
+  min-width: 420px;
   border: 1px solid #f5f6f7;
 
   &:hover {
@@ -167,14 +168,19 @@ const OrderContentContainer = styled.div`
       }
 
       .description {
-        margin-top: 12px;
+        margin: 6px auto 6px;
         font-weight: 400;
         font-size: 18px;
+        max-height: 72px;
+        overflow: hidden;
+        mask-image: linear-gradient(180deg, #000 20px, transparent);
       }
     }
 
     .order-content {
-      flex-grow: 1;
+      height: 300px;
+      overflow: hidden;
+      mask-image: linear-gradient(180deg, #000 280px, transparent);
 
       p {
         line-height: 2;
