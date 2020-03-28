@@ -27,7 +27,7 @@ class ChainContent extends Component {
     } else if (chainName === '&pizza') {
       chainOrderContent = <AndPizzaOrder orderState={orderState} />;
     }
-    return <React.Fragment>{chainOrderContent}</React.Fragment>;
+    return <>{chainOrderContent}</>;
   }
 }
 

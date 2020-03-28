@@ -1,0 +1,90 @@
+// Utilities
+import React, { Component } from 'react';
+import Link from 'next/link';
+import styled from 'styled-components';
+
+// Styles
+const BreadCrumbsContainer = styled.div`
+  background-color: #9883e5;
+  position: sticky;
+  top: 74px;
+  z-index: 10;
+
+  .breadcrumbs-list {
+    width: 96%;
+    max-width: 1024px;
+    margin: 0 auto;
+
+    a,
+    span,
+    div {
+      display: inline-block;
+      font-family: Nunito;
+      color: #ffffff;
+      text-transform: capitalize;
+      text-decoration: none;
+      margin: 6px 12px 6px 0;
+    }
+    a {
+      font-weight: 700;
+      margin: 6px 12px 6px 0;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+`;
+
+export default class BreadCrumbs extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { ...props };
+  }
+
+  render() {
+    const { pageType, allOrders, tag } = this.state;
+
+    let chainCrumb = '';
+    if (pageType === 'chain') {
+      chainCrumb = (
+        <>
+          <span>{allOrders.name} </span>
+        </>
+      );
+    } else {
+      chainCrumb = (
+        <>
+          <Link
+            href={{ pathname: '/chains/[name]', query: { chainName: allOrders.name } }}
+            as={{ pathname: `/chains/${allOrders.name}` }}
+          >
+            <a href={`/chains/${allOrders.name}`}>{allOrders.name} </a>
+          </Link>
+          <span>→</span>
+        </>
+      );
+    }
+
+    let tagCrumb = '';
+    if (tag !== undefined) {
+      tagCrumb = <span>{tag} Custom Meals</span>;
+    } else {
+      tagCrumb = '';
+    }
+
+    return (
+      <BreadCrumbsContainer className="breadcrumbs-container">
+        <div className="breadcrumbs-list">
+          <Link href={{ pathname: '/' }} as={{ pathname: `/` }}>
+            <>
+              <a href="/">Home</a>
+              <span>→</span>
+            </>
+          </Link>
+          {chainCrumb}
+          {tagCrumb}
+        </div>
+      </BreadCrumbsContainer>
+    );
+  }
+}

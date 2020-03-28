@@ -9,11 +9,6 @@ const TagPages = styled.div`
   max-width: 100%;
   margin-bottom: 48px;
 
-  .background-image-container {
-    background-color: #9883e5;
-    height: 30px;
-  }
-
   .content-container {
     max-width: 1024px;
     padding: 18px;
@@ -65,35 +60,39 @@ const TagPages = styled.div`
       .signup-cta {
         font-family: Nunito, sans-serif;
         margin-bottom: 32px;
+        border-radius: 6px;
+        background-color: #ffffff;
       }
 
       .more-tag-cta {
-        background-color: #ffffff;
         overflow: hidden;
-        border-left: 3px solid #000000;
+        border: 1px solid transparent;
+        border-left: 6px solid #000000;
         font-size: 18px;
-        padding: 0px 12px;
+        padding: 6px 12px;
         font-weight: 700;
         cursor: pointer;
 
         &:hover {
-          border-left: 3px solid #0067ff;
+          border: 1px solid #0067ff;
+          border-left: 6px solid #0067ff;
         }
       }
 
       .more-chain-cta {
-        background-color: #ffffff;
         overflow: hidden;
-        border-left: 3px solid #000000;
+        border: 1px solid transparent;
+        border-left: 6px solid #000000;
         font-size: 18px;
-        padding: 0px 12px;
+        padding: 6px 12px;
         display: flex;
         flex-direction: row;
         font-weight: 700;
         cursor: pointer;
 
         &:hover {
-          border-left: 3px solid #0067ff;
+          border: 1px solid #0067ff;
+          border-left: 6px solid #0067ff;
         }
 
         img {
@@ -108,11 +107,15 @@ const TagPages = styled.div`
       }
 
       .signup-cta {
-        border: 1px solid #0067ff;
+        border: 1px solid transparent;
         position: sticky;
-        top: 100px;
+        top: 140px;
         padding: 18px 12px;
         text-align: center;
+
+        &:hover {
+          border: 1px solid #0067ff;
+        }
 
         .cta-text {
           font-size: 18px;

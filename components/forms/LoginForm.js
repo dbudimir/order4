@@ -169,7 +169,7 @@ class LoginForm extends Component {
     }
 
     return (
-      <React.Fragment>
+      <>
         {errorBar}
         <Form className="form">
           <div className="login-form">
@@ -207,7 +207,7 @@ class LoginForm extends Component {
             </span>
           </div>
         </Form>
-      </React.Fragment>
+      </>
     );
   }
 }

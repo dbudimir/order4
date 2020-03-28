@@ -1,50 +1,92 @@
 /* eslint-disable react/prop-types */
+
+// Utilities
 import React, { Component } from 'react';
-import Link from 'next/link';
-import { withRouter } from 'next/router';
-
-import styled from 'styled-components';
-
 import { NextSeo } from 'next-seo';
+import 'isomorphic-fetch';
+
+// Styles
+import TagPage from '../../components/styles/TagPage';
+
+// Components
 import Layout from '../../components/Layout';
-
-const ChainContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 1024px;
-  max-width: 94%;
-  margin: 40px auto 120px;
-
-  h1 {
-    color: rgb(0, 103, 255);
-    font-family: Nunito;
-  }
-`;
+import OrderContent from '../../components/order-content/OrderContent';
+import BreadCrumbs from '../../components/BreadCrumbs';
+import RightColumn from '../../components/RightColumn';
+import Footer from '../../components/Footer';
 
 class Chains extends Component {
-  static getInitialProps({ query }) {
-    return { chainName: query.chain };
+  constructor(props) {
+    super(props);
+    this.state = { ...props };
   }
 
   render() {
-    const { router } = this.props;
+    const { orders, allOrders } = this.state;
+
+    const orderCard = orders.map((order, index) => (
+      <OrderContent orderID={order._id} key={index} />
+    ));
+    const pageURL = `https://mealdig.com/chains/${allOrders.name}`;
 
     return (
       <div>
         <NextSeo
-          title={`Custom meal orders at ${router.query.name} | MealDig`}
-          description={`Explore the most popular custom meal orders at ${router.query.name}. | MealDig`}
+          title={`The Most Popular Custom meal orders at ${allOrders} | MealDig`}
+          description={`Explore the Most Popular Custom meal orders at ${allOrders}, Or, submit your own custom order and share it with your friends.`}
+          canonical={pageURL}
+          openGraph={{
+            url: pageURL,
+            title: `The Most Popular Custom meal orders at ${allOrders} | MealDig`,
+            description: `Explore the Most Popular Custom meal orders at ${allOrders}, Or, submit your own custom order and share it with your friends.`,
+            site_name: 'MealDig',
+          }}
         />
         <Layout />
-        <ChainContainer>
-          <h1>Chain: {router.query.name}</h1>
-        </ChainContainer>
-        <Link href="/">
-          <a>Go back to the list of posts</a>
-        </Link>
+        <TagPage className="tag-order-container">
+          <BreadCrumbs allOrders={allOrders} pageType="chain" />
+          <div className="content-container">
+            <div className="col-left">
+              <div className="headline-container">
+                <h1>
+                  The {orderCard.length} most popular custom orders at {allOrders.name}
+                </h1>
+              </div>
+              <div className="order-list">{orderCard}</div>
+            </div>
+            <RightColumn chainName={allOrders.name} />
+          </div>
+        </TagPage>
+        <Footer />
       </div>
     );
   }
 }
 
-export default withRouter(Chains);
+// Serverside get props
+export async function getServerSideProps(context) {
+  const chainName =
+    (await context.query.name.charAt(0).toUpperCase()) + context.query.name.slice(1);
+  const res = await fetch(`${process.env.api_key}/api/chains/${chainName}`);
+  const data = await res.json();
+
+  const chainsList = [data.orders];
+
+  const cleanList = chainsList.map(chain =>
+    chain.filter(
+      order =>
+        order.orderName !== null &&
+        order.orderName !== undefined &&
+        order.orderName.includes('test') !== true &&
+        order.orderName.includes('Test') !== true &&
+        order.tags.length > 0 &&
+        Object.keys(order).length > 4
+    )
+  );
+
+  return {
+    props: { orders: cleanList[0], allOrders: { name: context.query.name } },
+  };
+}
+
+export default Chains;

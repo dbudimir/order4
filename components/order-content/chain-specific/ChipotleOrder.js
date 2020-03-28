@@ -38,7 +38,7 @@ class ChipotleOrder extends Component {
 
     const order = this.state;
     return (
-      <React.Fragment>
+      <>
         <p>
           Meal Type: <span>{order.mealType}</span>
         </p>
@@ -53,7 +53,7 @@ class ChipotleOrder extends Component {
         </p>
         <p>Fillings: {order.fillings}</p>
         <p>Toppings: {order.toppings}</p>
-      </React.Fragment>
+      </>
     );
   }
 }

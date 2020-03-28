@@ -43,12 +43,12 @@ class User extends Component {
     ));
 
     return (
-      <React.Fragment>
+      <>
         <NextSeo title={`Custom orders created by ${allOrders.fullName}`} />
         <Layout />
         <H1>{`Custom orders created by ${allOrders.fullName}`}</H1>
         <OrderContainer className="order-content-container">{orderCard}</OrderContainer>
-      </React.Fragment>
+      </>
     );
   }
 }

@@ -196,7 +196,7 @@ export default class Search extends Component {
     }
 
     return (
-      <React.Fragment>
+      <>
         {errorBarComponent}
         <SearchRow>
           <div className="search-container">
@@ -258,7 +258,7 @@ export default class Search extends Component {
             {noSuggestionsComponent}
           </div>
         </SearchRow>
-      </React.Fragment>
+      </>
     );
   }
 }

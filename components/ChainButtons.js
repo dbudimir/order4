@@ -1,7 +1,5 @@
 // Utilities
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Link from 'next/link';
 import styled from 'styled-components';
 
 // Components
@@ -9,6 +7,7 @@ import ChainLogo from './order-content/chain-specific/ChainLogo';
 
 // Styles
 const ChainButtonContainer = styled.div`
+  width: 96%;
   max-width: 1024px;
   margin: 60px auto 0;
   display: flex;

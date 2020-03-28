@@ -18,13 +18,15 @@ export default class RightColumn extends Component {
       }
       return str.join(' ');
     };
-
-    const tagName = tag.replace(/-/g, ' ');
+    const tagName = tag === undefined ? '' : tag.replace(/-/g, ' ');
     const capitalTagName = toTitleCase(tagName);
     const chainNameLower = toTitleCase(chainName);
 
-    return (
-      <div className="col-right">
+    let tagCTA = '';
+    if (tag === undefined) {
+      tagCTA = '';
+    } else {
+      tagCTA = (
         <Link
           href={{
             pathname: `/tags/[tag]`,
@@ -37,6 +39,12 @@ export default class RightColumn extends Component {
             </div>
           </a>
         </Link>
+      );
+    }
+
+    return (
+      <div className="col-right">
+        {tagCTA}
         <Link
           href={{
             pathname: `/chains/[name]`,
@@ -47,7 +55,7 @@ export default class RightColumn extends Component {
             <div className="more-chain-cta">
               <span>See more popular custom meals at {chainNameLower}</span>
               <img
-                src="/static/chain-logos/square/chipotle-square-logo.png"
+                src={`/static/chain-logos/square/${chainName}-square-logo.png`}
                 alt={`${chainName} Square Logo`}
               />
             </div>

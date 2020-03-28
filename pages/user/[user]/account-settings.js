@@ -83,7 +83,7 @@ class AccountSettings extends Component {
     const createdDate = new Date(user.createdAt);
 
     return (
-      <React.Fragment>
+      <>
         <NextSeo title={`Profile for ${user.userFullName}`} />
         <Layout />
         <AccountSettingsContainer>
@@ -151,7 +151,7 @@ class AccountSettings extends Component {
             Save settings
           </button>
         </AccountSettingsContainer>
-      </React.Fragment>
+      </>
     );
   }
 }

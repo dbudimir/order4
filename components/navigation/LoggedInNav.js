@@ -29,7 +29,7 @@ export default class LoggedInNav extends Component {
     };
 
     return (
-      <React.Fragment>
+      <>
         <Link
           href={{
             pathname: '/user/[user]',
@@ -46,7 +46,7 @@ export default class LoggedInNav extends Component {
             <a>Log Out</a>
           </span>
         </Link>
-      </React.Fragment>
+      </>
     );
   }
 }

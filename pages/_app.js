@@ -71,7 +71,7 @@ export default class MyApp extends App {
     const { Component, pageProps } = this.props;
 
     return (
-      <React.Fragment>
+      <>
         <NextSeo
           title="MealDig | Custom fast-casual meals."
           description="This example uses more of the available config options."
@@ -120,7 +120,7 @@ export default class MyApp extends App {
         >
           <Component {...pageProps} />
         </UserContext.Provider>
-      </React.Fragment>
+      </>
     );
   }
 }

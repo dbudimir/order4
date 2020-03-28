@@ -5,7 +5,11 @@ import Link from 'next/link';
 class ChainLogo extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { ...props };
+  }
+
+  componentDidMount() {
+    //  console.log(this.state);
   }
 
   render() {
@@ -13,7 +17,7 @@ class ChainLogo extends Component {
       chainName: PropTypes.string,
     };
 
-    const { chainName } = this.props;
+    const { chainName } = this.state;
     let chainLogo;
     if (chainName === 'Chipotle') {
       chainLogo = (
@@ -32,18 +36,21 @@ class ChainLogo extends Component {
         />
       );
     }
+
+    const lowerCaseChainName = chainName === undefined ? '' : chainName.toLowerCase();
+
     return (
-      <React.Fragment>
+      <>
         <Link
           href={{
             pathname: '/chains/[name]',
-            query: { chainName },
+            query: { lowerCaseChainName },
           }}
-          as={{ pathname: `/chains/${chainName}` }}
+          as={{ pathname: `/chains/${lowerCaseChainName}` }}
         >
-          <a href={`/chains/${chainName}`}>{chainLogo}</a>
+          <a href={`/chains/${lowerCaseChainName}`}>{chainLogo}</a>
         </Link>
-      </React.Fragment>
+      </>
     );
   }
 }

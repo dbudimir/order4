@@ -121,7 +121,7 @@ class OrderContent extends Component {
     }
 
     return (
-      <React.Fragment>
+      <>
         {adminPanel}
         <ModalContainer
           className="order-content-container-outer"
@@ -183,7 +183,7 @@ class OrderContent extends Component {
             </OrderContentContainer>
           </div>
         </ModalContainer>
-      </React.Fragment>
+      </>
     );
   }
 }

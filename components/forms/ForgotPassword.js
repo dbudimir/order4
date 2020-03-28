@@ -136,7 +136,7 @@ class ForgotPassword extends Component {
         break;
     }
     return (
-      <React.Fragment>
+      <>
         {errorBar}
         <Form className="form">
           <div className="forgot-password-form">
@@ -161,7 +161,7 @@ class ForgotPassword extends Component {
             </span>
           </div>
         </Form>
-      </React.Fragment>
+      </>
     );
   }
 }
