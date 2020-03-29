@@ -111,7 +111,7 @@ export default class TagForm extends Component {
 
   inputKeyUp = e => {
     const { tags } = this.state;
-    const val = e.target.value;
+    const val = e.target.value.toLowerCase();
     if (e.key === 'Enter' && val) {
       if (tags.find(tag => tag.toLowerCase() === val.toLowerCase())) {
         return;
@@ -132,6 +132,9 @@ export default class TagForm extends Component {
     };
 
     const { tags } = this.state;
+
+    console.log(this.state);
+
     return (
       <TagInput>
         <div className="tag-container">

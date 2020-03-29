@@ -36,6 +36,14 @@ const TagPages = styled.div`
           font-size: 36px;
           margin: 0px;
         }
+
+        @media ${size.phone} {
+          margin: 12px 0px 24px;
+
+          h1 {
+            font-size: 28px;
+          }
+        }
       }
       .order-content-container-outer {
         margin-right: 0px;

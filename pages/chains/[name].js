@@ -9,11 +9,11 @@ import 'isomorphic-fetch';
 import TagPage from '../../components/styles/TagPage';
 
 // Components
-import Layout from '../../components/Layout';
+import Layout from '../../components/sitewide/Layout';
 import OrderContent from '../../components/order-content/OrderContent';
 import BreadCrumbs from '../../components/BreadCrumbs';
 import RightColumn from '../../components/RightColumn';
-import Footer from '../../components/Footer';
+import Footer from '../../components/sitewide/Footer';
 
 class Chains extends Component {
   constructor(props) {

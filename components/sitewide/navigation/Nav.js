@@ -5,8 +5,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+
 // Styles
-import NavBar from '../styles/NavBar';
+import NavBar from '../../styles/NavBar';
+
 // Components
 import LoggedInNav from './LoggedInNav';
 import LoggedOutNav from './LoggedOutNav';
@@ -64,7 +66,7 @@ export default class Nav extends Component {
     return (
       <NavBar>
         <div className="nav-left">
-          <div className="left-nav-icon"></div>
+          <div className="left-nav-icon" />
           <Link
             href={{
               pathname: '/',

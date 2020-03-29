@@ -143,6 +143,8 @@ const OrderContentContainer = styled.div`
 
   @media ${size.tablet} {
     flex-basis: 100%;
+    min-width: unset;
+    width: 90vw;
   }
 
   .order-data {
@@ -211,14 +213,15 @@ const OrderContentContainer = styled.div`
 
           a {
             text-decoration: none;
+            font-weight: 700;
+            background-color: #eeeef1;
+            padding: 1px 4px;
+            border-radius: 4px;
+            margin: 0 4px 4px 0;
 
-            span {
-              font-weight: 700;
-
-              &:hover {
-                background-color: #0067ff;
-                color: #ffffff;
-              }
+            &:hover {
+              background-color: #0067ff;
+              color: #ffffff;
             }
           }
         }

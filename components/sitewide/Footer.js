@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 
 import styled from 'styled-components';
 
@@ -8,5 +8,5 @@ const Footer = styled.div`
 `;
 
 export default function Other() {
-  return <Footer className="footer"></Footer>;
+  return <Footer className="footer" />;
 }

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Form from '../components/styles/CreateOrderForm';
 
-import Layout from '../components/Layout';
+import Layout from '../components/sitewide/Layout';
 import CreateChipotleOrder from '../components/forms/order-forms/chain-forms/CreateChipotleOrder';
 import CreateAndPizzOrder from '../components/forms/order-forms/chain-forms/CreateAndPizzaOrderForm';
 import SelectChainForm from '../components/forms/order-forms/SelectChainForm';

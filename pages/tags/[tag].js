@@ -6,7 +6,7 @@ import { NextSeo } from 'next-seo';
 import styled from 'styled-components';
 import TagPage from '../../components/styles/TagPage';
 
-import Layout from '../../components/Layout';
+import Layout from '../../components/sitewide/Layout';
 import OrderContent from '../../components/order-content/OrderContent';
 
 const OrderContainer = styled.div`

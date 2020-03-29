@@ -4,6 +4,11 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 // Styles
+const size = {
+  tablet: 'only screen and (max-width : 768px)',
+  phone: 'only screen and (max-width : 548px)',
+};
+
 const BreadCrumbsContainer = styled.div`
   background-color: #9883e5;
   position: sticky;
@@ -14,6 +19,9 @@ const BreadCrumbsContainer = styled.div`
     width: 96%;
     max-width: 1024px;
     margin: 0 auto;
+    @media ${size.tablet} {
+      font-size: 14px;
+    }
 
     a,
     span,

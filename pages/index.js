@@ -7,8 +7,8 @@ import fetch from 'isomorphic-fetch';
 import PageContent from '../components/styles/Home';
 
 // Components
-import Layout from '../components/Layout';
-import Footer from '../components/Footer';
+import Layout from '../components/sitewide/Layout';
+import Footer from '../components/sitewide/Footer';
 import Search from '../components/Search';
 import ChainButtons from '../components/ChainButtons';
 import Chains from '../components/Chains';

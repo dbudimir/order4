@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import Layout from '../components/Layout';
+import Layout from '../components/sitewide/Layout';
 import UserContext from '../components/UserContext';
 import LoginFormContainer from '../components/forms/LoginFormContainer';
 

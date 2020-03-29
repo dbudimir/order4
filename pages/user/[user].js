@@ -5,7 +5,7 @@ import { NextSeo } from 'next-seo';
 
 import styled from 'styled-components';
 
-import Layout from '../../components/Layout';
+import Layout from '../../components/sitewide/Layout';
 import OrderContent from '../../components/order-content/OrderContent';
 
 const H1 = styled.h1`

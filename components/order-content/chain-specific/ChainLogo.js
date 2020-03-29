@@ -8,16 +8,12 @@ class ChainLogo extends Component {
     this.state = { ...props };
   }
 
-  componentDidMount() {
-    //  console.log(this.state);
-  }
-
   render() {
     ChainLogo.propTypes = {
       chainName: PropTypes.string,
     };
 
-    const { chainName } = this.state;
+    const { chainName } = this.props;
     let chainLogo;
     if (chainName === 'Chipotle') {
       chainLogo = (

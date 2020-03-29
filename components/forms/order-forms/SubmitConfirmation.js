@@ -1,16 +1,20 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+
+// Utilities
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import Router from 'next/router';
 import axios from 'axios';
 import styled from 'styled-components';
 
+// Components
 import UserContext from '../../UserContext';
 import OrderContent from '../../order-content/OrderContent';
 import SignupForm from '../SignupForm';
 import LoginForm from '../LoginForm';
 
+// Styles
 const ModalOuter = styled.div`
   position: fixed;
   z-index: 10;

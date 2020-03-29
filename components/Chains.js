@@ -117,6 +117,7 @@ class Chains extends Component {
     const { chain } = this.props;
     const { sortOrder } = this.state;
     const { chainName } = chain[0];
+    const lowerCaseChainName = chainName === undefined ? '' : chainName.toLowerCase();
 
     return (
       <ChainContainer>
@@ -124,11 +125,11 @@ class Chains extends Component {
           <Link
             href={{
               pathname: '/chains/[name]',
-              query: { chainName },
+              query: { lowerCaseChainName },
             }}
-            as={{ pathname: `/chains/${chainName}` }}
+            as={{ pathname: `/chains/${lowerCaseChainName}` }}
           >
-            <a href={`/chains/${chainName}`}>
+            <a href={`/chains/${lowerCaseChainName}`}>
               <h2 className="chain-name">{chainName}</h2>
             </a>
           </Link>
@@ -152,8 +153,8 @@ class Chains extends Component {
                 strokeLinejoin="round"
                 className="feather feather-arrow-down"
               >
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <polyline points="19 12 12 19 5 12"></polyline>
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <polyline points="19 12 12 19 5 12" />
               </svg>
             </div>
           </SortOrder>

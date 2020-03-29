@@ -74,12 +74,13 @@ export default class MyApp extends App {
       <>
         <NextSeo
           title="MealDig | Custom fast-casual meals."
-          description="This example uses more of the available config options."
+          description="Discover new meals and custom orders at your favorite fast-casual dining spots. Select a chain and search for a meal type to get started."
           canonical="https://mealdig.com/"
           openGraph={{
-            url: 'https://www.url.ie/a',
-            title: 'Open Graph Title',
-            description: 'Open Graph Description',
+            url: 'https://mealdig.com/',
+            title: 'MealDig | Custom fast-casual meals.',
+            description:
+              'Discover new meals and custom orders at your favorite fast-casual dining spots. Select a chain and search for a meal type to get started.',
             images: [
               {
                 url: 'https://www.example.ie/og-image-01.jpg',
@@ -93,14 +94,12 @@ export default class MyApp extends App {
                 height: 800,
                 alt: 'Og Image Alt Second',
               },
-              { url: 'https://www.example.ie/og-image-03.jpg' },
-              { url: 'https://www.example.ie/og-image-04.jpg' },
             ],
-            site_name: 'SiteName',
+            site_name: 'MealDig',
           }}
           twitter={{
-            handle: '@handle',
-            site: '@site',
+            handle: '@mealdig',
+            site: '',
             cardType: 'summary_large_image',
           }}
         />

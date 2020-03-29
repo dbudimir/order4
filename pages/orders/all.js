@@ -4,7 +4,7 @@ import 'isomorphic-fetch';
 
 import styled from 'styled-components';
 
-import Layout from '../../components/Layout';
+import Layout from '../../components/sitewide/Layout';
 import OrderContent from '../../components/order-content/OrderContent';
 
 const Header = styled.div`
@@ -126,8 +126,8 @@ class Orders extends Component {
               strokeLinejoin="round"
               className="feather feather-arrow-down"
             >
-              <line x1="12" y1="5" x2="12" y2="19"></line>
-              <polyline points="19 12 12 19 5 12"></polyline>
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <polyline points="19 12 12 19 5 12" />
             </svg>
           </SortOrder>
         </Header>

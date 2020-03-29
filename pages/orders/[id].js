@@ -4,7 +4,7 @@ import 'isomorphic-fetch';
 
 import styled from 'styled-components';
 
-import Layout from '../../components/Layout';
+import Layout from '../../components/sitewide/Layout';
 import OrderContent from '../../components/order-content/OrderContent';
 
 const OrderContainer = styled.div`

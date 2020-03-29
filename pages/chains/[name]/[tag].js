@@ -9,9 +9,9 @@ import 'isomorphic-fetch';
 import TagPage from '../../../components/styles/TagPage';
 
 // Components
-import Layout from '../../../components/Layout';
+import Layout from '../../../components/sitewide/Layout';
 import BreadCrumbs from '../../../components/BreadCrumbs';
-import Footer from '../../../components/Footer';
+import Footer from '../../../components/sitewide/Footer';
 import RightColumn from '../../../components/RightColumn';
 import OrderContent from '../../../components/order-content/OrderContent';
 

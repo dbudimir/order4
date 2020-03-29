@@ -104,13 +104,13 @@ class OrderContent extends Component {
       orderID: PropTypes.string,
     };
 
-    const { state } = this;
-
-    const chainRowModalDisplay =
-      state.orderContentModal === true ? 'modal-container-true' : 'modal-container';
+    // prettier-ignore
+    const { orderContentModal, accessLevel, chainName, orderName, orderDescription, orderContent, tags, userData, createdAt, orderId, favoriteCount, usersFavorited, } = this.state;
+    // prettier-ignore
+    const chainRowModalDisplay = orderContentModal === true ? 'modal-container-true' : 'modal-container';
 
     let adminPanel;
-    if (state.accessLevel === 'admin' && state.orderContentModal === true) {
+    if (accessLevel === 'admin' && orderContentModal === true) {
       adminPanel = (
         <AdminPanel>
           <span onClick={this.deleteOrder} role="button">
@@ -144,41 +144,41 @@ class OrderContent extends Component {
                     strokeLinejoin="round"
                     className="feather feather-x-circle"
                   >
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="15" y1="9" x2="9" y2="15"></line>
-                    <line x1="9" y1="9" x2="15" y2="15"></line>
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="15" y1="9" x2="9" y2="15" />
+                    <line x1="9" y1="9" x2="15" y2="15" />
                   </svg>
                 </div>
               </div>
               {/* Everything left of the action bar */}
               <div className="order-data">
                 {/* Pulls in the correct logo */}
-                <ChainLogo chainName={state.chainName} onClick={e => this.openOrderModal(e)} />
+                <ChainLogo chainName={chainName} onClick={e => this.openOrderModal(e)} />
 
                 {/* Pulls in user enterted title and description */}
                 <div className="order-info" role="button" onClick={e => this.openOrderModal(e)}>
-                  <h2 className="order-name">{state.orderName}</h2>
-                  <p className="description">{state.orderDescription}</p>
+                  <h2 className="order-name">{orderName}</h2>
+                  <p className="description">{orderDescription}</p>
                 </div>
 
                 {/* Pulls in conntent specific to this chain */}
                 <div className="order-content" role="button" onClick={e => this.openOrderModal(e)}>
-                  <ChainContent chainName={state.chainName} orderState={state.orderContent} />
+                  <ChainContent chainName={chainName} orderState={orderContent} />
                 </div>
 
                 {/* Pulls in tags, user created and date created */}
                 <div className="order-meta ">
-                  <OrderTags chainName={state.chainName} tags={state.tags} />
-                  <CreatedMeta userData={state.userData} dateCreated={state.createdAt} />
+                  <OrderTags chainName={chainName} tags={tags} />
+                  <CreatedMeta userData={userData} dateCreated={createdAt} />
                 </div>
               </div>
 
               {/* Where a user can take action on the order. */}
               <ActionBar
-                key={state.orderId}
-                favoriteCount={state.favoriteCount}
-                orderId={state.orderId}
-                usersFavorited={state.usersFavorited}
+                key={orderId}
+                favoriteCount={favoriteCount}
+                orderId={orderId}
+                usersFavorited={usersFavorited}
               />
             </OrderContentContainer>
           </div>

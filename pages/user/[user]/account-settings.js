@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 import styled from 'styled-components';
 
-import Layout from '../../../components/Layout';
+import Layout from '../../../components/sitewide/Layout';
 
 const AccountSettingsContainer = styled.div`
   max-width: 1024px;

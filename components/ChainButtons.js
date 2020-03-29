@@ -6,12 +6,21 @@ import styled from 'styled-components';
 import ChainLogo from './order-content/chain-specific/ChainLogo';
 
 // Styles
+const size = {
+  tablet: 'only screen and (max-width : 768px)',
+  phone: 'only screen and (max-width : 548px)',
+};
+
 const ChainButtonContainer = styled.div`
   width: 96%;
   max-width: 1024px;
   margin: 60px auto 0;
   display: flex;
   justify-content: flex-start;
+
+  @media ${size.phone} {
+    display: none;
+  }
 
   .chain-button {
     background: #ffffff;
