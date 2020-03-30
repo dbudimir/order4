@@ -44,10 +44,10 @@ const SearchRow = styled.div`
 
       h2 {
         margin: 16px auto 48px;
-        font-family: Roboto, sans-serif;
-        font-weight: 300;
+        font-family: Nunito;
+        font-weight: 400;
         font-size: 18px;
-        max-width: 600px;
+        max-width: 620px;
         line-height: 1.5;
         letter-spacing: 0.75px;
       }

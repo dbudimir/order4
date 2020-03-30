@@ -19,12 +19,16 @@ export default function Layout() {
     userStatus.signOut();
   };
 
+  const updateFeedbackModal = () => {
+    localStorage.setItem('feedBackPopUpSeen', true);
+  };
+
   return (
     <GlobalLayout>
       <div className="navbar">
         <Nav signOut={signOut} />
       </div>
-      <Feedback />
+      <Feedback updateFeedbackModal={updateFeedbackModal} />
     </GlobalLayout>
   );
 }

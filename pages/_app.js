@@ -115,6 +115,7 @@ export default class MyApp extends App {
             signIn: this.signIn,
             signOut: this.signOut,
             switchNextAction: this.switchNextAction,
+            feedBackPopUpSeen: false,
           }}
         >
           <Component {...pageProps} />
