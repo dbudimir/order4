@@ -30,7 +30,7 @@
     "react-dom": "^16.13.1",
     "react-gtm-module": "^2.0.8",
     "react-moment": "^0.9.7",
-    "react-share": "^4.1.0",
+    "react-share": "^4.0.1",
     "shuffle-array": "^1.0.1",
     "styled-components": "^5.0.1",
     "styled-media-query": "^2.1.2",
