@@ -90,23 +90,20 @@ const ModalContainer = styled.div`
         flex-direction: row;
         width: 100%;
 
-        .favorites {
-          flex-direction: row;
+        > * {
+          display: inline-flex;
+          margin-left: 6px;
         }
 
-        div {
-          margin-right: 6px;
+        .favorites {
+          flex-direction: row;
           svg {
-            margin: 0 6px 0 0;
+            margin-right: 6px;
           }
         }
 
         div:last-of-type {
           height: 24px;
-
-          svg {
-            margin: 3px 0 0 0;
-          }
         }
       }
     }

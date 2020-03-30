@@ -73,6 +73,22 @@ export default class ActionBar extends Component {
     }
   };
 
+  openEmbedWindow = () => {
+    const { orderId } = this.props;
+
+    const remoteSource = '/static/chipotle-order-embed.js';
+    const embedId = Math.random()
+      .toString(36)
+      .replace(/[^a-z]+/g, '')
+      .substr(0, 5);
+
+    window.open(
+      `/embed-window?remoteSource=${remoteSource}&embedId=${embedId}&orderId=${orderId}`,
+      '',
+      'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=800'
+    );
+  };
+
   render() {
     ActionBar.propTypes = {
       favoriteCount: PropTypes.number,
@@ -84,7 +100,11 @@ export default class ActionBar extends Component {
     const { favoritesClass, favoriteCount, orderName, chainName, tags } = this.state;
     return (
       <div className="user-actions">
-        <div className={favoritesClass} onClick={this.handleFavoriteClick}>
+        <div
+          title="Click to add to your favorites."
+          className={favoritesClass}
+          onClick={this.handleFavoriteClick}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -114,7 +134,33 @@ export default class ActionBar extends Component {
         >
           <FacebookIcon size={24} round />
         </FacebookShareButton>
-        <div>
+        <div title="Click to embed this order on your site." onClick={this.openEmbedWindow}>
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 30 30"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="Artboard-Copy-2" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+              <g id="code">
+                <circle id="Oval" fill="#262F40" cx="15" cy="15" r="14.5" />
+                <g
+                  id="Group"
+                  transform="translate(6.000000, 9.000000)"
+                  stroke="#FFFFFF"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                >
+                  <polyline id="Path" points="12 12 18 6 12 0" />
+                  <polyline id="Path" points="6 0 0 6 6 12" />
+                </g>
+              </g>
+            </g>
+          </svg>
+        </div>
+        <div title="Open link to this order.">
           <Link
             href={{
               pathname: '/orders/[id]',

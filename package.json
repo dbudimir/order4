@@ -15,6 +15,7 @@
     "axios": "^0.19.2",
     "babel-plugin-import-static-files": "^1.0.4",
     "change-case": "^4.1.1",
+    "dangerously-set-html-content": "^1.0.3",
     "dotenv": "^8.2.0",
     "isomorphic-fetch": "^2.2.1",
     "isomorphic-unfetch": "^3.0.0",
@@ -29,12 +30,14 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-gtm-module": "^2.0.8",
+    "react-iframe": "^1.8.0",
     "react-moment": "^0.9.7",
     "react-share": "^4.0.1",
     "shuffle-array": "^1.0.1",
     "styled-components": "^5.0.1",
     "styled-media-query": "^2.1.2",
-    "unique-concat": "^0.2.2"
+    "unique-concat": "^0.2.2",
+    "zoid": "^6.0.79"
   },
   "eslintConfig": {
     "extends": "wesbos",
